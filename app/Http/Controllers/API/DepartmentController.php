@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\DepartmentRepositoryInterface;
+use App\Models\Department;
 
 class DepartmentController extends Controller
 {
@@ -17,72 +18,31 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        //
+        $department = $this->departmentRepo->allDepartments();
+        return response()->json($department, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $department = $this->departmentRepo->createDepartment($request);
+        return response()->json($department, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $department = $this->departmentRepo->showDepartment($id);
+        return response()->json($department, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, Department $department)
     {
-        //
+        $department = $this->departmentRepo->updateDepartment($request, $department);
+        return response()->json($department, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Department $department)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $department = $this->departmentRepo->deleteDepartment($department);
+        return response()->json($department, 200);
     }
 }
