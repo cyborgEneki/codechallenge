@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\DepartmentRepositoryInterface;
 use App\Models\Department;
+use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
 {
@@ -22,7 +22,7 @@ class DepartmentController extends Controller
         return response()->json($department, 200);
     }
 
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
         $department = $this->departmentRepo->createDepartment($request);
         return response()->json($department, 201);
@@ -34,7 +34,7 @@ class DepartmentController extends Controller
         return response()->json($department, 200);
     }
 
-    public function update(Request $request, Department $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
         $department = $this->departmentRepo->updateDepartment($request, $department);
         return response()->json($department, 200);

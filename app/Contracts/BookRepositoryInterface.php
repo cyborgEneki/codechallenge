@@ -3,17 +3,17 @@
 namespace App\Contracts;
 
 use App\Models\Book;
-use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
 
 interface BookRepositoryInterface
 {
     public function allBooks();
 
-    public function createBook(Request $request);
+    public function createBook(BookRequest $request);
 
     public function showBook($id);
 
-    public function updateBook(Request $request, Book $book);
+    public function updateBook(BookRequest $request, Book $book);
 
     public function deleteBook(Book $book);
 }

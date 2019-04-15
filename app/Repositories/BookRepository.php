@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Book;
-use Illuminate\Http\Request;
 use App\Contracts\BookRepositoryInterface;
+use App\Http\Requests\BookRequest;
 
 class BookRepository implements BookRepositoryInterface
 {
@@ -13,7 +13,7 @@ class BookRepository implements BookRepositoryInterface
         return Book::all();
     }
 
-    public function createBook(Request $request)
+    public function createBook(BookRequest $request)
     {
         return Book::create($request->all());
     }
@@ -23,7 +23,7 @@ class BookRepository implements BookRepositoryInterface
         return Book::findOrFail($id);
     }
 
-    public function updateBook(Request $request, Book $book)
+    public function updateBook(BookRequest $request, Book $book)
     {
         return $book->update($request->all());
     }

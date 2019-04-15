@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\AuthorRepositoryInterface;
 use App\Models\Author;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {
@@ -21,7 +21,7 @@ class AuthorController extends Controller
         return response()->json($author, 200);
     }
 
-    public function store(Request $request)
+    public function store(AuthorRequest $request)
     {
         $author = $this->authorRepo->createAuthor($request);
         return response()->json($author, 201);
@@ -33,7 +33,7 @@ class AuthorController extends Controller
         return response()->json($author, 200);
     }
 
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
         $author = $this->authorRepo->updateAuthor($request, $author);
         return response()->json($author, 200);
