@@ -19,6 +19,8 @@ class CreateBooksTable extends Migration
             $table->enum('status', ['Borrowed', 'Available']);
             $table->unsignedInteger('reservor_id')->nullable();
             $table->foreign('reservor_id')->references('id')->on('users');
+            $table->unsignedInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->softDeletes();
         });
