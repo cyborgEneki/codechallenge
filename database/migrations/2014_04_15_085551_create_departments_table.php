@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BookUser extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class BookUser extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('departments', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class BookUser extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('departments');
     }
 }
