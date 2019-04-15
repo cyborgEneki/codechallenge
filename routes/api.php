@@ -20,4 +20,9 @@ Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');
+    Route::apiResource('authors', 'API\AuthorController');
+    Route::apiResource('books', 'API\BookController');
+    Route::apiResource('categories', 'API\CategoryController');
+    Route::apiResource('departments', 'API\DepartmentController');
+    Route::apiResource('users', 'API\UserController');
 });
