@@ -18,12 +18,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 
-        'last_name', 
-        'email', 
-        'password', 
-        'max_number_of_books_allowed', 
-        'status', 
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'max_number_of_books_allowed',
+        'status',
         'department_id'
     ];
 
@@ -52,6 +52,8 @@ class User extends Authenticatable
 
     public function books()
     {
-        return $this->belongsToMany('App\Models\Book', 'book_loan', 'user_id', 'book_id');
+        return $this->belongsToMany('App\Models\Book')
+        ->withPivot('date_out', 'date_in', 'due_date')
+        ->withTimestamps();
     }
 }

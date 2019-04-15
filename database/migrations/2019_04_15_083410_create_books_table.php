@@ -16,10 +16,10 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->enum('status', ['Borrowed', 'Available']);
+            $table->enum('status', ['Available', 'Borrowed']);
             $table->unsignedInteger('reservor_id')->nullable();
             $table->foreign('reservor_id')->references('id')->on('users');
-            $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->softDeletes();

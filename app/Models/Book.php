@@ -11,12 +11,12 @@ class Book extends Model
 
     protected $fillable =
     [
-        'title', 'status', 'reservor_id'
+        'title', 'status', 'reservor_id', 'category_id'
     ];
 
     public function authors()
     {
-        return $this->belongsToMany('App\Models\Author', 'author_book', 'book_id', 'author_id');
+        return $this->belongsToMany('App\Models\Author');
     }
 
     public function category()
@@ -31,7 +31,8 @@ class Book extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'book_loan', 'book_id', 'user_id')
-        ->withPivot('date_out', 'date_in', 'due_date');
+        return $this->belongsToMany('App\Models\User')
+        ->withPivot('date_out', 'date_in', 'due_date')
+        ->withTimestamps();
     }
 }
