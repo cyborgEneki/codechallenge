@@ -96,8 +96,8 @@
 
             <div class="small 12 columns">
                 <div class="button-group">
-                    <a class="secondary button">View</a>
-                    <a class="success button">Edit</a>
+                    <a class="secondary button">Eneki</a>
+                    <a class="success button">Joan</a>
                     <a class="warning button">Share</a>
                     <a class="alert button">Delete</a>
                 </div>
