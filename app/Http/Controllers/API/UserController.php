@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User; 
+use App\Models\User; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 
@@ -34,10 +34,14 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
+            'max_number_of_books_allowed' => 'required',
+            'status' => 'required',
+            'department_id' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);

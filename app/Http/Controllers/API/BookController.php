@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\BookRepositoryInterface;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -17,72 +18,31 @@ class BookController extends Controller
 
     public function index()
     {
-        //
+        $book = $this->bookRepo->allBooks();
+        return response()->json($book, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $book = $this->bookRepo->createBook($request);
+        return response()->json($book, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        $book = $this->bookRepo->showAuthor($book);
+        return response()->json($book, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $book = $this->bookRepo->updateBook($request, $book);
+        return response()->json($book, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Book $book)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $book = $this->bookRepo->deleteBook($book);
+        return response()->json($book, 200);
     }
 }
