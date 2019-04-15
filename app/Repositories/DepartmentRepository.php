@@ -2,27 +2,28 @@
 
 namespace App\Repositories;
 
-use App\Models\Author;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Contracts\DepartmentRepositoryInterface;
 
-class AuthorRepository implements AuthorRepositoryInterface
+class DepartmentRepository implements DepartmentRepositoryInterface
 {
-    public function allAuthors()
+    public function allDepartments()
     {
     }
 
-    public function createAuthor(Request $request)
+    public function createDepartment(Request $request)
     {
     }
-    public function showAuthor(Author $author)
-    {
-    }
-
-    public function updateAuthor(Request $request, Author $author)
+    public function showDepartment(Department $department)
     {
     }
 
-    public function deleteAuthor(Author $author)
+    public function updateDepartment(Request $request, Department $department)
+    {
+    }
+
+    public function deleteDepartment(Department $department)
     {
     }
 }
