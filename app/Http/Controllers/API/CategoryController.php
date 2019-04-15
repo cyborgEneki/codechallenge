@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\CategoryRepositoryInterface;
 use App\Models\Category;
@@ -43,7 +42,7 @@ class CategoryController extends Controller
         return response()->json($category, 200);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category = $this->categoryRepo->updateCategory($request, $category);
         return response()->json($category, 200);

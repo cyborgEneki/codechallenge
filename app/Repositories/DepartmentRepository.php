@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Department;
-use Illuminate\Http\Request;
 use App\Contracts\DepartmentRepositoryInterface;
+use App\Http\Requests\DepartmentRequest;
 
 class DepartmentRepository implements DepartmentRepositoryInterface
 {
@@ -13,7 +13,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
         return Department::all();
     }
 
-    public function createDepartment(Request $request)
+    public function createDepartment(DepartmentRequest $request)
     {
         return Department::create($request->all());
     }
@@ -23,7 +23,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
         return Department::findOrFail($id);
     }
 
-    public function updateDepartment(Request $request, Department $department)
+    public function updateDepartment(DepartmentRequest $request, Department $department)
     {
         return $department->update($request->all());
     }

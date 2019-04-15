@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\BookRepositoryInterface;
 use App\Models\Book;
+use App\Http\Requests\BookRequest;
 
 class BookController extends Controller
 {
@@ -22,7 +22,7 @@ class BookController extends Controller
         return response()->json($book, 200);
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         $book = $this->bookRepo->createBook($request);
         return response()->json($book, 201);
@@ -34,7 +34,7 @@ class BookController extends Controller
         return response()->json($book, 200);
     }
 
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
         $book = $this->bookRepo->updateBook($request, $book);
         return response()->json($book, 200);

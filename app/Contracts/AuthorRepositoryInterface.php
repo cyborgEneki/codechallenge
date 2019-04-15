@@ -3,17 +3,17 @@
 namespace App\Contracts;
 
 use App\Models\Author;
-use Illuminate\Http\Request;
+use App\Http\Requests\AuthorRequest;
 
 interface AuthorRepositoryInterface
 {
     public function allAuthors();
 
-    public function createAuthor(Request $request);
+    public function createAuthor(AuthorRequest $request);
 
     public function showAuthor($id);
 
-    public function updateAuthor(Request $request, Author $author);
+    public function updateAuthor(AuthorRequest $request, Author $author);
 
     public function deleteAuthor(Author $author);
 }
