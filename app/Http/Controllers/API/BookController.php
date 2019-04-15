@@ -4,14 +4,17 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Contracts\BookRepositoryInterface;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $bookRepo;
+
+    public function __construct(BookRepositoryInterface $bookRepo)
+    {
+        $this->bookRepo = $bookRepo;
+    }
+
     public function index()
     {
         //

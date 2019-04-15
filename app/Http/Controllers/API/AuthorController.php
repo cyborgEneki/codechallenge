@@ -4,14 +4,16 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Contracts\AuthorRepositoryInterface;
 
 class AuthorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $authorRepo;
+
+    public function __construct(AuthorRepositoryInterface $authorRepo)
+    {
+        $this->authorRepo = $authorRepo;
+    }
     public function index()
     {
         //

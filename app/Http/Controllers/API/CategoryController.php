@@ -4,14 +4,17 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Contracts\CategoryRepositoryInterface;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $categoryRepo;
+    
+    public function __construct(CategoryRepositoryInterface $categoryRepo)
+    {
+        $this->categoryRepo = $categoryRepo;
+    }
+
     public function index()
     {
         //

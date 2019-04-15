@@ -4,14 +4,17 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Contracts\DepartmentRepositoryInterface;
 
 class DepartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $departmentRepo;
+    
+    public function __construct(DepartmentRepositoryInterface $departmentRepo)
+    {
+        $this->departmentRepo = $departmentRepo;
+    }
+
     public function index()
     {
         //
