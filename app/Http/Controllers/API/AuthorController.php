@@ -27,9 +27,9 @@ class AuthorController extends Controller
         return response()->json($author, 201);
     }
 
-    public function show(Author $author)
+    public function show($id)
     {
-        $author = $this->authorRepo->showAuthor($author);
+        $author = $this->authorRepo->showAuthor($id);
         return response()->json($author, 200);
     }
 

@@ -28,9 +28,9 @@ class BookController extends Controller
         return response()->json($book, 201);
     }
 
-    public function show(Book $book)
+    public function show($id)
     {
-        $book = $this->bookRepo->showAuthor($book);
+        $book = $this->bookRepo->showBook($id);
         return response()->json($book, 200);
     }
 

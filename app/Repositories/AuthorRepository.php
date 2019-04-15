@@ -17,9 +17,9 @@ class AuthorRepository implements AuthorRepositoryInterface
     {
         return Author::create($request->all());
     }
-    public function showAuthor(Author $author)
+    public function showAuthor($id)
     {
-        return Author::findOrFail($author);
+        return Author::findOrFail($id);
     }
 
     public function updateAuthor(Request $request, Author $author)

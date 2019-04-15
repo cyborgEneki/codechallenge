@@ -11,7 +11,7 @@ interface DepartmentRepositoryInterface
 
     public function createDepartment(Request $request);
 
-    public function showDepartment(Department $department);
+    public function showDepartment($id);
 
     public function updateDepartment(Request $request, Department $department);
 

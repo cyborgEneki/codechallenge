@@ -11,7 +11,7 @@ interface AuthorRepositoryInterface
 
     public function createAuthor(Request $request);
 
-    public function showAuthor(Author $author);
+    public function showAuthor($id);
 
     public function updateAuthor(Request $request, Author $author);
 
