@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('max_number_of_books_allowed');
+            $table->unsignedInteger('max_number_of_books_allowed');
             $table->enum('status', ['Active', 'Suspended']);
             $table->unsignedInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');

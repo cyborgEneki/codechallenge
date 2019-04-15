@@ -14,7 +14,7 @@ class AuthorBook extends Migration
     public function up()
     {
         Schema::create('author_book', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->unsignedInteger('author_id');
             $table->foreign('author_id')->references('id')->on('authors');
             $table->unsignedInteger('book_id');
