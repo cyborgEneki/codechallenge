@@ -30,6 +30,6 @@ class BookRepository implements BookRepositoryInterface
 
     public function deleteBook(Book $book)
     {
-        return Book::delete($book);
+        return $book->delete($book);
     }
 }
