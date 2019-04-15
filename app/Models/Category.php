@@ -13,4 +13,9 @@ class category extends Model
     [
         'name'
     ];
+
+    public function books()
+    {
+        return $this->hasMany('App\Models\Book');
+    }
 }

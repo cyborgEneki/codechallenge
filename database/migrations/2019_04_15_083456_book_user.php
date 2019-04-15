@@ -13,8 +13,8 @@ class BookUser extends Migration
      */
     public function up()
     {
-        Schema::create('book_loans', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('book_user', function (Blueprint $table) {
+            $table->increments('id');
             $table->date('date_out');
             $table->date('date_in');
             $table->date('due_date');
@@ -33,6 +33,6 @@ class BookUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_loans');
+        Schema::dropIfExists('book_user');
     }
 }

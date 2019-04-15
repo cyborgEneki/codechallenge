@@ -14,10 +14,10 @@ class CreateBooksTable extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('title');
             $table->enum('status', ['Borrowed', 'Available']);
-            $table->unsignedInteger('reservor_id');
+            $table->unsignedInteger('reservor_id')->nullable();
             $table->foreign('reservor_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
