@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\AuthorRepositoryInterface;
+use App\Models\Author;
 
 class AuthorController extends Controller
 {
@@ -12,11 +13,12 @@ class AuthorController extends Controller
 
     public function __construct(AuthorRepositoryInterface $authorRepo)
     {
-        $this->authorRepo = $authorRepo;
+        // $this->authorRepo = $authorRepo;
+        // return response()->json($author, 200);
     }
     public function index()
     {
-        //
+        $author = $this->authorRepo->allAuthors();
     }
 
     /**
