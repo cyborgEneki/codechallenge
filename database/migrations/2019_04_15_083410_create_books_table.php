@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->unsignedInteger('reservor_id');
             $table->foreign('reservor_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
