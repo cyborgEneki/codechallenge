@@ -11,7 +11,7 @@ interface BookRepositoryInterface
 
     public function createBook(Request $request);
 
-    public function showBook(Book $book);
+    public function showBook($id);
 
     public function updateBook(Request $request, Book $book);
 

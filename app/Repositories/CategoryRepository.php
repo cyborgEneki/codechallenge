@@ -2,28 +2,34 @@
 
 namespace App\Repositories;
 
-use App\Models\Department;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Contracts\CategoryRepositoryInterface;
 
-class DepartmentRepository implements DepartmentRepositoryInterface
+class CategoryRepository implements CategoryRepositoryInterface
 {
-    public function allDepartments()
+    public function allCategories()
     {
+        return Category::all();
     }
 
-    public function createDepartment(Request $request)
+    public function createCategory(Request $request)
     {
+        return Category::create($request->all());
     }
 
-    public function showDepartment(Department $department)
+    public function showCategory($id)
     {
+        return Category::findOrFail($id);
     }
 
-    public function updateDepartment(Request $request, Department $department)
+    public function updateCategory(Request $request, Category $category)
     {
+        return $category->update($request->all());
     }
 
-    public function deleteDepartment(Department $department)
+    public function deleteCategory(Category $category)
     {
+        return $category->delete($category);
     }
 }
