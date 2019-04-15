@@ -15,9 +15,9 @@ class BookUser extends Migration
     {
         Schema::create('book_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date_out');
-            $table->date('date_in');
-            $table->date('due_date');
+            $table->date('date_out')->nullable();
+            $table->date('date_in')->nullable();
+            $table->date('due_date')->nullable();
             $table->unsignedInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
             $table->unsignedInteger('user_id');

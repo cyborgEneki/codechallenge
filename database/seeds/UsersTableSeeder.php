@@ -11,6 +11,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\User', 10)->create();
+        $users = factory('App\Models\User', 10)->create();
+
+        App\Models\Book::all()->each(function ($book) use ($users) {
+            $book->users()->attach(
+                $users->random(rand(1, 3))->pluck('id')->toArray()
+    );
+        });
     }
 }
