@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Contracts\CategoryRepositoryInterface;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -13,7 +14,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         return Category::all();
     }
 
-    public function createCategory(Request $request)
+    public function createCategory(CategoryRequest $request)
     {
         return Category::create($request->all());
     }
