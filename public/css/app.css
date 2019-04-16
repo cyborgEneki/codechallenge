@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-.blue {
+.sblue {
   color: #3490dc;
 }
 
@@ -40,8 +40,24 @@
   color: #6cb2eb;
 }
 
+.mustard {
+  color: #e69517 !important;
+}
+
+.powderblue {
+  color: #0ea4cc !important;
+}
+
+.hotorange {
+  color: #d84a3a !important;
+}
+
+.customgreen {
+  color: #00a65a !important;
+}
+
 .hotpink {
-  color: #f308b1;
+  color: #f308b1 !important;
 }
 
 /**

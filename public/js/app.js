@@ -14101,6 +14101,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     handleOpen: function handleOpen(key, keyPath) {
@@ -16028,7 +16031,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.el-menu-item.is-active {\n  color: #0d986d !important;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n.el-menu-item.is-active {\n    background-color: #2c3a40 !important;\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -96674,7 +96677,12 @@ var render = function() {
                 "el-menu",
                 {
                   staticClass: "el-menu-vertical-demo",
-                  attrs: { "default-active": "1" },
+                  attrs: {
+                    "default-active": "1",
+                    "background-color": "#374850",
+                    "text-color": "#fff",
+                    "active-text-color": "#ffd04b"
+                  },
                   on: { open: _vm.handleOpen, close: _vm.handleClose }
                 },
                 [
@@ -96683,7 +96691,7 @@ var render = function() {
                     { attrs: { to: { name: "indexAuthors" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "2" } }, [
-                        _c("i", { staticClass: "fas fa-pen-alt" }),
+                        _c("i", { staticClass: "fas fa-pen-alt hotpink" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96704,7 +96712,7 @@ var render = function() {
                     { attrs: { to: { name: "indexBooks" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "3" } }, [
-                        _c("i", { staticClass: "fas fa-book-open" }),
+                        _c("i", { staticClass: "fas fa-book-open mustard" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96725,7 +96733,7 @@ var render = function() {
                     { attrs: { to: { name: "indexCategories" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "4" } }, [
-                        _c("i", { staticClass: "fas fa-boxes" }),
+                        _c("i", { staticClass: "fas fa-boxes powderblue" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96746,7 +96754,7 @@ var render = function() {
                     { attrs: { to: { name: "indexDepartments" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "5" } }, [
-                        _c("i", { staticClass: "fas fa-building" }),
+                        _c("i", { staticClass: "fas fa-building customgreen" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96767,7 +96775,7 @@ var render = function() {
                     { attrs: { to: { name: "indexUsers" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "5" } }, [
-                        _c("i", { staticClass: "fas fa-users" }),
+                        _c("i", { staticClass: "fas fa-users hotorange" }),
                         _vm._v(" "),
                         _c(
                           "span",

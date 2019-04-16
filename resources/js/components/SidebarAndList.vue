@@ -7,34 +7,37 @@
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
+          background-color="#374850"
+          text-color="#fff"
+          active-text-color="#ffd04b"
         >
           <router-link :to="{ name: 'indexAuthors'}">
             <el-menu-item index="2">
-              <i class="fas fa-pen-alt"></i>
+              <i class="fas fa-pen-alt hotpink"></i>
               <span slot="title" class="sidebar-padding">Authors</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexBooks'}">
             <el-menu-item index="3">
-              <i class="fas fa-book-open"></i>
+              <i class="fas fa-book-open mustard"></i>
               <span slot="title" class="sidebar-padding">Books</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexCategories'}">
             <el-menu-item index="4">
-              <i class="fas fa-boxes"></i>
+              <i class="fas fa-boxes powderblue"></i>
               <span slot="title" class="sidebar-padding">Categories</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexDepartments'}">
             <el-menu-item index="5">
-              <i class="fas fa-building"></i>
+              <i class="fas fa-building customgreen"></i>
               <span slot="title" class="sidebar-padding">Departments</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexUsers'}">
             <el-menu-item index="5">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-users hotorange"></i>
               <span slot="title" class="sidebar-padding">Users</span>
             </el-menu-item>
           </router-link>
@@ -79,16 +82,14 @@ export default {
   color: #333;
   line-height: 60px;
 }
-
 .el-aside {
   color: #333;
 }
-
-.el-menu-item.is-active {
-  color: #0d986d !important; 
-}
-
 .sidebar-padding {
   padding-left: 10px;
+}
+.el-menu-item.is-active {
+    background-color: #2c3a40 !important;
+    color: white;
 }
 </style>
