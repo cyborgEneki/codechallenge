@@ -41,6 +41,7 @@
 import Pagination from "../pagination";
 
 export default {
+  props: ["choices"],
   components: { Pagination },
   data() {
     return {

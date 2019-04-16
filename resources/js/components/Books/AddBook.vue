@@ -1,12 +1,41 @@
 <template>
   <div>
-    <el-form :model="author" :rules="rules" ref="author" label-width="120px" class="demo-ruleForm">
-      <el-form-item label="Author's Name" prop="name">
-        <el-input v-model="author.name"></el-input>
+    <el-form :model="book" :rules="rules" ref="book" label-width="120px" class="demo-ruleForm">
+      <el-form-item label="Book Title" prop="title">
+        <el-input v-model="book.title"></el-input>
       </el-form-item>
+
+      <el-form-item label="Status" prop="status">
+        <el-radio-group v-model="book.status">
+          <el-radio label="Available"></el-radio>
+          <el-radio label="Borrowed"></el-radio>
+        </el-radio-group>
+      </el-form-item>
+
+      <el-form-item label="Reserved By">
+        <el-select v-model="book.reservor_id" placeholder="Reserved By">
+          <el-option
+            v-for="user in orderedUsers"
+            :value="user.id"
+            :key="user.id"
+          >{{ user.full_name }}</el-option>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="Category" prop="category">
+        <el-select v-model="book.category_id" placeholder="Category">
+          <el-option
+            v-for="category in orderedCategories"
+            :value="category.id"
+            :key="category.id"
+            :label="category.name"
+          >{{ category.name }}</el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item>
-        <el-button type="primary" @click="addAuthor('author')">Create</el-button>
-        <el-button @click="resetForm('author')">Reset</el-button>
+        <el-button type="primary" @click="addBook('book')">Create</el-button>
+        <el-button @click="resetForm('book')">Reset</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -14,31 +43,57 @@
 
 <script>
 export default {
+  props: ["choices"],
+  computed: {
+    orderedUsers() {
+      return _.orderBy(this.choices.users, "first_name");
+    },
+    orderedCategories() {
+      return _.orderBy(this.choices.categories, "name");
+    }
+  },
   data() {
     return {
-      author: {
-        name: ""
+      book: {
+        title: "",
+        status: "",
+        reservor_id: "",
+        category_id: ""
       },
       rules: {
-        name: [
+        title: [
           {
             required: true,
-            message: "Please input the author's name",
+            message: "Please input the book's title",
             trigger: "blur"
           }
-        ]
+        ],
+        status: [
+          {
+            required: true,
+            message: "Please select the book's status",
+            trigger: "change"
+          }
+        ],
+        // category: [
+        //   {
+        //     required: true,
+        //     message: "Please select the book's category",
+        //     trigger: "change"
+        //   }
+        // ]
       }
     };
   },
   methods: {
-    addAuthor(formName) {
+    addBook(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.post("/api/authors/", this.author).then(response => {});
-          this.$router.push("/index-authors");
+          axios.post("/api/books/", this.book).then(response => {});
+          this.$router.push("/books");
           this.$notify({
             title: "Success",
-            message: "The new author has been added.",
+            message: "The new book has been added.",
             type: "success"
           });
         } else {

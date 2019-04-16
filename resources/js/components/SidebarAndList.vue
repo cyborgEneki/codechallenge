@@ -44,9 +44,8 @@
         </el-menu>
       </el-aside>
       <el-container>
-
         <el-main>
-          <router-view></router-view>
+          <router-view :choices.sync="choices"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -56,7 +55,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      choices: []
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -64,7 +65,16 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    getChoices() {
+      axios.get("/api/choices").then(response => {
+        this.choices = response.data;
+        console.log(this.choices);
+      });
     }
+  },
+  mounted() {
+    this.getChoices();
   }
 };
 </script>

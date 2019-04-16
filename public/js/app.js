@@ -13778,23 +13778,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     SidebarAndList: _SidebarAndList__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {
-      choices: []
-    };
-  },
-  methods: {
-    getChoices: function getChoices() {
-      var _this = this;
-
-      axios.get("/api/choices".then(function (response) {
-        _this.choices = response.data;
-      }));
-    }
-  },
-  mounted: function mounted() {
-    this.getChoices();
   }
 });
 
@@ -13973,34 +13956,87 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["choices"],
+  computed: {
+    orderedUsers: function orderedUsers() {
+      return _.orderBy(this.choices.users, "first_name");
+    },
+    orderedCategories: function orderedCategories() {
+      return _.orderBy(this.choices.categories, "name");
+    }
+  },
   data: function data() {
     return {
-      author: {
-        name: ""
+      book: {
+        title: "",
+        status: "",
+        reservor_id: "",
+        category_id: ""
       },
       rules: {
-        name: [{
+        title: [{
           required: true,
-          message: "Please input the author's name",
+          message: "Please input the book's title",
           trigger: "blur"
-        }]
+        }],
+        status: [{
+          required: true,
+          message: "Please select the book's status",
+          trigger: "change"
+        }] // category: [
+        //   {
+        //     required: true,
+        //     message: "Please select the book's category",
+        //     trigger: "change"
+        //   }
+        // ]
+
       }
     };
   },
   methods: {
-    addAuthor: function addAuthor(formName) {
+    addBook: function addBook(formName) {
       var _this = this;
 
       this.$refs[formName].validate(function (valid) {
         if (valid) {
-          axios.post("/api/authors/", _this.author).then(function (response) {});
+          axios.post("/api/books/", _this.book).then(function (response) {});
 
-          _this.$router.push("/index-authors");
+          _this.$router.push("/books");
 
           _this.$notify({
             title: "Success",
-            message: "The new author has been added.",
+            message: "The new book has been added.",
             type: "success"
           });
         } else {
@@ -14105,6 +14141,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["choices"],
   components: {
     Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -14577,10 +14614,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      choices: []
+    };
   },
   methods: {
     handleOpen: function handleOpen(key, keyPath) {
@@ -14588,7 +14626,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleClose: function handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    getChoices: function getChoices() {
+      var _this = this;
+
+      axios.get("/api/choices").then(function (response) {
+        _this.choices = response.data;
+        console.log(_this.choices);
+      });
     }
+  },
+  mounted: function mounted() {
+    this.getChoices();
   }
 });
 
@@ -97008,24 +97057,111 @@ var render = function() {
       _c(
         "el-form",
         {
-          ref: "author",
+          ref: "book",
           staticClass: "demo-ruleForm",
-          attrs: { model: _vm.author, rules: _vm.rules, "label-width": "120px" }
+          attrs: { model: _vm.book, rules: _vm.rules, "label-width": "120px" }
         },
         [
           _c(
             "el-form-item",
-            { attrs: { label: "Author's Name", prop: "name" } },
+            { attrs: { label: "Book Title", prop: "title" } },
             [
               _c("el-input", {
                 model: {
-                  value: _vm.author.name,
+                  value: _vm.book.title,
                   callback: function($$v) {
-                    _vm.$set(_vm.author, "name", $$v)
+                    _vm.$set(_vm.book, "title", $$v)
                   },
-                  expression: "author.name"
+                  expression: "book.title"
                 }
               })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Status", prop: "status" } },
+            [
+              _c(
+                "el-radio-group",
+                {
+                  model: {
+                    value: _vm.book.status,
+                    callback: function($$v) {
+                      _vm.$set(_vm.book, "status", $$v)
+                    },
+                    expression: "book.status"
+                  }
+                },
+                [
+                  _c("el-radio", { attrs: { label: "Available" } }),
+                  _vm._v(" "),
+                  _c("el-radio", { attrs: { label: "Borrowed" } })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Reserved By" } },
+            [
+              _c(
+                "el-select",
+                {
+                  attrs: { placeholder: "Reserved By" },
+                  model: {
+                    value: _vm.book.reservor_id,
+                    callback: function($$v) {
+                      _vm.$set(_vm.book, "reservor_id", $$v)
+                    },
+                    expression: "book.reservor_id"
+                  }
+                },
+                _vm._l(_vm.orderedUsers, function(user) {
+                  return _c(
+                    "el-option",
+                    { key: user.id, attrs: { value: user.id } },
+                    [_vm._v(_vm._s(user.full_name))]
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Category", prop: "category" } },
+            [
+              _c(
+                "el-select",
+                {
+                  attrs: { placeholder: "Category" },
+                  model: {
+                    value: _vm.book.category_id,
+                    callback: function($$v) {
+                      _vm.$set(_vm.book, "category_id", $$v)
+                    },
+                    expression: "book.category_id"
+                  }
+                },
+                _vm._l(_vm.orderedCategories, function(category) {
+                  return _c(
+                    "el-option",
+                    {
+                      key: category.id,
+                      attrs: { value: category.id, label: category.name }
+                    },
+                    [_vm._v(_vm._s(category.name))]
+                  )
+                }),
+                1
+              )
             ],
             1
           ),
@@ -97039,7 +97175,7 @@ var render = function() {
                   attrs: { type: "primary" },
                   on: {
                     click: function($event) {
-                      return _vm.addAuthor("author")
+                      return _vm.addBook("book")
                     }
                   }
                 },
@@ -97051,7 +97187,7 @@ var render = function() {
                 {
                   on: {
                     click: function($event) {
-                      return _vm.resetForm("author")
+                      return _vm.resetForm("book")
                     }
                   }
                 },
@@ -97858,7 +97994,26 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("el-container", [_c("el-main", [_c("router-view")], 1)], 1)
+          _c(
+            "el-container",
+            [
+              _c(
+                "el-main",
+                [
+                  _c("router-view", {
+                    attrs: { choices: _vm.choices },
+                    on: {
+                      "update:choices": function($event) {
+                        _vm.choices = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
