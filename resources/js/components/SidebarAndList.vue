@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container style="border: 1px solid #eee">
+    <el-container style="border: 1px solid #eee; height: 830px;">
       <el-aside width="200px" style="background-color: #374850">
         <el-menu
           default-active="1"
@@ -58,18 +58,18 @@
 
         <el-main>
           <table>
-            <thead>
-              <th width="200">Name</th>
-              <th width="50">Actions</th>
-            </thead>
             <tbody>
               <tr v-for="author in authors" :key="author.id">
-                <td>{{ author.name }}</td>
-                <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+                <td width="90%">{{ author.name }}</td>
+                <td>
+                  <i class="far fa-eye icon"></i>
+                  <i class="fas fa-edit icon"></i>
+                  <i class="fas fa-trash-alt icon"></i>
+                </td>
               </tr>
             </tbody>
           </table>
-          <pagination :meta_data="meta_data" v-on:next="getAuthors"></pagination>
+          <pagination :meta_data="meta_data" @next="getAuthors"></pagination>
         </el-main>
       </el-container>
     </el-container>
@@ -134,5 +134,15 @@ export default {
 .el-menu-item.is-active {
   background-color: #2c3a40 !important;
   color: white;
+}
+.pagination {
+  text-align: center;
+}
+.icon {
+  padding: 10px;
+}
+.actions-column {
+  width: "10%";
+  text-align: center;
 }
 </style>

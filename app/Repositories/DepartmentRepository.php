@@ -10,7 +10,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
 {
     public function allDepartments()
     {
-        return Department::all();
+        return Department::paginate(10);
     }
 
     public function createDepartment(DepartmentRequest $request)

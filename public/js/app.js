@@ -16117,7 +16117,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n.el-menu-item.is-active {\n  background-color: #2c3a40 !important;\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n.el-menu-item.is-active {\n  background-color: #2c3a40 !important;\n  color: white;\n}\n.pagination {\n  text-align: center;\n}\n.icon {\n  padding: 10px;\n}\n.actions-column {\n  width: \"10%\";\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -96750,7 +96750,7 @@ var render = function() {
     [
       _c(
         "el-container",
-        { staticStyle: { border: "1px solid #eee" } },
+        { staticStyle: { border: "1px solid #eee", height: "830px" } },
         [
           _c(
             "el-aside",
@@ -96923,22 +96923,20 @@ var render = function() {
                 "el-main",
                 [
                   _c("table", [
-                    _c("thead", [
-                      _c("th", { attrs: { width: "200" } }, [_vm._v("Name")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { width: "50" } }, [_vm._v("Actions")])
-                    ]),
-                    _vm._v(" "),
                     _c(
                       "tbody",
                       _vm._l(_vm.authors, function(author) {
                         return _c("tr", { key: author.id }, [
-                          _c("td", [_vm._v(_vm._s(author.name))]),
+                          _c("td", { attrs: { width: "90%" } }, [
+                            _vm._v(_vm._s(author.name))
+                          ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(
-                              "This is longer content Donec id elit non mi porta gravida at eget metus."
-                            )
+                            _c("i", { staticClass: "far fa-eye icon" }),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "fas fa-edit icon" }),
+                            _vm._v(" "),
+                            _c("i", { staticClass: "fas fa-trash-alt icon" })
                           ])
                         ])
                       }),

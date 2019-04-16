@@ -14,7 +14,7 @@ class BookRepository implements BookRepositoryInterface
 {
     public function allBooks()
     {
-        return Book::all();
+        return Book::paginate(10);
     }
 
     public function createBook(BookRequest $request)
