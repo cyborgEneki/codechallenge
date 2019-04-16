@@ -1,19 +1,15 @@
 <template>
   <div>
-    <!-- <SidebarAndMainArea /> -->
-    <h3>Test</h3>
+    <SidebarAndList />
   </div>
 </template>
 
 <script>
-// import SidebarAndMainArea from "./SidebarAndMainArea";
+import SidebarAndList from "./SidebarAndList";
 
 export default {
-//   components: {
-//     SidebarAndMainArea
-//   },
-//   mounted() {
-//     console.log("Component mounted.");
-//   }
+  components: {
+    SidebarAndList
+  }
 };
 </script>

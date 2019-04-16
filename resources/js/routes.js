@@ -1,3 +1,5 @@
+import VueRouter from 'vue-router';
+
 import AddAuthor from './components/Authors/AddAuthor';
 import DetailAuthor from './components/Authors/DetailAuthor';
 import EditAuthor from './components/Authors/EditAuthor';
