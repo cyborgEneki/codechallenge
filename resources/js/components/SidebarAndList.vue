@@ -84,4 +84,8 @@ export default {
   color: #333;
 }
 
+.el-menu-item.is-active {
+  color: #0d986d !important; 
+}
+
 </style>
