@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router';
 
 import AddAuthor from './components/Authors/AddAuthor';
-import DetailAuthor from './components/Authors/DetailAuthor';
 import EditAuthor from './components/Authors/EditAuthor';
 import IndexAuthors from './components/Authors/IndexAuthors';
 import AddBook from './components/Books/AddBook';
@@ -9,11 +8,9 @@ import DetailBook from './components/Books/DetailBook';
 import EditBook from './components/Books/EditBook';
 import IndexBooks from './components/Books/IndexBooks';
 import AddCategory from './components/Categories/AddCategory';
-import DetailCategory from './components/Categories/DetailCategory';
 import EditCategory from './components/Categories/EditCategory';
 import IndexCategories from './components/Categories/IndexCategories';
 import AddDepartment from './components/Departments/AddDepartment';
-import DetailDepartment from './components/Departments/DetailCategory';
 import EditDepartment from './components/Departments/EditDepartment';
 import IndexDepartments from './components/Departments/IndexDepartments';
 import AddUser from './components/Users/AddUser';
@@ -28,11 +25,6 @@ const router = new VueRouter({
             path: '/add-author',
             name: 'addAuthor',
             component: AddAuthor
-        },
-        {
-            path: '/detail-author',
-            name: 'detailAuthor',
-            component: DetailAuthor
         },
         {
             path: '/edit-author',
@@ -72,11 +64,6 @@ const router = new VueRouter({
             component: AddCategory
         },
         {
-            path: '/detail-category',
-            name: 'detailCategory',
-            component: DetailCategory
-        },
-        {
             path: '/edit-category',
             name: 'editCategory',
             component: EditCategory,
@@ -91,11 +78,6 @@ const router = new VueRouter({
             path: '/add-department',
             name: 'addDepartment',
             component: AddDepartment
-        },
-        {
-            path: '/detail-department',
-            name: 'detailDepartment',
-            component: DetailDepartment
         },
         {
             path: '/edit-department',

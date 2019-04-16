@@ -23,6 +23,7 @@ $powderblue: #0ea4cc;
 $customgreen: #00a65a;
 $hotorange: #d84a3a;
 $hotpink: #df8dc7;
+$font-14: 14px;
 
 .blue {
     color: $blue;
@@ -68,4 +69,7 @@ $hotpink: #df8dc7;
 }
 .hotpink {
     color: $hotpink !important;
+}
+.font-14 {
+    font-size: $font-14;
 }

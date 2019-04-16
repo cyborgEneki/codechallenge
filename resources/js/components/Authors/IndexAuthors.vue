@@ -7,10 +7,10 @@
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
-      <table :default-sort="{prop: 'name', order: 'descending'}">
+      <table class="font-14">
         <thead>
           <tr>
-            <th width="90%" prop="name">Name</th>
+            <th width="90%">Name</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>
@@ -18,7 +18,9 @@
           <tr v-for="author in authors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
             <td>
-              <i class="far fa-eye icon green" slot="reference" type="button"></i>
+              <a>
+                <i class="far fa-eye icon green"></i>
+              </a>
               <router-link :to="{ name: 'editAuthor', params: { author } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
@@ -29,10 +31,6 @@
           </tr>
         </tbody>
       </table>
-      <el-popover placement="right" width="400" trigger="click">
-        <div>Something</div>
-      </el-popover>
-
       <router-view></router-view>
       <pagination :meta_data="meta_data" @next="getAuthors"></pagination>
     </el-card>
@@ -100,10 +98,10 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    created() {
+      this.getAuthors();
     }
-  },
-  created() {
-    this.getAuthors();
   }
 };
 </script>
@@ -123,15 +121,15 @@ export default {
   background: #eacdcd;
 }
 .card-font {
-  font-size: 30px;
+  font-size: 28px;
 }
 tbody tr:nth-child(even) {
   background-color: #f3eaea;
 }
 .add-icon {
   float: right;
-  margin: 0;
-  font-size: 40px;
+  margin: 5px 5px 0px 0px;
+  font-size: 35px;
   color: #5f0e0e;
 }
 </style>

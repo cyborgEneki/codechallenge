@@ -7,7 +7,7 @@
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
-      <table>
+      <table class="font-14">
         <thead>
           <tr>
             <th width="22.5%">Title</th>
