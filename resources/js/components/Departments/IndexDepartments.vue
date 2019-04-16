@@ -22,7 +22,9 @@
               <router-link :to="{ name: 'editDepartment', params: { department } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
-              <i class="fas fa-trash-alt icon red"></i>
+              <a>
+                <i class="fas fa-trash-alt icon red" @click="deleteDepartment(department.id)"></i>
+              </a>
             </td>
           </tr>
         </tbody>
@@ -61,6 +63,38 @@ export default {
           this.meta_data.last_page = res.data.last_page;
           this.meta_data.current_page = res.data.current_page;
           this.meta_data.prev_page_url = res.data.prev_page_url;
+        });
+    },
+    deleteDepartment(id) {
+      this.$confirm(
+        "This will permanently delete the file. Continue?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          axios.delete("/api/departments/" + id).then(() => {
+            let index = this.departments
+              .map(item => {
+                return item.id;
+              })
+              .indexOf(id);
+            this.departments.splice(index, 1);
+            this.$notify({
+              title: "Success",
+              message: "The department has been deleted",
+              type: "success"
+            });
+          });
+        })
+        .catch(() => {
+          this.$notify.info({
+            title: "Info",
+            message: "Delete cancelled"
+          });
         });
     }
   },

@@ -14618,6 +14618,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14647,6 +14649,34 @@ __webpack_require__.r(__webpack_exports__);
         _this.meta_data.last_page = res.data.last_page;
         _this.meta_data.current_page = res.data.current_page;
         _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    },
+    deleteCategory: function deleteCategory(id) {
+      var _this2 = this;
+
+      this.$confirm("This will permanently delete the file. Continue?", "Warning", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        axios["delete"]("/api/categories/" + id).then(function () {
+          var index = _this2.categories.map(function (item) {
+            return item.id;
+          }).indexOf(id);
+
+          _this2.categories.splice(index, 1);
+
+          _this2.$notify({
+            title: "Success",
+            message: "The category has been deleted",
+            type: "success"
+          });
+        });
+      })["catch"](function () {
+        _this2.$notify.info({
+          title: "Info",
+          message: "Delete cancelled"
+        });
       });
     }
   },
@@ -14854,6 +14884,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14883,6 +14915,34 @@ __webpack_require__.r(__webpack_exports__);
         _this.meta_data.last_page = res.data.last_page;
         _this.meta_data.current_page = res.data.current_page;
         _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    },
+    deleteDepartment: function deleteDepartment(id) {
+      var _this2 = this;
+
+      this.$confirm("This will permanently delete the file. Continue?", "Warning", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        axios["delete"]("/api/departments/" + id).then(function () {
+          var index = _this2.departments.map(function (item) {
+            return item.id;
+          }).indexOf(id);
+
+          _this2.departments.splice(index, 1);
+
+          _this2.$notify({
+            title: "Success",
+            message: "The department has been deleted",
+            type: "success"
+          });
+        });
+      })["catch"](function () {
+        _this2.$notify.info({
+          title: "Info",
+          message: "Delete cancelled"
+        });
       });
     }
   },
@@ -98260,7 +98320,16 @@ var render = function() {
                         [_c("i", { staticClass: "fas fa-edit icon blue" })]
                       ),
                       _vm._v(" "),
-                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                      _c("a", [
+                        _c("i", {
+                          staticClass: "fas fa-trash-alt icon red",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteCategory(category.id)
+                            }
+                          }
+                        })
+                      ])
                     ],
                     1
                   )
@@ -98576,7 +98645,16 @@ var render = function() {
                         [_c("i", { staticClass: "fas fa-edit icon blue" })]
                       ),
                       _vm._v(" "),
-                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                      _c("a", [
+                        _c("i", {
+                          staticClass: "fas fa-trash-alt icon red",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteDepartment(department.id)
+                            }
+                          }
+                        })
+                      ])
                     ],
                     1
                   )
