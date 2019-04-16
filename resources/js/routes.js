@@ -40,7 +40,7 @@ const router = new VueRouter({
             component: EditAuthor
         },
         {
-            path: '/index-authors',
+            path: '/authors',
             name: 'indexAuthors',
             component: IndexAuthors
         },
@@ -60,7 +60,7 @@ const router = new VueRouter({
             component: EditBook
         },
         {
-            path: '/index-books',
+            path: '/books',
             name: 'indexBooks',
             component: IndexBooks
         },
@@ -80,7 +80,7 @@ const router = new VueRouter({
             component: EditCategory
         },
         {
-            path: '/index-categories',
+            path: '/categories',
             name: 'indexCategories',
             component: IndexCategories
         },
@@ -100,7 +100,7 @@ const router = new VueRouter({
             component: EditDepartment
         },
         {
-            path: '/index-deparments',
+            path: '/deparments',
             name: 'indexDepartments',
             component: IndexDepartments
         },
@@ -120,7 +120,7 @@ const router = new VueRouter({
             component: EditUser
         },
         {
-            path: '/index-users',
+            path: '/users',
             name: 'indexUsers',
             component: IndexUsers
         }

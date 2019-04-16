@@ -115287,7 +115287,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'editAuthor',
     component: _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/index-authors',
+    path: '/authors',
     name: 'indexAuthors',
     component: _components_Authors_IndexAuthors__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
@@ -115303,7 +115303,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'editBook',
     component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
-    path: '/index-books',
+    path: '/books',
     name: 'indexBooks',
     component: _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
@@ -115319,7 +115319,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'editCategory',
     component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
-    path: '/index-categories',
+    path: '/categories',
     name: 'indexCategories',
     component: _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
@@ -115335,7 +115335,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'editDepartment',
     component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_15__["default"]
   }, {
-    path: '/index-deparments',
+    path: '/deparments',
     name: 'indexDepartments',
     component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_16__["default"]
   }, {
@@ -115351,7 +115351,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'editUser',
     component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_19__["default"]
   }, {
-    path: '/index-users',
+    path: '/users',
     name: 'indexUsers',
     component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_20__["default"]
   }]
