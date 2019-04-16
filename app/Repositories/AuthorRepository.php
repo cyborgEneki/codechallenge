@@ -10,7 +10,7 @@ class AuthorRepository implements AuthorRepositoryInterface
 {
     public function allAuthors()
     {
-        return Author::all();
+        return Author::paginate(5);
     }
 
     public function createAuthor(AuthorRequest $request)

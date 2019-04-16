@@ -57,11 +57,19 @@
         </el-header>
 
         <el-main>
-          <el-table :data="tableData">
-            <el-table-column prop="date" label="Date" width="140"></el-table-column>
-            <el-table-column prop="name" label="Name" width="120"></el-table-column>
-            <el-table-column prop="address" label="Address"></el-table-column>
-          </el-table>
+          <table>
+            <thead>
+              <th width="200">Name</th>
+              <th width="50">Actions</th>
+            </thead>
+            <tbody>
+              <tr v-for="author in authors" :key="author.id">
+                <td>{{ author.name }}</td>
+                <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination :meta_data="meta_data" v-on:next="getAuthors"></pagination>
         </el-main>
       </el-container>
     </el-container>
@@ -69,15 +77,17 @@
 </template>
 
 <script>
+import Pagination from "./pagination";
+
 export default {
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "Tom",
-      address: "No. 189, Grove St, Los Angeles"
-    };
     return {
-      tableData: Array(20).fill(item)
+      authors: [],
+      meta_data: {
+        last_page: null,
+        current_page: 1,
+        prev_page_url: null
+      }
     };
   },
   methods: {
@@ -86,8 +96,26 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    getAuthors(page = 1) {
+      axios
+        .get("/api/authors/", {
+          params: {
+            page
+          }
+        })
+        .then(res => {
+          this.authors = res.data.data;
+          this.meta_data.last_page = res.data.last_page;
+          this.meta_data.current_page = res.data.current_page;
+          this.meta_data.prev_page_url = res.data.prev_page_url;
+        });
     }
-  }
+  },
+  created() {
+    this.getAuthors();
+  },
+  components: { Pagination }
 };
 </script>
 
