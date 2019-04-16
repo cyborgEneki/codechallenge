@@ -13968,6 +13968,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: {
+    orderedAuthors: function orderedAuthors() {
+      return _.orderBy(this.authors, 'updated_at');
+    }
+  },
   data: function data() {
     return {
       authors: [],
@@ -14021,10 +14026,10 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
-    },
-    created: function created() {
-      this.getAuthors();
     }
+  },
+  created: function created() {
+    this.getAuthors();
   }
 });
 
@@ -97421,7 +97426,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.authors, function(author) {
+              _vm._l(_vm.orderedAuthors, function(author) {
                 return _c("tr", { key: author.id }, [
                   _c("td", { attrs: { width: "90%" } }, [
                     _vm._v(_vm._s(author.name))

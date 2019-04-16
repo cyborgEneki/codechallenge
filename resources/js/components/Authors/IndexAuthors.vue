@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="author in authors" :key="author.id">
+          <tr v-for="author in orderedAuthors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
             <td>
               <i class="far fa-eye icon green"></i>
@@ -40,6 +40,11 @@ import Pagination from "../pagination";
 
 export default {
   components: { Pagination },
+  computed: {
+    orderedAuthors() {
+      return _.orderBy(this.authors, 'updated_at');
+    }
+  },
   data() {
     return {
       authors: [],
@@ -96,10 +101,10 @@ export default {
             message: "Delete cancelled"
           });
         });
-    },
-    created() {
-      this.getAuthors();
     }
+  },
+  created() {
+    this.getAuthors();
   }
 };
 </script>
