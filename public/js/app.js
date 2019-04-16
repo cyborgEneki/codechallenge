@@ -14336,17 +14336,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -97314,46 +97303,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "el-container",
-            [
-              _c(
-                "el-header",
-                { staticStyle: { "text-align": "right", "font-size": "12px" } },
-                [
-                  _c(
-                    "el-dropdown",
-                    [
-                      _c("i", {
-                        staticClass: "el-icon-setting",
-                        staticStyle: { "margin-right": "15px" }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "el-dropdown-menu",
-                        { attrs: { slot: "dropdown" }, slot: "dropdown" },
-                        [
-                          _c("el-dropdown-item", [_vm._v("View")]),
-                          _vm._v(" "),
-                          _c("el-dropdown-item", [_vm._v("Add")]),
-                          _vm._v(" "),
-                          _c("el-dropdown-item", [_vm._v("Delete")])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Tom")])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("el-main", [_c("router-view")], 1)
-            ],
-            1
-          )
+          _c("el-container", [_c("el-main", [_c("router-view")], 1)], 1)
         ],
         1
       )
