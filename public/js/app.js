@@ -111651,7 +111651,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var element_ui_lib_locale_lang_en__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_locale_lang_en__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_7__);
 __webpack_require__(/*! ./foundation */ "./resources/js/foundation.js");
 
 
@@ -111672,7 +111671,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   components: {
     App: _components_App__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  router: _routes__WEBPACK_IMPORTED_MODULE_7___default.a
+  router: _routes__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
 
 /***/ }),
@@ -111746,6 +111745,646 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Authors/AddAuthor.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Authors/AddAuthor.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Authors/AddAuthor.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Authors/DetailAuthor.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Authors/DetailAuthor.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Authors/DetailAuthor.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Authors/EditAuthor.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/Authors/EditAuthor.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Authors/EditAuthor.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Authors/IndexAuthors.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Authors/IndexAuthors.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Authors/IndexAuthors.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Books/AddBook.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Books/AddBook.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Books/AddBook.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Books/DetailBook.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Books/DetailBook.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Books/DetailBook.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Books/EditBook.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Books/EditBook.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Books/EditBook.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Books/IndexBooks.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Books/IndexBooks.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Books/IndexBooks.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Categories/AddCategory.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Categories/AddCategory.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Categories/AddCategory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Categories/DetailCategory.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Categories/DetailCategory.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Categories/DetailCategory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Categories/EditCategory.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Categories/EditCategory.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Categories/EditCategory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Categories/IndexCategories.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/Categories/IndexCategories.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Categories/IndexCategories.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Departments/AddDepartment.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Departments/AddDepartment.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Departments/AddDepartment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Departments/DetailCategory.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/Departments/DetailCategory.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Departments/DetailCategory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Departments/EditDepartment.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/Departments/EditDepartment.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Departments/EditDepartment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Departments/IndexDepartments.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Departments/IndexDepartments.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Departments/IndexDepartments.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Users/AddUser.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Users/AddUser.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Users/AddUser.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Users/DetailUser.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Users/DetailUser.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Users/DetailUser.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Users/EditUser.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Users/EditUser.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Users/EditUser.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Users/IndexUsers.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Users/IndexUsers.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/Users/IndexUsers.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/foundation.js":
 /*!************************************!*\
   !*** ./resources/js/foundation.js ***!
@@ -111809,10 +112448,136 @@ if (token) {
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/jeneki/sites/challenge/resources/js/routes.js: Unexpected token (9:8)\n\n\u001b[0m \u001b[90m  7 | \u001b[39m            name\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m            component\u001b[33m:\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 | \u001b[39m        }\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m    ]\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m router\u001b[33m;\u001b[39m\u001b[0m\n    at Parser.raise (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:3851:17)\n    at Parser.unexpected (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5167:16)\n    at Parser.parseExprAtom (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6328:20)\n    at Parser.parseExprSubscripts (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5914:23)\n    at Parser.parseMaybeUnary (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5894:21)\n    at Parser.parseExprOps (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5781:23)\n    at Parser.parseMaybeConditional (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5754:23)\n    at Parser.parseMaybeAssign (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5701:21)\n    at Parser.parseObjectProperty (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6768:101)\n    at Parser.parseObjPropValue (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6793:101)\n    at Parser.parseObjectMember (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6717:10)\n    at Parser.parseObj (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6641:25)\n    at Parser.parseExprAtom (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6274:21)\n    at Parser.parseExprSubscripts (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5914:23)\n    at Parser.parseMaybeUnary (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5894:21)\n    at Parser.parseExprOps (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5781:23)\n    at Parser.parseMaybeConditional (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5754:23)\n    at Parser.parseMaybeAssign (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5701:21)\n    at Parser.parseExprListItem (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6977:18)\n    at Parser.parseExprList (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6951:22)\n    at Parser.parseExprAtom (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6265:30)\n    at Parser.parseExprSubscripts (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5914:23)\n    at Parser.parseMaybeUnary (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5894:21)\n    at Parser.parseExprOps (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5781:23)\n    at Parser.parseMaybeConditional (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5754:23)\n    at Parser.parseMaybeAssign (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5701:21)\n    at Parser.parseObjectProperty (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6768:101)\n    at Parser.parseObjPropValue (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6793:101)\n    at Parser.parseObjectMember (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6717:10)\n    at Parser.parseObj (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6641:25)\n    at Parser.parseExprAtom (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:6274:21)\n    at Parser.parseExprSubscripts (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5914:23)\n    at Parser.parseMaybeUnary (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5894:21)\n    at Parser.parseExprOps (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5781:23)\n    at Parser.parseMaybeConditional (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5754:23)\n    at Parser.parseMaybeAssign (/Users/jeneki/sites/challenge/node_modules/@babel/parser/lib/index.js:5701:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Authors_AddAuthor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Authors/AddAuthor */ "./resources/js/components/Authors/AddAuthor.vue");
+/* harmony import */ var _components_Authors_DetailAuthor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Authors/DetailAuthor */ "./resources/js/components/Authors/DetailAuthor.vue");
+/* harmony import */ var _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Authors/EditAuthor */ "./resources/js/components/Authors/EditAuthor.vue");
+/* harmony import */ var _components_Authors_IndexAuthors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Authors/IndexAuthors */ "./resources/js/components/Authors/IndexAuthors.vue");
+/* harmony import */ var _components_Books_AddBook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Books/AddBook */ "./resources/js/components/Books/AddBook.vue");
+/* harmony import */ var _components_Books_DetailBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Books/DetailBook */ "./resources/js/components/Books/DetailBook.vue");
+/* harmony import */ var _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Books/EditBook */ "./resources/js/components/Books/EditBook.vue");
+/* harmony import */ var _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Books/IndexBooks */ "./resources/js/components/Books/IndexBooks.vue");
+/* harmony import */ var _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Categories/AddCategory */ "./resources/js/components/Categories/AddCategory.vue");
+/* harmony import */ var _components_Categories_DetailCategory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Categories/DetailCategory */ "./resources/js/components/Categories/DetailCategory.vue");
+/* harmony import */ var _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Categories/EditCategory */ "./resources/js/components/Categories/EditCategory.vue");
+/* harmony import */ var _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Categories/IndexCategories */ "./resources/js/components/Categories/IndexCategories.vue");
+/* harmony import */ var _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Departments/AddDepartment */ "./resources/js/components/Departments/AddDepartment.vue");
+/* harmony import */ var _components_Departments_DetailCategory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Departments/DetailCategory */ "./resources/js/components/Departments/DetailCategory.vue");
+/* harmony import */ var _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Departments/EditDepartment */ "./resources/js/components/Departments/EditDepartment.vue");
+/* harmony import */ var _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Departments/IndexDepartments */ "./resources/js/components/Departments/IndexDepartments.vue");
+/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
+/* harmony import */ var _components_Users_DetailUser__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Users/DetailUser */ "./resources/js/components/Users/DetailUser.vue");
+/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
+/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var router = new VueRouter({
+  mode: 'history',
+  routes: [{
+    path: '/add-author',
+    name: 'addAuthor',
+    component: _components_Authors_AddAuthor__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }, {
+    path: '/detail-author',
+    name: 'detailAuthor',
+    component: _components_Authors_DetailAuthor__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }, {
+    path: '/edit-author',
+    name: 'editAuthor',
+    component: _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }, {
+    path: '/index-authors',
+    name: 'indexAuthors',
+    component: _components_Authors_IndexAuthors__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }, {
+    path: '/add-book',
+    name: 'addBook',
+    component: _components_Books_AddBook__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }, {
+    path: '/detail-book',
+    name: 'detailBook',
+    component: _components_Books_DetailBook__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }, {
+    path: '/edit-book',
+    name: 'editBook',
+    component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/index-books',
+    name: 'indexBooks',
+    component: _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: '/add-category',
+    name: 'addCategory',
+    component: _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, {
+    path: '/detail-category',
+    name: 'detailCategory',
+    component: _components_Categories_DetailCategory__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }, {
+    path: '/edit-category',
+    name: 'editCategory',
+    component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }, {
+    path: '/index-categories',
+    name: 'indexCategories',
+    component: _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }, {
+    path: '/add-department',
+    name: 'addDepartment',
+    component: _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }, {
+    path: '/detail-department',
+    name: 'detailDepartment',
+    component: _components_Departments_DetailCategory__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }, {
+    path: '/edit-department',
+    name: 'editDepartment',
+    component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_14__["default"]
+  }, {
+    path: '/index-deparments',
+    name: 'indexDepartments',
+    component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_15__["default"]
+  }, {
+    path: '/add-user',
+    name: 'addUser',
+    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_16__["default"]
+  }, {
+    path: '/detail-user',
+    name: 'detailUser',
+    component: _components_Users_DetailUser__WEBPACK_IMPORTED_MODULE_17__["default"]
+  }, {
+    path: '/edit-user',
+    name: 'editUser',
+    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_18__["default"]
+  }, {
+    path: '/index-users',
+    name: 'indexUsers',
+    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_19__["default"]
+  }]
+});
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
 
