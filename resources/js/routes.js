@@ -37,7 +37,8 @@ const router = new VueRouter({
         {
             path: '/edit-author',
             name: 'editAuthor',
-            component: EditAuthor
+            component: EditAuthor,
+            props: true
         },
         {
             path: '/authors',
@@ -57,7 +58,8 @@ const router = new VueRouter({
         {
             path: '/edit-book',
             name: 'editBook',
-            component: EditBook
+            component: EditBook,
+            props: true
         },
         {
             path: '/books',
@@ -77,7 +79,8 @@ const router = new VueRouter({
         {
             path: '/edit-category',
             name: 'editCategory',
-            component: EditCategory
+            component: EditCategory,
+            props: true
         },
         {
             path: '/categories',
@@ -97,7 +100,8 @@ const router = new VueRouter({
         {
             path: '/edit-department',
             name: 'editDepartment',
-            component: EditDepartment
+            component: EditDepartment,
+            props: true
         },
         {
             path: '/departments',
@@ -117,7 +121,8 @@ const router = new VueRouter({
         {
             path: '/edit-user',
             name: 'editUser',
-            component: EditUser
+            component: EditUser,
+            props: true
         },
         {
             path: '/users',

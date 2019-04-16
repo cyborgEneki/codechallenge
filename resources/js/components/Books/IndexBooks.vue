@@ -25,7 +25,9 @@
             <td>{{ book.category_id }}</td>
             <td>
               <i class="far fa-eye icon green"></i>
-              <i class="fas fa-edit icon blue"></i>
+              <router-link :to="{ name: 'editBook', params: { book } }">
+                <i class="fas fa-edit icon blue"></i>
+              </router-link>
               <i class="fas fa-trash-alt icon red"></i>
             </td>
           </tr>

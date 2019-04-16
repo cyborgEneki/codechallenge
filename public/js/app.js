@@ -13849,6 +13849,73 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Authors/EditAuthor.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Authors/EditAuthor.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["author"],
+  data: function data() {
+    return {
+      editedAuthor: this.author,
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the new author name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    editAuthor: function editAuthor(formName, editedAuthor) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.put("/api/authors/" + editedAuthor.id, editedAuthor).then(function (response) {
+            _this.$router.push("/authors");
+
+            _this.$notify({
+              title: "Success",
+              message: "The author name has been edited.",
+              type: "success"
+            });
+
+            _this.editedAuthor = {};
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Authors/IndexAuthors.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Authors/IndexAuthors.vue?vue&type=script&lang=js& ***!
@@ -14086,7 +14153,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["choices", "book"],
+  computed: {
+    orderedUsers: function orderedUsers() {
+      return _.orderBy(this.choices.users, "first_name");
+    },
+    orderedCategories: function orderedCategories() {
+      return _.orderBy(this.choices.categories, "name");
+    }
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    editBook: function editBook(book) {
+      axios.put("/api/books/" + book.id, book).then(function (response) {});
+      this.$router.push("/books");
+      this.$notify({
+        title: "Success",
+        message: "The new book has been added.",
+        type: "success"
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  },
+  mounted: function mounted() {
+    console.log(this.book); // console.log(this.choices);
+  }
+});
 
 /***/ }),
 
@@ -14100,6 +14235,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
 //
 //
 //
@@ -96943,6 +97080,97 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Authors/EditAuthor.vue?vue&type=template&id=e08a8fb2&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Authors/EditAuthor.vue?vue&type=template&id=e08a8fb2& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "author",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.editedAuthor,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Author", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.editedAuthor.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.editedAuthor, "name", $$v)
+                  },
+                  expression: "editedAuthor.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editAuthor("author", _vm.editedAuthor)
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("author")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Authors/IndexAuthors.vue?vue&type=template&id=7fddd408&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Authors/IndexAuthors.vue?vue&type=template&id=7fddd408& ***!
@@ -97002,7 +97230,14 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "router-link",
-                        { attrs: { to: { name: "editAuthor" } } },
+                        {
+                          attrs: {
+                            to: {
+                              name: "editAuthor",
+                              params: { author: author }
+                            }
+                          }
+                        },
                         [_c("i", { staticClass: "fas fa-edit icon blue" })]
                       ),
                       _vm._v(" "),
@@ -97256,16 +97491,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div")
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97336,13 +97564,25 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(book.category_id))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c("i", { staticClass: "far fa-eye icon green" }),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fas fa-edit icon blue" }),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fas fa-trash-alt icon red" })
-                  ])
+                  _c(
+                    "td",
+                    [
+                      _c("i", { staticClass: "far fa-eye icon green" }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: { name: "editBook", params: { book: book } }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                      ),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                    ],
+                    1
+                  )
                 ])
               }),
               0
@@ -114317,22 +114557,26 @@ component.options.__file = "resources/js/components/Authors/DetailAuthor.vue"
 /*!********************************************************!*\
   !*** ./resources/js/components/Authors/EditAuthor.vue ***!
   \********************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _EditAuthor_vue_vue_type_template_id_e08a8fb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditAuthor.vue?vue&type=template&id=e08a8fb2& */ "./resources/js/components/Authors/EditAuthor.vue?vue&type=template&id=e08a8fb2&");
+/* harmony import */ var _EditAuthor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAuthor.vue?vue&type=script&lang=js& */ "./resources/js/components/Authors/EditAuthor.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _EditAuthor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _EditAuthor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditAuthor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditAuthor_vue_vue_type_template_id_e08a8fb2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditAuthor_vue_vue_type_template_id_e08a8fb2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -114340,8 +114584,42 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/components/Authors/EditAuthor.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Authors/EditAuthor.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Authors/EditAuthor.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAuthor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditAuthor.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Authors/EditAuthor.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAuthor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Authors/EditAuthor.vue?vue&type=template&id=e08a8fb2&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Authors/EditAuthor.vue?vue&type=template&id=e08a8fb2& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAuthor_vue_vue_type_template_id_e08a8fb2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditAuthor.vue?vue&type=template&id=e08a8fb2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Authors/EditAuthor.vue?vue&type=template&id=e08a8fb2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAuthor_vue_vue_type_template_id_e08a8fb2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAuthor_vue_vue_type_template_id_e08a8fb2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -115815,7 +116093,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/edit-author',
     name: 'editAuthor',
-    component: _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_3__["default"],
+    props: true
   }, {
     path: '/authors',
     name: 'indexAuthors',
@@ -115831,7 +116110,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/edit-book',
     name: 'editBook',
-    component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_7__["default"],
+    props: true
   }, {
     path: '/books',
     name: 'indexBooks',
@@ -115847,7 +116127,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/edit-category',
     name: 'editCategory',
-    component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_11__["default"],
+    props: true
   }, {
     path: '/categories',
     name: 'indexCategories',
@@ -115863,7 +116144,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/edit-department',
     name: 'editDepartment',
-    component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_15__["default"],
+    props: true
   }, {
     path: '/departments',
     name: 'indexDepartments',
@@ -115879,7 +116161,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/edit-user',
     name: 'editUser',
-    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_19__["default"]
+    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_19__["default"],
+    props: true
   }, {
     path: '/users',
     name: 'indexUsers',
