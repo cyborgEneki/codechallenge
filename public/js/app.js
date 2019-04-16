@@ -14104,7 +14104,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    var item = {
+      date: "2016-05-02",
+      name: "Tom",
+      address: "No. 189, Grove St, Los Angeles"
+    };
+    return {
+      tableData: Array(20).fill(item)
+    };
+  },
   methods: {
     handleOpen: function handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -16031,7 +16046,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n.el-menu-item.is-active {\n    background-color: #2c3a40 !important;\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n.el-menu-item.is-active {\n  background-color: #2c3a40 !important;\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -96669,7 +96684,7 @@ var render = function() {
           _c(
             "el-aside",
             {
-              staticStyle: { "background-color": "rgb(238, 241, 246)" },
+              staticStyle: { "background-color": "#374850" },
               attrs: { width: "200px" }
             },
             [
@@ -96774,7 +96789,7 @@ var render = function() {
                     "router-link",
                     { attrs: { to: { name: "indexUsers" } } },
                     [
-                      _c("el-menu-item", { attrs: { index: "5" } }, [
+                      _c("el-menu-item", { attrs: { index: "6" } }, [
                         _c("i", { staticClass: "fas fa-users hotorange" }),
                         _vm._v(" "),
                         _c(
@@ -96833,7 +96848,30 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("el-main", [_c("router-view")], 1)
+              _c(
+                "el-main",
+                [
+                  _c(
+                    "el-table",
+                    { attrs: { data: _vm.tableData } },
+                    [
+                      _c("el-table-column", {
+                        attrs: { prop: "date", label: "Date", width: "140" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { prop: "name", label: "Name", width: "120" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { prop: "address", label: "Address" }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )

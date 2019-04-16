@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container style="border: 1px solid #eee">
-      <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+      <el-aside width="200px" style="background-color: #374850">
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
@@ -36,7 +36,7 @@
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexUsers'}">
-            <el-menu-item index="5">
+            <el-menu-item index="6">
               <i class="fas fa-users hotorange"></i>
               <span slot="title" class="sidebar-padding">Users</span>
             </el-menu-item>
@@ -55,8 +55,13 @@
           </el-dropdown>
           <span>Tom</span>
         </el-header>
+
         <el-main>
-          <router-view></router-view>
+          <el-table :data="tableData">
+            <el-table-column prop="date" label="Date" width="140"></el-table-column>
+            <el-table-column prop="name" label="Name" width="120"></el-table-column>
+            <el-table-column prop="address" label="Address"></el-table-column>
+          </el-table>
         </el-main>
       </el-container>
     </el-container>
@@ -65,6 +70,16 @@
 
 <script>
 export default {
+  data() {
+    const item = {
+      date: "2016-05-02",
+      name: "Tom",
+      address: "No. 189, Grove St, Los Angeles"
+    };
+    return {
+      tableData: Array(20).fill(item)
+    };
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -89,7 +104,7 @@ export default {
   padding-left: 10px;
 }
 .el-menu-item.is-active {
-    background-color: #2c3a40 !important;
-    color: white;
+  background-color: #2c3a40 !important;
+  color: white;
 }
 </style>
