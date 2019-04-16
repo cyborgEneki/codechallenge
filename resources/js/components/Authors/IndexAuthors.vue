@@ -25,9 +25,9 @@
               <i class="fas fa-trash-alt icon red"></i>
             </td>
           </tr>
-          <router-view></router-view>
         </tbody>
       </table>
+      <router-view></router-view>
       <pagination :meta_data="meta_data" @next="getAuthors"></pagination>
     </el-card>
   </div>

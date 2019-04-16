@@ -3,6 +3,9 @@
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Categories</span>
+        <router-link :to="{ name: 'addCategory' }">
+          <i class="fas fa-plus-circle add-icon"></i>
+        </router-link>
       </div>
       <table>
         <thead>
@@ -22,6 +25,7 @@
           </tr>
         </tbody>
       </table>
+      <router-view></router-view>
       <pagination :meta_data="meta_data" @next="getCategories"></pagination>
     </el-card>
   </div>

@@ -3,6 +3,9 @@
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Departments</span>
+        <router-link :to="{ name: 'addDepartment' }">
+          <i class="fas fa-plus-circle add-icon"></i>
+        </router-link>
       </div>
       <table>
         <thead>
@@ -22,6 +25,7 @@
           </tr>
         </tbody>
       </table>
+      <router-view></router-view>
       <pagination :meta_data="meta_data" @next="getDepartments"></pagination>
     </el-card>
   </div>
@@ -68,5 +72,4 @@ export default {
 </style>
 
 <style>
-    
 </style>

@@ -100,7 +100,7 @@ const router = new VueRouter({
             component: EditDepartment
         },
         {
-            path: '/deparments',
+            path: '/departments',
             name: 'indexDepartments',
             component: IndexDepartments
         },

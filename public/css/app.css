@@ -7862,19 +7862,14 @@ div#app .container-fluid {
 }
 
 div#app .navbar-cybrary {
-  background-color: #fff;
   background-color: #5f0e0e;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
   padding: 0.5rem 1rem;
   font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #212529;
   text-align: left;
 }
 

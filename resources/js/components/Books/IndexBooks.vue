@@ -3,13 +3,16 @@
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Books</span>
+        <router-link :to="{ name: 'addBook' }">
+          <i class="fas fa-plus-circle add-icon"></i>
+        </router-link>
       </div>
       <table>
         <thead>
           <tr>
             <th width="22.5%">Title</th>
             <th width="22.5%">Status</th>
-            <th width="22.5%">Reservor</th>
+            <th width="22.5%">Reserved By</th>
             <th width="22.5%">Category</th>
             <th class="actions-column">Options</th>
           </tr>
@@ -30,6 +33,7 @@
       </table>
       <pagination :meta_data="meta_data" @next="getBooks"></pagination>
     </el-card>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -64,7 +68,7 @@ export default {
         });
     }
   },
-  created() {
+  mounted() {
     this.getBooks();
   }
 };

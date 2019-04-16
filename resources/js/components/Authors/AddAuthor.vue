@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form :model="author" :rules="rules" ref="author" label-width="120px" class="demo-ruleForm">
-      <el-form-item label="Author's Name" prop="name">
+      <el-form-item label="Author" prop="name">
         <el-input v-model="author.name"></el-input>
       </el-form-item>
       <el-form-item>
@@ -23,7 +23,7 @@ export default {
         name: [
           {
             required: true,
-            message: "Please input the author's name",
+            message: "Please type in the author name",
             trigger: "blur"
           }
         ]
@@ -35,7 +35,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           axios.post("/api/authors/", this.author).then(response => {});
-          this.$router.push("/index-authors");
+          this.$router.push("/authors");
           this.$notify({
             title: "Success",
             message: "The new author has been added.",

@@ -13778,6 +13778,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     SidebarAndList: _SidebarAndList__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      choices: []
+    };
+  },
+  methods: {
+    getChoices: function getChoices() {
+      var _this = this;
+
+      axios.get("/api/choices".then(function (response) {
+        _this.choices = response.data;
+      }));
+    }
+  },
+  mounted: function mounted() {
+    this.getChoices();
   }
 });
 
@@ -13815,7 +13832,7 @@ __webpack_require__.r(__webpack_exports__);
       rules: {
         name: [{
           required: true,
-          message: "Please input the author's name",
+          message: "Please type in the author name",
           trigger: "blur"
         }]
       }
@@ -13829,7 +13846,7 @@ __webpack_require__.r(__webpack_exports__);
         if (valid) {
           axios.post("/api/authors/", _this.author).then(function (response) {});
 
-          _this.$router.push("/index-authors");
+          _this.$router.push("/authors");
 
           _this.$notify({
             title: "Success",
@@ -13948,7 +13965,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      author: {
+        name: ""
+      },
+      rules: {
+        name: [{
+          required: true,
+          message: "Please input the author's name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    addAuthor: function addAuthor(formName) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.post("/api/authors/", _this.author).then(function (response) {});
+
+          _this.$router.push("/index-authors");
+
+          _this.$notify({
+            title: "Success",
+            message: "The new author has been added.",
+            type: "success"
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+});
 
 /***/ }),
 
@@ -14035,6 +14099,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14067,7 +14135,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     this.getBooks();
   }
 });
@@ -14089,7 +14157,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      category: {
+        name: ""
+      },
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the category name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    addCategory: function addCategory(formName) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.post("/api/categories/", _this.category).then(function (response) {});
+
+          _this.$router.push("/categories");
+
+          _this.$notify({
+            title: "Success",
+            message: "The new category has been added.",
+            type: "success"
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+});
 
 /***/ }),
 
@@ -14141,6 +14256,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -14224,7 +14343,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      department: {
+        name: ""
+      },
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the department name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    addDepartment: function addDepartment(formName) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.post("/api/departments/", _this.department).then(function (response) {});
+
+          _this.$router.push("/departments");
+
+          _this.$notify({
+            title: "Success",
+            message: "The new department has been added.",
+            type: "success"
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+});
 
 /***/ }),
 
@@ -14276,6 +14442,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -96665,7 +96835,7 @@ var render = function() {
         [
           _c(
             "el-form-item",
-            { attrs: { label: "Author's Name", prop: "name" } },
+            { attrs: { label: "Author", prop: "name" } },
             [
               _c("el-input", {
                 model: {
@@ -96770,36 +96940,34 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              [
-                _vm._l(_vm.authors, function(author) {
-                  return _c("tr", { key: author.id }, [
-                    _c("td", { attrs: { width: "90%" } }, [
-                      _vm._v(_vm._s(author.name))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      [
-                        _c("i", { staticClass: "far fa-eye icon green" }),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          { attrs: { to: { name: "editAuthor" } } },
-                          [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                        ),
-                        _vm._v(" "),
-                        _c("i", { staticClass: "fas fa-trash-alt icon red" })
-                      ],
-                      1
-                    )
-                  ])
-                }),
-                _vm._v(" "),
-                _c("router-view")
-              ],
-              2
+              _vm._l(_vm.authors, function(author) {
+                return _c("tr", { key: author.id }, [
+                  _c("td", { attrs: { width: "90%" } }, [
+                    _vm._v(_vm._s(author.name))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c("i", { staticClass: "far fa-eye icon green" }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "editAuthor" } } },
+                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                      ),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                    ],
+                    1
+                  )
+                ])
+              }),
+              0
             )
           ]),
+          _vm._v(" "),
+          _c("router-view"),
           _vm._v(" "),
           _c("pagination", {
             attrs: { meta_data: _vm.meta_data },
@@ -96834,16 +97002,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "author",
+          staticClass: "demo-ruleForm",
+          attrs: { model: _vm.author, rules: _vm.rules, "label-width": "120px" }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Author's Name", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.author.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.author, "name", $$v)
+                  },
+                  expression: "author.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addAuthor("author")
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("author")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -96934,9 +97158,18 @@ var render = function() {
         "el-card",
         { staticClass: "box-card" },
         [
-          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-            _c("span", { staticClass: "card-font" }, [_vm._v("Books")])
-          ]),
+          _c(
+            "div",
+            { attrs: { slot: "header" }, slot: "header" },
+            [
+              _c("span", { staticClass: "card-font" }, [_vm._v("Books")]),
+              _vm._v(" "),
+              _c("router-link", { attrs: { to: { name: "addBook" } } }, [
+                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+              ])
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("table", [
             _c("thead", [
@@ -96945,7 +97178,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Status")]),
                 _vm._v(" "),
-                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Reservor")]),
+                _c("th", { attrs: { width: "22.5%" } }, [
+                  _vm._v("Reserved By")
+                ]),
                 _vm._v(" "),
                 _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Category")]),
                 _vm._v(" "),
@@ -96984,7 +97219,9 @@ var render = function() {
           })
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("router-view")
     ],
     1
   )
@@ -97011,16 +97248,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "category",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.category,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Category", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.category.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.category, "name", $$v)
+                  },
+                  expression: "category.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addCategory("category")
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("category")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97111,9 +97408,18 @@ var render = function() {
         "el-card",
         { staticClass: "box-card" },
         [
-          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-            _c("span", { staticClass: "card-font" }, [_vm._v("Categories")])
-          ]),
+          _c(
+            "div",
+            { attrs: { slot: "header" }, slot: "header" },
+            [
+              _c("span", { staticClass: "card-font" }, [_vm._v("Categories")]),
+              _vm._v(" "),
+              _c("router-link", { attrs: { to: { name: "addCategory" } } }, [
+                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+              ])
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("table", [
             _c("thead", [
@@ -97144,6 +97450,8 @@ var render = function() {
               0
             )
           ]),
+          _vm._v(" "),
+          _c("router-view"),
           _vm._v(" "),
           _c("pagination", {
             attrs: { meta_data: _vm.meta_data },
@@ -97178,16 +97486,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "department",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.department,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Department", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.department.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.department, "name", $$v)
+                  },
+                  expression: "department.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addDepartment("department")
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("department")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97278,9 +97646,18 @@ var render = function() {
         "el-card",
         { staticClass: "box-card" },
         [
-          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
-            _c("span", { staticClass: "card-font" }, [_vm._v("Departments")])
-          ]),
+          _c(
+            "div",
+            { attrs: { slot: "header" }, slot: "header" },
+            [
+              _c("span", { staticClass: "card-font" }, [_vm._v("Departments")]),
+              _vm._v(" "),
+              _c("router-link", { attrs: { to: { name: "addDepartment" } } }, [
+                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+              ])
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("table", [
             _c("thead", [
@@ -97311,6 +97688,8 @@ var render = function() {
               0
             )
           ]),
+          _vm._v(" "),
+          _c("router-view"),
           _vm._v(" "),
           _c("pagination", {
             attrs: { meta_data: _vm.meta_data },
@@ -115331,7 +115710,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'editDepartment',
     component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_15__["default"]
   }, {
-    path: '/deparments',
+    path: '/departments',
     name: 'indexDepartments',
     component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_16__["default"]
   }, {
