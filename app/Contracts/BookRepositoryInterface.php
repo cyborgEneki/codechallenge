@@ -16,4 +16,6 @@ interface BookRepositoryInterface
     public function updateBook(BookRequest $request, Book $book);
 
     public function deleteBook(Book $book);
+
+    public function choices();
 }
