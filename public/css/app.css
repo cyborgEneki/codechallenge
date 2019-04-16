@@ -7846,7 +7846,7 @@ html.is-reveal-open body {
 }
 
 body {
-  background-color: #d2f5ee;
+  background-color: #f8f8f8;
 }
 
 div#app .navbar-laravel {
@@ -7861,9 +7861,9 @@ div#app .container-fluid {
   margin-left: auto;
 }
 
-div#app .navbar-cyktaba {
+div#app .navbar-cybrary {
   background-color: #fff;
-  background-color: #710606;
+  background-color: #5f0e0e;
   position: relative;
   display: flex;
   flex-wrap: wrap;

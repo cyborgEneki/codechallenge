@@ -12,7 +12,7 @@
 @import "settings";
 
 body {
-  background-color: #d2f5ee;
+  background-color: #f8f8f8;
 }
 div#app {
   .navbar-laravel {
@@ -26,9 +26,9 @@ div#app {
     margin-right: auto;
     margin-left: auto;
   }
-  .navbar-cyktaba {
+  .navbar-cybrary {
     background-color: #fff;
-    background-color: #710606;
+    background-color: #5f0e0e;
     position: relative;
     display: flex;
     flex-wrap: wrap;

@@ -28,7 +28,7 @@
 <body>
     <div id="app">
         <div class="container-fluid">
-            <nav class="navbar-cyktaba">
+            <nav class="navbar-cybrary">
                 <a style="font-size: 30px;" class="navbar-brand text-white" href="{{ url('/') }} ">
                                 {{ config('app.name', 'Laravel') }}
                             </a>

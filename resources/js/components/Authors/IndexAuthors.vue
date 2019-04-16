@@ -3,6 +3,9 @@
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Authors</span>
+        <router-link :to="{ name: 'addAuthor' }">
+          <i class="fas fa-plus-circle add-icon"></i>
+        </router-link>
       </div>
       <table>
         <thead>
@@ -16,10 +19,13 @@
             <td width="90%">{{ author.name }}</td>
             <td>
               <i class="far fa-eye icon green"></i>
-              <i class="fas fa-edit icon blue"></i>
+              <router-link :to="{ name: 'editAuthor' }">
+                <i class="fas fa-edit icon blue"></i>
+              </router-link>
               <i class="fas fa-trash-alt icon red"></i>
             </td>
           </tr>
+          <router-view></router-view>
         </tbody>
       </table>
       <pagination :meta_data="meta_data" @next="getAuthors"></pagination>
@@ -83,5 +89,11 @@ export default {
 }
 tbody tr:nth-child(even) {
   background-color: #f3eaea;
+}
+.add-icon {
+  float: right;
+  margin: 0;
+  font-size: 40px;
+  color: #5f0e0e;
 }
 </style>
