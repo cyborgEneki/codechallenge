@@ -97350,14 +97350,10 @@ var render = function() {
     [
       _c(
         "el-container",
-        { staticStyle: { border: "1px solid #eee" } },
         [
           _c(
             "el-aside",
-            {
-              staticStyle: { "background-color": "#374850" },
-              attrs: { width: "200px" }
-            },
+            { attrs: { width: "200px" } },
             [
               _c(
                 "el-menu",
@@ -97365,7 +97361,7 @@ var render = function() {
                   staticClass: "el-menu-vertical-demo",
                   attrs: {
                     "default-active": "1",
-                    "background-color": "#374850",
+                    "background-color": "#000000",
                     "text-color": "#fff",
                     "active-text-color": "#ffd04b"
                   },

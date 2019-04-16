@@ -1,13 +1,13 @@
 <template>
   <div>
-    <el-container style="border: 1px solid #eee;">
-      <el-aside width="200px" style="background-color: #374850">
+    <el-container>
+      <el-aside width="200px">
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
-          background-color="#374850"
+          background-color="#000000"
           text-color="#fff"
           active-text-color="#ffd04b"
         >
