@@ -7,10 +7,10 @@
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
-      <table>
+      <table :default-sort="{prop: 'name', order: 'descending'}">
         <thead>
           <tr>
-            <th width="90%">Name</th>
+            <th width="90%" prop="name">Name</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>
@@ -18,15 +18,21 @@
           <tr v-for="author in authors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
             <td>
-              <i class="far fa-eye icon green"></i>
+              <i class="far fa-eye icon green" slot="reference" type="button"></i>
               <router-link :to="{ name: 'editAuthor', params: { author } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
-              <i class="fas fa-trash-alt icon red"></i>
+              <a>
+                <i class="fas fa-trash-alt icon red" @click="deleteAuthor(author.id)"></i>
+              </a>
             </td>
           </tr>
         </tbody>
       </table>
+      <el-popover placement="right" width="400" trigger="click">
+        <div>Something</div>
+      </el-popover>
+
       <router-view></router-view>
       <pagination :meta_data="meta_data" @next="getAuthors"></pagination>
     </el-card>
@@ -61,6 +67,38 @@ export default {
           this.meta_data.last_page = res.data.last_page;
           this.meta_data.current_page = res.data.current_page;
           this.meta_data.prev_page_url = res.data.prev_page_url;
+        });
+    },
+    deleteAuthor(id) {
+      this.$confirm(
+        "This will permanently delete the file. Continue?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          axios.delete("/api/authors/" + id).then(() => {
+            let index = this.authors
+              .map(item => {
+                return item.id;
+              })
+              .indexOf(id);
+            this.authors.splice(index, 1);
+            this.$notify({
+              title: "Success",
+              message: "The author name has been deleted",
+              type: "success"
+            });
+          });
+        })
+        .catch(() => {
+          this.$notify.info({
+            title: "Info",
+            message: "Delete cancelled"
+          });
         });
     }
   },

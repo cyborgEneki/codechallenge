@@ -13961,6 +13961,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -13990,6 +13996,34 @@ __webpack_require__.r(__webpack_exports__);
         _this.meta_data.last_page = res.data.last_page;
         _this.meta_data.current_page = res.data.current_page;
         _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    },
+    deleteAuthor: function deleteAuthor(id) {
+      var _this2 = this;
+
+      this.$confirm("This will permanently delete the file. Continue?", "Warning", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        axios["delete"]("/api/authors/" + id).then(function () {
+          var index = _this2.authors.map(function (item) {
+            return item.id;
+          }).indexOf(id);
+
+          _this2.authors.splice(index, 1);
+
+          _this2.$notify({
+            title: "Success",
+            message: "The author name has been deleted",
+            type: "success"
+          });
+        });
+      })["catch"](function () {
+        _this2.$notify.info({
+          title: "Info",
+          message: "Delete cancelled"
+        });
       });
     }
   },
@@ -14311,6 +14345,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -14341,6 +14377,34 @@ __webpack_require__.r(__webpack_exports__);
         _this.meta_data.last_page = res.data.last_page;
         _this.meta_data.current_page = res.data.current_page;
         _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    },
+    deleteBook: function deleteBook(id) {
+      var _this2 = this;
+
+      this.$confirm("This will permanently delete the file. Continue?", "Warning", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        axios["delete"]("/api/books/" + id).then(function () {
+          var index = _this2.books.map(function (item) {
+            return item.id;
+          }).indexOf(id);
+
+          _this2.books.splice(index, 1);
+
+          _this2.$notify({
+            title: "Success",
+            message: "The book has been deleted",
+            type: "success"
+          });
+        });
+      })["catch"](function () {
+        _this2.$notify.info({
+          title: "Info",
+          message: "Delete cancelled"
+        });
       });
     }
   },
@@ -97347,50 +97411,79 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("table", [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.authors, function(author) {
-                return _c("tr", { key: author.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(author.name))
+          _c(
+            "table",
+            {
+              attrs: { "default-sort": { prop: "name", order: "descending" } }
+            },
+            [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", { attrs: { width: "90%", prop: "name" } }, [
+                    _vm._v("Name")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("i", { staticClass: "far fa-eye icon green" }),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editAuthor",
-                              params: { author: author }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
-                    ],
-                    1
-                  )
+                  _c("th", { staticClass: "actions-column" }, [
+                    _vm._v("Options")
+                  ])
                 ])
-              }),
-              0
-            )
-          ]),
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.authors, function(author) {
+                  return _c("tr", { key: author.id }, [
+                    _c("td", { attrs: { width: "90%" } }, [
+                      _vm._v(_vm._s(author.name))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("i", {
+                          staticClass: "far fa-eye icon green",
+                          attrs: { slot: "reference", type: "button" },
+                          slot: "reference"
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "editAuthor",
+                                params: { author: author }
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                        ),
+                        _vm._v(" "),
+                        _c("a", [
+                          _c("i", {
+                            staticClass: "fas fa-trash-alt icon red",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteAuthor(author.id)
+                              }
+                            }
+                          })
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                }),
+                0
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "el-popover",
+            { attrs: { placement: "right", width: "400", trigger: "click" } },
+            [_c("div", [_vm._v("Something")])]
+          ),
           _vm._v(" "),
           _c("router-view"),
           _vm._v(" "),
@@ -97845,7 +97938,16 @@ var render = function() {
                         [_c("i", { staticClass: "fas fa-edit icon blue" })]
                       ),
                       _vm._v(" "),
-                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                      _c("a", [
+                        _c("i", {
+                          staticClass: "fas fa-trash-alt icon red",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteBook(book.id)
+                            }
+                          }
+                        })
+                      ])
                     ],
                     1
                   )
