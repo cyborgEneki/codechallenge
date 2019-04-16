@@ -32,4 +32,27 @@ class BookRepository implements BookRepositoryInterface
     {
         return $book->delete($book);
     }
+
+    public function choices()
+    {
+        $books = Book::all();
+        $books = $books->keyBy('id');
+        $books = ['books' => $books];
+
+        $auth_user = ['authuser' => Auth::User()->id];
+
+        $authors = Author::all();
+        $authors = $authors->keyBy('id');
+        $authors = ['authors' => $authors];        
+        
+        $categories = Category::all();
+        $categories = $categories->keyBy('id');
+        $categories = ['categories' => $categories];        
+        
+        $departments = Department::all();
+        $departments = $departments->keyBy('id');
+        $departments = ['departments' => $departments];
+
+        return array_merge($books, $auth_user);
+    }
 }
