@@ -18,9 +18,7 @@
           <tr v-for="author in authors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
             <td>
-              <a>
-                <i class="far fa-eye icon green"></i>
-              </a>
+              <i class="far fa-eye icon green"></i>
               <router-link :to="{ name: 'editAuthor', params: { author } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>

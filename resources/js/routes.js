@@ -4,7 +4,6 @@ import AddAuthor from './components/Authors/AddAuthor';
 import EditAuthor from './components/Authors/EditAuthor';
 import IndexAuthors from './components/Authors/IndexAuthors';
 import AddBook from './components/Books/AddBook';
-import DetailBook from './components/Books/DetailBook';
 import EditBook from './components/Books/EditBook';
 import IndexBooks from './components/Books/IndexBooks';
 import AddCategory from './components/Categories/AddCategory';
@@ -41,11 +40,6 @@ const router = new VueRouter({
             path: '/add-book',
             name: 'addBook',
             component: AddBook
-        },
-        {
-            path: '/detail-book',
-            name: 'detailBook',
-            component: DetailBook
         },
         {
             path: '/edit-book',

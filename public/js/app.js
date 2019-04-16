@@ -13963,8 +13963,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14148,25 +14146,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Books/DetailBook.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Books/DetailBook.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -97451,9 +97430,7 @@ var render = function() {
                   _c(
                     "td",
                     [
-                      _c("a", [
-                        _c("i", { staticClass: "far fa-eye icon green" })
-                      ]),
+                      _c("i", { staticClass: "far fa-eye icon green" }),
                       _vm._v(" "),
                       _c(
                         "router-link",
@@ -97681,37 +97658,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Books/DetailBook.vue?vue&type=template&id=1a100e6a&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Books/DetailBook.vue?vue&type=template&id=1a100e6a& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Books/EditBook.vue?vue&type=template&id=1674b923&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Books/EditBook.vue?vue&type=template&id=1674b923& ***!
@@ -97923,7 +97869,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(book.reservor_id))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(book.category_id))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.choices.categories[book.category_id].name)
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "td",
@@ -115226,75 +115176,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Books/DetailBook.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/Books/DetailBook.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _DetailBook_vue_vue_type_template_id_1a100e6a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DetailBook.vue?vue&type=template&id=1a100e6a& */ "./resources/js/components/Books/DetailBook.vue?vue&type=template&id=1a100e6a&");
-/* harmony import */ var _DetailBook_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DetailBook.vue?vue&type=script&lang=js& */ "./resources/js/components/Books/DetailBook.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _DetailBook_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _DetailBook_vue_vue_type_template_id_1a100e6a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _DetailBook_vue_vue_type_template_id_1a100e6a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Books/DetailBook.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Books/DetailBook.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Books/DetailBook.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DetailBook_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DetailBook.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Books/DetailBook.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DetailBook_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Books/DetailBook.vue?vue&type=template&id=1a100e6a&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/Books/DetailBook.vue?vue&type=template&id=1a100e6a& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DetailBook_vue_vue_type_template_id_1a100e6a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DetailBook.vue?vue&type=template&id=1a100e6a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Books/DetailBook.vue?vue&type=template&id=1a100e6a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DetailBook_vue_vue_type_template_id_1a100e6a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DetailBook_vue_vue_type_template_id_1a100e6a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/Books/EditBook.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/Books/EditBook.vue ***!
@@ -116352,20 +116233,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Authors/EditAuthor */ "./resources/js/components/Authors/EditAuthor.vue");
 /* harmony import */ var _components_Authors_IndexAuthors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Authors/IndexAuthors */ "./resources/js/components/Authors/IndexAuthors.vue");
 /* harmony import */ var _components_Books_AddBook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Books/AddBook */ "./resources/js/components/Books/AddBook.vue");
-/* harmony import */ var _components_Books_DetailBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Books/DetailBook */ "./resources/js/components/Books/DetailBook.vue");
-/* harmony import */ var _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Books/EditBook */ "./resources/js/components/Books/EditBook.vue");
-/* harmony import */ var _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Books/IndexBooks */ "./resources/js/components/Books/IndexBooks.vue");
-/* harmony import */ var _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Categories/AddCategory */ "./resources/js/components/Categories/AddCategory.vue");
-/* harmony import */ var _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Categories/EditCategory */ "./resources/js/components/Categories/EditCategory.vue");
-/* harmony import */ var _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Categories/IndexCategories */ "./resources/js/components/Categories/IndexCategories.vue");
-/* harmony import */ var _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Departments/AddDepartment */ "./resources/js/components/Departments/AddDepartment.vue");
-/* harmony import */ var _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Departments/EditDepartment */ "./resources/js/components/Departments/EditDepartment.vue");
-/* harmony import */ var _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Departments/IndexDepartments */ "./resources/js/components/Departments/IndexDepartments.vue");
-/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
-/* harmony import */ var _components_Users_DetailUser__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users/DetailUser */ "./resources/js/components/Users/DetailUser.vue");
-/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
-/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
-
+/* harmony import */ var _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Books/EditBook */ "./resources/js/components/Books/EditBook.vue");
+/* harmony import */ var _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Books/IndexBooks */ "./resources/js/components/Books/IndexBooks.vue");
+/* harmony import */ var _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Categories/AddCategory */ "./resources/js/components/Categories/AddCategory.vue");
+/* harmony import */ var _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Categories/EditCategory */ "./resources/js/components/Categories/EditCategory.vue");
+/* harmony import */ var _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Categories/IndexCategories */ "./resources/js/components/Categories/IndexCategories.vue");
+/* harmony import */ var _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Departments/AddDepartment */ "./resources/js/components/Departments/AddDepartment.vue");
+/* harmony import */ var _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Departments/EditDepartment */ "./resources/js/components/Departments/EditDepartment.vue");
+/* harmony import */ var _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Departments/IndexDepartments */ "./resources/js/components/Departments/IndexDepartments.vue");
+/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
+/* harmony import */ var _components_Users_DetailUser__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Users/DetailUser */ "./resources/js/components/Users/DetailUser.vue");
+/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
+/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
 
 
 
@@ -116403,61 +116282,57 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'addBook',
     component: _components_Books_AddBook__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/detail-book',
-    name: 'detailBook',
-    component: _components_Books_DetailBook__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }, {
     path: '/edit-book',
     name: 'editBook',
-    component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_6__["default"],
+    component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: true
   }, {
     path: '/books',
     name: 'indexBooks',
-    component: _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Books_IndexBooks__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/add-category',
     name: 'addCategory',
-    component: _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '/edit-category',
     name: 'editCategory',
-    component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_8__["default"],
     props: true
   }, {
     path: '/categories',
     name: 'indexCategories',
-    component: _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _components_Categories_IndexCategories__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: '/add-department',
     name: 'addDepartment',
-    component: _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: '/edit-department',
     name: 'editDepartment',
-    component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_11__["default"],
     props: true
   }, {
     path: '/departments',
     name: 'indexDepartments',
-    component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: '/add-user',
     name: 'addUser',
-    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_14__["default"]
+    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, {
     path: '/detail-user',
     name: 'detailUser',
-    component: _components_Users_DetailUser__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_Users_DetailUser__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: '/edit-user',
     name: 'editUser',
-    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_16__["default"],
+    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_15__["default"],
     props: true
   }, {
     path: '/users',
     name: 'indexUsers',
-    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_17__["default"]
+    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_16__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
