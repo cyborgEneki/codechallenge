@@ -19,7 +19,9 @@
             <td width="90%">{{ department.name }}</td>
             <td>
               <i class="far fa-eye icon green"></i>
-              <i class="fas fa-edit icon blue"></i>
+              <router-link :to="{ name: 'editDepartment', params: { department } }">
+                <i class="fas fa-edit icon blue"></i>
+              </router-link>
               <i class="fas fa-trash-alt icon red"></i>
             </td>
           </tr>

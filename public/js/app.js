@@ -14191,35 +14191,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["choices", "book"],
+  props: ["book", "choices"],
   computed: {
-    orderedUsers: function orderedUsers() {
-      return _.orderBy(this.choices.users, "first_name");
-    },
+    // orderedUsers() {
+    //   return _.orderBy(this.choices.users, "first_name");
+    // },
     orderedCategories: function orderedCategories() {
       return _.orderBy(this.choices.categories, "name");
     }
   },
   data: function data() {
-    return {};
+    return {
+      editedBook: this.book,
+      rules: {
+        title: [{
+          required: true,
+          message: "Please type in the new book title",
+          trigger: "blur"
+        }],
+        status: [{
+          required: true,
+          message: "Please select the book's status",
+          trigger: "change"
+        }] // category: [
+        //   {
+        //     required: true,
+        //     message: "Please select the book's category",
+        //     trigger: "change"
+        //   }
+        // ]
+
+      }
+    };
   },
   methods: {
-    editBook: function editBook(book) {
-      axios.put("/api/books/" + book.id, book).then(function (response) {});
-      this.$router.push("/books");
-      this.$notify({
-        title: "Success",
-        message: "The new book has been added.",
-        type: "success"
+    editBook: function editBook(formName, editedBook) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.put("/api/books/" + editedBook.id, editedBook).then(function (response) {
+            _this.$router.push("/books");
+
+            _this.$notify({
+              title: "Success",
+              message: "The book details have been edited.",
+              type: "success"
+            });
+
+            _this.editedBook = {};
+          });
+        } else {
+          return false;
+        }
       });
     },
     resetForm: function resetForm(formName) {
       this.$refs[formName].resetFields();
     }
-  },
-  mounted: function mounted() {
-    console.log(this.book); // console.log(this.choices);
   }
 });
 
@@ -14658,7 +14693,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["department"],
+  data: function data() {
+    return {
+      editedDepartment: this.department,
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the new department name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    editDepartment: function editDepartment(formName, editedDepartment) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.put("/api/departments/" + editedDepartment.id, editedDepartment).then(function (response) {
+            _this.$router.push("/departments");
+
+            _this.$notify({
+              title: "Success",
+              message: "The department name has been edited.",
+              type: "success"
+            });
+
+            _this.editedDepartment = {};
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+});
 
 /***/ }),
 
@@ -14672,6 +14755,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
 //
 //
 //
@@ -97547,7 +97632,132 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "book",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.editedBook,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Book", prop: "title" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.editedBook.title,
+                  callback: function($$v) {
+                    _vm.$set(_vm.editedBook, "title", $$v)
+                  },
+                  expression: "editedBook.title"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Status", prop: "status" } },
+            [
+              _c(
+                "el-radio-group",
+                {
+                  model: {
+                    value: _vm.editedBook.status,
+                    callback: function($$v) {
+                      _vm.$set(_vm.editedBook, "status", $$v)
+                    },
+                    expression: "editedBook.status"
+                  }
+                },
+                [
+                  _c("el-radio", { attrs: { label: "Available" } }),
+                  _vm._v(" "),
+                  _c("el-radio", { attrs: { label: "Borrowed" } })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Category", prop: "category" } },
+            [
+              _c(
+                "el-select",
+                {
+                  attrs: { placeholder: "Category" },
+                  model: {
+                    value: _vm.editedBook.category_id,
+                    callback: function($$v) {
+                      _vm.$set(_vm.editedBook, "category_id", $$v)
+                    },
+                    expression: "editedBook.category_id"
+                  }
+                },
+                _vm._l(_vm.orderedCategories, function(category) {
+                  return _c(
+                    "el-option",
+                    {
+                      key: category.id,
+                      attrs: { value: category.id, label: category.name }
+                    },
+                    [_vm._v(_vm._s(category.name))]
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editBook("book", _vm.editedBook)
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("book")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -98115,16 +98325,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "department",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.editedDepartment,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Department", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.editedDepartment.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.editedDepartment, "name", $$v)
+                  },
+                  expression: "editedDepartment.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editDepartment(
+                        "department",
+                        _vm.editedDepartment
+                      )
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("department")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -98183,13 +98456,28 @@ var render = function() {
                     _vm._v(_vm._s(department.name))
                   ]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c("i", { staticClass: "far fa-eye icon green" }),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fas fa-edit icon blue" }),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fas fa-trash-alt icon red" })
-                  ])
+                  _c(
+                    "td",
+                    [
+                      _c("i", { staticClass: "far fa-eye icon green" }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "editDepartment",
+                              params: { department: department }
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                      ),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                    ],
+                    1
+                  )
                 ])
               }),
               0
