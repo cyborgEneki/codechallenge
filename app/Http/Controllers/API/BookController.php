@@ -18,8 +18,8 @@ class BookController extends Controller
 
     public function index()
     {
-        $book = $this->bookRepo->allBooks();
-        return response()->json($book, 200);
+        $books = $this->bookRepo->allBooks();
+        return response()->json($books, 200);
     }
 
     public function store(BookRequest $request)

@@ -18,8 +18,8 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $department = $this->departmentRepo->allDepartments();
-        return response()->json($department, 200);
+        $departments = $this->departmentRepo->allDepartments();
+        return response()->json($departments, 200);
     }
 
     public function store(DepartmentRequest $request)
