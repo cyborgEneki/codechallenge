@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-.sblue {
+.blue {
   color: #3490dc;
 }
 
@@ -57,7 +57,11 @@
 }
 
 .hotpink {
-  color: #f308b1 !important;
+  color: #df8dc7 !important;
+}
+
+.palepink {
+  color: #f3eaea !important;
 }
 
 /**

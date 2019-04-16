@@ -22,9 +22,10 @@ $mustard: #e69517;
 $powderblue: #0ea4cc;
 $customgreen: #00a65a;
 $hotorange: #d84a3a;
-$hotpink: #f308b1;
+$hotpink: #df8dc7;
+$palepink: #f3eaea;
 
-.sblue {
+.blue {
     color: $blue;
 }
 .indigo {
@@ -68,4 +69,7 @@ $hotpink: #f308b1;
 }
 .hotpink {
     color: $hotpink !important;
+}
+.palepink {
+    color: $palepink !important;
 }
