@@ -25,4 +25,5 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('categories', 'API\CategoryController');
     Route::apiResource('departments', 'API\DepartmentController');
     Route::apiResource('users', 'API\UserController');
+    Route::get('choices', 'API\BookController@choices');
 });

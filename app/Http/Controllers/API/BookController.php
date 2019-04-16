@@ -45,4 +45,10 @@ class BookController extends Controller
         $book = $this->bookRepo->deleteBook($book);
         return response()->json($book, 200);
     }
+
+    public function choices()
+    {
+        $choices = $this->bookRepo->choices();
+        return response()->json($choices, 200);
+    }
 }
