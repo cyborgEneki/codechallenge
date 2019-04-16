@@ -19,8 +19,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $category = $this->categoryRepo->allCategories();
-        return response()->json($category, 200);
+        $categories = $this->categoryRepo->allCategories();
+        return response()->json($categories, 200);
     }
 
     public function store(CategoryRequest $request)

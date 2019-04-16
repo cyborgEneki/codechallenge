@@ -17,8 +17,8 @@ class AuthorController extends Controller
     }
     public function index()
     {
-        $author = $this->authorRepo->allAuthors();
-        return response()->json($author, 200);
+        $authors = $this->authorRepo->allAuthors();
+        return response()->json($authors, 200);
     }
 
     public function store(AuthorRequest $request)
