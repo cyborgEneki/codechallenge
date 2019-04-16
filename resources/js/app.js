@@ -11,8 +11,11 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(ElementUI, { locale });
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import App from './components/App';
+import router from './routes';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {App},
+    router
 });
