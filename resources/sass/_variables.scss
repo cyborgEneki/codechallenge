@@ -18,3 +18,58 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$mustard: #e69517;
+$powderblue: #0ea4cc;
+$customgreen: #00a65a;
+$hotorange: #d84a3a;
+$hotpink: #df8dc7;
+$font-14: 14px;
+
+.blue {
+    color: $blue;
+}
+.indigo {
+    color: $indigo;
+}
+.purple{
+    color: $purple;
+}
+.pink {
+    color: $pink;
+}
+.red {
+    color: $red;
+}
+.orange {
+    color: $orange;
+}
+.yellow {
+    color: $yellow;
+}
+.green {
+    color: $green;
+}
+.teal {
+    color: $teal;
+}
+.cyan {
+    color: $cyan;
+}
+.mustard {
+    color: $mustard !important;
+}
+.powderblue {
+    color: $powderblue !important;
+}
+.hotorange {
+    color: $hotorange !important;
+}
+.customgreen {
+    color: $customgreen !important;
+}
+.hotpink {
+    color: $hotpink !important;
+}
+.font-14 {
+    font-size: $font-14;
+}

@@ -1,0 +1,115 @@
+<template>
+  <div>
+    <el-card class="box-card">
+      <div slot="header">
+        <span class="card-font">Books</span>
+        <router-link :to="{ name: 'addBook' }">
+          <i class="fas fa-plus-circle add-icon"></i>
+        </router-link>
+      </div>
+      <table class="font-14">
+        <thead>
+          <tr>
+            <th width="22.5%">Title</th>
+            <th width="22.5%">Status</th>
+            <th width="22.5%">Reserved By</th>
+            <th width="22.5%">Category</th>
+            <th class="actions-column">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="book in books" :key="book.id">
+            <td>{{ book.title }}</td>
+            <td>{{ book.status }}</td>
+            <td>{{ book.reservor_id }}</td>
+            <td>{{ choices.categories[book.category_id].name }}</td>
+            <td>
+              <i class="far fa-eye icon green"></i>
+              <router-link :to="{ name: 'editBook', params: { book } }">
+                <i class="fas fa-edit icon blue"></i>
+              </router-link>
+              <a>
+                <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination :meta_data="meta_data" @next="getBooks"></pagination>
+    </el-card>
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+import Pagination from "../pagination";
+
+export default {
+  props: ["choices"],
+  components: { Pagination },
+  data() {
+    return {
+      books: [],
+      meta_data: {
+        last_page: null,
+        current_page: 1,
+        prev_page_url: null
+      }
+    };
+  },
+  methods: {
+    getBooks(page = 1) {
+      axios
+        .get("/api/books/", {
+          params: {
+            page
+          }
+        })
+        .then(res => {
+          this.books = res.data.data;
+          this.meta_data.last_page = res.data.last_page;
+          this.meta_data.current_page = res.data.current_page;
+          this.meta_data.prev_page_url = res.data.prev_page_url;
+        });
+    },
+    deleteBook(id) {
+      this.$confirm(
+        "This will permanently delete the file. Continue?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          axios.delete("/api/books/" + id).then(() => {
+            let index = this.books
+              .map(item => {
+                return item.id;
+              })
+              .indexOf(id);
+            this.books.splice(index, 1);
+            this.$notify({
+              title: "Success",
+              message: "The book has been deleted",
+              type: "success"
+            });
+          });
+        })
+        .catch(() => {
+          this.$notify.info({
+            title: "Info",
+            message: "Delete cancelled"
+          });
+        });
+    }
+  },
+  mounted() {
+    this.getBooks();
+  }
+};
+</script>
+
+<style>
+</style>

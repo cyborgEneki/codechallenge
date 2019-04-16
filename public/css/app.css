@@ -1,5 +1,69 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.blue {
+  color: #3490dc;
+}
+
+.indigo {
+  color: #6574cd;
+}
+
+.purple {
+  color: #9561e2;
+}
+
+.pink {
+  color: #f66D9b;
+}
+
+.red {
+  color: #e3342f;
+}
+
+.orange {
+  color: #f6993f;
+}
+
+.yellow {
+  color: #ffed4a;
+}
+
+.green {
+  color: #38c172;
+}
+
+.teal {
+  color: #4dc0b5;
+}
+
+.cyan {
+  color: #6cb2eb;
+}
+
+.mustard {
+  color: #e69517 !important;
+}
+
+.powderblue {
+  color: #0ea4cc !important;
+}
+
+.hotorange {
+  color: #d84a3a !important;
+}
+
+.customgreen {
+  color: #00a65a !important;
+}
+
+.hotpink {
+  color: #df8dc7 !important;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
 /**
  * Foundation for Sites by ZURB
  * Version 6.5.3
@@ -7785,8 +7849,82 @@ html.is-reveal-open body {
   }
 }
 
-.navbar-laravel {
+body {
+  background-color: #000000;
+}
+
+div#app .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+div#app .container-fluid {
+  width: 100%;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+div#app .navbar-cybrary {
+  background-color: #5f0e0e;
+  position: relative;
+  display: flex;
+  padding: 0.5rem 1rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: left;
+}
+
+div#app .text-white {
+  color: #fff !important;
+}
+
+div#app .navbar-brand {
+  display: inline-block;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  margin-right: 1rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+div#app a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+div#app .navbar-collapse {
+  display: flex !important;
+  flex-grow: 1;
+  align-items: center;
+  flex-basis: auto;
+}
+
+div#app .mr-auto,
+div#app .mx-auto {
+  margin-right: auto !important;
+}
+
+div#app .navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+div#app .ml-auto {
+  margin-left: auto !important;
+}
+
+div#app .nav-link {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+div#app .dropdown-toggle {
+  white-space: nowrap;
 }
 
