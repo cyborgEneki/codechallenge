@@ -14416,7 +14416,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["category"],
+  data: function data() {
+    return {
+      editedCategory: this.category,
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the new category name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    editCategory: function editCategory(formName, editedCategory) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.put("/api/categories/" + editedCategory.id, editedCategory).then(function (response) {
+            _this.$router.push("/categories");
+
+            _this.$notify({
+              title: "Success",
+              message: "The category name has been edited.",
+              type: "success"
+            });
+
+            _this.editedCategory = {};
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetForm: function resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
+});
 
 /***/ }),
 
@@ -14430,6 +14484,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
 //
 //
 //
@@ -97746,16 +97802,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "category",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.editedCategory,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Category", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.editedCategory.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.editedCategory, "name", $$v)
+                  },
+                  expression: "editedCategory.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editCategory("category", _vm.editedCategory)
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.resetForm("category")
+                    }
+                  }
+                },
+                [_vm._v("Reset")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97814,13 +97930,28 @@ var render = function() {
                     _vm._v(_vm._s(category.name))
                   ]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c("i", { staticClass: "far fa-eye icon green" }),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fas fa-edit icon blue" }),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "fas fa-trash-alt icon red" })
-                  ])
+                  _c(
+                    "td",
+                    [
+                      _c("i", { staticClass: "far fa-eye icon green" }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "editCategory",
+                              params: { category: category }
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                      ),
+                      _vm._v(" "),
+                      _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                    ],
+                    1
+                  )
                 ])
               }),
               0
