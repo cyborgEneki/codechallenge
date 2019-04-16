@@ -10,25 +10,25 @@
         >
           <router-link :to="{ name: 'indexAuthors'}">
             <el-menu-item index="2">
-              <i class="fas fa-cogs"></i>
+              <i class="fas fa-pen-alt"></i>
               <span slot="title" class="sidebar-padding">Authors</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexBooks'}">
             <el-menu-item index="3">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-book-open"></i>
               <span slot="title" class="sidebar-padding">Books</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexCategories'}">
             <el-menu-item index="4">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-boxes"></i>
               <span slot="title" class="sidebar-padding">Categories</span>
             </el-menu-item>
           </router-link>
           <router-link :to="{ name: 'indexDepartments'}">
             <el-menu-item index="5">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-building"></i>
               <span slot="title" class="sidebar-padding">Departments</span>
             </el-menu-item>
           </router-link>

@@ -96683,7 +96683,7 @@ var render = function() {
                     { attrs: { to: { name: "indexAuthors" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "2" } }, [
-                        _c("i", { staticClass: "fas fa-cogs" }),
+                        _c("i", { staticClass: "fas fa-pen-alt" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96704,7 +96704,7 @@ var render = function() {
                     { attrs: { to: { name: "indexBooks" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "3" } }, [
-                        _c("i", { staticClass: "fas fa-users" }),
+                        _c("i", { staticClass: "fas fa-book-open" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96725,7 +96725,7 @@ var render = function() {
                     { attrs: { to: { name: "indexCategories" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "4" } }, [
-                        _c("i", { staticClass: "fas fa-users" }),
+                        _c("i", { staticClass: "fas fa-boxes" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -96746,7 +96746,7 @@ var render = function() {
                     { attrs: { to: { name: "indexDepartments" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "5" } }, [
-                        _c("i", { staticClass: "fas fa-users" }),
+                        _c("i", { staticClass: "fas fa-building" }),
                         _vm._v(" "),
                         _c(
                           "span",
