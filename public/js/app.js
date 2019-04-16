@@ -16028,7 +16028,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.el-menu-item.is-active {\n  color: #0d986d !important;\n}\n\n", ""]);
+exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.el-menu-item.is-active {\n  color: #0d986d !important;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n", ""]);
 
 // exports
 

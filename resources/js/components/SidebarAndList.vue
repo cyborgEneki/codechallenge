@@ -88,4 +88,7 @@ export default {
   color: #0d986d !important; 
 }
 
+.sidebar-padding {
+  padding-left: 10px;
+}
 </style>
