@@ -13816,6 +13816,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -13921,13 +13927,78 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      books: [],
+      meta_data: {
+        last_page: null,
+        current_page: 1,
+        prev_page_url: null
+      }
+    };
+  },
+  methods: {
+    getBooks: function getBooks() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get("/api/books/", {
+        params: {
+          page: page
+        }
+      }).then(function (res) {
+        _this.books = res.data.data;
+        _this.meta_data.last_page = res.data.last_page;
+        _this.meta_data.current_page = res.data.current_page;
+        _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    }
+  },
+  created: function created() {
+    this.getBooks();
+  }
+});
 
 /***/ }),
 
@@ -16128,7 +16199,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.pagination {\n  text-align: center;\n}\n.icon {\n  padding: 10px;\n}\n.actions-column {\n  width: \"10%\";\n  text-align: center;\n}\n.el-card__body {\n  background: #eacdcd;\n}\n.card-font {\n  font-size: 30px;\n}\ntbody tr:nth-child(even) {\n    background-color: #f3eaea;\n}\n", ""]);
+exports.push([module.i, "\n.pagination {\n  text-align: center;\n}\n.icon {\n  padding: 10px;\n}\n.actions-column {\n  width: \"10%\";\n  text-align: center;\n}\n.el-card__body {\n  background: #eacdcd;\n}\n.card-font {\n  font-size: 30px;\n}\ntbody tr:nth-child(even) {\n  background-color: #f3eaea;\n}\n", ""]);
 
 // exports
 
@@ -96414,6 +96485,14 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("table", [
+            _c("thead", [
+              _c("tr", [
+                _c("th", { attrs: { width: "90%" } }, [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
+              ])
+            ]),
+            _vm._v(" "),
             _c(
               "tbody",
               _vm._l(_vm.authors, function(author) {
@@ -96561,16 +96640,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-card",
+        { staticClass: "box-card" },
+        [
+          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
+            _c("span", { staticClass: "card-font" }, [_vm._v("Books")])
+          ]),
+          _vm._v(" "),
+          _c("table", [
+            _c("thead", [
+              _c("tr", [
+                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Status")]),
+                _vm._v(" "),
+                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Reservor")]),
+                _vm._v(" "),
+                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Category")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.books, function(book) {
+                return _c("tr", { key: book.id }, [
+                  _c("td", [_vm._v(_vm._s(book.title))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(book.status))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(book.reservor_id))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(book.category_id))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("i", { staticClass: "far fa-eye icon green" }),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fas fa-edit icon blue" }),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                  ])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("pagination", {
+            attrs: { meta_data: _vm.meta_data },
+            on: { next: _vm.getBooks }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -5,6 +5,12 @@
         <span class="card-font">Authors</span>
       </div>
       <table>
+        <thead>
+          <tr>
+            <th width="90%">Title</th>
+            <th class="actions-column">Options</th>
+          </tr>
+        </thead>
         <tbody>
           <tr v-for="author in authors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
@@ -76,6 +82,6 @@ export default {
   font-size: 30px;
 }
 tbody tr:nth-child(even) {
-    background-color: #f3eaea;
+  background-color: #f3eaea;
 }
 </style>
