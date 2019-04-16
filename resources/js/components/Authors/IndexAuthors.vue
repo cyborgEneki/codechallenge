@@ -7,7 +7,7 @@
       <table>
         <thead>
           <tr>
-            <th width="90%">Title</th>
+            <th width="90%">Name</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>

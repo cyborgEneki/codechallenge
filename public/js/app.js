@@ -14068,13 +14068,72 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      categories: [],
+      meta_data: {
+        last_page: null,
+        current_page: 1,
+        prev_page_url: null
+      }
+    };
+  },
+  methods: {
+    getCategories: function getCategories() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get("/api/categories/", {
+        params: {
+          page: page
+        }
+      }).then(function (res) {
+        _this.categories = res.data.data;
+        _this.meta_data.last_page = res.data.last_page;
+        _this.meta_data.current_page = res.data.current_page;
+        _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    }
+  },
+  created: function created() {
+    this.getCategories();
+  }
+});
 
 /***/ }),
 
@@ -96487,7 +96546,7 @@ var render = function() {
           _c("table", [
             _c("thead", [
               _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Title")]),
+                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
                 _vm._v(" "),
                 _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
               ])
@@ -96817,16 +96876,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "el-card",
+        { staticClass: "box-card" },
+        [
+          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
+            _c("span", { staticClass: "card-font" }, [_vm._v("Categories")])
+          ]),
+          _vm._v(" "),
+          _c("table", [
+            _c("thead", [
+              _c("tr", [
+                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                _vm._v(" "),
+                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.categories, function(category) {
+                return _c("tr", { key: category.id }, [
+                  _c("td", { attrs: { width: "90%" } }, [
+                    _vm._v(_vm._s(category.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("i", { staticClass: "far fa-eye icon green" }),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fas fa-edit icon blue" }),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "fas fa-trash-alt icon red" })
+                  ])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("pagination", {
+            attrs: { meta_data: _vm.meta_data },
+            on: { next: _vm.getCategories }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h3", [_vm._v("Test")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
