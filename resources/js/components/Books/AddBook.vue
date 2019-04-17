@@ -51,10 +51,9 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click.prevent="addBook('book')">Create</el-button>
+        <el-button type="primary" @click.prevent="addBook()">Create</el-button>
         <el-button>Cancel</el-button>
       </el-form-item>
-
     </el-form>
   </div>
 </template>
@@ -95,7 +94,7 @@ export default {
     }
   },
   methods: {
-    addBook(formName) {
+    addBook() {
       this.formTouched = !this.$v.book.$anyDirty;
       this.errors = this.$v.book.$anyError;
       this.uiState = "submit clicked";
@@ -111,15 +110,15 @@ export default {
       } else {
         return false;
       }
+    },
+    cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
-  },
-  cancel() {
-    this.$router.push("/users");
-    this.$notify({
-      title: "Info",
-      message: "Your changes have been discarded",
-      type: "success"
-    });
   }
 };
 </script>

@@ -1,109 +1,161 @@
 <template>
   <div>
-    <el-form :model="book" :rules="rules" ref="book" label-width="120px" class="demo-ruleForm">
-      <el-form-item label="Book Title" prop="title">
-        <el-input v-model="book.title"></el-input>
+    <el-form :model="user" ref="user" label-width="120px">
+      <el-form-item label="First Name" for="ffirstname">
+        <el-input id="ffirstname" v-model="$v.user.first_name.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            class="error"
+            v-if="!$v.user.first_name.required"
+          >A user without a first name is like a pet without a name!</span>
+        </p>
       </el-form-item>
 
-      <el-form-item label="Status" prop="status">
-        <el-radio-group v-model="book.status">
-          <el-radio label="Available"></el-radio>
-          <el-radio label="Borrowed"></el-radio>
+      <el-form-item label="Last Name" for="flastname">
+        <el-input id="flastname" v-model="$v.user.last_name.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.user.last_name.required"
+          >A user without a last name is like a plant without two names!</span>
+        </p>
+      </el-form-item>
+
+      <el-form-item label="Email" for="femail">
+        <el-input
+          id="femail"
+          v-model="$v.user.email.$model"
+          placeholder="xxxxx@xxxxx.xxx"
+          type="email"
+        ></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.user.email.required"
+          >A user without an address is like a person without a phone!</span>
+          <span v-if="!$v.user.email.email">Needs to be a valid email.</span>
+        </p>
+      </el-form-item>
+
+      <el-form-item label="Max Books" for="fmaxbooks">
+        <el-input
+          id="fmaxbooks"
+          v-model.lazy="$v.user.max_number_of_books_allowed.$model"
+          type="number"
+        ></el-input>
+        <p v-if="errors" class="error">
+          <span
+            class="error"
+            v-if="!$v.user.max_number_of_books_allowed.required"
+          >A user without a maximum limit is like a mat without a speed governor!</span>
+        </p>
+      </el-form-item>
+
+      <el-form-item label="Status" for="fstatus">
+        <el-radio-group id="fstatus" v-model.lazy="$v.user.status.$model">
+          <el-radio label="Active"></el-radio>
+          <el-radio label="Suspended"></el-radio>
         </el-radio-group>
+        <p v-if="errors" class="error">
+          <span
+            class="error"
+            v-if="!$v.user.status.required"
+          >A user without a borrowing status is like a phone without WiFi!</span>
+        </p>
       </el-form-item>
 
-      <el-form-item label="Reserved By">
-        <el-select v-model="book.reservor_id" placeholder="Reserved By">
+      <el-form-item label="Department" for="fdepartment">
+        <el-select
+          id="fdepartment"
+          v-model.lazy="$v.user.department_id.$model"
+          placeholder="Department"
+        >
           <el-option
-            v-for="user in orderedUsers"
-            :value="user.id"
-            :key="user.id"
-          >{{ user.full_name }}</el-option>
+            v-for="department in orderedDepartments"
+            :value="department.id"
+            :key="department.id"
+            :label="department.name"
+          >{{ department.name }}</el-option>
         </el-select>
-      </el-form-item>
-
-      <el-form-item label="Category" prop="category">
-        <el-select v-model="book.category_id" placeholder="Category">
-          <el-option
-            v-for="category in orderedCategories"
-            :value="category.id"
-            :key="category.id"
-            :label="category.name"
-          >{{ category.name }}</el-option>
-        </el-select>
+        <p v-if="errors" class="error">
+          <span
+            class="error"
+            v-if="!$v.user.department_id.required"
+          >A user without a department is like a game without thrones!</span>
+        </p>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="addBook('book')">Create</el-button>
-        <el-button @click="resetForm('book')">Reset</el-button>
+        <el-button type="primary" @click="addUser('user', user)">Create</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import { required, email } from "vuelidate/lib/validators";
+
 export default {
   props: ["choices"],
   computed: {
-    orderedUsers() {
-      return _.orderBy(this.choices.users, "first_name");
-    },
-    orderedCategories() {
-      return _.orderBy(this.choices.categories, "name");
+    orderedDepartments() {
+      return _.orderBy(this.choices.departments, "name");
     }
   },
   data() {
     return {
-      book: {
-        title: "",
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
+      user: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        max_number_of_books_allowed: "",
         status: "",
-        reservor_id: "",
-        category_id: ""
-      },
-      rules: {
-        title: [
-          {
-            required: true,
-            message: "Please input the book's title",
-            trigger: "blur"
-          }
-        ],
-        status: [
-          {
-            required: true,
-            message: "Please select the book's status",
-            trigger: "change"
-          }
-        ],
-        // category: [
-        //   {
-        //     required: true,
-        //     message: "Please select the book's category",
-        //     trigger: "change"
-        //   }
-        // ]
+        department_id: ""
       }
     };
   },
+  validations: {
+    user: {
+      first_name: { required },
+      last_name: { required },
+      email: { required, email },
+      max_number_of_books_allowed: { required },
+      status: { required },
+      department_id: { required }
+    }
+  },
   methods: {
-    addBook(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          axios.post("/api/books/", this.book).then(response => {});
-          this.$router.push("/books");
-          this.$notify({
-            title: "Success",
-            message: "The new book has been added.",
-            type: "success"
-          });
-        } else {
-          return false;
-        }
-      });
+    addUser() {
+      this.formTouched = !this.$v.user.$anyDirty;
+      this.errors = this.$v.user.$anyError;
+      this.uiState = "submit clicked";
+      if (this.errors === false && this.formTouched === false) {
+        axios.post("/api/users/", this.user).then(response => {});
+        this.$router.push("/users");
+        this.$notify({
+          title: "Success",
+          message: "The new user has been added.",
+          type: "success"
+        });
+        this.uiState = "form submitted";
+      } else {
+        return false;
+      }
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 };
 </script>
+
+<style>
+</style>

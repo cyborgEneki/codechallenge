@@ -13841,8 +13841,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -14106,7 +14111,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -14149,7 +14153,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    addBook: function addBook(formName) {
+    addBook: function addBook() {
       this.formTouched = !this.$v.book.$anyDirty;
       this.errors = this.$v.book.$anyError;
       this.uiState = "submit clicked";
@@ -14166,15 +14170,15 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return false;
       }
+    },
+    cancel: function cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
-  },
-  cancel: function cancel() {
-    this.$router.push("/users");
-    this.$notify({
-      title: "Info",
-      message: "Your changes have been discarded",
-      type: "success"
-    });
   }
 });
 
@@ -14445,6 +14449,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -14480,8 +14490,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -14698,6 +14713,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -14733,8 +14754,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -15023,6 +15049,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -15066,67 +15094,129 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
   computed: {
-    orderedUsers: function orderedUsers() {
-      return _.orderBy(this.choices.users, "first_name");
-    },
-    orderedCategories: function orderedCategories() {
-      return _.orderBy(this.choices.categories, "name");
+    orderedDepartments: function orderedDepartments() {
+      return _.orderBy(this.choices.departments, "name");
     }
   },
   data: function data() {
     return {
-      book: {
-        title: "",
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
+      user: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        max_number_of_books_allowed: "",
         status: "",
-        reservor_id: "",
-        category_id: ""
-      },
-      rules: {
-        title: [{
-          required: true,
-          message: "Please input the book's title",
-          trigger: "blur"
-        }],
-        status: [{
-          required: true,
-          message: "Please select the book's status",
-          trigger: "change"
-        }] // category: [
-        //   {
-        //     required: true,
-        //     message: "Please select the book's category",
-        //     trigger: "change"
-        //   }
-        // ]
-
+        department_id: ""
       }
     };
   },
+  validations: {
+    user: {
+      first_name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      last_name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      email: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["email"]
+      },
+      max_number_of_books_allowed: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      status: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      department_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      }
+    }
+  },
   methods: {
-    addBook: function addBook(formName) {
-      var _this = this;
+    addUser: function addUser() {
+      this.formTouched = !this.$v.user.$anyDirty;
+      this.errors = this.$v.user.$anyError;
+      this.uiState = "submit clicked";
 
-      this.$refs[formName].validate(function (valid) {
-        if (valid) {
-          axios.post("/api/books/", _this.book).then(function (response) {});
-
-          _this.$router.push("/books");
-
-          _this.$notify({
-            title: "Success",
-            message: "The new book has been added.",
-            type: "success"
-          });
-        } else {
-          return false;
-        }
-      });
+      if (this.errors === false && this.formTouched === false) {
+        axios.post("/api/users/", this.user).then(function (response) {});
+        this.$router.push("/users");
+        this.$notify({
+          title: "Success",
+          message: "The new user has been added.",
+          type: "success"
+        });
+        this.uiState = "form submitted";
+      } else {
+        return false;
+      }
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/users");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -97715,17 +97805,7 @@ var render = function() {
                 [_vm._v("Create")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("author")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -98111,7 +98191,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.addBook("book")
+                      return _vm.addBook()
                     }
                   }
                 },
@@ -98479,17 +98559,7 @@ var render = function() {
                 [_vm._v("Create")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("category")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -98770,17 +98840,7 @@ var render = function() {
                 [_vm._v("Create")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("department")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -99204,112 +99264,219 @@ var render = function() {
     [
       _c(
         "el-form",
-        {
-          ref: "book",
-          staticClass: "demo-ruleForm",
-          attrs: { model: _vm.book, rules: _vm.rules, "label-width": "120px" }
-        },
+        { ref: "user", attrs: { model: _vm.user, "label-width": "120px" } },
         [
           _c(
             "el-form-item",
-            { attrs: { label: "Book Title", prop: "title" } },
+            { attrs: { label: "First Name", for: "ffirstname" } },
             [
               _c("el-input", {
+                attrs: { id: "ffirstname" },
                 model: {
-                  value: _vm.book.title,
+                  value: _vm.$v.user.first_name.$model,
                   callback: function($$v) {
-                    _vm.$set(_vm.book, "title", $$v)
+                    _vm.$set(_vm.$v.user.first_name, "$model", $$v)
                   },
-                  expression: "book.title"
+                  expression: "$v.user.first_name.$model"
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.first_name.required
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(
+                            "A user without a first name is like a pet without a name!"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ],
             1
           ),
           _vm._v(" "),
           _c(
             "el-form-item",
-            { attrs: { label: "Status", prop: "status" } },
+            { attrs: { label: "Last Name", for: "flastname" } },
+            [
+              _c("el-input", {
+                attrs: { id: "flastname" },
+                model: {
+                  value: _vm.$v.user.last_name.$model,
+                  callback: function($$v) {
+                    _vm.$set(_vm.$v.user.last_name, "$model", $$v)
+                  },
+                  expression: "$v.user.last_name.$model"
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.last_name.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a last name is like a plant without two names!"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Email", for: "femail" } },
+            [
+              _c("el-input", {
+                attrs: {
+                  id: "femail",
+                  placeholder: "xxxxx@xxxxx.xxx",
+                  type: "email"
+                },
+                model: {
+                  value: _vm.$v.user.email.$model,
+                  callback: function($$v) {
+                    _vm.$set(_vm.$v.user.email, "$model", $$v)
+                  },
+                  expression: "$v.user.email.$model"
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.email.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without an address is like a person without a phone!"
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.$v.user.email.email
+                      ? _c("span", [_vm._v("Needs to be a valid email.")])
+                      : _vm._e()
+                  ])
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Max Books", for: "fmaxbooks" } },
+            [
+              _c("el-input", {
+                attrs: { id: "fmaxbooks", type: "number" },
+                model: {
+                  value: _vm.$v.user.max_number_of_books_allowed.$model,
+                  callback: function($$v) {
+                    _vm.$set(
+                      _vm.$v.user.max_number_of_books_allowed,
+                      "$model",
+                      $$v
+                    )
+                  },
+                  expression: "$v.user.max_number_of_books_allowed.$model"
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.max_number_of_books_allowed.required
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(
+                            "A user without a maximum limit is like a mat without a speed governor!"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Status", for: "fstatus" } },
             [
               _c(
                 "el-radio-group",
                 {
+                  attrs: { id: "fstatus" },
                   model: {
-                    value: _vm.book.status,
+                    value: _vm.$v.user.status.$model,
                     callback: function($$v) {
-                      _vm.$set(_vm.book, "status", $$v)
+                      _vm.$set(_vm.$v.user.status, "$model", $$v)
                     },
-                    expression: "book.status"
+                    expression: "$v.user.status.$model"
                   }
                 },
                 [
-                  _c("el-radio", { attrs: { label: "Available" } }),
+                  _c("el-radio", { attrs: { label: "Active" } }),
                   _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Borrowed" } })
+                  _c("el-radio", { attrs: { label: "Suspended" } })
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.status.required
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(
+                            "A user without a borrowing status is like a phone without WiFi!"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ],
             1
           ),
           _vm._v(" "),
           _c(
             "el-form-item",
-            { attrs: { label: "Reserved By" } },
+            { attrs: { label: "Department", for: "fdepartment" } },
             [
               _c(
                 "el-select",
                 {
-                  attrs: { placeholder: "Reserved By" },
+                  attrs: { id: "fdepartment", placeholder: "Department" },
                   model: {
-                    value: _vm.book.reservor_id,
+                    value: _vm.$v.user.department_id.$model,
                     callback: function($$v) {
-                      _vm.$set(_vm.book, "reservor_id", $$v)
+                      _vm.$set(_vm.$v.user.department_id, "$model", $$v)
                     },
-                    expression: "book.reservor_id"
+                    expression: "$v.user.department_id.$model"
                   }
                 },
-                _vm._l(_vm.orderedUsers, function(user) {
-                  return _c(
-                    "el-option",
-                    { key: user.id, attrs: { value: user.id } },
-                    [_vm._v(_vm._s(user.full_name))]
-                  )
-                }),
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Category", prop: "category" } },
-            [
-              _c(
-                "el-select",
-                {
-                  attrs: { placeholder: "Category" },
-                  model: {
-                    value: _vm.book.category_id,
-                    callback: function($$v) {
-                      _vm.$set(_vm.book, "category_id", $$v)
-                    },
-                    expression: "book.category_id"
-                  }
-                },
-                _vm._l(_vm.orderedCategories, function(category) {
+                _vm._l(_vm.orderedDepartments, function(department) {
                   return _c(
                     "el-option",
                     {
-                      key: category.id,
-                      attrs: { value: category.id, label: category.name }
+                      key: department.id,
+                      attrs: { value: department.id, label: department.name }
                     },
-                    [_vm._v(_vm._s(category.name))]
+                    [_vm._v(_vm._s(department.name))]
                   )
                 }),
                 1
-              )
+              ),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.department_id.required
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(
+                            "A user without a department is like a game without thrones!"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ],
             1
           ),
@@ -99323,24 +99490,14 @@ var render = function() {
                   attrs: { type: "primary" },
                   on: {
                     click: function($event) {
-                      return _vm.addBook("book")
+                      return _vm.addUser("user", _vm.user)
                     }
                   }
                 },
                 [_vm._v("Create")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("book")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
