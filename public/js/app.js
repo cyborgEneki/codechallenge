@@ -14451,7 +14451,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getBooks();
-    console.log(this.choices);
   }
 });
 
@@ -15581,8 +15580,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {
-    this.getUsers();
+  created: function created() {
+    this.getUsers(); // console.log(this.choices);
   }
 });
 
@@ -98529,9 +98528,17 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(book.status))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(book.reservor_id))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.choices.users[book.reservor_id].full_name)
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(book.category_id))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm.choices.categories[book.category_id].name)
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "td",

@@ -109,8 +109,9 @@ export default {
         });
     }
   },
-  mounted() {
+  created() {
     this.getUsers();
+    // console.log(this.choices);
   }
 };
 </script>

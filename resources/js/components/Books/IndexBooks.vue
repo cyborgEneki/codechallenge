@@ -21,8 +21,8 @@
           <tr v-for="book in books" :key="book.id">
             <td>{{ book.title }}</td>
             <td>{{ book.status }}</td>
-            <td>{{ book.reservor_id }}</td>
-            <td>{{ book.category_id }}</td>
+            <td>{{ choices.users[book.reservor_id].full_name }}</td>
+            <td>{{ choices.categories[book.category_id].name }}</td>
             <td>
               <i class="far fa-eye icon green"></i>
               <router-link :to="{ name: 'editBook', params: { book } }">
@@ -107,7 +107,6 @@ export default {
   },
   mounted() {
     this.getBooks();
-    console.log(this.choices);
   }
 };
 </script>
