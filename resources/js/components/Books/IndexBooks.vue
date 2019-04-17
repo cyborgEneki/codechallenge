@@ -74,7 +74,7 @@ export default {
     },
     deleteBook(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the book. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",

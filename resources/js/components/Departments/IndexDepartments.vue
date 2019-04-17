@@ -67,7 +67,7 @@ export default {
     },
     deleteDepartment(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the department. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",

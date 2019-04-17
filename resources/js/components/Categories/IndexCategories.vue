@@ -67,7 +67,7 @@ export default {
     },
     deleteCategory(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the category. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",

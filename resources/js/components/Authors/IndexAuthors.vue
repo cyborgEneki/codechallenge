@@ -72,7 +72,7 @@ export default {
     },
     deleteAuthor(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the author. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",
