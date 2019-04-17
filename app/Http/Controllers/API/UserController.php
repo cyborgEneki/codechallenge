@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use App\Contracts\UserRepositoryInterface;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
 
 class UserController extends Controller
 {
@@ -83,7 +85,7 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
-    public function update(Request $request, User $user)
+    public function update(EditUserRequest $request, User $user)
     {
         $user = $this->userRepo->updateUser($request, $user);
         return response()->json($user, 200);

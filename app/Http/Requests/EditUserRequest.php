@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class EditUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class UserRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'max_number_of_books_allowed' => ['required'],
             'status' => ['required'],
             'department_id' => ['required'],
@@ -40,9 +39,8 @@ class UserRequest extends FormRequest
             'first_name.required' => 'A user without a first name is like a pet without a name!',
             'last_name.required' => 'A user without a last name is like a plant without two names!',
             'email.required' => 'A user without an address is like a person without a phone!',
-            'password.required' => 'A user without a password is like a person without a name!',
             'max_number_of_books_allowed.required' => 'A user without a maximum limit is like a mat without a speed governor!',
-            'status.required' => 'A user without a status is like a phone without WiFi!',
+            'status.required' => 'A user without a borrowing status is like a phone without WiFi!',
             'department_id.required' => 'A user without a department is like a game without thrones!',
         ];
     }

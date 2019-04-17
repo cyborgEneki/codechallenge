@@ -29,7 +29,7 @@ export default {
         name: [
           {
             required: true,
-            message: "Please type in the new category name",
+            message: "Please type in the category name",
             trigger: "blur"
           }
         ]

@@ -23,7 +23,7 @@ export default {
         name: [
           {
             required: true,
-            message: "Please type in the new author name",
+            message: "Please type in the author name",
             trigger: "blur"
           }
         ]

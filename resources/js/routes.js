@@ -13,7 +13,6 @@ import AddDepartment from './components/Departments/AddDepartment';
 import EditDepartment from './components/Departments/EditDepartment';
 import IndexDepartments from './components/Departments/IndexDepartments';
 import AddUser from './components/Users/AddUser';
-import DetailUser from './components/Users/DetailUser';
 import EditUser from './components/Users/EditUser';
 import IndexUsers from './components/Users/IndexUsers';
 
@@ -88,11 +87,6 @@ const router = new VueRouter({
             path: '/add-user',
             name: 'addUser',
             component: AddUser
-        },
-        {
-            path: '/detail-user',
-            name: 'detailUser',
-            component: DetailUser
         },
         {
             path: '/edit-user',

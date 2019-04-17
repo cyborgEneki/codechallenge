@@ -4,8 +4,9 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Contracts\UserRepositoryInterface;
-use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\EditUserRequest;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -23,7 +24,7 @@ class UserRepository implements UserRepositoryInterface
         return User::findOrFail($id);
     }
 
-    public function updateUser(Request $request, User $user)
+    public function updateUser(EditUserRequest $request, User $user)
     {
         return $user->update($request->all());
     }
