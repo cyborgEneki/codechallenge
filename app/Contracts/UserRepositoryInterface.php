@@ -13,6 +13,8 @@ interface UserRepositoryInterface
 
     public function showUser($id);
 
+    public function createUser(UserRequest $request);
+
     public function updateUser(EditUserRequest $request, User $user);
 
     public function deleteUser(User $user);

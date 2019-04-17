@@ -3,18 +3,20 @@
     <el-form :model="editedUser" ref="user" label-width="120px">
       <el-form-item label="First Name" for="ffirstname">
         <el-input id="ffirstname" v-model.lazy="$v.editedUser.first_name.$model"></el-input>
-        <p
-          class="error"
-          v-if="!$v.editedUser.first_name.required"
-        >A user without a first name is like a pet without a name!</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedUser.first_name.required"
+          >A user without a first name is like a pet without a name!</span>
+        </p>
       </el-form-item>
 
       <el-form-item label="Last Name" for="flastname">
         <el-input id="flastname" v-model.lazy="$v.editedUser.last_name.$model"></el-input>
-        <p
-          class="error"
-          v-if="!$v.editedUser.last_name.required"
-        >A user without a last name is like a plant without two names!</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedUser.last_name.required"
+          >A user without a last name is like a plant without two names!</span>
+        </p>
       </el-form-item>
 
       <el-form-item label="Email" for="femail">
@@ -24,10 +26,14 @@
           placeholder="xxxxx@xxxxx.xxx"
           type="email"
         ></el-input>
-        <p
-          class="error"
-          v-if="!$v.editedUser.email.required"
-        >A user without an address is like a person without a phone!</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedUser.email.required"
+          >A user without an address is like a person without a phone!</span>
+          <span
+            v-if="!$v.editedUser.email.email"
+          >A valid email follows the following format: xxx@xxx.com</span>
+        </p>
       </el-form-item>
 
       <el-form-item label="Max Books" for="fmaxbooks">
@@ -36,10 +42,11 @@
           v-model.lazy="$v.editedUser.max_number_of_books_allowed.$model"
           type="number"
         ></el-input>
-        <p
-          class="error"
-          v-if="!$v.editedUser.max_number_of_books_allowed.required"
-        >A user without a maximum limit is like a mat without a speed governor!</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedUser.max_number_of_books_allowed.required"
+          >A user without a maximum limit is like a mat without a speed governor!</span>
+        </p>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
@@ -47,10 +54,11 @@
           <el-radio label="Active"></el-radio>
           <el-radio label="Suspended"></el-radio>
         </el-radio-group>
-        <p
-          class="error"
-          v-if="!$v.editedUser.status.required"
-        >A user without a borrowing status is like a phone without WiFi!</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedUser.status.required"
+          >A user without a borrowing status is like a phone without WiFi!</span>
+        </p>
       </el-form-item>
 
       <el-form-item label="Department" for="fdepartment">
@@ -66,10 +74,11 @@
             :label="department.name"
           >{{ department.name }}</el-option>
         </el-select>
-        <p
-          class="error"
-          v-if="!$v.editedUser.department_id.required"
-        >A user without a department is like a game without thrones!</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedUser.department_id.required"
+          >A user without a department is like a game without thrones!</span>
+        </p>
       </el-form-item>
 
       <el-form-item>
@@ -81,7 +90,7 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required, email } from "vuelidate/lib/validators";
 
 export default {
   props: ["user", "choices"],
@@ -92,6 +101,10 @@ export default {
   },
   data() {
     return {
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
       editedUser: this.user
     };
   },
@@ -99,7 +112,7 @@ export default {
     editedUser: {
       first_name: { required },
       last_name: { required },
-      email: { required },
+      email: { required, email },
       max_number_of_books_allowed: { required },
       status: { required },
       department_id: { required }
@@ -107,30 +120,29 @@ export default {
   },
   methods: {
     editUser(formName, editedUser) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          axios
-            .put("/api/users/" + editedUser.id, editedUser)
-            .then(response => {
-              this.$router.push("/users");
-              this.$notify({
-                title: "Success",
-                message: "The user details have been edited.",
-                type: "success"
-              });
-              this.editedUser = {};
-            });
-        } else {
-          return false;
-        }
-      });
+      this.formTouched = !this.$v.editedUser.$anyDirty;
+      this.errors = this.$v.editedUser.$anyError;
+      this.uiState = "submit clicked";
+      if (this.errors === false && this.formTouched === false) {
+        axios.put("/api/users/" + editedUser.id, editedUser).then(response => {
+          this.$router.push("/users");
+          this.$notify({
+            title: "Success",
+            message: "The user details have been edited.",
+            type: "success"
+          });
+          this.editedUser = {};
+        });
+      } else {
+        return false;
+      }
     },
     cancel() {
       this.$router.push("/users");
       this.$notify({
         title: "Info",
-        message: "Your changes have been discarded",
-        type: "success"
+        message: "Changes, if any, have been discarded",
+        type: "info"
       });
     }
   }

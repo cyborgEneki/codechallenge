@@ -47,6 +47,7 @@ export default {
             message: "The new category has been added.",
             type: "success"
           });
+          this.category = {};
         } else {
           return false;
         }
@@ -54,7 +55,7 @@ export default {
     },
 
     cancel() {
-      this.$router.push("/users");
+      this.$router.push("/categories");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",

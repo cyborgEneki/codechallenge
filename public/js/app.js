@@ -13828,6 +13828,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs[formName].validate(function (valid) {
         if (valid) {
           axios.post("/api/authors/", _this.author).then(function (response) {});
+          _this.author = {};
 
           _this.$router.push("/authors");
 
@@ -13842,7 +13843,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cancel: function cancel() {
-      this.$router.push("/users");
+      this.$router.push("/authors");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
@@ -13863,6 +13864,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -13913,8 +13920,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/authors");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -14111,6 +14123,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -14160,6 +14177,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors === false && this.formTouched === false) {
         axios.post("/api/books/", this.book).then(function (response) {});
+        this.book = {};
         this.$router.push("/books");
         this.$notify({
           title: "Success",
@@ -14172,7 +14190,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     cancel: function cancel() {
-      this.$router.push("/users");
+      this.$router.push("/books");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
@@ -14241,6 +14259,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["book", "choices"],
@@ -14254,6 +14278,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
       editedBook: this.book
     };
   },
@@ -14271,33 +14299,35 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    editBook: function editBook(formName, editedBook) {
+    editBook: function editBook(editedBook) {
       var _this = this;
 
-      this.$refs[formName].validate(function (valid) {
-        if (valid) {
-          axios.put("/api/books/" + editedBook.id, editedBook).then(function (response) {
-            _this.$router.push("/books");
+      this.formTouched = !this.$v.editedBook.$anyDirty;
+      this.errors = this.$v.editedBook.$anyError;
+      this.uiState = "submit clicked";
 
-            _this.$notify({
-              title: "Success",
-              message: "The book details have been edited.",
-              type: "success"
-            });
+      if (this.errors === false && this.formTouched === false) {
+        axios.put("/api/books/" + editedBook.id, editedBook).then(function (response) {
+          _this.$router.push("/books");
 
-            _this.editedBook = {};
+          _this.$notify({
+            title: "Success",
+            message: "The book details have been edited.",
+            type: "success"
           });
-        } else {
-          return false;
-        }
-      });
+
+          _this.editedBook = {};
+        });
+      } else {
+        return false;
+      }
     },
     cancel: function cancel() {
-      this.$router.push("/users");
+      this.$router.push("/books");
       this.$notify({
         title: "Info",
-        message: "Your changes have been discarded",
-        type: "success"
+        message: "Changes, if any, have been discarded",
+        type: "info"
       });
     }
   }
@@ -14421,6 +14451,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getBooks();
+    console.log(this.choices);
   }
 });
 
@@ -14485,13 +14516,15 @@ __webpack_require__.r(__webpack_exports__);
             message: "The new category has been added.",
             type: "success"
           });
+
+          _this.category = {};
         } else {
           return false;
         }
       });
     },
     cancel: function cancel() {
-      this.$router.push("/users");
+      this.$router.push("/categories");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
@@ -14568,8 +14601,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/categories");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -14741,6 +14779,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs[formName].validate(function (valid) {
         if (valid) {
           axios.post("/api/departments/", _this.department).then(function (response) {});
+          _this.department = {};
 
           _this.$router.push("/departments");
 
@@ -14755,7 +14794,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cancel: function cancel() {
-      this.$router.push("/users");
+      this.$router.push("/departments");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
@@ -14776,6 +14815,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14826,8 +14871,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    resetForm: function resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel: function cancel() {
+      this.$router.push("/departments");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 });
@@ -15029,7 +15079,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/choices").then(function (response) {
         _this.choices = response.data;
-        console.log(_this.choices);
       });
     }
   },
@@ -15144,6 +15193,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -15162,6 +15217,7 @@ __webpack_require__.r(__webpack_exports__);
         first_name: "",
         last_name: "",
         email: "",
+        password: "",
         max_number_of_books_allowed: "",
         status: "",
         department_id: ""
@@ -15179,6 +15235,10 @@ __webpack_require__.r(__webpack_exports__);
       email: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
         email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["email"]
+      },
+      password: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
+        minLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["minLength"])(8)
       },
       max_number_of_books_allowed: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
@@ -15199,6 +15259,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors === false && this.formTouched === false) {
         axios.post("/api/users/", this.user).then(function (response) {});
+        this.user = {};
         this.$router.push("/users");
         this.$notify({
           title: "Success",
@@ -15316,6 +15377,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["user", "choices"],
@@ -15326,6 +15396,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
       editedUser: this.user
     };
   },
@@ -15338,7 +15412,8 @@ __webpack_require__.r(__webpack_exports__);
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"],
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["email"]
       },
       max_number_of_books_allowed: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
@@ -15355,30 +15430,32 @@ __webpack_require__.r(__webpack_exports__);
     editUser: function editUser(formName, editedUser) {
       var _this = this;
 
-      this.$refs[formName].validate(function (valid) {
-        if (valid) {
-          axios.put("/api/users/" + editedUser.id, editedUser).then(function (response) {
-            _this.$router.push("/users");
+      this.formTouched = !this.$v.editedUser.$anyDirty;
+      this.errors = this.$v.editedUser.$anyError;
+      this.uiState = "submit clicked";
 
-            _this.$notify({
-              title: "Success",
-              message: "The user details have been edited.",
-              type: "success"
-            });
+      if (this.errors === false && this.formTouched === false) {
+        axios.put("/api/users/" + editedUser.id, editedUser).then(function (response) {
+          _this.$router.push("/users");
 
-            _this.editedUser = {};
+          _this.$notify({
+            title: "Success",
+            message: "The user details have been edited.",
+            type: "success"
           });
-        } else {
-          return false;
-        }
-      });
+
+          _this.editedUser = {};
+        });
+      } else {
+        return false;
+      }
     },
     cancel: function cancel() {
       this.$router.push("/users");
       this.$notify({
         title: "Info",
-        message: "Your changes have been discarded",
-        type: "success"
+        message: "Changes, if any, have been discarded",
+        type: "info"
       });
     }
   }
@@ -97886,17 +97963,7 @@ var render = function() {
                 [_vm._v("Edit")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("author")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -98060,11 +98127,15 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              !_vm.$v.book.title.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      '"The book without a title" makes for a good title...but still type in a title to continue'
-                    )
+                    !_vm.$v.book.title.$model
+                      ? _c("span", [
+                          _vm._v(
+                            '"The book without a title" makes for a good title...but still type in a title to continue'
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -98095,9 +98166,11 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.book.status.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v("A status is required")
+                    !_vm.$v.book.status.$model
+                      ? _c("span", [_vm._v("A status is required")])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -98130,11 +98203,15 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.book.reservor_id.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without a department is like a game without thrones!"
-                    )
+                    !_vm.$v.book.reservor_id.$model
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a department is like a game without thrones!"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -98170,11 +98247,15 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.book.category_id.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "This cannot be blank. Users will never find what they like"
-                    )
+                    !_vm.$v.book.category_id.$model
+                      ? _c("span", [
+                          _vm._v(
+                            "This cannot be blank. Users will never find what they like"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -98198,7 +98279,7 @@ var render = function() {
                 [_vm._v("Create")]
               ),
               _vm._v(" "),
-              _c("el-button", [_vm._v("Cancel")])
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -98256,13 +98337,19 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              !_vm.$v.editedBook.title.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      '"The book without a title" makes for a good title...but still type in a title to continue'
-                    )
+                    !_vm.$v.editedBook.title.$model
+                      ? _c("span", [
+                          _vm._v(
+                            '"The book without a title" makes for a good title...but still type in a title to continue'
+                          )
+                        ])
+                      : _vm._e()
                   ])
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("p")
             ],
             1
           ),
@@ -98291,9 +98378,11 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.editedBook.status.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v("A status is required")
+                    !_vm.$v.editedBook.status.$model
+                      ? _c("span", [_vm._v("A status is required")])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -98329,13 +98418,19 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.editedBook.category_id.$model
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "This cannot be blank. Users will never find what they like"
-                    )
+                    !_vm.$v.editedBook.category_id.$model
+                      ? _c("span", [
+                          _vm._v(
+                            "This cannot be blank. Users will never find what they like"
+                          )
+                        ])
+                      : _vm._e()
                   ])
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("p")
             ],
             1
           ),
@@ -98436,11 +98531,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(book.reservor_id))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(_vm.choices.categories[book.category_id].name)
-                    )
-                  ]),
+                  _c("td", [_vm._v(_vm._s(book.category_id))]),
                   _vm._v(" "),
                   _c(
                     "td",
@@ -98640,17 +98731,7 @@ var render = function() {
                 [_vm._v("Edit")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("category")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -98924,17 +99005,7 @@ var render = function() {
                 [_vm._v("Edit")]
               ),
               _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.resetForm("department")
-                    }
-                  }
-                },
-                [_vm._v("Reset")]
-              )
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
             ],
             1
           )
@@ -99284,7 +99355,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.first_name.required
-                      ? _c("span", { staticClass: "error" }, [
+                      ? _c("span", [
                           _vm._v(
                             "A user without a first name is like a pet without a name!"
                           )
@@ -99356,7 +99427,47 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     !_vm.$v.user.email.email
-                      ? _c("span", [_vm._v("Needs to be a valid email.")])
+                      ? _c("span", [
+                          _vm._v(
+                            "A valid email follows the following format: xxx@xxx.com"
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Password", for: "fpassword" } },
+            [
+              _c("el-input", {
+                attrs: { id: "fpassword" },
+                model: {
+                  value: _vm.$v.user.password.$model,
+                  callback: function($$v) {
+                    _vm.$set(_vm.$v.user.password, "$model", $$v)
+                  },
+                  expression: "$v.user.password.$model"
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors
+                ? _c("p", { staticClass: "error" }, [
+                    !_vm.$v.user.password.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a password is like a person without a name!"
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.$v.user.password.minLength
+                      ? _c("span", [
+                          _vm._v("A strong password has at least 8 characters")
+                        ])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -99386,7 +99497,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.max_number_of_books_allowed.required
-                      ? _c("span", { staticClass: "error" }, [
+                      ? _c("span", [
                           _vm._v(
                             "A user without a maximum limit is like a mat without a speed governor!"
                           )
@@ -99425,7 +99536,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.status.required
-                      ? _c("span", { staticClass: "error" }, [
+                      ? _c("span", [
                           _vm._v(
                             "A user without a borrowing status is like a phone without WiFi!"
                           )
@@ -99469,7 +99580,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.department_id.required
-                      ? _c("span", { staticClass: "error" }, [
+                      ? _c("span", [
                           _vm._v(
                             "A user without a department is like a game without thrones!"
                           )
@@ -99555,11 +99666,15 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              !_vm.$v.editedUser.first_name.required
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without a first name is like a pet without a name!"
-                    )
+                    !_vm.$v.editedUser.first_name.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a first name is like a pet without a name!"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -99581,11 +99696,15 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              !_vm.$v.editedUser.last_name.required
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without a last name is like a plant without two names!"
-                    )
+                    !_vm.$v.editedUser.last_name.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a last name is like a plant without two names!"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -99611,11 +99730,23 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              !_vm.$v.editedUser.email.required
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without an address is like a person without a phone!"
-                    )
+                    !_vm.$v.editedUser.email.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without an address is like a person without a phone!"
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.$v.editedUser.email.email
+                      ? _c("span", [
+                          _vm._v(
+                            "A valid email follows the following format: xxx@xxx.com"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -99641,11 +99772,15 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              !_vm.$v.editedUser.max_number_of_books_allowed.required
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without a maximum limit is like a mat without a speed governor!"
-                    )
+                    !_vm.$v.editedUser.max_number_of_books_allowed.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a maximum limit is like a mat without a speed governor!"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -99676,11 +99811,15 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.editedUser.status.required
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without a borrowing status is like a phone without WiFi!"
-                    )
+                    !_vm.$v.editedUser.status.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a borrowing status is like a phone without WiFi!"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],
@@ -99716,11 +99855,15 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              !_vm.$v.editedUser.department_id.required
+              _vm.errors
                 ? _c("p", { staticClass: "error" }, [
-                    _vm._v(
-                      "A user without a department is like a game without thrones!"
-                    )
+                    !_vm.$v.editedUser.department_id.required
+                      ? _c("span", [
+                          _vm._v(
+                            "A user without a department is like a game without thrones!"
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 : _vm._e()
             ],

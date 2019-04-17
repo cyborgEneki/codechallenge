@@ -35,38 +35,7 @@ class UserController extends Controller
             return response()->json(['error'=>'Unauthorised'], 401);
         }
     }
-    /**
-         * Register api
-         *
-         * @return \Illuminate\Http\Response
-         */
-    public function register(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
-            'max_number_of_books_allowed' => 'required',
-            'status' => 'required',
-            'department_id' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
-        }
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')-> accessToken;
-        $success['name'] =  $user->name;
-        return response()->json(['success'=>$success], $this-> successStatus);
-    }
-    /**
-         * details api
-         *
-         * @return \Illuminate\Http\Response
-         */
+    
     public function details()
     {
         $user = Auth::user();
@@ -83,6 +52,12 @@ class UserController extends Controller
     {
         $user = $this->userRepo->showUser($id);
         return response()->json($user, 200);
+    }
+
+    public function store(UserRequest $request)
+    {
+        $user = $this->userRepo->createUser($request);
+        return response()->json($user, 201);
     }
 
     public function update(EditUserRequest $request, User $user)

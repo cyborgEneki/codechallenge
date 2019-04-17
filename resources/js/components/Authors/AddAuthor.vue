@@ -35,6 +35,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           axios.post("/api/authors/", this.author).then(response => {});
+          this.author = {};
           this.$router.push("/authors");
           this.$notify({
             title: "Success",
@@ -47,7 +48,7 @@ export default {
       });
     },
     cancel() {
-      this.$router.push("/users");
+      this.$router.push("/authors");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",

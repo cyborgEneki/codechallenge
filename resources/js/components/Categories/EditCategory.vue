@@ -12,7 +12,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="editCategory('category', editedCategory)">Edit</el-button>
-        <el-button @click="resetForm('category')">Reset</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -56,8 +56,13 @@ export default {
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel() {
+      this.$router.push("/categories");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 };

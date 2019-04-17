@@ -5,7 +5,6 @@
         <el-input id="ffirstname" v-model="$v.user.first_name.$model"></el-input>
         <p v-if="errors" class="error">
           <span
-            class="error"
             v-if="!$v.user.first_name.required"
           >A user without a first name is like a pet without a name!</span>
         </p>
@@ -31,7 +30,17 @@
           <span
             v-if="!$v.user.email.required"
           >A user without an address is like a person without a phone!</span>
-          <span v-if="!$v.user.email.email">Needs to be a valid email.</span>
+          <span v-if="!$v.user.email.email">A valid email follows the following format: xxx@xxx.com</span>
+        </p>
+      </el-form-item>
+
+      <el-form-item label="Password" for="fpassword">
+        <el-input id="fpassword" v-model="$v.user.password.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.user.password.required"
+          >A user without a password is like a person without a name!</span>
+          <span v-if="!$v.user.password.minLength">A strong password has at least 8 characters</span>
         </p>
       </el-form-item>
 
@@ -43,7 +52,6 @@
         ></el-input>
         <p v-if="errors" class="error">
           <span
-            class="error"
             v-if="!$v.user.max_number_of_books_allowed.required"
           >A user without a maximum limit is like a mat without a speed governor!</span>
         </p>
@@ -56,7 +64,6 @@
         </el-radio-group>
         <p v-if="errors" class="error">
           <span
-            class="error"
             v-if="!$v.user.status.required"
           >A user without a borrowing status is like a phone without WiFi!</span>
         </p>
@@ -77,7 +84,6 @@
         </el-select>
         <p v-if="errors" class="error">
           <span
-            class="error"
             v-if="!$v.user.department_id.required"
           >A user without a department is like a game without thrones!</span>
         </p>
@@ -92,7 +98,7 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, minLength } from "vuelidate/lib/validators";
 
 export default {
   props: ["choices"],
@@ -111,6 +117,7 @@ export default {
         first_name: "",
         last_name: "",
         email: "",
+        password: "",
         max_number_of_books_allowed: "",
         status: "",
         department_id: ""
@@ -122,6 +129,7 @@ export default {
       first_name: { required },
       last_name: { required },
       email: { required, email },
+      password: { required, minLength: minLength(8) },
       max_number_of_books_allowed: { required },
       status: { required },
       department_id: { required }
@@ -134,6 +142,7 @@ export default {
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
         axios.post("/api/users/", this.user).then(response => {});
+        this.user = {};
         this.$router.push("/users");
         this.$notify({
           title: "Success",

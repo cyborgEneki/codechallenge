@@ -3,10 +3,12 @@
     <el-form :model="editedBook" ref="book" label-width="120px">
       <el-form-item label="Book" for="ftitle">
         <el-input id="ftitle" v-model.lazy="$v.editedBook.title.$model"></el-input>
-        <p
-          class="error"
-          v-if="!$v.editedBook.title.$model"
-        >"The book without a title" makes for a good title...but still type in a title to continue</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedBook.title.$model"
+          >"The book without a title" makes for a good title...but still type in a title to continue</span>
+        </p>
+        <p></p>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
@@ -14,7 +16,9 @@
           <el-radio label="Available"></el-radio>
           <el-radio label="Borrowed"></el-radio>
         </el-radio-group>
-        <p class="error" v-if="!$v.editedBook.status.$model">A status is required</p>
+        <p v-if="errors" class="error">
+          <span v-if="!$v.editedBook.status.$model">A status is required</span>
+        </p>
       </el-form-item>
 
       <el-form-item label="Category" for="fcategory">
@@ -30,10 +34,12 @@
             :label="category.name"
           >{{ category.name }}</el-option>
         </el-select>
-        <p
-          class="error"
-          v-if="!$v.editedBook.category_id.$model"
-        >This cannot be blank. Users will never find what they like</p>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedBook.category_id.$model"
+          >This cannot be blank. Users will never find what they like</span>
+        </p>
+        <p></p>
       </el-form-item>
 
       <el-form-item>
@@ -59,6 +65,10 @@ export default {
   },
   data() {
     return {
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
       editedBook: this.book
     };
   },
@@ -70,31 +80,30 @@ export default {
     }
   },
   methods: {
-    editBook(formName, editedBook) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          axios
-            .put("/api/books/" + editedBook.id, editedBook)
-            .then(response => {
-              this.$router.push("/books");
-              this.$notify({
-                title: "Success",
-                message: "The book details have been edited.",
-                type: "success"
-              });
-              this.editedBook = {};
-            });
-        } else {
-          return false;
-        }
-      });
+    editBook(editedBook) {
+      this.formTouched = !this.$v.editedBook.$anyDirty;
+      this.errors = this.$v.editedBook.$anyError;
+      this.uiState = "submit clicked";
+      if (this.errors === false && this.formTouched === false) {
+        axios.put("/api/books/" + editedBook.id, editedBook).then(response => {
+          this.$router.push("/books");
+          this.$notify({
+            title: "Success",
+            message: "The book details have been edited.",
+            type: "success"
+          });
+          this.editedBook = {};
+        });
+      } else {
+        return false;
+      }
     },
     cancel() {
-      this.$router.push("/users");
+      this.$router.push("/books");
       this.$notify({
         title: "Info",
-        message: "Your changes have been discarded",
-        type: "success"
+        message: "Changes, if any, have been discarded",
+        type: "info"
       });
     }
   }

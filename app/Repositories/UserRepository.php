@@ -19,6 +19,7 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::create($request->all());
     }
+
     public function showUser($id)
     {
         return User::findOrFail($id);

@@ -41,6 +41,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           axios.post("/api/departments/", this.department).then(response => {});
+          this.department = {};
           this.$router.push("/departments");
           this.$notify({
             title: "Success",
@@ -53,7 +54,7 @@ export default {
       });
     },
     cancel() {
-      this.$router.push("/users");
+      this.$router.push("/departments");
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
