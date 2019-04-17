@@ -7,10 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Models\User; 
 use Illuminate\Support\Facades\Auth; 
 use Validator;
+use App\Contracts\UserRepositoryInterface;
 
 class UserController extends Controller
 {
+    protected $userRepo;
     public $successStatus = 200;
+
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
     /**
          * login api
          *
@@ -62,5 +69,29 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return response()->json(['success' => $user], $this-> successStatus);
+    }
+
+    public function index()
+    {
+        $users = $this->userRepo->allUsers();
+        return response()->json($users, 200);
+    }
+
+    public function show($id)
+    {
+        $user = $this->userRepo->showUser($id);
+        return response()->json($user, 200);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $user = $this->userRepo->updateUser($request, $user);
+        return response()->json($user, 200);
+    }
+
+    public function destroy(User $user)
+    {
+        $user = $this->userRepo->deleteUser($user);
+        return response()->json($user, 200);
     }
 }
