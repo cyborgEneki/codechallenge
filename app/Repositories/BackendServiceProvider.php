@@ -25,5 +25,9 @@ class BackendServiceProvider extends ServiceProvider
             'App\Contracts\DepartmentRepositoryInterface',
             'App\Repositories\DepartmentRepository'
         );
+        $this->app->bind(
+            'App\Contracts\UserRepositoryInterface',
+            'App\Repositories\UserRepository'
+        );
     }
 }
