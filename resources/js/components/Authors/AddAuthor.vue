@@ -6,7 +6,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="addAuthor('author')">Create</el-button>
-        <el-button @click="resetForm('author')">Reset</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -35,6 +35,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           axios.post("/api/authors/", this.author).then(response => {});
+          this.author = {};
           this.$router.push("/authors");
           this.$notify({
             title: "Success",
@@ -46,8 +47,13 @@ export default {
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    cancel() {
+      this.$router.push("/authors");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 };

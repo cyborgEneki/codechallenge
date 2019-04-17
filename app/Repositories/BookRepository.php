@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\Department;
+use App\Models\User;
 
 class BookRepository implements BookRepositoryInterface
 {
@@ -48,6 +49,10 @@ class BookRepository implements BookRepositoryInterface
         $authors = Author::all();
         $authors = $authors->keyBy('id');
         $authors = ['authors' => $authors];        
+
+        $users = User::all();
+        $users = $users->keyBy('id');
+        $users = ['users' => $users];        
         
         $categories = Category::all();
         $categories = $categories->keyBy('id');
@@ -57,6 +62,6 @@ class BookRepository implements BookRepositoryInterface
         $departments = $departments->keyBy('id');
         $departments = ['departments' => $departments];
 
-        return array_merge($books, $auth_user, $authors, $categories, $departments);
+        return array_merge($books, $auth_user, $authors, $categories, $departments, $users);
     }
 }

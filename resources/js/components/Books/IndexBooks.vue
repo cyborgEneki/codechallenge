@@ -21,7 +21,7 @@
           <tr v-for="book in books" :key="book.id">
             <td>{{ book.title }}</td>
             <td>{{ book.status }}</td>
-            <td>{{ book.reservor_id }}</td>
+            <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
             <td>
               <i class="far fa-eye icon green"></i>
@@ -74,7 +74,7 @@ export default {
     },
     deleteBook(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the book. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",

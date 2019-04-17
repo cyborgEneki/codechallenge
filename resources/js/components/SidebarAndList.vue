@@ -69,7 +69,6 @@ export default {
     getChoices() {
       axios.get("/api/choices").then(response => {
         this.choices = response.data;
-        console.log(this.choices);
       });
     }
   },

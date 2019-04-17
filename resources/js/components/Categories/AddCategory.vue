@@ -1,12 +1,18 @@
 <template>
   <div>
-    <el-form :model="category" :rules="rules" ref="category" label-width="120px" class="demo-ruleForm">
+    <el-form
+      :model="category"
+      :rules="rules"
+      ref="category"
+      label-width="120px"
+      class="demo-ruleForm"
+    >
       <el-form-item label="Category" prop="name">
         <el-input v-model="category.name"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="addCategory('category')">Create</el-button>
-        <el-button @click="resetForm('category')">Reset</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -41,13 +47,20 @@ export default {
             message: "The new category has been added.",
             type: "success"
           });
+          this.category = {};
         } else {
           return false;
         }
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+
+    cancel() {
+      this.$router.push("/categories");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
     }
   }
 };
