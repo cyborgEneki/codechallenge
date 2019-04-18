@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'eneki@email.com',
             'password' => Hash::make('123456'),
             'max_number_of_books_allowed' => 3,
-            'status' => 'Active',
+            'status' => 1,
             'department_id' => 1,
             'accesslevel_id' => 1
         ]);

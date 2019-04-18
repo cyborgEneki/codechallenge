@@ -10,23 +10,26 @@
       <table class="font-14">
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th class="center">Maximum Number of Books Allowed</th>
-            <th>Status</th>
-            <th>Department</th>
+            <th width=15%>First Name</th>
+            <th width=15%>Last Name</th>
+            <th width=15%>Email</th>
+            <th width=15% class="center">Maximum Number of Books Allowed</th>
+            <th width=15%>Status</th>
+            <th width=15%>Department</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="user in users" :key="user.id">
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.email }}</td>
-            <td class="center">{{ user.max_number_of_books_allowed }}</td>
-            <td>{{ user.status }}</td>
-            <td>{{ choices.departments[user.department_id].name }}</td>
+            <td width=15%>{{ user.first_name }}</td>
+            <td width=15%>{{ user.last_name }}</td>
+            <td width=15%>{{ user.email }}</td>
+            <td width=15% class="center">{{ user.max_number_of_books_allowed }}</td>
+            <td width=15%>
+              <p v-if="user.status == 1">Active</p>
+              <p v-if="user.status == 0">Suspended</p>
+            </td>
+            <td width=15%>{{ choices.departments[user.department_id].name }}</td>
             <td class="actions-column">
               <router-link :to="{ name: 'editUser', params: { user } }">
                 <i class="fas fa-edit icon blue"></i>

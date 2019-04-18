@@ -59,8 +59,8 @@
 
       <el-form-item label="Status" for="fstatus">
         <el-radio-group id="fstatus" v-model.lazy="$v.user.status.$model">
-          <el-radio label="Active"></el-radio>
-          <el-radio label="Suspended"></el-radio>
+          <el-radio label="1">Active</el-radio>
+          <el-radio label="2">Suspended</el-radio>
         </el-radio-group>
         <p v-if="errors" class="error">
           <span
@@ -119,7 +119,7 @@ export default {
         email: "",
         password: "",
         max_number_of_books_allowed: "",
-        status: "",
+        status: "1",
         department_id: ""
       }
     };

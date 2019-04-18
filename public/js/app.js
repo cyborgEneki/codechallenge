@@ -15465,7 +15465,7 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         password: "",
         max_number_of_books_allowed: "",
-        status: "",
+        status: "1",
         department_id: ""
       }
     };
@@ -15719,6 +15719,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
+//
 //
 //
 //
@@ -100055,9 +100058,11 @@ var render = function() {
                   }
                 },
                 [
-                  _c("el-radio", { attrs: { label: "Active" } }),
+                  _c("el-radio", { attrs: { label: "1" } }, [_vm._v("Active")]),
                   _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Suspended" } })
+                  _c("el-radio", { attrs: { label: "2" } }, [
+                    _vm._v("Suspended")
+                  ])
                 ],
                 1
               ),
@@ -100472,19 +100477,27 @@ var render = function() {
               _c("table", { staticClass: "font-14" }, [
                 _c("thead", [
                   _c("tr", [
-                    _c("th", [_vm._v("First Name")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Last Name")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Email")]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "center" }, [
-                      _vm._v("Maximum Number of Books Allowed")
+                    _c("th", { attrs: { width: "15%" } }, [
+                      _vm._v("First Name")
                     ]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Status")]),
+                    _c("th", { attrs: { width: "15%" } }, [
+                      _vm._v("Last Name")
+                    ]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Department")]),
+                    _c("th", { attrs: { width: "15%" } }, [_vm._v("Email")]),
+                    _vm._v(" "),
+                    _c(
+                      "th",
+                      { staticClass: "center", attrs: { width: "15%" } },
+                      [_vm._v("Maximum Number of Books Allowed")]
+                    ),
+                    _vm._v(" "),
+                    _c("th", { attrs: { width: "15%" } }, [_vm._v("Status")]),
+                    _vm._v(" "),
+                    _c("th", { attrs: { width: "15%" } }, [
+                      _vm._v("Department")
+                    ]),
                     _vm._v(" "),
                     _c("th", { staticClass: "actions-column" }, [
                       _vm._v("Options")
@@ -100496,19 +100509,35 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.users, function(user) {
                     return _c("tr", { key: user.id }, [
-                      _c("td", [_vm._v(_vm._s(user.first_name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(user.last_name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(user.email))]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "center" }, [
-                        _vm._v(_vm._s(user.max_number_of_books_allowed))
+                      _c("td", { attrs: { width: "15%" } }, [
+                        _vm._v(_vm._s(user.first_name))
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(user.status))]),
+                      _c("td", { attrs: { width: "15%" } }, [
+                        _vm._v(_vm._s(user.last_name))
+                      ]),
                       _vm._v(" "),
-                      _c("td", [
+                      _c("td", { attrs: { width: "15%" } }, [
+                        _vm._v(_vm._s(user.email))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "center", attrs: { width: "15%" } },
+                        [_vm._v(_vm._s(user.max_number_of_books_allowed))]
+                      ),
+                      _vm._v(" "),
+                      _c("td", { attrs: { width: "15%" } }, [
+                        user.status == 1
+                          ? _c("p", [_vm._v("Active")])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        user.status == 0
+                          ? _c("p", [_vm._v("Suspended")])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { attrs: { width: "15%" } }, [
                         _vm._v(
                           _vm._s(
                             _vm.choices.departments[user.department_id].name
