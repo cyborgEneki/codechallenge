@@ -65,6 +65,12 @@ class BookController extends Controller
 
     public function test()
     {
-        echo User::where('status', 1)->get()->pluck('email');
+         $from = Carbon::today();
+         $fromString = $from->toDateString();
+        
+        $firstReminder = $from->subDays(3);
+        $firstReminderString = $firstReminder->toDateString();
+
+        echo BookUser::select("user_id")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
     }
 }
