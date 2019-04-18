@@ -5,11 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Contracts\BookRepositoryInterface;
 use App\Models\Book;
-use App\Models\User;
 use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\VerifyEmail;
+use App\Mail\BookAvailable;
 
 class BookController extends Controller
 {
@@ -40,16 +39,12 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-
-        if($request->exists('status')) {
-            if($book->status == 1)
-            Mail::to($book->reservor()->get()->pluck("email"))->send(new VerifyEmail(new User));
-
+        if ($request->exists('status')) {
+            if ($book->status == 1) {
+                Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
+            }
         }
-
         $this->bookRepo->updateBook($request, $book);
-
-
         return response()->json($book, 200);
     }
 
