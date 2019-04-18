@@ -11,7 +11,7 @@
           text-color="#fff"
           active-text-color="#ffd04b"
         >
-          <router-link :to="{ name: 'indexAuthors'}">
+          <router-link v-if="isadmin" :to="{ name: 'indexAuthors'}">
             <el-menu-item index="2">
               <i class="fas fa-pen-alt hotpink"></i>
               <span slot="title" class="sidebar-padding">Authors</span>
@@ -23,25 +23,25 @@
               <span slot="title" class="sidebar-padding">Books</span>
             </el-menu-item>
           </router-link>
-          <router-link :to="{ name: 'indexCategories'}">
+          <router-link v-if="isadmin" :to="{ name: 'indexCategories'}">
             <el-menu-item index="4">
               <i class="fas fa-boxes powderblue"></i>
               <span slot="title" class="sidebar-padding">Categories</span>
             </el-menu-item>
           </router-link>
-          <router-link :to="{ name: 'indexDepartments'}">
+          <router-link v-if="isadmin" :to="{ name: 'indexDepartments'}">
             <el-menu-item index="5">
               <i class="fas fa-building customgreen"></i>
               <span slot="title" class="sidebar-padding">Departments</span>
             </el-menu-item>
           </router-link>
-          <router-link :to="{ name: 'indexAccesslevels'}">
+          <router-link v-if="isadmin" :to="{ name: 'indexAccesslevels'}">
             <el-menu-item index="7">
               <i class="fas fa-building customgreen"></i>
               <span slot="title" class="sidebar-padding">Access Levels</span>
             </el-menu-item>
           </router-link>
-          <router-link :to="{ name: 'indexUsers'}">
+          <router-link v-if="isadmin" :to="{ name: 'indexUsers'}">
             <el-menu-item index="6">
               <i class="fas fa-users hotorange"></i>
               <span slot="title" class="sidebar-padding">Users</span>
@@ -62,7 +62,8 @@
 export default {
   data() {
     return {
-      choices: []
+      choices: [],
+      isadmin: false
     };
   },
   methods: {
@@ -76,10 +77,16 @@ export default {
       axios.get("/api/choices").then(response => {
         this.choices = response.data;
       });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   mounted() {
     this.getChoices();
+    this.getAdmin();
   }
 };
 </script>

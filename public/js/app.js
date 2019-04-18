@@ -15335,7 +15335,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      choices: []
+      choices: [],
+      isadmin: false
     };
   },
   methods: {
@@ -15351,10 +15352,18 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/choices").then(function (response) {
         _this.choices = response.data;
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this2 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this2.isadmin = response.data;
+      });
     }
   },
   mounted: function mounted() {
     this.getChoices();
+    this.getAdmin();
   }
 });
 
@@ -15803,7 +15812,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -15849,10 +15859,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
-    this.getUsers(); // console.log(this.choices);
+    this.getUsers();
+    this.getAdmin();
   }
 });
 
@@ -17793,7 +17811,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.center {\n    text-align: center\n}\n", ""]);
+exports.push([module.i, "\n.center {\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -99718,26 +99736,28 @@ var render = function() {
                   on: { open: _vm.handleOpen, close: _vm.handleClose }
                 },
                 [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexAuthors" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "2" } }, [
-                        _c("i", { staticClass: "fas fa-pen-alt hotpink" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Authors")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexAuthors" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "2" } }, [
+                            _c("i", { staticClass: "fas fa-pen-alt hotpink" }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Authors")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "router-link",
@@ -99760,89 +99780,101 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexCategories" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "4" } }, [
-                        _c("i", { staticClass: "fas fa-boxes powderblue" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Categories")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexCategories" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "4" } }, [
+                            _c("i", { staticClass: "fas fa-boxes powderblue" }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Categories")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexDepartments" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "5" } }, [
-                        _c("i", { staticClass: "fas fa-building customgreen" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Departments")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexDepartments" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "5" } }, [
+                            _c("i", {
+                              staticClass: "fas fa-building customgreen"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Departments")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexAccesslevels" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "7" } }, [
-                        _c("i", { staticClass: "fas fa-building customgreen" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Access Levels")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexAccesslevels" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "7" } }, [
+                            _c("i", {
+                              staticClass: "fas fa-building customgreen"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Access Levels")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexUsers" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "6" } }, [
-                        _c("i", { staticClass: "fas fa-users hotorange" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Users")]
-                        )
-                      ])
-                    ],
-                    1
-                  )
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexUsers" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "6" } }, [
+                            _c("i", { staticClass: "fas fa-users hotorange" }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Users")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -100491,106 +100523,112 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Users")]),
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [_vm._v("Users")]),
+                  _vm._v(" "),
+                  _c("router-link", { attrs: { to: { name: "addUser" } } }, [
+                    _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addUser" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", [_vm._v("First Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Last Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Email")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "center" }, [
-                  _vm._v("Maximum Number of Books Allowed")
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("First Name")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Last Name")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Email")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "center" }, [
+                      _vm._v("Maximum Number of Books Allowed")
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Status")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Department")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Status")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Department")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.users, function(user) {
-                return _c("tr", { key: user.id }, [
-                  _c("td", [_vm._v(_vm._s(user.first_name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.last_name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.email))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "center" }, [
-                    _vm._v(_vm._s(user.max_number_of_books_allowed))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.status))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(_vm.choices.departments[user.department_id].name)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "actions-column" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: { name: "editUser", params: { user: user } }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.users, function(user) {
+                    return _c("tr", { key: user.id }, [
+                      _c("td", [_vm._v(_vm._s(user.first_name))]),
                       _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteUser(user.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getUsers }
-          })
-        ],
-        1
-      ),
+                      _c("td", [_vm._v(_vm._s(user.last_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.email))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "center" }, [
+                        _vm._v(_vm._s(user.max_number_of_books_allowed))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.status))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.choices.departments[user.department_id].name
+                          )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: { name: "editUser", params: { user: user } }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteUser(user.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getUsers }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("router-view")
     ],
