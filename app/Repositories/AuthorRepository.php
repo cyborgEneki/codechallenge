@@ -10,16 +10,19 @@ class AuthorRepository implements AuthorRepositoryInterface
 {
     public function allAuthors()
     {
-        return Author::paginate(10);
+        return Author::with(['books'])->paginate(10);
     }
 
     public function createAuthor(AuthorRequest $request)
     {
-        return Author::create($request->all());
+        $author = Author::create($request->all());
+        $books = $request->get('books');
+        $author->books()->sync($books);
+        return $author;
     }
     public function showAuthor($id)
     {
-        return Author::findOrFail($id);
+        return Author::where('id', '=', $id)->with(['books'])->first();
     }
 
     public function updateAuthor(AuthorRequest $request, Author $author)

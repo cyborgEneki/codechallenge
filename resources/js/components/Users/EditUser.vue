@@ -119,7 +119,7 @@ export default {
     }
   },
   methods: {
-    editUser(formName, editedUser) {
+    editUser(editedUser) {
       this.formTouched = !this.$v.editedUser.$anyDirty;
       this.errors = this.$v.editedUser.$anyError;
       this.uiState = "submit clicked";

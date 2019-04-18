@@ -20,7 +20,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
 
     public function showDepartment($id)
     {
-        return Department::findOrFail($id);
+        return Department::where('id', '=', $id)->first();        
     }
 
     public function updateDepartment(DepartmentRequest $request, Department $department)

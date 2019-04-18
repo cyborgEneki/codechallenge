@@ -13758,85 +13758,6 @@ function mergeFn (a, b) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      accesslevel: {
-        name: ""
-      },
-      rules: {
-        name: [{
-          required: true,
-          message: "Please type in the access level name",
-          trigger: "blur"
-        }]
-      }
-    };
-  },
-  methods: {
-    addAccesslevel: function addAccesslevel(formName) {
-      var _this = this;
-
-      this.$refs[formName].validate(function (valid) {
-        if (valid) {
-          axios.post("/api/accesslevels/", _this.accesslevel).then(function (response) {});
-
-          _this.$router.push("/accesslevels");
-
-          _this.$notify({
-            title: "Success",
-            message: "The new access level has been added.",
-            type: "success"
-          });
-
-          _this.accesslevel = {};
-        } else {
-          return false;
-        }
-      });
-    },
-    cancel: function cancel() {
-      this.$router.push("/accesslevels");
-      this.$notify({
-        title: "Info",
-        message: "Changes, if any, have been discarded",
-        type: "info"
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js& ***!
@@ -13955,12 +13876,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -13993,39 +13908,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.meta_data.prev_page_url = res.data.prev_page_url;
       });
     },
-    deleteAccesslevel: function deleteAccesslevel(id) {
+    getAdmin: function getAdmin() {
       var _this2 = this;
 
-      this.$confirm("This will permanently delete the access level. Continue?", "Warning", {
-        confirmButtonText: "OK",
-        cancelButtonText: "Cancel",
-        type: "warning"
-      }).then(function () {
-        axios["delete"]("/api/accesslevels/" + id).then(function () {
-          var index = _this2.accesslevels.map(function (item) {
-            return item.id;
-          }).indexOf(id);
-
-          _this2.accesslevels.splice(index, 1);
-
-          _this2.$notify({
-            title: "Success",
-            message: "The access level has been deleted",
-            type: "success"
-          });
-        });
-      })["catch"](function () {
-        _this2.$notify.info({
-          title: "Info",
-          message: "Delete cancelled"
-        });
-      });
-    },
-    getAdmin: function getAdmin() {
-      var _this3 = this;
-
       axios.get("/api/users/isadmin").then(function (response) {
-        _this3.isadmin = response.data;
+        _this2.isadmin = response.data;
       });
     }
   },
@@ -14258,6 +14145,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14350,6 +14241,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14643,6 +14546,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -15763,7 +15670,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    editUser: function editUser(formName, editedUser) {
+    editUser: function editUser(editedUser) {
       var _this = this;
 
       this.formTouched = !this.$v.editedUser.$anyDirty;
@@ -98143,87 +98050,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300& ***!
-  \******************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "el-form",
-        {
-          ref: "accesslevel",
-          staticClass: "demo-ruleForm",
-          attrs: {
-            model: _vm.accesslevel,
-            rules: _vm.rules,
-            "label-width": "120px"
-          }
-        },
-        [
-          _c(
-            "el-form-item",
-            { attrs: { label: "Access Level", prop: "name" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.accesslevel.name,
-                  callback: function($$v) {
-                    _vm.$set(_vm.accesslevel, "name", $$v)
-                  },
-                  expression: "accesslevel.name"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
-              _c(
-                "el-button",
-                {
-                  attrs: { type: "primary" },
-                  on: {
-                    click: function($event) {
-                      return _vm.addAccesslevel("accesslevel")
-                    }
-                  }
-                },
-                [_vm._v("Create")]
-              ),
-              _vm._v(" "),
-              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5& ***!
@@ -98331,31 +98157,18 @@ var render = function() {
             "el-card",
             { staticClass: "box-card" },
             [
-              _c(
-                "div",
-                { attrs: { slot: "header" }, slot: "header" },
-                [
-                  _c("span", { staticClass: "card-font" }, [
-                    _vm._v("Access Levels")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "addAccesslevel" } } },
-                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
-                  )
-                ],
-                1
-              ),
+              _c("div", { attrs: { slot: "header" }, slot: "header" }, [
+                _c("span", { staticClass: "card-font" }, [
+                  _vm._v("Access Levels")
+                ])
+              ]),
               _vm._v(" "),
               _c("table", { staticClass: "font-14" }, [
                 _c("thead", [
                   _c("tr", [
                     _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
                     _vm._v(" "),
-                    _c("th", { staticClass: "actions-column" }, [
-                      _vm._v("Options")
-                    ])
+                    _c("th", [_vm._v("Options")])
                   ])
                 ]),
                 _vm._v(" "),
@@ -98381,18 +98194,7 @@ var render = function() {
                               }
                             },
                             [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                          ),
-                          _vm._v(" "),
-                          _c("a", [
-                            _c("i", {
-                              staticClass: "fas fa-trash-alt icon red",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteAccesslevel(accesslevel.id)
-                                }
-                              }
-                            })
-                          ])
+                          )
                         ],
                         1
                       )
@@ -98644,7 +98446,9 @@ var render = function() {
               _c("table", { staticClass: "font-14" }, [
                 _c("thead", [
                   _c("tr", [
-                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _c("th", { attrs: { width: "45%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { attrs: { width: "45%" } }, [_vm._v("Book(s)")]),
                     _vm._v(" "),
                     _c("th", { staticClass: "actions-column" }, [
                       _vm._v("Options")
@@ -98656,9 +98460,20 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.orderedAuthors, function(author) {
                     return _c("tr", { key: author.id }, [
-                      _c("td", { attrs: { width: "90%" } }, [
+                      _c("td", { attrs: { width: "45%" } }, [
                         _vm._v(_vm._s(author.name))
                       ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { attrs: { width: "45%" } },
+                        _vm._l(author.books, function(book) {
+                          return _c("p", { key: book.id }, [
+                            _vm._v(_vm._s(book.title))
+                          ])
+                        }),
+                        0
+                      ),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -98742,7 +98557,7 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "Book", for: "ftitle" } },
+                { attrs: { label: "Title", for: "ftitle" } },
                 [
                   _c("el-input", {
                     attrs: { id: "ftitle" },
@@ -99140,15 +98955,15 @@ var render = function() {
           _c("table", { staticClass: "font-14" }, [
             _c("thead", [
               _c("tr", [
-                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Title")]),
+                _c("th", [_vm._v("Title")]),
                 _vm._v(" "),
-                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Status")]),
+                _c("th", [_vm._v("Author(s)")]),
                 _vm._v(" "),
-                _c("th", { attrs: { width: "22.5%" } }, [
-                  _vm._v("Reserved By")
-                ]),
+                _c("th", [_vm._v("Status")]),
                 _vm._v(" "),
-                _c("th", { attrs: { width: "22.5%" } }, [_vm._v("Category")]),
+                _c("th", [_vm._v("Reserved By")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Category")]),
                 _vm._v(" "),
                 _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
               ])
@@ -99159,6 +98974,16 @@ var render = function() {
               _vm._l(_vm.books, function(book) {
                 return _c("tr", { key: book.id }, [
                   _c("td", [_vm._v(_vm._s(book.title))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    _vm._l(book.authors, function(author) {
+                      return _c("p", { key: author.id }, [
+                        _vm._v(_vm._s(author.name) + " ")
+                      ])
+                    }),
+                    0
+                  ),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(book.status))]),
                   _vm._v(" "),
@@ -99178,26 +99003,30 @@ var render = function() {
                     "td",
                     { staticClass: "actions-column" },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: { name: "editBook", params: { book: book } }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
+                      _vm.isadmin
+                        ? _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: { name: "editBook", params: { book: book } }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteBook(book.id)
-                            }
-                          }
-                        })
-                      ])
+                      _vm.isadmin
+                        ? _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteBook(book.id)
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
                     ],
                     1
                   )
@@ -99922,9 +99751,7 @@ var render = function() {
                         { attrs: { to: { name: "indexAccesslevels" } } },
                         [
                           _c("el-menu-item", { attrs: { index: "7" } }, [
-                            _c("i", {
-                              staticClass: "fas fa-building customgreen"
-                            }),
+                            _c("i", { staticClass: "fas fa-ban purple" }),
                             _vm._v(" "),
                             _c(
                               "span",
@@ -118650,75 +118477,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
 /***/ }),
 
-/***/ "./resources/js/components/Accesslevels/AddAccesslevel.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/js/components/Accesslevels/AddAccesslevel.vue ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAccesslevel.vue?vue&type=template&id=b1782300& */ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&");
-/* harmony import */ var _AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAccesslevel.vue?vue&type=script&lang=js& */ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Accesslevels/AddAccesslevel.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAccesslevel.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300& ***!
-  \************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAccesslevel.vue?vue&type=template&id=b1782300& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/Accesslevels/EditAccesslevel.vue":
 /*!******************************************************************!*\
   !*** ./resources/js/components/Accesslevels/EditAccesslevel.vue ***!
@@ -120252,13 +120010,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Departments/AddDepartment */ "./resources/js/components/Departments/AddDepartment.vue");
 /* harmony import */ var _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Departments/EditDepartment */ "./resources/js/components/Departments/EditDepartment.vue");
 /* harmony import */ var _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Departments/IndexDepartments */ "./resources/js/components/Departments/IndexDepartments.vue");
-/* harmony import */ var _components_Accesslevels_AddAccesslevel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Accesslevels/AddAccesslevel */ "./resources/js/components/Accesslevels/AddAccesslevel.vue");
-/* harmony import */ var _components_Accesslevels_EditAccesslevel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Accesslevels/EditAccesslevel */ "./resources/js/components/Accesslevels/EditAccesslevel.vue");
-/* harmony import */ var _components_Accesslevels_IndexAccesslevels__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Accesslevels/IndexAccesslevels */ "./resources/js/components/Accesslevels/IndexAccesslevels.vue");
-/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
-/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
-/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
-
+/* harmony import */ var _components_Accesslevels_EditAccesslevel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Accesslevels/EditAccesslevel */ "./resources/js/components/Accesslevels/EditAccesslevel.vue");
+/* harmony import */ var _components_Accesslevels_IndexAccesslevels__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Accesslevels/IndexAccesslevels */ "./resources/js/components/Accesslevels/IndexAccesslevels.vue");
+/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
+/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
+/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
 
 
 
@@ -120332,31 +120088,27 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'indexDepartments',
     component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
-    path: '/add-accesslevel',
-    name: 'addAccesslevel',
-    component: _components_Accesslevels_AddAccesslevel__WEBPACK_IMPORTED_MODULE_13__["default"]
-  }, {
     path: '/edit-accesslevel',
     name: 'editAccesslevel',
-    component: _components_Accesslevels_EditAccesslevel__WEBPACK_IMPORTED_MODULE_14__["default"],
+    component: _components_Accesslevels_EditAccesslevel__WEBPACK_IMPORTED_MODULE_13__["default"],
     props: true
   }, {
     path: '/accesslevels',
     name: 'indexAccesslevels',
-    component: _components_Accesslevels_IndexAccesslevels__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_Accesslevels_IndexAccesslevels__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: '/add-user',
     name: 'addUser',
-    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_16__["default"]
+    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_15__["default"]
   }, {
     path: '/edit-user',
     name: 'editUser',
-    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_17__["default"],
+    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_16__["default"],
     props: true
   }, {
     path: '/users',
     name: 'indexUsers',
-    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_18__["default"]
+    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_17__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

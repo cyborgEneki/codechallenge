@@ -21,7 +21,11 @@ Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');
     Route::apiResource('authors', 'API\AuthorController')->middleware('admin');
-    Route::apiResource('books', 'API\BookController');
+    Route::delete('books/{book}', 'API\BookController@destroy')->middleware('admin');
+    Route::put('books/{book}', 'API\BookController@update')->middleware('admin');
+    Route::get('books/{book}', 'API\BookController@show');
+    Route::get('books', 'API\BookController@index');
+    Route::post('books', 'API\BookController@store')->middleware('admin');
     Route::apiResource('categories', 'API\CategoryController')->middleware('admin');
     Route::apiResource('departments', 'API\DepartmentController')->middleware('admin');
     Route::get('users/isadmin', 'API\UserController@isAdmin');

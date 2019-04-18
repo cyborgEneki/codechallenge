@@ -20,7 +20,7 @@ class AccesslevelRepository implements AccesslevelRepositoryInterface
 
     public function showAccesslevel($id)
     {
-        return Accesslevel::findOrFail($id);
+        return Accesslevel::where('id', '=', $id)->first();        
     }
 
     public function updateAccesslevel(AccesslevelRequest $request, Accesslevel $accesslevel)

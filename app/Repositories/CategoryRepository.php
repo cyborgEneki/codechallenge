@@ -20,7 +20,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function showCategory($id)
     {
-        return Category::findOrFail($id);
+        return Category::where('id', '=', $id)->first();        
     }
 
     public function updateCategory(CategoryRequest $request, Category $category)

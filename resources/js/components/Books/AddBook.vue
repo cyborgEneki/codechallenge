@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form v-if="isadmin" :model="book" ref="book" label-width="120px">
-      <el-form-item label="Book" for="ftitle">
+      <el-form-item label="Title" for="ftitle">
         <el-input id="ftitle" v-model.lazy="$v.book.title.$model"></el-input>
         <p v-if="errors" class="error">
           <span
@@ -9,6 +9,18 @@
           >"The book without a title" makes for a good title...but still type in a title to continue</span>
         </p>
       </el-form-item>
+      <!-- 
+      <el-form-item label="Author" for="fauthor">
+        <div v-for="author in books.authors" :key="author.id">
+          <el-select id="fauthor" v-model.lazy="$v.author.name.$model" placeholder="Author(s)">
+            <el-option
+              v-for="author in orderedAuthors"
+              :value="author.id"
+              :key="author.id"
+            >{{ author.name }}</el-option>
+          </el-select>
+        </div>
+      </el-form-item>-->
 
       <el-form-item label="Status" for="fstatus">
         <el-radio-group id="fstatus" v-model.lazy="$v.book.status.$model">
@@ -88,7 +100,7 @@ export default {
         reservor_id: "",
         category_id: ""
       },
-      isadmin: false
+      isadmin: false,
     };
   },
   validations: {

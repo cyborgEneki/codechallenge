@@ -10,13 +10,17 @@
       <table class="font-14">
         <thead>
           <tr>
-            <th width="90%">Name</th>
+            <th width="45%">Name</th>
+            <th width="45%">Book(s)</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="author in orderedAuthors" :key="author.id">
-            <td width="90%">{{ author.name }}</td>
+            <td width="45%">{{ author.name }}</td>
+            <td width="45%">
+              <p v-for="book in author.books" :key="book.id">{{ book.title }}</p>
+            </td>
             <td class="actions-column">
               <router-link :to="{ name: 'editAuthor', params: { author } }">
                 <i class="fas fa-edit icon blue"></i>

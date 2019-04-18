@@ -12,7 +12,6 @@ import IndexCategories from './components/Categories/IndexCategories';
 import AddDepartment from './components/Departments/AddDepartment';
 import EditDepartment from './components/Departments/EditDepartment';
 import IndexDepartments from './components/Departments/IndexDepartments';
-import AddAccesslevel from './components/Accesslevels/AddAccesslevel';
 import EditAccesslevel from './components/Accesslevels/EditAccesslevel';
 import IndexAccesslevels from './components/Accesslevels/IndexAccesslevels';
 import AddUser from './components/Users/AddUser';
@@ -85,11 +84,6 @@ const router = new VueRouter({
             path: '/departments',
             name: 'indexDepartments',
             component: IndexDepartments
-        },
-        {
-            path: '/add-accesslevel',
-            name: 'addAccesslevel',
-            component: AddAccesslevel
         },
         {
             path: '/edit-accesslevel',

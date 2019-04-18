@@ -37,7 +37,7 @@
           </router-link>
           <router-link v-if="isadmin" :to="{ name: 'indexAccesslevels'}">
             <el-menu-item index="7">
-              <i class="fas fa-building customgreen"></i>
+              <i class="fas fa-ban purple"></i>
               <span slot="title" class="sidebar-padding">Access Levels</span>
             </el-menu-item>
           </router-link>

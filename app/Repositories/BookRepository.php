@@ -15,17 +15,20 @@ class BookRepository implements BookRepositoryInterface
 {
     public function allBooks()
     {
-        return Book::paginate(10);
+        return Book::with(['authors', 'users'])->paginate(10);
     }
 
     public function createBook(BookRequest $request)
     {
-        return Book::create($request->all());
+        $book = Book::create($request->all());
+        $authors = $request->get('authors');
+        $book->authors()->sync($authors);
+        return $book;
     }
 
     public function showBook($id)
     {
-        return Book::findOrFail($id);
+        return Book::where('id', '=', $id)->with(['authors', 'users'])->first();
     }
 
     public function updateBook(BookRequest $request, Book $book)
@@ -40,23 +43,23 @@ class BookRepository implements BookRepositoryInterface
 
     public function choices()
     {
-        $books = Book::all();
+        $books = Book::with(['authors', 'users'])->get();
         $books = $books->keyBy('id');
         $books = ['books' => $books];
 
         $auth_user = ['authuser' => Auth::User()->id];
 
-        $authors = Author::all();
+        $authors = Author::with(['books'])->get();
         $authors = $authors->keyBy('id');
-        $authors = ['authors' => $authors];        
+        $authors = ['authors' => $authors];
 
-        $users = User::all();
+        $users = User::with(['books'])->get();
         $users = $users->keyBy('id');
-        $users = ['users' => $users];        
+        $users = ['users' => $users];
         
         $categories = Category::all();
         $categories = $categories->keyBy('id');
-        $categories = ['categories' => $categories];        
+        $categories = ['categories' => $categories];
         
         $departments = Department::all();
         $departments = $departments->keyBy('id');
