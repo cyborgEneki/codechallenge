@@ -16,7 +16,7 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->enum('status', ['Available', 'Borrowed']);
+            $table->boolean('status')->default(0);
             $table->unsignedInteger('reservor_id')->nullable();
             $table->foreign('reservor_id')->references('id')->on('users');
             $table->unsignedInteger('category_id');

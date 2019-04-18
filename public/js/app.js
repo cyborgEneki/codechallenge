@@ -14337,7 +14337,7 @@ __webpack_require__.r(__webpack_exports__);
       formTouched: false,
       book: {
         title: "",
-        status: "",
+        status: "1",
         reservor_id: "",
         category_id: ""
       },
@@ -98602,9 +98602,13 @@ var render = function() {
                       }
                     },
                     [
-                      _c("el-radio", { attrs: { label: "Available" } }),
+                      _c("el-radio", { attrs: { label: "1" } }, [
+                        _vm._v("Available")
+                      ]),
                       _vm._v(" "),
-                      _c("el-radio", { attrs: { label: "Borrowed" } })
+                      _c("el-radio", { attrs: { label: "0" } }, [
+                        _vm._v("Borrowed")
+                      ])
                     ],
                     1
                   ),

@@ -5,7 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Contracts\BookRepositoryInterface;
 use App\Models\Book;
+use App\Models\User;
 use App\Http\Requests\BookRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmail;
 
 class BookController extends Controller
 {
@@ -36,7 +40,16 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        $book = $this->bookRepo->updateBook($request, $book);
+
+        if($request->exists('status')) {
+            if($book->status == 1)
+            Mail::to($book->reservor()->get()->pluck("email"))->send(new VerifyEmail(new User));
+
+        }
+
+        $this->bookRepo->updateBook($request, $book);
+
+
         return response()->json($book, 200);
     }
 
@@ -50,5 +63,25 @@ class BookController extends Controller
     {
         $choices = $this->bookRepo->choices();
         return response()->json($choices, 200);
+    }
+
+    public function send(Request $request)
+    {
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $attach = $request->file('file');
+
+        Mail::send('emails.weeklyreport', ['title' => $title, 'content' => $content], function ($message) use ($attach) {
+            $message->from('me@gmail.com', 'Christian Nwamba');
+
+            $message->to('chrisn@scotch.io');
+
+            $message->attach($attach);
+
+            $message->subject("Hello from Scotch");
+        });
+
+
+        return response()->json(['message' => 'Request completed']);
     }
 }

@@ -44,7 +44,7 @@ $factory->define(Author::class, function (Faker $faker) {
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
-        'status' => $faker->randomElement(['Borrowed' ,'Available']),
+        'status' => $faker->boolean,
         'reservor_id' => $faker->numberBetween($min = 1, $max = 10),
         'category_id' => $faker->numberBetween($min = 1, $max = 5),
     ];
