@@ -27,8 +27,7 @@
             <td class="center">{{ user.max_number_of_books_allowed }}</td>
             <td>{{ user.status }}</td>
             <td>{{ choices.departments[user.department_id].name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editUser', params: { user } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>

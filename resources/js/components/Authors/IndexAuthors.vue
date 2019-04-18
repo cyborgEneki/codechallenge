@@ -17,8 +17,7 @@
         <tbody>
           <tr v-for="author in orderedAuthors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editAuthor', params: { author } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>

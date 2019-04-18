@@ -35,6 +35,12 @@
               <span slot="title" class="sidebar-padding">Departments</span>
             </el-menu-item>
           </router-link>
+          <router-link :to="{ name: 'indexAccesslevels'}">
+            <el-menu-item index="7">
+              <i class="fas fa-building customgreen"></i>
+              <span slot="title" class="sidebar-padding">Access Levels</span>
+            </el-menu-item>
+          </router-link>
           <router-link :to="{ name: 'indexUsers'}">
             <el-menu-item index="6">
               <i class="fas fa-users hotorange"></i>

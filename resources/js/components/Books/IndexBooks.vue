@@ -23,8 +23,7 @@
             <td>{{ book.status }}</td>
             <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editBook', params: { book } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>

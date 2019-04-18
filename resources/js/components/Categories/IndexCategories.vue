@@ -17,8 +17,7 @@
         <tbody>
           <tr v-for="category in categories" :key="category.id">
             <td width="90%">{{ category.name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editCategory', params: { category } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>

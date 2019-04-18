@@ -2,8 +2,8 @@
   <div>
     <el-card class="box-card">
       <div slot="header">
-        <span class="card-font">Departments</span>
-        <router-link :to="{ name: 'addDepartment' }">
+        <span class="card-font">Access Levels</span>
+        <router-link :to="{ name: 'addAccesslevel' }">
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
@@ -15,21 +15,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="department in departments" :key="department.id">
-            <td width="90%">{{ department.name }}</td>
-            <td class="actions-column">
-              <router-link :to="{ name: 'editDepartment', params: { department } }">
+          <tr v-for="accesslevel in accesslevels" :key="accesslevel.id">
+            <td width="90%">{{ accesslevel.name }}</td>
+            <td>
+              <router-link :to="{ name: 'editAccesslevel', params: { accesslevel } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
-                <i class="fas fa-trash-alt icon red" @click="deleteDepartment(department.id)"></i>
+                <i class="fas fa-trash-alt icon red" @click="deleteAccesslevel(accesslevel.id)"></i>
               </a>
             </td>
           </tr>
         </tbody>
       </table>
       <router-view></router-view>
-      <pagination :meta_data="meta_data" @next="getDepartments"></pagination>
+      <pagination :meta_data="meta_data" @next="getAccesslevels"></pagination>
     </el-card>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
   components: { Pagination },
   data() {
     return {
-      departments: [],
+      accesslevels: [],
       meta_data: {
         last_page: null,
         current_page: 1,
@@ -50,23 +50,23 @@ export default {
     };
   },
   methods: {
-    getDepartments(page = 1) {
+    getAccesslevels(page = 1) {
       axios
-        .get("/api/departments/", {
+        .get("/api/accesslevels/", {
           params: {
             page
           }
         })
         .then(res => {
-          this.departments = res.data.data;
+          this.accesslevels = res.data.data;
           this.meta_data.last_page = res.data.last_page;
           this.meta_data.current_page = res.data.current_page;
           this.meta_data.prev_page_url = res.data.prev_page_url;
         });
     },
-    deleteDepartment(id) {
+    deleteAccesslevel(id) {
       this.$confirm(
-        "This will permanently delete the department. Continue?",
+        "This will permanently delete the access level. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -75,16 +75,16 @@ export default {
         }
       )
         .then(() => {
-          axios.delete("/api/departments/" + id).then(() => {
-            let index = this.departments
+          axios.delete("/api/accesslevels/" + id).then(() => {
+            let index = this.accesslevels
               .map(item => {
                 return item.id;
               })
               .indexOf(id);
-            this.departments.splice(index, 1);
+            this.accesslevels.splice(index, 1);
             this.$notify({
               title: "Success",
-              message: "The department has been deleted",
+              message: "The access level has been deleted",
               type: "success"
             });
           });
@@ -98,7 +98,7 @@ export default {
     }
   },
   created() {
-    this.getDepartments();
+    this.getAccesslevels();
   }
 };
 </script>
