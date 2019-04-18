@@ -3,7 +3,7 @@
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Books</span>
-        <router-link :to="{ name: 'addBook' }">
+        <router-link v-if="isadmin" :to="{ name: 'addBook' }">
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
@@ -53,7 +53,8 @@ export default {
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -102,10 +103,16 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   mounted() {
     this.getBooks();
+    this.getAdmin();
   }
 };
 </script>

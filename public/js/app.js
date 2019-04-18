@@ -14437,7 +14437,8 @@ __webpack_require__.r(__webpack_exports__);
         status: "",
         reservor_id: "",
         category_id: ""
-      }
+      },
+      isadmin: false
     };
   },
   validations: {
@@ -14483,7 +14484,17 @@ __webpack_require__.r(__webpack_exports__);
         message: "Changes, if any, have been discarded",
         type: "info"
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this.isadmin = response.data;
+      });
     }
+  },
+  created: function created() {
+    this.getAdmin();
   }
 });
 
@@ -14687,7 +14698,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14733,10 +14745,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   mounted: function mounted() {
     this.getBooks();
+    this.getAdmin();
   }
 });
 
@@ -98715,184 +98735,188 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-form",
-        { ref: "book", attrs: { model: _vm.book, "label-width": "120px" } },
-        [
-          _c(
-            "el-form-item",
-            { attrs: { label: "Book", for: "ftitle" } },
-            [
-              _c("el-input", {
-                attrs: { id: "ftitle" },
-                model: {
-                  value: _vm.$v.book.title.$model,
-                  callback: function($$v) {
-                    _vm.$set(_vm.$v.book.title, "$model", $$v)
-                  },
-                  expression: "$v.book.title.$model"
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.title.$model
-                      ? _c("span", [
-                          _vm._v(
-                            '"The book without a title" makes for a good title...but still type in a title to continue'
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Status", for: "fstatus" } },
+      _vm.isadmin
+        ? _c(
+            "el-form",
+            { ref: "book", attrs: { model: _vm.book, "label-width": "120px" } },
             [
               _c(
-                "el-radio-group",
-                {
-                  attrs: { id: "fstatus" },
-                  model: {
-                    value: _vm.$v.book.status.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.book.status, "$model", $$v)
-                    },
-                    expression: "$v.book.status.$model"
-                  }
-                },
+                "el-form-item",
+                { attrs: { label: "Book", for: "ftitle" } },
                 [
-                  _c("el-radio", { attrs: { label: "Available" } }),
+                  _c("el-input", {
+                    attrs: { id: "ftitle" },
+                    model: {
+                      value: _vm.$v.book.title.$model,
+                      callback: function($$v) {
+                        _vm.$set(_vm.$v.book.title, "$model", $$v)
+                      },
+                      expression: "$v.book.title.$model"
+                    }
+                  }),
                   _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Borrowed" } })
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.title.$model
+                          ? _c("span", [
+                              _vm._v(
+                                '"The book without a title" makes for a good title...but still type in a title to continue'
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
                 ],
                 1
               ),
               _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.status.$model
-                      ? _c("span", [_vm._v("A status is required")])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Reserved By", for: "freservor" } },
-            [
               _c(
-                "el-select",
-                {
-                  attrs: { id: "freservor", placeholder: "Reserved By" },
-                  model: {
-                    value: _vm.$v.book.reservor_id.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.book.reservor_id, "$model", $$v)
-                    },
-                    expression: "$v.book.reservor_id.$model"
-                  }
-                },
-                _vm._l(_vm.orderedUsers, function(user) {
-                  return _c(
-                    "el-option",
-                    { key: user.id, attrs: { value: user.id } },
-                    [_vm._v(_vm._s(user.full_name))]
-                  )
-                }),
-                1
-              ),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.reservor_id.$model
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a department is like a game without thrones!"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Category", for: "fcategory" } },
-            [
-              _c(
-                "el-select",
-                {
-                  attrs: { id: "fcategory", placeholder: "Category" },
-                  model: {
-                    value: _vm.$v.book.category_id.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.book.category_id, "$model", $$v)
-                    },
-                    expression: "$v.book.category_id.$model"
-                  }
-                },
-                _vm._l(_vm.orderedCategories, function(category) {
-                  return _c(
-                    "el-option",
+                "el-form-item",
+                { attrs: { label: "Status", for: "fstatus" } },
+                [
+                  _c(
+                    "el-radio-group",
                     {
-                      key: category.id,
-                      attrs: { value: category.id, label: category.name }
+                      attrs: { id: "fstatus" },
+                      model: {
+                        value: _vm.$v.book.status.$model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.$v.book.status, "$model", $$v)
+                        },
+                        expression: "$v.book.status.$model"
+                      }
                     },
-                    [_vm._v(_vm._s(category.name))]
-                  )
-                }),
+                    [
+                      _c("el-radio", { attrs: { label: "Available" } }),
+                      _vm._v(" "),
+                      _c("el-radio", { attrs: { label: "Borrowed" } })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.status.$model
+                          ? _c("span", [_vm._v("A status is required")])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
                 1
               ),
               _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.category_id.$model
-                      ? _c("span", [
-                          _vm._v(
-                            "This cannot be blank. Users will never find what they like"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
               _c(
-                "el-button",
-                {
-                  attrs: { type: "primary" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.addBook()
-                    }
-                  }
-                },
-                [_vm._v("Create")]
+                "el-form-item",
+                { attrs: { label: "Reserved By", for: "freservor" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { id: "freservor", placeholder: "Reserved By" },
+                      model: {
+                        value: _vm.$v.book.reservor_id.$model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.$v.book.reservor_id, "$model", $$v)
+                        },
+                        expression: "$v.book.reservor_id.$model"
+                      }
+                    },
+                    _vm._l(_vm.orderedUsers, function(user) {
+                      return _c(
+                        "el-option",
+                        { key: user.id, attrs: { value: user.id } },
+                        [_vm._v(_vm._s(user.full_name))]
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.reservor_id.$model
+                          ? _c("span", [
+                              _vm._v(
+                                "A user without a department is like a game without thrones!"
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
+                1
               ),
               _vm._v(" "),
-              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
+              _c(
+                "el-form-item",
+                { attrs: { label: "Category", for: "fcategory" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { id: "fcategory", placeholder: "Category" },
+                      model: {
+                        value: _vm.$v.book.category_id.$model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.$v.book.category_id, "$model", $$v)
+                        },
+                        expression: "$v.book.category_id.$model"
+                      }
+                    },
+                    _vm._l(_vm.orderedCategories, function(category) {
+                      return _c(
+                        "el-option",
+                        {
+                          key: category.id,
+                          attrs: { value: category.id, label: category.name }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.category_id.$model
+                          ? _c("span", [
+                              _vm._v(
+                                "This cannot be blank. Users will never find what they like"
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addBook()
+                        }
+                      }
+                    },
+                    [_vm._v("Create")]
+                  ),
+                  _vm._v(" "),
+                  _c("el-button", { on: { click: _vm.cancel } }, [
+                    _vm._v("Cancel")
+                  ])
+                ],
+                1
+              )
             ],
             1
           )
-        ],
-        1
-      )
+        : _vm._e()
     ],
     1
   )
@@ -99104,9 +99128,11 @@ var render = function() {
             [
               _c("span", { staticClass: "card-font" }, [_vm._v("Books")]),
               _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addBook" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
+              _vm.isadmin
+                ? _c("router-link", { attrs: { to: { name: "addBook" } } }, [
+                    _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+                  ])
+                : _vm._e()
             ],
             1
           ),
