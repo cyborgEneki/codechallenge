@@ -9,6 +9,7 @@ use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookAvailable;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -60,23 +61,16 @@ class BookController extends Controller
         return response()->json($choices, 200);
     }
 
-    public function send(Request $request)
+    public function borrow()
     {
-        $title = $request->input('title');
-        $content = $request->input('content');
-        $attach = $request->file('file');
+        // echo $books = Book::with(['users', 'authors'])->get()->first()->pivot->book_id;
+        // foreach ($books->users as $user) {
+        //     echo $user->pivot->due_date->count();
+        // };
 
-        Mail::send('emails.weeklyreport', ['title' => $title, 'content' => $content], function ($message) use ($attach) {
-            $message->from('me@gmail.com', 'Christian Nwamba');
+        $from = Carbon::now();
 
-            $message->to('chrisn@scotch.io');
+        $to = $from->subDays(7);
 
-            $message->attach($attach);
-
-            $message->subject("Hello from Scotch");
-        });
-
-
-        return response()->json(['message' => 'Request completed']);
     }
 }
