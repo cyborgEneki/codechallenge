@@ -40,17 +40,17 @@ class BookRepository implements BookRepositoryInterface
 
     public function choices()
     {
-        $books = Book::all();
+        $books = Book::with(['authors', 'users'])->get();
         $books = $books->keyBy('id');
         $books = ['books' => $books];
 
         $auth_user = ['authuser' => Auth::User()->id];
 
-        $authors = Author::all();
+        $authors = Author::with(['books'])->get();
         $authors = $authors->keyBy('id');
         $authors = ['authors' => $authors];
 
-        $users = User::all();
+        $users = User::with(['books'])->get();
         $users = $users->keyBy('id');
         $users = ['users' => $users];
         

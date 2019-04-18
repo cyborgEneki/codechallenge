@@ -10,16 +10,20 @@
       <table class="font-14">
         <thead>
           <tr>
-            <th width="22.5%">Title</th>
-            <th width="22.5%">Status</th>
-            <th width="22.5%">Reserved By</th>
-            <th width="22.5%">Category</th>
+            <th>Title</th>
+            <th>Author(s)</th>
+            <th>Status</th>
+            <th>Reserved By</th>
+            <th>Category</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="book in books" :key="book.id">
             <td>{{ book.title }}</td>
+            <td>
+              <p v-for="author in book.authors" :key="author.id">{{ author.name }}</p>
+            </td>
             <td>{{ book.status }}</td>
             <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
