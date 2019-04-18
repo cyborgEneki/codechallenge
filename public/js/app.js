@@ -98967,7 +98967,7 @@ var render = function() {
                     "td",
                     _vm._l(book.authors, function(author) {
                       return _c("p", { key: author.id }, [
-                        _vm._v(_vm._s(author.name))
+                        _vm._v(_vm._s(author.name) + " ")
                       ])
                     }),
                     0

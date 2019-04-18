@@ -22,7 +22,7 @@
           <tr v-for="book in books" :key="book.id">
             <td>{{ book.title }}</td>
             <td>
-              <p v-for="author in book.authors" :key="author.id">{{ author.name }}</p>
+              <p v-for="author in book.authors" :key="author.id">{{ author.name }} </p>
             </td>
             <td>{{ book.status }}</td>
             <td>{{ choices.users[book.reservor_id].full_name }}</td>

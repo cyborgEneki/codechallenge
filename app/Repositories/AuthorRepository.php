@@ -15,7 +15,10 @@ class AuthorRepository implements AuthorRepositoryInterface
 
     public function createAuthor(AuthorRequest $request)
     {
-        return Author::create($request->all());
+        $author = Author::create($request->all());
+        $books = $request->get('books');
+        $author->books()->sync($books);
+        return $author;
     }
     public function showAuthor($id)
     {

@@ -20,7 +20,10 @@ class BookRepository implements BookRepositoryInterface
 
     public function createBook(BookRequest $request)
     {
-        return Book::create($request->all());
+        $book = Book::create($request->all());
+        $authors = $request->get('authors');
+        $book->authors()->sync($authors);
+        return $book;
     }
 
     public function showBook($id)
