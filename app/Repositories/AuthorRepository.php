@@ -19,7 +19,7 @@ class AuthorRepository implements AuthorRepositoryInterface
     }
     public function showAuthor($id)
     {
-        return Author::findOrFail($id);
+        return Author::where('id', '=', $id)->with(['books'])->first();
     }
 
     public function updateAuthor(AuthorRequest $request, Author $author)

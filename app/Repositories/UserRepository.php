@@ -22,7 +22,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function showUser($id)
     {
-        return User::findOrFail($id);
+        return User::where('id', '=', $id)->with(['books'])->first();        
     }
 
     public function updateUser(EditUserRequest $request, User $user)
