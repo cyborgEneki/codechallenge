@@ -22,9 +22,12 @@
           <tr v-for="book in books" :key="book.id">
             <td>{{ book.title }}</td>
             <td>
-              <p v-for="author in book.authors" :key="author.id">{{ author.name }} </p>
+              <p v-for="author in book.authors" :key="author.id">{{ author.name }}</p>
             </td>
-            <td>{{ book.status }}</td>
+            <td>
+              <p v-if="book.status == 1">Available</p>
+              <p v-if="book.status == 0">Borrowed</p>
+            </td>
             <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
             <td class="actions-column">

@@ -14592,6 +14592,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -98983,13 +98986,19 @@ var render = function() {
                     "td",
                     _vm._l(book.authors, function(author) {
                       return _c("p", { key: author.id }, [
-                        _vm._v(_vm._s(author.name) + " ")
+                        _vm._v(_vm._s(author.name))
                       ])
                     }),
                     0
                   ),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(book.status))]),
+                  _c("td", [
+                    book.status == 1
+                      ? _c("p", [_vm._v("Available")])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    book.status == 0 ? _c("p", [_vm._v("Borrowed")]) : _vm._e()
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
