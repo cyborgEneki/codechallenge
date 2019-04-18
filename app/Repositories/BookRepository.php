@@ -25,7 +25,7 @@ class BookRepository implements BookRepositoryInterface
 
     public function showBook($id)
     {
-        return Book::findOrFail($id);
+        return Book::findOrFail($id)->with('authors')->first();
     }
 
     public function updateBook(BookRequest $request, Book $book)
@@ -48,15 +48,15 @@ class BookRepository implements BookRepositoryInterface
 
         $authors = Author::all();
         $authors = $authors->keyBy('id');
-        $authors = ['authors' => $authors];        
+        $authors = ['authors' => $authors];
 
         $users = User::all();
         $users = $users->keyBy('id');
-        $users = ['users' => $users];        
+        $users = ['users' => $users];
         
         $categories = Category::all();
         $categories = $categories->keyBy('id');
-        $categories = ['categories' => $categories];        
+        $categories = ['categories' => $categories];
         
         $departments = Department::all();
         $departments = $departments->keyBy('id');
