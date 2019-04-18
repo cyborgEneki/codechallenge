@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Department;
 use App\Models\Category;
+use App\Models\Accesslevel;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'max_number_of_books_allowed' => $faker->numberBetween($min = 1, $max = 3),
         'status' => $faker->randomElement(['Active' ,'Suspended']),
-        'department_id' => $faker->numberBetween($min = 1, $max = 5)
+        'department_id' => $faker->numberBetween($min = 1, $max = 5),
+        'accesslevel_id' => $faker->numberBetween($min = 1, $max = 2)
     ];
 });
 
@@ -55,6 +57,12 @@ $factory->define(Category::class, function (Faker $faker) {
 });
 
 $factory->define(Department::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+$factory->define(Accesslevel::class, function (Faker $faker) {
     return [
         'name' => $faker->word
     ];

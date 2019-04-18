@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->enum('status', ['Active', 'Suspended']);
             $table->unsignedInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
+            $table->unsignedInteger('accesslevel_id');
+            $table->foreign('accesslevel_id')->references('id')->on('accesslevels');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
