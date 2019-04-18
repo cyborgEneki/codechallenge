@@ -20,10 +20,12 @@ Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');
-    Route::apiResource('authors', 'API\AuthorController');
+    Route::apiResource('authors', 'API\AuthorController')->middleware('admin');
     Route::apiResource('books', 'API\BookController');
-    Route::apiResource('categories', 'API\CategoryController');
-    Route::apiResource('departments', 'API\DepartmentController');
-    Route::apiResource('users', 'API\UserController');
+    Route::apiResource('categories', 'API\CategoryController')->middleware('admin');
+    Route::apiResource('departments', 'API\DepartmentController')->middleware('admin');
+    Route::get('users/isadmin', 'API\UserController@isAdmin');
+    Route::apiResource('users', 'API\UserController')->middleware('admin');
+    Route::apiResource('accesslevels', 'API\AccesslevelController')->middleware('admin');
     Route::get('choices', 'API\BookController@choices');
 });

@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('123456'),
             'max_number_of_books_allowed' => 3,
             'status' => 'Active',
-            'department_id' => 1
+            'department_id' => 1,
+            'accesslevel_id' => 1
         ]);
 
         $users = factory('App\Models\User', 10)->create();

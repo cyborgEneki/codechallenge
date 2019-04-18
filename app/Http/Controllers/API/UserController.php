@@ -71,4 +71,10 @@ class UserController extends Controller
         $user = $this->userRepo->deleteUser($user);
         return response()->json($user, 200);
     }
+
+    public function isAdmin() 
+    {
+        $result = Auth::User()->accesslevel_id == 1;
+        return response()->json($result, 200);
+    }
 }

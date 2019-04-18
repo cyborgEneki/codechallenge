@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card v-if="isadmin" class="box-card">
       <div slot="header">
         <span class="card-font">Authors</span>
         <router-link :to="{ name: 'addAuthor' }">
@@ -17,8 +17,7 @@
         <tbody>
           <tr v-for="author in orderedAuthors" :key="author.id">
             <td width="90%">{{ author.name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editAuthor', params: { author } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
@@ -42,7 +41,7 @@ export default {
   components: { Pagination },
   computed: {
     orderedAuthors() {
-      return _.orderBy(this.authors, 'updated_at');
+      return _.orderBy(this.authors, "updated_at");
     }
   },
   data() {
@@ -52,7 +51,8 @@ export default {
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -101,10 +101,16 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   created() {
     this.getAuthors();
+    this.getAdmin();
   }
 };
 </script>

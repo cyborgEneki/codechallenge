@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="book" ref="book" label-width="120px">
+    <el-form v-if="isadmin" :model="book" ref="book" label-width="120px">
       <el-form-item label="Book" for="ftitle">
         <el-input id="ftitle" v-model.lazy="$v.book.title.$model"></el-input>
         <p v-if="errors" class="error">
@@ -87,7 +87,8 @@ export default {
         status: "",
         reservor_id: "",
         category_id: ""
-      }
+      },
+      isadmin: false
     };
   },
   validations: {
@@ -124,7 +125,15 @@ export default {
         message: "Changes, if any, have been discarded",
         type: "info"
       });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
+  },
+  created() {
+    this.getAdmin();
   }
 };
 </script>

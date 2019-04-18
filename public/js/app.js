@@ -13758,6 +13758,285 @@ function mergeFn (a, b) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      accesslevel: {
+        name: ""
+      },
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the access level name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    addAccesslevel: function addAccesslevel(formName) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.post("/api/accesslevels/", _this.accesslevel).then(function (response) {});
+
+          _this.$router.push("/accesslevels");
+
+          _this.$notify({
+            title: "Success",
+            message: "The new access level has been added.",
+            type: "success"
+          });
+
+          _this.accesslevel = {};
+        } else {
+          return false;
+        }
+      });
+    },
+    cancel: function cancel() {
+      this.$router.push("/accesslevels");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["accesslevel"],
+  data: function data() {
+    return {
+      editedAccesslevel: this.accesslevel,
+      rules: {
+        name: [{
+          required: true,
+          message: "Please type in the access level name",
+          trigger: "blur"
+        }]
+      }
+    };
+  },
+  methods: {
+    editAccesslevel: function editAccesslevel(formName, editedAccesslevel) {
+      var _this = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          axios.put("/api/accesslevels/" + editedAccesslevel.id, editedAccesslevel).then(function (response) {
+            _this.$router.push("/accesslevels");
+
+            _this.$notify({
+              title: "Success",
+              message: "The access level name has been edited.",
+              type: "success"
+            });
+
+            _this.editedAccesslevel = {};
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    cancel: function cancel() {
+      this.$router.push("/accesslevels");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination */ "./resources/js/components/pagination.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      accesslevels: [],
+      meta_data: {
+        last_page: null,
+        current_page: 1,
+        prev_page_url: null
+      },
+      isadmin: false
+    };
+  },
+  methods: {
+    getAccesslevels: function getAccesslevels() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get("/api/accesslevels/", {
+        params: {
+          page: page
+        }
+      }).then(function (res) {
+        _this.accesslevels = res.data.data;
+        _this.meta_data.last_page = res.data.last_page;
+        _this.meta_data.current_page = res.data.current_page;
+        _this.meta_data.prev_page_url = res.data.prev_page_url;
+      });
+    },
+    deleteAccesslevel: function deleteAccesslevel(id) {
+      var _this2 = this;
+
+      this.$confirm("This will permanently delete the access level. Continue?", "Warning", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        axios["delete"]("/api/accesslevels/" + id).then(function () {
+          var index = _this2.accesslevels.map(function (item) {
+            return item.id;
+          }).indexOf(id);
+
+          _this2.accesslevels.splice(index, 1);
+
+          _this2.$notify({
+            title: "Success",
+            message: "The access level has been deleted",
+            type: "success"
+          });
+        });
+      })["catch"](function () {
+        _this2.$notify.info({
+          title: "Info",
+          message: "Delete cancelled"
+        });
+      });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
+    }
+  },
+  created: function created() {
+    this.getAccesslevels();
+    this.getAdmin();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/App.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/App.vue?vue&type=script&lang=js& ***!
@@ -13979,7 +14258,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -13987,7 +14265,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     orderedAuthors: function orderedAuthors() {
-      return _.orderBy(this.authors, 'updated_at');
+      return _.orderBy(this.authors, "updated_at");
     }
   },
   data: function data() {
@@ -13997,7 +14275,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14043,10 +14322,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getAuthors();
+    this.getAdmin();
   }
 });
 
@@ -14150,7 +14437,8 @@ __webpack_require__.r(__webpack_exports__);
         status: "",
         reservor_id: "",
         category_id: ""
-      }
+      },
+      isadmin: false
     };
   },
   validations: {
@@ -14196,7 +14484,17 @@ __webpack_require__.r(__webpack_exports__);
         message: "Changes, if any, have been discarded",
         type: "info"
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this.isadmin = response.data;
+      });
     }
+  },
+  created: function created() {
+    this.getAdmin();
   }
 });
 
@@ -14387,7 +14685,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -14401,7 +14698,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14447,10 +14745,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   mounted: function mounted() {
     this.getBooks();
+    this.getAdmin();
   }
 });
 
@@ -14659,7 +14965,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14672,7 +14977,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14718,10 +15024,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getCategories();
+    this.getAdmin();
   }
 });
 
@@ -14929,7 +15243,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -14942,7 +15255,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14988,10 +15302,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getDepartments();
+    this.getAdmin();
   }
 });
 
@@ -15060,10 +15382,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      choices: []
+      choices: [],
+      isadmin: false
     };
   },
   methods: {
@@ -15079,10 +15408,18 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/choices").then(function (response) {
         _this.choices = response.data;
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this2 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this2.isadmin = response.data;
+      });
     }
   },
   mounted: function mounted() {
     this.getChoices();
+    this.getAdmin();
   }
 });
 
@@ -15518,7 +15855,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -15532,7 +15868,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -15578,10 +15915,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
-    this.getUsers(); // console.log(this.choices);
+    this.getUsers();
+    this.getAdmin();
   }
 });
 
@@ -17522,7 +17867,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.center {\n    text-align: center\n}\n", ""]);
+exports.push([module.i, "\n.center {\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -97798,6 +98143,286 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "accesslevel",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.accesslevel,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Access Level", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.accesslevel.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.accesslevel, "name", $$v)
+                  },
+                  expression: "accesslevel.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addAccesslevel("accesslevel")
+                    }
+                  }
+                },
+                [_vm._v("Create")]
+              ),
+              _vm._v(" "),
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        {
+          ref: "accesslevel",
+          staticClass: "demo-ruleForm",
+          attrs: {
+            model: _vm.editedAccesslevel,
+            rules: _vm.rules,
+            "label-width": "120px"
+          }
+        },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: "Access Level", prop: "name" } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.editedAccesslevel.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.editedAccesslevel, "name", $$v)
+                  },
+                  expression: "editedAccesslevel.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editAccesslevel(
+                        "accesslevel",
+                        _vm.editedAccesslevel
+                      )
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=template&id=339661d8&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=template&id=339661d8& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
+            [
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [
+                    _vm._v("Access Levels")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "addAccesslevel" } } },
+                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.accesslevels, function(accesslevel) {
+                    return _c("tr", { key: accesslevel.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(accesslevel.name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editAccesslevel",
+                                  params: { accesslevel: accesslevel }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteAccesslevel(accesslevel.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getAccesslevels }
+              })
+            ],
+            1
+          )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/App.vue?vue&type=template&id=332fccf4&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/App.vue?vue&type=template&id=332fccf4& ***!
@@ -97998,86 +98623,89 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Authors")]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addAuthor" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.orderedAuthors, function(author) {
-                return _c("tr", { key: author.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(author.name))
-                  ]),
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [_vm._v("Authors")]),
                   _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("i", { staticClass: "far fa-eye icon green" }),
+                  _c("router-link", { attrs: { to: { name: "addAuthor" } } }, [
+                    _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.orderedAuthors, function(author) {
+                    return _c("tr", { key: author.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(author.name))
+                      ]),
                       _vm._v(" "),
                       _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editAuthor",
-                              params: { author: author }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteAuthor(author.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getAuthors }
-          })
-        ],
-        1
-      )
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editAuthor",
+                                  params: { author: author }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteAuthor(author.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getAuthors }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -98107,184 +98735,188 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-form",
-        { ref: "book", attrs: { model: _vm.book, "label-width": "120px" } },
-        [
-          _c(
-            "el-form-item",
-            { attrs: { label: "Book", for: "ftitle" } },
-            [
-              _c("el-input", {
-                attrs: { id: "ftitle" },
-                model: {
-                  value: _vm.$v.book.title.$model,
-                  callback: function($$v) {
-                    _vm.$set(_vm.$v.book.title, "$model", $$v)
-                  },
-                  expression: "$v.book.title.$model"
-                }
-              }),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.title.$model
-                      ? _c("span", [
-                          _vm._v(
-                            '"The book without a title" makes for a good title...but still type in a title to continue'
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Status", for: "fstatus" } },
+      _vm.isadmin
+        ? _c(
+            "el-form",
+            { ref: "book", attrs: { model: _vm.book, "label-width": "120px" } },
             [
               _c(
-                "el-radio-group",
-                {
-                  attrs: { id: "fstatus" },
-                  model: {
-                    value: _vm.$v.book.status.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.book.status, "$model", $$v)
-                    },
-                    expression: "$v.book.status.$model"
-                  }
-                },
+                "el-form-item",
+                { attrs: { label: "Book", for: "ftitle" } },
                 [
-                  _c("el-radio", { attrs: { label: "Available" } }),
+                  _c("el-input", {
+                    attrs: { id: "ftitle" },
+                    model: {
+                      value: _vm.$v.book.title.$model,
+                      callback: function($$v) {
+                        _vm.$set(_vm.$v.book.title, "$model", $$v)
+                      },
+                      expression: "$v.book.title.$model"
+                    }
+                  }),
                   _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Borrowed" } })
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.title.$model
+                          ? _c("span", [
+                              _vm._v(
+                                '"The book without a title" makes for a good title...but still type in a title to continue'
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
                 ],
                 1
               ),
               _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.status.$model
-                      ? _c("span", [_vm._v("A status is required")])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Reserved By", for: "freservor" } },
-            [
               _c(
-                "el-select",
-                {
-                  attrs: { id: "freservor", placeholder: "Reserved By" },
-                  model: {
-                    value: _vm.$v.book.reservor_id.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.book.reservor_id, "$model", $$v)
-                    },
-                    expression: "$v.book.reservor_id.$model"
-                  }
-                },
-                _vm._l(_vm.orderedUsers, function(user) {
-                  return _c(
-                    "el-option",
-                    { key: user.id, attrs: { value: user.id } },
-                    [_vm._v(_vm._s(user.full_name))]
-                  )
-                }),
-                1
-              ),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.reservor_id.$model
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a department is like a game without thrones!"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Category", for: "fcategory" } },
-            [
-              _c(
-                "el-select",
-                {
-                  attrs: { id: "fcategory", placeholder: "Category" },
-                  model: {
-                    value: _vm.$v.book.category_id.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.book.category_id, "$model", $$v)
-                    },
-                    expression: "$v.book.category_id.$model"
-                  }
-                },
-                _vm._l(_vm.orderedCategories, function(category) {
-                  return _c(
-                    "el-option",
+                "el-form-item",
+                { attrs: { label: "Status", for: "fstatus" } },
+                [
+                  _c(
+                    "el-radio-group",
                     {
-                      key: category.id,
-                      attrs: { value: category.id, label: category.name }
+                      attrs: { id: "fstatus" },
+                      model: {
+                        value: _vm.$v.book.status.$model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.$v.book.status, "$model", $$v)
+                        },
+                        expression: "$v.book.status.$model"
+                      }
                     },
-                    [_vm._v(_vm._s(category.name))]
-                  )
-                }),
+                    [
+                      _c("el-radio", { attrs: { label: "Available" } }),
+                      _vm._v(" "),
+                      _c("el-radio", { attrs: { label: "Borrowed" } })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.status.$model
+                          ? _c("span", [_vm._v("A status is required")])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
                 1
               ),
               _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.book.category_id.$model
-                      ? _c("span", [
-                          _vm._v(
-                            "This cannot be blank. Users will never find what they like"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
               _c(
-                "el-button",
-                {
-                  attrs: { type: "primary" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.addBook()
-                    }
-                  }
-                },
-                [_vm._v("Create")]
+                "el-form-item",
+                { attrs: { label: "Reserved By", for: "freservor" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { id: "freservor", placeholder: "Reserved By" },
+                      model: {
+                        value: _vm.$v.book.reservor_id.$model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.$v.book.reservor_id, "$model", $$v)
+                        },
+                        expression: "$v.book.reservor_id.$model"
+                      }
+                    },
+                    _vm._l(_vm.orderedUsers, function(user) {
+                      return _c(
+                        "el-option",
+                        { key: user.id, attrs: { value: user.id } },
+                        [_vm._v(_vm._s(user.full_name))]
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.reservor_id.$model
+                          ? _c("span", [
+                              _vm._v(
+                                "A user without a department is like a game without thrones!"
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
+                1
               ),
               _vm._v(" "),
-              _c("el-button", { on: { click: _vm.cancel } }, [_vm._v("Cancel")])
+              _c(
+                "el-form-item",
+                { attrs: { label: "Category", for: "fcategory" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { id: "fcategory", placeholder: "Category" },
+                      model: {
+                        value: _vm.$v.book.category_id.$model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.$v.book.category_id, "$model", $$v)
+                        },
+                        expression: "$v.book.category_id.$model"
+                      }
+                    },
+                    _vm._l(_vm.orderedCategories, function(category) {
+                      return _c(
+                        "el-option",
+                        {
+                          key: category.id,
+                          attrs: { value: category.id, label: category.name }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.errors
+                    ? _c("p", { staticClass: "error" }, [
+                        !_vm.$v.book.category_id.$model
+                          ? _c("span", [
+                              _vm._v(
+                                "This cannot be blank. Users will never find what they like"
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.addBook()
+                        }
+                      }
+                    },
+                    [_vm._v("Create")]
+                  ),
+                  _vm._v(" "),
+                  _c("el-button", { on: { click: _vm.cancel } }, [
+                    _vm._v("Cancel")
+                  ])
+                ],
+                1
+              )
             ],
             1
           )
-        ],
-        1
-      )
+        : _vm._e()
     ],
     1
   )
@@ -98496,9 +99128,11 @@ var render = function() {
             [
               _c("span", { staticClass: "card-font" }, [_vm._v("Books")]),
               _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addBook" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
+              _vm.isadmin
+                ? _c("router-link", { attrs: { to: { name: "addBook" } } }, [
+                    _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+                  ])
+                : _vm._e()
             ],
             1
           ),
@@ -98542,9 +99176,8 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "td",
+                    { staticClass: "actions-column" },
                     [
-                      _c("i", { staticClass: "far fa-eye icon green" }),
-                      _vm._v(" "),
                       _c(
                         "router-link",
                         {
@@ -98774,86 +99407,93 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Categories")]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addCategory" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.categories, function(category) {
-                return _c("tr", { key: category.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(category.name))
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [
+                    _vm._v("Categories")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    [
-                      _c("i", { staticClass: "far fa-eye icon green" }),
+                    "router-link",
+                    { attrs: { to: { name: "addCategory" } } },
+                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.categories, function(category) {
+                    return _c("tr", { key: category.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(category.name))
+                      ]),
                       _vm._v(" "),
                       _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editCategory",
-                              params: { category: category }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteCategory(category.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getCategories }
-          })
-        ],
-        1
-      )
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editCategory",
+                                  params: { category: category }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteCategory(category.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getCategories }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -99048,86 +99688,93 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Departments")]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addDepartment" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.departments, function(department) {
-                return _c("tr", { key: department.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(department.name))
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [
+                    _vm._v("Departments")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    [
-                      _c("i", { staticClass: "far fa-eye icon green" }),
+                    "router-link",
+                    { attrs: { to: { name: "addDepartment" } } },
+                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.departments, function(department) {
+                    return _c("tr", { key: department.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(department.name))
+                      ]),
                       _vm._v(" "),
                       _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editDepartment",
-                              params: { department: department }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteDepartment(department.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getDepartments }
-          })
-        ],
-        1
-      )
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editDepartment",
+                                  params: { department: department }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteDepartment(department.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getDepartments }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -99177,26 +99824,28 @@ var render = function() {
                   on: { open: _vm.handleOpen, close: _vm.handleClose }
                 },
                 [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexAuthors" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "2" } }, [
-                        _c("i", { staticClass: "fas fa-pen-alt hotpink" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Authors")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexAuthors" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "2" } }, [
+                            _c("i", { staticClass: "fas fa-pen-alt hotpink" }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Authors")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "router-link",
@@ -99219,68 +99868,101 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexCategories" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "4" } }, [
-                        _c("i", { staticClass: "fas fa-boxes powderblue" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Categories")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexCategories" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "4" } }, [
+                            _c("i", { staticClass: "fas fa-boxes powderblue" }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Categories")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexDepartments" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "5" } }, [
-                        _c("i", { staticClass: "fas fa-building customgreen" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Departments")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexDepartments" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "5" } }, [
+                            _c("i", {
+                              staticClass: "fas fa-building customgreen"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Departments")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexUsers" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "6" } }, [
-                        _c("i", { staticClass: "fas fa-users hotorange" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Users")]
-                        )
-                      ])
-                    ],
-                    1
-                  )
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexAccesslevels" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "7" } }, [
+                            _c("i", {
+                              staticClass: "fas fa-building customgreen"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Access Levels")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isadmin
+                    ? _c(
+                        "router-link",
+                        { attrs: { to: { name: "indexUsers" } } },
+                        [
+                          _c("el-menu-item", { attrs: { index: "6" } }, [
+                            _c("i", { staticClass: "fas fa-users hotorange" }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "sidebar-padding",
+                                attrs: { slot: "title" },
+                                slot: "title"
+                              },
+                              [_vm._v("Users")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -99929,107 +100611,112 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Users")]),
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [_vm._v("Users")]),
+                  _vm._v(" "),
+                  _c("router-link", { attrs: { to: { name: "addUser" } } }, [
+                    _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addUser" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", [_vm._v("First Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Last Name")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Email")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "center" }, [
-                  _vm._v("Maximum Number of Books Allowed")
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("First Name")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Last Name")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Email")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "center" }, [
+                      _vm._v("Maximum Number of Books Allowed")
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Status")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Department")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Status")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Department")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.users, function(user) {
-                return _c("tr", { key: user.id }, [
-                  _c("td", [_vm._v(_vm._s(user.first_name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.last_name))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.email))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "center" }, [
-                    _vm._v(_vm._s(user.max_number_of_books_allowed))
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.status))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      _vm._s(_vm.choices.departments[user.department_id].name)
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("i", { staticClass: "far fa-eye icon green" }),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.users, function(user) {
+                    return _c("tr", { key: user.id }, [
+                      _c("td", [_vm._v(_vm._s(user.first_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.last_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.email))]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "center" }, [
+                        _vm._v(_vm._s(user.max_number_of_books_allowed))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(user.status))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.choices.departments[user.department_id].name
+                          )
+                        )
+                      ]),
                       _vm._v(" "),
                       _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: { name: "editUser", params: { user: user } }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteUser(user.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getUsers }
-          })
-        ],
-        1
-      ),
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: { name: "editUser", params: { user: user } }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteUser(user.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getUsers }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("router-view")
     ],
@@ -117963,6 +118650,213 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
 /***/ }),
 
+/***/ "./resources/js/components/Accesslevels/AddAccesslevel.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/AddAccesslevel.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAccesslevel.vue?vue&type=template&id=b1782300& */ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&");
+/* harmony import */ var _AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAccesslevel.vue?vue&type=script&lang=js& */ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Accesslevels/AddAccesslevel.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAccesslevel.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAccesslevel.vue?vue&type=template&id=b1782300& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/AddAccesslevel.vue?vue&type=template&id=b1782300&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAccesslevel_vue_vue_type_template_id_b1782300___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/EditAccesslevel.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/EditAccesslevel.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditAccesslevel_vue_vue_type_template_id_13f0e2c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditAccesslevel.vue?vue&type=template&id=13f0e2c5& */ "./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5&");
+/* harmony import */ var _EditAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditAccesslevel.vue?vue&type=script&lang=js& */ "./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditAccesslevel_vue_vue_type_template_id_13f0e2c5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditAccesslevel_vue_vue_type_template_id_13f0e2c5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Accesslevels/EditAccesslevel.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditAccesslevel.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAccesslevel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAccesslevel_vue_vue_type_template_id_13f0e2c5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./EditAccesslevel.vue?vue&type=template&id=13f0e2c5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/EditAccesslevel.vue?vue&type=template&id=13f0e2c5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAccesslevel_vue_vue_type_template_id_13f0e2c5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditAccesslevel_vue_vue_type_template_id_13f0e2c5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/IndexAccesslevels.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/IndexAccesslevels.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _IndexAccesslevels_vue_vue_type_template_id_339661d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IndexAccesslevels.vue?vue&type=template&id=339661d8& */ "./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=template&id=339661d8&");
+/* harmony import */ var _IndexAccesslevels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndexAccesslevels.vue?vue&type=script&lang=js& */ "./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _IndexAccesslevels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _IndexAccesslevels_vue_vue_type_template_id_339661d8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _IndexAccesslevels_vue_vue_type_template_id_339661d8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Accesslevels/IndexAccesslevels.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAccesslevels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./IndexAccesslevels.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAccesslevels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=template&id=339661d8&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=template&id=339661d8& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAccesslevels_vue_vue_type_template_id_339661d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./IndexAccesslevels.vue?vue&type=template&id=339661d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Accesslevels/IndexAccesslevels.vue?vue&type=template&id=339661d8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAccesslevels_vue_vue_type_template_id_339661d8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IndexAccesslevels_vue_vue_type_template_id_339661d8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/App.vue":
 /*!*****************************************!*\
   !*** ./resources/js/components/App.vue ***!
@@ -119358,9 +120252,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Departments/AddDepartment */ "./resources/js/components/Departments/AddDepartment.vue");
 /* harmony import */ var _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Departments/EditDepartment */ "./resources/js/components/Departments/EditDepartment.vue");
 /* harmony import */ var _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Departments/IndexDepartments */ "./resources/js/components/Departments/IndexDepartments.vue");
-/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
-/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
-/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
+/* harmony import */ var _components_Accesslevels_AddAccesslevel__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Accesslevels/AddAccesslevel */ "./resources/js/components/Accesslevels/AddAccesslevel.vue");
+/* harmony import */ var _components_Accesslevels_EditAccesslevel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Accesslevels/EditAccesslevel */ "./resources/js/components/Accesslevels/EditAccesslevel.vue");
+/* harmony import */ var _components_Accesslevels_IndexAccesslevels__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Accesslevels/IndexAccesslevels */ "./resources/js/components/Accesslevels/IndexAccesslevels.vue");
+/* harmony import */ var _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Users/AddUser */ "./resources/js/components/Users/AddUser.vue");
+/* harmony import */ var _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Users/EditUser */ "./resources/js/components/Users/EditUser.vue");
+/* harmony import */ var _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/Users/IndexUsers */ "./resources/js/components/Users/IndexUsers.vue");
+
+
+
 
 
 
@@ -119432,18 +120332,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'indexDepartments',
     component: _components_Departments_IndexDepartments__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
+    path: '/add-accesslevel',
+    name: 'addAccesslevel',
+    component: _components_Accesslevels_AddAccesslevel__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }, {
+    path: '/edit-accesslevel',
+    name: 'editAccesslevel',
+    component: _components_Accesslevels_EditAccesslevel__WEBPACK_IMPORTED_MODULE_14__["default"],
+    props: true
+  }, {
+    path: '/accesslevels',
+    name: 'indexAccesslevels',
+    component: _components_Accesslevels_IndexAccesslevels__WEBPACK_IMPORTED_MODULE_15__["default"]
+  }, {
     path: '/add-user',
     name: 'addUser',
-    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_16__["default"]
   }, {
     path: '/edit-user',
     name: 'editUser',
-    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_14__["default"],
+    component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_17__["default"],
     props: true
   }, {
     path: '/users',
     name: 'indexUsers',
-    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_Users_IndexUsers__WEBPACK_IMPORTED_MODULE_18__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

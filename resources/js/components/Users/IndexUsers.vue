@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card v-if="isadmin" class="box-card">
       <div slot="header">
         <span class="card-font">Users</span>
         <router-link :to="{ name: 'addUser' }">
@@ -27,8 +27,7 @@
             <td class="center">{{ user.max_number_of_books_allowed }}</td>
             <td>{{ user.status }}</td>
             <td>{{ choices.departments[user.department_id].name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editUser', params: { user } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
@@ -58,7 +57,8 @@ export default {
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -107,17 +107,22 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   created() {
     this.getUsers();
-    // console.log(this.choices);
+    this.getAdmin();
   }
 };
 </script>
 
 <style>
 .center {
-    text-align: center
+  text-align: center;
 }
 </style>

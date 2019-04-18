@@ -1,42 +1,36 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card v-if="isadmin" class="box-card">
       <div slot="header">
-        <span class="card-font">Books</span>
-        <router-link v-if="isadmin" :to="{ name: 'addBook' }">
+        <span class="card-font">Access Levels</span>
+        <router-link :to="{ name: 'addAccesslevel' }">
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
       <table class="font-14">
         <thead>
           <tr>
-            <th width="22.5%">Title</th>
-            <th width="22.5%">Status</th>
-            <th width="22.5%">Reserved By</th>
-            <th width="22.5%">Category</th>
+            <th width="90%">Name</th>
             <th class="actions-column">Options</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="book in books" :key="book.id">
-            <td>{{ book.title }}</td>
-            <td>{{ book.status }}</td>
-            <td>{{ choices.users[book.reservor_id].full_name }}</td>
-            <td>{{ choices.categories[book.category_id].name }}</td>
-            <td class="actions-column">
-              <router-link :to="{ name: 'editBook', params: { book } }">
+          <tr v-for="accesslevel in accesslevels" :key="accesslevel.id">
+            <td width="90%">{{ accesslevel.name }}</td>
+            <td>
+              <router-link :to="{ name: 'editAccesslevel', params: { accesslevel } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
-                <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
+                <i class="fas fa-trash-alt icon red" @click="deleteAccesslevel(accesslevel.id)"></i>
               </a>
             </td>
           </tr>
         </tbody>
       </table>
-      <pagination :meta_data="meta_data" @next="getBooks"></pagination>
+      <router-view></router-view>
+      <pagination :meta_data="meta_data" @next="getAccesslevels"></pagination>
     </el-card>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -44,11 +38,10 @@
 import Pagination from "../pagination";
 
 export default {
-  props: ["choices"],
   components: { Pagination },
   data() {
     return {
-      books: [],
+      accesslevels: [],
       meta_data: {
         last_page: null,
         current_page: 1,
@@ -58,23 +51,23 @@ export default {
     };
   },
   methods: {
-    getBooks(page = 1) {
+    getAccesslevels(page = 1) {
       axios
-        .get("/api/books/", {
+        .get("/api/accesslevels/", {
           params: {
             page
           }
         })
         .then(res => {
-          this.books = res.data.data;
+          this.accesslevels = res.data.data;
           this.meta_data.last_page = res.data.last_page;
           this.meta_data.current_page = res.data.current_page;
           this.meta_data.prev_page_url = res.data.prev_page_url;
         });
     },
-    deleteBook(id) {
+    deleteAccesslevel(id) {
       this.$confirm(
-        "This will permanently delete the book. Continue?",
+        "This will permanently delete the access level. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -83,16 +76,16 @@ export default {
         }
       )
         .then(() => {
-          axios.delete("/api/books/" + id).then(() => {
-            let index = this.books
+          axios.delete("/api/accesslevels/" + id).then(() => {
+            let index = this.accesslevels
               .map(item => {
                 return item.id;
               })
               .indexOf(id);
-            this.books.splice(index, 1);
+            this.accesslevels.splice(index, 1);
             this.$notify({
               title: "Success",
-              message: "The book has been deleted",
+              message: "The access level has been deleted",
               type: "success"
             });
           });
@@ -110,12 +103,15 @@ export default {
       });
     }
   },
-  mounted() {
-    this.getBooks();
+  created() {
+    this.getAccesslevels();
     this.getAdmin();
   }
 };
 </script>
+
+<style>
+</style>
 
 <style>
 </style>

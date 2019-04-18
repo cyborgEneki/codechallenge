@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card v-if="isadmin" class="box-card">
       <div slot="header">
         <span class="card-font">Departments</span>
         <router-link :to="{ name: 'addDepartment' }">
@@ -17,8 +17,7 @@
         <tbody>
           <tr v-for="department in departments" :key="department.id">
             <td width="90%">{{ department.name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
+            <td class="actions-column">
               <router-link :to="{ name: 'editDepartment', params: { department } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
@@ -47,7 +46,8 @@ export default {
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -96,10 +96,16 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   created() {
     this.getDepartments();
+    this.getAdmin();
   }
 };
 </script>

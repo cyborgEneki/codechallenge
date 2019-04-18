@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Department');
     }
 
+    public function accesslevel()
+    {
+        return $this->belongsTo('App\Models\Accesslevel');
+    }
+
     public function books()
     {
         return $this->belongsToMany('App\Models\Book')
