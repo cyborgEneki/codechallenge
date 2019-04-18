@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class WeeklyReport extends Mailable
+class WeeklyReportMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,15 @@ class WeeklyReport extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $booksborrowed;
+    public $booksreturned;
+    public $suspendedusers;
+
+    public function __construct($booksborrowed, $booksreturned, $suspendedusers)
     {
-        //
+        $this->booksborrowed = $booksborrowed;
+        $this->booksreturned = $booksreturned;
+        $this->suspendedusers = $suspendedusers;
     }
 
     /**
@@ -28,6 +34,6 @@ class WeeklyReport extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.weeklyreport');
     }
 }

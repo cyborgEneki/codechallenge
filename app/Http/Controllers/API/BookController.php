@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookAvailable;
 use Carbon\Carbon;
+use App\Models\BookUser;
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -61,16 +63,8 @@ class BookController extends Controller
         return response()->json($choices, 200);
     }
 
-    public function borrow()
+    public function test()
     {
-        // echo $books = Book::with(['users', 'authors'])->get()->first()->pivot->book_id;
-        // foreach ($books->users as $user) {
-        //     echo $user->pivot->due_date->count();
-        // };
-
-        $from = Carbon::now();
-
-        $to = $from->subDays(7);
-
+        echo User::where('status', 1)->get()->pluck('email');
     }
 }
