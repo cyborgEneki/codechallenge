@@ -14306,6 +14306,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -98545,7 +98557,7 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "Book", for: "ftitle" } },
+                { attrs: { label: "Title", for: "ftitle" } },
                 [
                   _c("el-input", {
                     attrs: { id: "ftitle" },
