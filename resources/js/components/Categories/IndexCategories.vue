@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card v-if="isadmin" class="box-card">
       <div slot="header">
         <span class="card-font">Categories</span>
         <router-link :to="{ name: 'addCategory' }">
@@ -46,7 +46,8 @@ export default {
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -95,10 +96,16 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   created() {
     this.getCategories();
+    this.getAdmin();
   }
 };
 </script>

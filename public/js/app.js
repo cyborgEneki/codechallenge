@@ -13973,7 +13973,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14019,10 +14020,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getAccesslevels();
+    this.getAdmin();
   }
 });
 
@@ -14256,7 +14265,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     orderedAuthors: function orderedAuthors() {
-      return _.orderBy(this.authors, 'updated_at');
+      return _.orderBy(this.authors, "updated_at");
     }
   },
   data: function data() {
@@ -14266,7 +14275,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14312,10 +14322,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getAuthors();
+    this.getAdmin();
   }
 });
 
@@ -14939,7 +14957,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -14985,10 +15004,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getCategories();
+    this.getAdmin();
   }
 });
 
@@ -15208,7 +15235,8 @@ __webpack_require__.r(__webpack_exports__);
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -15254,10 +15282,18 @@ __webpack_require__.r(__webpack_exports__);
           message: "Delete cancelled"
         });
       });
+    },
+    getAdmin: function getAdmin() {
+      var _this3 = this;
+
+      axios.get("/api/users/isadmin").then(function (response) {
+        _this3.isadmin = response.data;
+      });
     }
   },
   created: function created() {
     this.getDepartments();
+    this.getAdmin();
   }
 });
 
@@ -98270,86 +98306,92 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [
-                _vm._v("Access Levels")
-              ]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addAccesslevel" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.accesslevels, function(accesslevel) {
-                return _c("tr", { key: accesslevel.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(accesslevel.name))
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [
+                    _vm._v("Access Levels")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editAccesslevel",
-                              params: { accesslevel: accesslevel }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteAccesslevel(accesslevel.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
+                    "router-link",
+                    { attrs: { to: { name: "addAccesslevel" } } },
+                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
                   )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getAccesslevels }
-          })
-        ],
-        1
-      )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.accesslevels, function(accesslevel) {
+                    return _c("tr", { key: accesslevel.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(accesslevel.name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editAccesslevel",
+                                  params: { accesslevel: accesslevel }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteAccesslevel(accesslevel.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getAccesslevels }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -98561,85 +98603,89 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Authors")]),
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [_vm._v("Authors")]),
+                  _vm._v(" "),
+                  _c("router-link", { attrs: { to: { name: "addAuthor" } } }, [
+                    _c("i", { staticClass: "fas fa-plus-circle add-icon" })
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addAuthor" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.orderedAuthors, function(author) {
+                    return _c("tr", { key: author.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(author.name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editAuthor",
+                                  params: { author: author }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteAuthor(author.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getAuthors }
+              })
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.orderedAuthors, function(author) {
-                return _c("tr", { key: author.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(author.name))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    { staticClass: "actions-column" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editAuthor",
-                              params: { author: author }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteAuthor(author.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getAuthors }
-          })
-        ],
-        1
-      )
+          )
+        : _vm._e()
     ],
     1
   )
@@ -99335,85 +99381,93 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Categories")]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addCategory" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.categories, function(category) {
-                return _c("tr", { key: category.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(category.name))
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [
+                    _vm._v("Categories")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    { staticClass: "actions-column" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editCategory",
-                              params: { category: category }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteCategory(category.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
+                    "router-link",
+                    { attrs: { to: { name: "addCategory" } } },
+                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
                   )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getCategories }
-          })
-        ],
-        1
-      )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.categories, function(category) {
+                    return _c("tr", { key: category.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(category.name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editCategory",
+                                  params: { category: category }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteCategory(category.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getCategories }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -99608,85 +99662,93 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-card",
-        { staticClass: "box-card" },
-        [
-          _c(
-            "div",
-            { attrs: { slot: "header" }, slot: "header" },
+      _vm.isadmin
+        ? _c(
+            "el-card",
+            { staticClass: "box-card" },
             [
-              _c("span", { staticClass: "card-font" }, [_vm._v("Departments")]),
-              _vm._v(" "),
-              _c("router-link", { attrs: { to: { name: "addDepartment" } } }, [
-                _c("i", { staticClass: "fas fa-plus-circle add-icon" })
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("table", { staticClass: "font-14" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.departments, function(department) {
-                return _c("tr", { key: department.id }, [
-                  _c("td", { attrs: { width: "90%" } }, [
-                    _vm._v(_vm._s(department.name))
+              _c(
+                "div",
+                { attrs: { slot: "header" }, slot: "header" },
+                [
+                  _c("span", { staticClass: "card-font" }, [
+                    _vm._v("Departments")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "td",
-                    { staticClass: "actions-column" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "editDepartment",
-                              params: { department: department }
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteDepartment(department.id)
-                            }
-                          }
-                        })
-                      ])
-                    ],
-                    1
+                    "router-link",
+                    { attrs: { to: { name: "addDepartment" } } },
+                    [_c("i", { staticClass: "fas fa-plus-circle add-icon" })]
                   )
-                ])
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("pagination", {
-            attrs: { meta_data: _vm.meta_data },
-            on: { next: _vm.getDepartments }
-          })
-        ],
-        1
-      )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("table", { staticClass: "font-14" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { attrs: { width: "90%" } }, [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "actions-column" }, [
+                      _vm._v("Options")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.departments, function(department) {
+                    return _c("tr", { key: department.id }, [
+                      _c("td", { attrs: { width: "90%" } }, [
+                        _vm._v(_vm._s(department.name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticClass: "actions-column" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editDepartment",
+                                  params: { department: department }
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          ),
+                          _vm._v(" "),
+                          _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteDepartment(department.id)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-view"),
+              _vm._v(" "),
+              _c("pagination", {
+                attrs: { meta_data: _vm.meta_data },
+                on: { next: _vm.getDepartments }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
