@@ -24,10 +24,10 @@
             <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editBook', params: { book } }">
+              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
-              <a>
+              <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
             </td>

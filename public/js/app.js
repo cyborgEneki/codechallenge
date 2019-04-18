@@ -15763,7 +15763,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    editUser: function editUser(formName, editedUser) {
+    editUser: function editUser(editedUser) {
       var _this = this;
 
       this.formTouched = !this.$v.editedUser.$anyDirty;
@@ -99178,26 +99178,30 @@ var render = function() {
                     "td",
                     { staticClass: "actions-column" },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: { name: "editBook", params: { book: book } }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-edit icon blue" })]
-                      ),
+                      _vm.isadmin
+                        ? _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: { name: "editBook", params: { book: book } }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-edit icon blue" })]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("a", [
-                        _c("i", {
-                          staticClass: "fas fa-trash-alt icon red",
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteBook(book.id)
-                            }
-                          }
-                        })
-                      ])
+                      _vm.isadmin
+                        ? _c("a", [
+                            _c("i", {
+                              staticClass: "fas fa-trash-alt icon red",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteBook(book.id)
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
                     ],
                     1
                   )
