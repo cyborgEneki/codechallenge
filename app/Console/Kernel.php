@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\WeeklyReportCommand',
         'App\Console\Commands\BeforeDueDateCommand',
         'App\Console\Commands\AfterDueDateCommand',
+        'App\Console\Commands\DisableUsersCommand',
     ];
 
     /**
@@ -31,6 +32,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('daily:prereminder')
         ->daily()->at('07:00');
         $schedule->command('daily:postreminder')
+        ->daily()->at('07:00');
+        $schedule->command('disable:user')
         ->daily()->at('07:00');
     }
 

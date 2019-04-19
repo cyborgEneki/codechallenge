@@ -12,6 +12,7 @@ use App\Mail\BookAvailable;
 use Carbon\Carbon;
 use App\Models\BookUser;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -42,11 +43,6 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        if ($request->exists('status')) {
-            if ($book->status == 1) {
-                Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
-            }
-        }
         $this->bookRepo->updateBook($request, $book);
         return response()->json($book, 200);
     }
@@ -63,8 +59,15 @@ class BookController extends Controller
         return response()->json($choices, 200);
     }
 
-    public function test()
+    public function reserve(Request $request, $bookId)
     {
-        //
+        $reservor = $request["reservor_id"] = Auth::id();
+        $book = Book::find($bookId)->select('reservor_id')->where('reservor_id', null)->first();
+        if($book !== null) {
+            Book::find($bookId)->update(['reservor_id' => $reservor]);
+            return response()->json(['success'=>'Your reservation was successful'], 200);
+        } else {
+            return response()->json(['error'=>'This book has already been reserved'], 404);
+        }
     }
 }

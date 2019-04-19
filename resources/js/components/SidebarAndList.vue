@@ -11,42 +11,55 @@
           text-color="#fff"
           active-text-color="#ffd04b"
         >
+          <router-link :to="{ name: 'profile'}">
+            <el-menu-item index="8">
+              <i class="fas fa-book-open mustard"></i>
+              <span slot="title" class="sidebar-padding">Profile</span>
+            </el-menu-item>
+          </router-link>
+
           <router-link v-if="isadmin" :to="{ name: 'indexAuthors'}">
             <el-menu-item index="2">
               <i class="fas fa-pen-alt hotpink"></i>
               <span slot="title" class="sidebar-padding">Authors</span>
             </el-menu-item>
           </router-link>
+
           <router-link :to="{ name: 'indexBooks'}">
             <el-menu-item index="3">
               <i class="fas fa-book-open mustard"></i>
               <span slot="title" class="sidebar-padding">Books</span>
             </el-menu-item>
           </router-link>
+
           <router-link v-if="isadmin" :to="{ name: 'indexCategories'}">
             <el-menu-item index="4">
               <i class="fas fa-boxes powderblue"></i>
               <span slot="title" class="sidebar-padding">Categories</span>
             </el-menu-item>
           </router-link>
+
           <router-link v-if="isadmin" :to="{ name: 'indexDepartments'}">
             <el-menu-item index="5">
               <i class="fas fa-building customgreen"></i>
               <span slot="title" class="sidebar-padding">Departments</span>
             </el-menu-item>
           </router-link>
+
           <router-link v-if="isadmin" :to="{ name: 'indexAccesslevels'}">
             <el-menu-item index="7">
               <i class="fas fa-ban purple"></i>
               <span slot="title" class="sidebar-padding">Access Levels</span>
             </el-menu-item>
           </router-link>
+
           <router-link v-if="isadmin" :to="{ name: 'indexUsers'}">
             <el-menu-item index="6">
               <i class="fas fa-users hotorange"></i>
               <span slot="title" class="sidebar-padding">Users</span>
             </el-menu-item>
           </router-link>
+
         </el-menu>
       </el-aside>
       <el-container>
@@ -67,12 +80,8 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
+    handleOpen(key, keyPath) {},
+    handleClose(key, keyPath) {},
     getChoices() {
       axios.get("/api/choices").then(response => {
         this.choices = response.data;

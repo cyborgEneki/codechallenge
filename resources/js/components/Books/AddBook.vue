@@ -32,7 +32,7 @@
         </p>
       </el-form-item>
 
-      <el-form-item label="Reserved By" for="freservor">
+      <!-- <el-form-item label="Reserved By" for="freservor">
         <el-select
           id="freservor"
           v-model.lazy="$v.book.reservor_id.$model"
@@ -44,12 +44,7 @@
             :key="user.id"
           >{{ user.full_name }}</el-option>
         </el-select>
-        <p v-if="errors" class="error">
-          <span
-            v-if="!$v.book.reservor_id.$model"
-          >A user without a department is like a game without thrones!</span>
-        </p>
-      </el-form-item>
+      </el-form-item> -->
 
       <el-form-item label="Category" for="fcategory">
         <el-select id="fcategory" v-model.lazy="$v.book.category_id.$model" placeholder="Category">
@@ -106,7 +101,6 @@ export default {
     book: {
       title: { required },
       status: { required },
-      reservor_id: { required },
       category_id: { required }
     }
   },

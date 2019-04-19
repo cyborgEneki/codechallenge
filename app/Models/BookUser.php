@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookUser extends Model
 {
+    protected $fillable = [
+        'book_id', 'user_id', 'due_date', 'date_out', 'date_in'
+    ];
+
     protected $table = 'book_user';
 
     public function user ()

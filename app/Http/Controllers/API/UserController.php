@@ -77,4 +77,19 @@ class UserController extends Controller
         $result = Auth::User()->accesslevel_id == 1;
         return response()->json($result, 200);
     }
+
+    public function profile()
+    {
+        $user = Auth::User();
+         $date_in = $user->books()->first()->pivot->date_in;
+         $date_out = $user->books()->first()->pivot->date_out;
+         $due_date = $user->books()->first()->pivot->due_date;
+         $first_name = $user->first_name;
+         $last_name = $user->last_name;
+
+         $users = User::with('books')->get();
+        foreach ($users as $user) {
+            echo $user->books()->pivot->date_in;
+        }
+    }
 }

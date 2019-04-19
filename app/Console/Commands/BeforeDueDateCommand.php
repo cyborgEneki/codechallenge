@@ -43,21 +43,13 @@ class BeforeDueDateCommand extends Command
      */
     public function handle()
     {
-        $from = Carbon::today();
-        $fromString = $from->toDateString();
+        $dt = Carbon::today();
+        $dtString = $dt->toDateString();
         
-        $firstReminder = $from->subDays(3);
+        $firstReminder = $dt->subDays(3);
         $firstReminderString = $firstReminder->toDateString();
 
-        $users = BookUser::select("user_id")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-        // $dueDate = BookUser::select("due_date")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-        // $books = BookUser::select("book_id")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-        // $dateOut = BookUser::select("date_out")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-
-        // foreach ($books as $book)
-        // {
-        //     $title = Book::find($book)->pluck("title")->first();
-        // }
+        $users = BookUser::select("user_id")->whereBetween('due_date', [$firstReminderString, $dtString])->get();
 
         foreach ($users as $user) {
             $name = User::find($user)->pluck("first_name")->first();

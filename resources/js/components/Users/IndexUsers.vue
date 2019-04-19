@@ -52,6 +52,11 @@ import Pagination from "../pagination";
 
 export default {
   props: ["choices"],
+  watch: {
+    choices (n, o) {
+      console.log(n, o) // n is the new value, o is the old value.
+    }
+  },
   components: { Pagination },
   data() {
     return {
@@ -117,7 +122,7 @@ export default {
       });
     }
   },
-  created() {
+  mounted() {
     this.getUsers();
     this.getAdmin();
   }

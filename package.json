@@ -13,7 +13,7 @@
     "axios": "^0.18.0",
     "cross-env": "^5.1",
     "foundation-sites": "^6.5.3",
-    "jquery": "^2.1.4",
+    "jquery": "^2.2.4",
     "laravel-mix": "^4.0.7",
     "lodash": "^4.17.5",
     "popper.js": "^1.12",
@@ -26,6 +26,7 @@
   "dependencies": {
     "element-ui": "^2.7.2",
     "laravel-vue-pagination": "^2.3.0",
+    "vue-fixed-header": "^3.2.2",
     "vue-router": "^3.0.5",
     "vue2-filters": "^0.6.0",
     "vuejs-paginate": "^2.1.0",

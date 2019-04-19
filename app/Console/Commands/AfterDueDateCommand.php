@@ -45,7 +45,7 @@ class AfterDueDateCommand extends Command
         $from = Carbon::today();
         $fromString = $from->toDateString();
 
-        $users = BookUser::select("user_id")->where('due_date', '>', $fromString)->get();
+        $users = BookUser::select("user_id")->where('date_in', null)->where('due_date', '>', $fromString)->get();
 
         foreach ($users as $user) {
             $name = User::find($user)->pluck("first_name")->first();

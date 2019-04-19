@@ -17,10 +17,17 @@ import IndexAccesslevels from './components/Accesslevels/IndexAccesslevels';
 import AddUser from './components/Users/AddUser';
 import EditUser from './components/Users/EditUser';
 import IndexUsers from './components/Users/IndexUsers';
+import Profile from './components/Profile.vue';
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
+            props: true
+        },
         {
             path: '/add-author',
             name: 'addAuthor',
