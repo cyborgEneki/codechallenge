@@ -61,14 +61,7 @@ class BookController extends Controller
 
     public function reserve(Request $request, $bookId)
     {
-        $reservor = $request["reservor_id"] = Auth::id();
-        $book = Book::find($bookId)->select('reservor_id')->where('reservor_id', null)->first();
-        
-        if ($book !== null) {
-            Book::find($bookId)->update(['reservor_id' => $reservor]);
-            return response()->json(['success'=>'Your reservation was successful'], 200);
-        } else {
-            return response()->json(['error'=>'This book has already been reserved'], 404);
-        }
+        $reserve = $this->bookRepo->reserveBook($request, $bookId);
+        return response()->json($reserve, 200);
     }
 }

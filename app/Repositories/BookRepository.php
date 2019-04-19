@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Department;
 use App\Models\User;
 use App\Models\BookUser;
+use Illuminate\Http\Request;
 
 class BookRepository implements BookRepositoryInterface
 {
@@ -69,5 +70,18 @@ class BookRepository implements BookRepositoryInterface
         $departments = ['departments' => $departments];
 
         return array_merge($books, $auth_user, $authors, $categories, $departments, $users, $authuserstatus);
+    }
+
+    public function reserveBook(Request $request, $bookId)
+    {
+        $reservor = $request["reservor_id"] = Auth::id();
+        $book = Book::find($bookId)->select('reservor_id')->where('reservor_id', null)->first();
+        
+        if ($book !== null) {
+            Book::find($bookId)->update(['reservor_id' => $reservor]);
+            return response()->json(['success'=>'Your reservation was successful'], 200);
+        } else {
+            return response()->json(['error'=>'This book has already been reserved'], 404);
+        }
     }
 }
