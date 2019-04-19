@@ -70,9 +70,4 @@ class BookController extends Controller
             return response()->json(['error'=>'This book has already been reserved'], 404);
         }
     }
-
-    public function test()
-    {
-        //
-    }
 }

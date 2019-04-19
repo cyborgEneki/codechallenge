@@ -33,5 +33,9 @@ class BackendServiceProvider extends ServiceProvider
             'App\Contracts\AccesslevelRepositoryInterface',
             'App\Repositories\AccesslevelRepository'
         );
+        $this->app->bind(
+            'App\Contracts\BookUserRepositoryInterface',
+            'App\Repositories\BookUserRepository'
+        );
     }
 }
