@@ -16,29 +16,33 @@ class BookUserController extends Controller
         return BookUser::all();
     }
 
-    public function borrow (BookUserRequest $request)
+    public function borrow(BookUserRequest $request)
     {
-        $dt = Carbon::today();
-        $dtString = $dt->toDateString();
+        $borrowed = BookUser::where('user_id', Auth::id())->where('date_in', null)->get()->count();
+        if ($borrowed < 3) {
+            $dt = Carbon::today();
+            $dtString = $dt->toDateString();
 
-        $dueDate = $dt->addDays(14);
-        $dueDateString = $dueDate->toDateString();
-
-        $request["user_id"] = Auth::id();
-        $request["due_date"] = $dueDateString;
-        $bookuser = BookUser::create($request->all());
-        $request["date_out"] = $bookuser->due_date;
-
-        return $bookuser;
+            $dueDate = $dt->addDays(14);
+            $dueDateString = $dueDate->toDateString();
+    
+            $request["user_id"] = Auth::id();
+            $request["due_date"] = $dueDateString;
+            $request["date_out"] = $dtString;
+            $bookuser = BookUser::create($request->all());
+            return $bookuser;
+        } else {
+            return response()->json(['error'=> 'You have reached the maximum borrowing limit'], 401);
+        }
     }
 
-    public function return (BookUserRequest $request)
+    public function return(BookUserRequest $request)
     {
         // $bookuser = BookUser::create($request->all());
         // return $bookuser;
     }
 
-    public function reserve (BookUserRequest $request)
+    public function reserve(BookUserRequest $request)
     {
         // $bookuser = BookUser::create($request->all());
         // return $bookuser;
