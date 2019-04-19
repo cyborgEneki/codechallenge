@@ -48,8 +48,9 @@ class BookUserRepository implements BookUserRepositoryInterface
     }
     public function return(Book $book)
     {
-        if ($book->status == 1) {
+        if ($book->reservor_id !== null) {
             Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
+            Book::select('id')->where('id', $book->id)->update(['reservor_id' => null]);
         }
     }
 }
