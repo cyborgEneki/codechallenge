@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\WeeklyReportCommand',
         'App\Console\Commands\BeforeDueDateCommand',
         'App\Console\Commands\AfterDueDateCommand',
+        'App\Console\Commands\DisableUsersCommand',
     ];
 
     /**

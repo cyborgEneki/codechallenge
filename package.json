@@ -26,6 +26,7 @@
   "dependencies": {
     "element-ui": "^2.7.2",
     "laravel-vue-pagination": "^2.3.0",
+    "vue-fixed-header": "^3.2.2",
     "vue-router": "^3.0.5",
     "vue2-filters": "^0.6.0",
     "vuejs-paginate": "^2.1.0",

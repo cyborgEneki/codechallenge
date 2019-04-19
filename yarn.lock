@@ -5459,6 +5459,13 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-fixed-header@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/vue-fixed-header/-/vue-fixed-header-3.2.2.tgz#cfbaaaedc51aa3d7fe71960bb8cf688c0fd6e1c3"
+  integrity sha512-1QojO/oEY3SDidCGoL6twPnW/edk8IBgP/gNaZNfSWNch+QUlr8aISWUXAumLfujJI6Uvh5VH+cqlHvrIPfCUA==
+  dependencies:
+    vue "^2.5.17"
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.3.tgz#2756f46cb3258054c5f4723de8ae7e87302a1ccf"
