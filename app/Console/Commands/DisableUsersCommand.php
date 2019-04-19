@@ -47,7 +47,7 @@ class DisableUsersCommand extends Command
         $firstReminder = $dt->addDays(3);
         $firstReminderString = $firstReminder->toDateString();
 
-        $users = BookUser::select("user_id")->where('due_date', '>' ,$firstReminderString)->get();
+        $users = BookUser::select("user_id")->where('date_in', null)->where('due_date', '>' ,$firstReminderString)->get();
 
         foreach ($users as $user) {
             $name = User::find($user)->pluck("first_name")->first();

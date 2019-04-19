@@ -2,7 +2,7 @@
 <head></head>
 <body style="background: black; color: white">
 <h1>Hi {{ $name }}</h1>
-<p>Kindly note that that your book is overdue by more than 3 day and thus have been suspended from borrowing for 3 months.</p>
+<p>Kindly note that that your book is overdue by more than 3 days and thus have been suspended from borrowing for 3 months.</p>
 <p>Kindly return the book as soon as possible.</p> 
 <br>
 <p>Kind regards,</p>
