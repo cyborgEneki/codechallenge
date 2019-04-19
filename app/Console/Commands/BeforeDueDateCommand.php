@@ -50,14 +50,6 @@ class BeforeDueDateCommand extends Command
         $firstReminderString = $firstReminder->toDateString();
 
         $users = BookUser::select("user_id")->whereBetween('due_date', [$firstReminderString, $dtString])->get();
-        // $dueDate = BookUser::select("due_date")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-        // $books = BookUser::select("book_id")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-        // $dateOut = BookUser::select("date_out")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
-
-        // foreach ($books as $book)
-        // {
-        //     $title = Book::find($book)->pluck("title")->first();
-        // }
 
         foreach ($users as $user) {
             $name = User::find($user)->pluck("first_name")->first();

@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('books', 'API\BookController@index');
     Route::get('choices', 'API\BookController@choices');
     Route::get('test', 'API\BookController@test');
+    Route::get('books/{bookId}/reserve', 'API\BookController@reserve');
     Route::post('books', 'API\BookController@store')->middleware('admin');
 
     Route::apiResource('accesslevels', 'API\AccesslevelController')->middleware('admin');
