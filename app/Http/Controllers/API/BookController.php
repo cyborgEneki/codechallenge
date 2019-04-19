@@ -43,11 +43,6 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        if ($request->exists('status')) {
-            if ($book->status == 1) {
-                Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
-            }
-        }
         $this->bookRepo->updateBook($request, $book);
         return response()->json($book, 200);
     }

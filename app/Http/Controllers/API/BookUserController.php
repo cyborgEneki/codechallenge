@@ -8,6 +8,7 @@ use App\Models\BookUser;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Requests\BookUserRequest;
+use App\Models\Book;
 
 class BookUserController extends Controller
 {
@@ -35,6 +36,7 @@ class BookUserController extends Controller
 
             if ($borrowed == 0) {
                 $bookuser = BookUser::create($request->all());
+                Book::select('book_id')->where('id', $request['book_id'])->update(['status' => 0]);
                 return response()->json($bookuser, 201);
             } else {
                 return response()->json(['error' => 'This book has already been borrowed'], 401);
@@ -48,5 +50,11 @@ class BookUserController extends Controller
     {
         // $bookuser = BookUser::create($request->all());
         // return $bookuser;
+
+        // if ($request->exists('status')) {
+        //     if ($book->status == 1) {
+        //         Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
+        //     }
+        // }
     }
 }
