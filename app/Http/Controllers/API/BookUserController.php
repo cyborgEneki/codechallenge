@@ -32,9 +32,9 @@ class BookUserController extends Controller
             $request["due_date"] = $dueDateString;
             $request["date_out"] = $dtString;
 
-            $borrowed = BookUser::select('book_id')->where('book_id', $request['book_id'])->where('date_in', null)->get()->count();
+            $borrowed = BookUser::select('book_id')->where('book_id', $request['book_id'])->where('due_date', null)->get()->count();
 
-            if ($borrowed == 0) {
+            if ($borrowed !== 0) {
                 $bookuser = BookUser::create($request->all());
                 Book::select('book_id')->where('id', $request['book_id'])->update(['status' => 0]);
                 return response()->json($bookuser, 201);
