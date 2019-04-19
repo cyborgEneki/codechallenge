@@ -65,12 +65,6 @@ class BookController extends Controller
 
     public function test()
     {
-         $from = Carbon::today();
-         $fromString = $from->toDateString();
-        
-        $firstReminder = $from->subDays(3);
-        $firstReminderString = $firstReminder->toDateString();
-
-        echo BookUser::select("user_id")->whereBetween('due_date', [$firstReminderString, $fromString])->get();
+        //
     }
 }

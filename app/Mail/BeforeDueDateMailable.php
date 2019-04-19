@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class BeforeDueDate extends Mailable
+class BeforeDueDateMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,12 @@ class BeforeDueDate extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $name;
+
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
     /**
@@ -28,6 +31,6 @@ class BeforeDueDate extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.beforeduedate');
     }
 }

@@ -58,7 +58,6 @@ class WeeklyReportCommand extends Command
 
         $suspendedNumber = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
     
-        
         Mail::to(User::where('status', 1)->get()->pluck('email'))->send(new WeeklyReportMailable($borrowedNumber, $returnedNumber, $suspendedNumber));
     }
 }
