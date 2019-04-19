@@ -44,11 +44,8 @@ class AfterDueDateCommand extends Command
     {
         $from = Carbon::today();
         $fromString = $from->toDateString();
-        
-        $firstReminder = $from->addDays(3);
-        $firstReminderString = $firstReminder->toDateString();
 
-        $users = BookUser::select("user_id")->whereBetween('due_date', [$fromString, $firstReminderString])->get();
+        $users = BookUser::select("user_id")->where('due_date', '>', $fromString)->get();
 
         foreach ($users as $user) {
             $name = User::find($user)->pluck("first_name")->first();
