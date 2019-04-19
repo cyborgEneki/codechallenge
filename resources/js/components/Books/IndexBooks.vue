@@ -10,11 +10,11 @@
       <table class="font-14">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Author(s)</th>
-            <th>Status</th>
-            <th>Category</th>
-            <th width="25%" class="actions-column">Options</th>
+            <th width="20%">Title</th>
+            <th width="20%">Author(s)</th>
+            <th width="20%">Status</th>
+            <th width="20%">Category</th>
+            <th width="20%">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -28,15 +28,20 @@
               <p v-if="book.status == 0">Borrowed</p>
             </td>
             <td>{{ choices.categories[book.category_id].name }}</td>
-            <td width="25%">
+            <td>
               <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
-              <el-button v-show="book.status == 1" @click="borrow">B</el-button>
-              <el-button v-show="book.reservor_id == null" @click="reserve">R</el-button>
+              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
+              <el-button
+                class="reserve-button"
+                v-show="book.reservor_id == null"
+                @click="reserve(book.id)"
+              >R</el-button>
+              <el-button v-show="book.status == 0" @click="returned">Return</el-button>
             </td>
           </tr>
         </tbody>
@@ -124,7 +129,7 @@ export default {
     },
     borrow() {
       this.$confirm(
-        "Are you sure you want this specific book taking up your time?",
+        "Are you sure you want this specific book taking up your leisure time?",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -144,12 +149,39 @@ export default {
           .catch(() => {
             console.log();
             this.$alert("You have exceeded your borrowing limit", "Stop", {
-              confirmButtonText: "OK",
+              confirmButtonText: "OK"
             });
           });
       });
     },
-    reserve() {}
+    reserve(id) {
+      this.$confirm(
+        "Are you sure you want this specific book taking up your time?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .get("/api/books/" + id + "/reserve", this.books)
+          .then(response => {
+            this.books = response.data;
+            this.$alert(
+              "You will get an email notification as soon as this book is available. Please note that it will be unchecked in the system as soon as the email is sent, therefore, kindly borrow it as soon as you receive the email.",
+              "Success!",
+              {
+                confirmButtonText: "OK",
+                callback: action => {
+                  
+                }
+              }
+            );
+          });
+      });
+    },
+    returned() {}
   },
   mounted() {
     this.getBooks();
@@ -159,4 +191,12 @@ export default {
 </script>
 
 <style>
+.borrow-button {
+  background-color: lightgreen;
+  border-radius: 100%;
+}
+.reserve-button {
+  background-color: yellow;
+  border-radius: 100%;
+}
 </style>

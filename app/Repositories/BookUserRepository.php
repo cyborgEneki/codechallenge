@@ -19,7 +19,7 @@ class BookUserRepository implements BookUserRepositoryInterface
         return BookUser::all();
     }
 
-    public function borrow(BookUserRequest $request)
+    public function borrow(Request $request)
     {
         $holding = BookUser::where('user_id', Auth::id())->where('date_in', null)->get()->count();
 
@@ -47,16 +47,20 @@ class BookUserRepository implements BookUserRepositoryInterface
             return response()->json(['error'=> 'You have reached the maximum borrowing limit'], 401);
         }
     }
-    public function return(Book $book, Request $request)
+    public function bookin($bookId, Request $request)
     {
         $dt = Carbon::today();
         $dtString = $dt->toDateString();
 
+        BookUser::select('book_id')->where("book_id", $bookId)->update(['date_in' => $dtString]);
+        Book::find($bookId)->update(['status' => 1]);
+        $book = Book::where('id', $bookId)->first();
+
         if ($book->reservor_id !== null) {
-            $request["date_in"] = $dtString;
-            $book->date_in->update(["date_in" => $dtString]);
-            Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
-            Book::select('id')->where('id', $book->id)->update(['reservor_id' => null]);
+            $book->reservor_id;
+            Mail::to($book->reservor()->pluck("email"))->send(new BookAvailable($book));
+            Book::select('id')->where('id', $bookId)->update(['reservor_id' => null]);
         }
+        return response()->json('success', 200);
     }
 }

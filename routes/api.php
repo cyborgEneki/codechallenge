@@ -42,5 +42,5 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('profile', 'API\BookUserController@index');
     Route::post('borrow', 'API\BookUserController@borrow');
-    Route::post('return', 'API\BookUserController@return')->middleware('admin');
+    Route::get('books/{bookId}/returned', 'API\BookUserController@bookin')->middleware('admin');
 });

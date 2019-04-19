@@ -10,7 +10,7 @@ interface BookUserRepositoryInterface
 {
     public function index();
 
-    public function borrow(BookUserRequest $request);
+    public function borrow(Request $request);
 
-    public function return(Book $book, Request $request);
+    public function bookin($bookId, Request $request);
 }

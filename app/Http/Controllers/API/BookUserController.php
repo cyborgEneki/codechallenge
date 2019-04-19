@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BookUserRequest;
 use App\Models\Book;
 use App\Contracts\BookUserRepositoryInterface;
+use Illuminate\Http\Request;
 
 class BookUserController extends Controller
 {
@@ -28,9 +29,9 @@ class BookUserController extends Controller
         return $bookusers;
     }
 
-    public function return(Book $book)
+    public function bookin($bookId, Request $request)
     {
-        $bookusers = $this->bookuserRepo->return($book);
+        $bookusers = $this->bookuserRepo->bookin($bookId, $request);
         return $bookusers;
     }
 }
