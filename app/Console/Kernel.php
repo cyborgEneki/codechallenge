@@ -33,6 +33,8 @@ class Kernel extends ConsoleKernel
         ->daily()->at('07:00');
         $schedule->command('daily:postreminder')
         ->daily()->at('07:00');
+        $schedule->command('disable:user')
+        ->daily()->at('07:00');
     }
 
     /**
