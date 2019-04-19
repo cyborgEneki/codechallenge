@@ -49,10 +49,4 @@ class BookUserController extends Controller
         // $bookuser = BookUser::create($request->all());
         // return $bookuser;
     }
-
-    public function reserve(BookUserRequest $request)
-    {
-        // $bookuser = BookUser::create($request->all());
-        // return $bookuser;
-    }
 }

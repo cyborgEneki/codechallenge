@@ -64,6 +64,18 @@ class BookController extends Controller
         return response()->json($choices, 200);
     }
 
+    public function reserve(BookRequest $request)
+    {
+        $request["reservor_id"] = Auth::id();
+        
+        $select = Book::select('status')->get();
+        $reservation = Book::select('reserved_id')->get()
+
+        if($select == 0) {
+            if()
+        }
+    }
+
     public function test()
     {
         //
