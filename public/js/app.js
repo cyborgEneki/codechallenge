@@ -98621,8 +98621,8 @@ var render = function() {
                       {
                         name: "show",
                         rawName: "v-show",
-                        value: _vm.choices.authuser.status == 1,
-                        expression: "choices.authuser.status == 1"
+                        value: _vm.choices.authuserstatus == 1,
+                        expression: "choices.authuserstatus == 1"
                       }
                     ],
                     attrs: { width: "20%" }
@@ -98669,8 +98669,8 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.choices.authuser.status == 1,
-                          expression: "choices.authuser.status == 1"
+                          value: _vm.choices.authuserstatus == 1,
+                          expression: "choices.authuserstatus == 1"
                         }
                       ]
                     },
@@ -98752,7 +98752,7 @@ var render = function() {
                               ],
                               on: {
                                 click: function($event) {
-                                  return _vm.returned(_vm.id)
+                                  return _vm.returned(book.id)
                                 }
                               }
                             },

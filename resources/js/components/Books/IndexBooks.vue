@@ -14,7 +14,7 @@
             <th width="20%">Author(s)</th>
             <th width="20%">Status</th>
             <th width="20%">Category</th>
-            <th width="20%" v-show="choices.authuser.status == 1">Options</th>
+            <th width="20%" v-show="choices.authuserstatus == 1">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
               <p v-if="book.status == 0">Borrowed</p>
             </td>
             <td>{{ choices.categories[book.category_id].name }}</td>
-            <td v-show="choices.authuser.status == 1">
+            <td v-show="choices.authuserstatus == 1">
                 <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
                   <i class="fas fa-edit icon blue"></i>
                 </router-link>
@@ -41,7 +41,7 @@
                   v-show="book.reservor_id == null"
                   @click="reserve(book.id)"
                 >R</el-button>
-                <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(id)">Return</el-button>
+                <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
             </td>
           </tr>
         </tbody>

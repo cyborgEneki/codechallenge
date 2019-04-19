@@ -52,11 +52,13 @@ class BookUserRepository implements BookUserRepositoryInterface
         $dt = Carbon::today();
         $dtString = $dt->toDateString();
 
-        BookUser::select('book_id')->where("book_id", $bookId)->update(['date_in' => $dtString]);
-        Book::find($bookId)->update(['status' => 1]);
-        $book = Book::where('id', $bookId)->first();
+        $bookreservor = Book::select('reservor_id')->where('id', $bookId)->first();
+        $book = Book::where('id', $bookId);
 
-        if ($book->reservor_id !== null) {
+        BookUser::select('book_id')->where("book_id", $bookId)->update(['date_in' => $dtString]);
+        Book::select('id')->where("id", $bookId)->update(['status' => 1]);
+
+        if ($bookreservor !== null) {
             Mail::to($book->reservor()->pluck("email"))->send(new BookAvailable($book));
             Book::select('id')->where('id', $bookId)->update(['reservor_id' => null]);
         }

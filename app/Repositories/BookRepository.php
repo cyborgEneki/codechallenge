@@ -57,6 +57,8 @@ class BookRepository implements BookRepositoryInterface
         $users = User::with(['books'])->get();
         $users = $users->keyBy('id');
         $users = ['users' => $users];
+
+        $authuserstatus = ['authuserstatus'=> Auth::User()->status];
         
         $categories = Category::all();
         $categories = $categories->keyBy('id');
@@ -66,6 +68,6 @@ class BookRepository implements BookRepositoryInterface
         $departments = $departments->keyBy('id');
         $departments = ['departments' => $departments];
 
-        return array_merge($books, $auth_user, $authors, $categories, $departments, $users);
+        return array_merge($books, $auth_user, $authors, $categories, $departments, $users, $authuserstatus);
     }
 }
