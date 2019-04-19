@@ -18,8 +18,9 @@ class BookUserController extends Controller
 
     public function borrow(BookUserRequest $request)
     {
-        $borrowed = BookUser::where('user_id', Auth::id())->where('date_in', null)->get()->count();
-        if ($borrowed < 3) {
+        $holding = BookUser::where('user_id', Auth::id())->where('date_in', null)->get()->count();
+
+        if ($holding < 3) {
             $dt = Carbon::today();
             $dtString = $dt->toDateString();
 
@@ -29,8 +30,15 @@ class BookUserController extends Controller
             $request["user_id"] = Auth::id();
             $request["due_date"] = $dueDateString;
             $request["date_out"] = $dtString;
-            $bookuser = BookUser::create($request->all());
-            return $bookuser;
+
+            $borrowed = BookUser::select('book_id')->where('book_id', $request['book_id'])->where('date_in', null)->get()->count();
+
+            if ($borrowed == 0) {
+                $bookuser = BookUser::create($request->all());
+                return response()->json($bookuser, 201);
+            } else {
+                return response()->json(['error' => 'This book has already been borrowed'], 401);
+            }
         } else {
             return response()->json(['error'=> 'You have reached the maximum borrowing limit'], 401);
         }
