@@ -24,10 +24,10 @@ class BookUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'due_date' => 'required',
-            'date_out' => 'required',
-            'book_id' => 'required',
-            'user_id' => 'required',
+            // 'due_date' => 'required',
+            // 'date_out' => 'required',
+            // 'book_id' => 'required',
+            // 'user_id' => 'required',
         ];
     }
 }

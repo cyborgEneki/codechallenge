@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Book;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookAvailable;
+use Illuminate\Http\Request;
 
 class BookUserRepository implements BookUserRepositoryInterface
 {
@@ -46,9 +47,14 @@ class BookUserRepository implements BookUserRepositoryInterface
             return response()->json(['error'=> 'You have reached the maximum borrowing limit'], 401);
         }
     }
-    public function return(Book $book)
+    public function return(Book $book, Request $request)
     {
+        $dt = Carbon::today();
+        $dtString = $dt->toDateString();
+
         if ($book->reservor_id !== null) {
+            $request["date_in"] = $dtString;
+            $book->date_in->update(["date_in" => $dtString]);
             Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
             Book::select('id')->where('id', $book->id)->update(['reservor_id' => null]);
         }

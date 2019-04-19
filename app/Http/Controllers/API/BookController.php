@@ -63,6 +63,7 @@ class BookController extends Controller
     {
         $reservor = $request["reservor_id"] = Auth::id();
         $book = Book::find($bookId)->select('reservor_id')->where('reservor_id', null)->first();
+        
         if($book !== null) {
             Book::find($bookId)->update(['reservor_id' => $reservor]);
             return response()->json(['success'=>'Your reservation was successful'], 200);

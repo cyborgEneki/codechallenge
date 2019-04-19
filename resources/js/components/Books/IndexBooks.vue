@@ -13,9 +13,8 @@
             <th>Title</th>
             <th>Author(s)</th>
             <th>Status</th>
-            <th>Reserved By</th>
             <th>Category</th>
-            <th class="actions-column">Options</th>
+            <th width="25%" class="actions-column">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -28,15 +27,16 @@
               <p v-if="book.status == 1">Available</p>
               <p v-if="book.status == 0">Borrowed</p>
             </td>
-            <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
-            <td class="actions-column">
+            <td width="25%">
               <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
+              <el-button v-show="book.status == 1" @click="borrow">Borrow</el-button>
+              <el-button v-show="book.reservor_id == null" @click="reserve">Reserve</el-button>
             </td>
           </tr>
         </tbody>
@@ -61,7 +61,13 @@ export default {
         current_page: 1,
         prev_page_url: null
       },
-      isadmin: false
+      isadmin: false,
+      borrowDetails: {
+        due_date: "",
+        date_out: "",
+        book_id: "",
+        user_id: ""
+      }
     };
   },
   methods: {
@@ -115,7 +121,29 @@ export default {
       axios.get("/api/users/isadmin").then(response => {
         this.isadmin = response.data;
       });
-    }
+    },
+    borrow() {
+      this.$confirm(
+        "Are you sure you want this specific book taking up your time?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios.post("/api/borrow", this.borrowDetails).then(response => {
+          this.$notify({
+            title: "Success",
+            message: "Success! Kindly go pick up your book from HR.",
+            type: "success"
+          });
+        });
+      }).catch(()=>{
+        
+      });
+    },
+    reserve() {}
   },
   mounted() {
     this.getBooks();
