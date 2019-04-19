@@ -35,11 +35,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('books/{book}', 'API\BookController@show');
     Route::get('books', 'API\BookController@index');
     Route::get('choices', 'API\BookController@choices');
-    Route::post('borrow', 'API\BookController@borrow');
     Route::get('test', 'API\BookController@test');
     Route::post('books', 'API\BookController@store')->middleware('admin');
 
     Route::apiResource('accesslevels', 'API\AccesslevelController')->middleware('admin');
 
     Route::get('/profile', 'API\BookUserController@index');
+    Route::post('borrow', 'API\BookUserController@borrow');
 });
