@@ -4879,22 +4879,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    orderedProfile: function orderedProfile() {
+      return _.orderBy(this.profile, "due_date", "desc");
+    }
+  },
   data: function data() {
     return {
       profile: [],
@@ -99174,64 +99164,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticStyle: { color: "white" } }, [_vm._v("Profile")]),
-    _vm._v(" "),
-    _c("table", { staticClass: "font-14" }, [
-      _vm._m(0),
+  return _c(
+    "div",
+    [
+      _c("h3", { staticStyle: { color: "white" } }, [_vm._v("Profile")]),
       _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.profile, function(pro) {
-          return _c("div", { key: pro.id, staticStyle: { color: "white" } }, [
-            _vm.choices.authuser == pro.user_id
-              ? _c("div", [
-                  _vm._v(
-                    "\n          " +
-                      _vm._s(pro.due_date) +
-                      "\n          " +
-                      _vm._s(pro.date_in) +
-                      "\n          " +
-                      _vm._s(pro.date_out) +
-                      "\n          " +
-                      _vm._s(_vm.choices.books[pro.book_id].title) +
-                      "\n        "
-                  )
-                ])
-              : _vm._e()
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+      _vm._l(_vm.orderedProfile, function(pro) {
+        return _c("div", { key: pro.id, staticStyle: { color: "white" } }, [
+          _vm.choices.authuser == pro.user_id
+            ? _c("div", [
+                _c("p", [_vm._v(_vm._s(_vm.choices.books[pro.book_id].title))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(pro.date_out))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(pro.due_date))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(pro.date_in))])
+              ])
+            : _vm._e()
+        ])
+      })
+    ],
+    2
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("First Name")]),
-        _vm._v(" "),
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Last Name")]),
-        _vm._v(" "),
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "center", attrs: { width: "15%" } }, [
-          _vm._v("Maximum Number of Books Allowed")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Department")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "actions-column" }, [_vm._v("Options")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
