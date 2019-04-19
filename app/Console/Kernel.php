@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\Commands\WeeklyReportCommand',
         'App\Console\Commands\BeforeDueDateCommand',
+        'App\Console\Commands\AfterDueDateCommand',
     ];
 
     /**
@@ -28,6 +29,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('weekly:report')
         ->weekly()->saturdays()->at('23:59');
         $schedule->command('daily:prereminder')
+        ->daily()->at('07:00');
+        $schedule->command('daily:postreminder')
         ->daily()->at('07:00');
     }
 
