@@ -29,9 +29,9 @@ class BookUserController extends Controller
         return $bookusers;
     }
 
-    public function bookin($bookId, Request $request)
+    public function bookIn($bookId, Request $request)
     {
-        $bookusers = $this->bookuserRepo->bookin($bookId, $request);
+        $bookusers = $this->bookuserRepo->bookIn($bookId, $request);
         return $bookusers;
     }
 }

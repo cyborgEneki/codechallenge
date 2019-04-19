@@ -4293,7 +4293,7 @@ __webpack_require__.r(__webpack_exports__);
     borrow: function borrow() {
       var _this4 = this;
 
-      this.$confirm("Are you sure you want this specific book taking up your leisure time?", "Warning", {
+      this.$confirm("Are you sure you want this specific book taking up your leisure time?", "Confirmation", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4331,7 +4331,25 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    returned: function returned() {}
+    returned: function returned(id) {
+      var _this6 = this;
+
+      this.$confirm("Are you sure you have seen this specific book?", "Confirmation", {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }).then(function () {
+        axios.get("/api/books/" + id + "/returned", _this6.books).then(function (response) {
+          _this6.books = response.data;
+
+          _this6.$notify({
+            title: "Success",
+            message: "The book has been returned to the shelf.",
+            type: "success"
+          });
+        });
+      });
+    }
   },
   mounted: function mounted() {
     this.getBooks();
@@ -98596,7 +98614,21 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", { attrs: { width: "20%" } }, [_vm._v("Category")]),
                 _vm._v(" "),
-                _c("th", { attrs: { width: "20%" } }, [_vm._v("Options")])
+                _c(
+                  "th",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.choices.authuser.status == 1,
+                        expression: "choices.authuser.status == 1"
+                      }
+                    ],
+                    attrs: { width: "20%" }
+                  },
+                  [_vm._v("Options")]
+                )
               ])
             ]),
             _vm._v(" "),
@@ -98632,6 +98664,16 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "td",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.choices.authuser.status == 1,
+                          expression: "choices.authuser.status == 1"
+                        }
+                      ]
+                    },
                     [
                       _vm.isadmin
                         ? _c(
@@ -98696,21 +98738,27 @@ var render = function() {
                         [_vm._v("R")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "el-button",
-                        {
-                          directives: [
+                      _vm.isadmin
+                        ? _c(
+                            "el-button",
                             {
-                              name: "show",
-                              rawName: "v-show",
-                              value: book.status == 0,
-                              expression: "book.status == 0"
-                            }
-                          ],
-                          on: { click: _vm.returned }
-                        },
-                        [_vm._v("Return")]
-                      )
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: book.status == 0,
+                                  expression: "book.status == 0"
+                                }
+                              ],
+                              on: {
+                                click: function($event) {
+                                  return _vm.returned(_vm.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Return")]
+                          )
+                        : _vm._e()
                     ],
                     1
                   )

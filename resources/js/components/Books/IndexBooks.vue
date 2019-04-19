@@ -14,7 +14,7 @@
             <th width="20%">Author(s)</th>
             <th width="20%">Status</th>
             <th width="20%">Category</th>
-            <th width="20%">Options</th>
+            <th width="20%" v-show="choices.authuser.status == 1">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -28,20 +28,20 @@
               <p v-if="book.status == 0">Borrowed</p>
             </td>
             <td>{{ choices.categories[book.category_id].name }}</td>
-            <td>
-              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
-                <i class="fas fa-edit icon blue"></i>
-              </router-link>
-              <a v-if="isadmin">
-                <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
-              </a>
-              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
-              <el-button
-                class="reserve-button"
-                v-show="book.reservor_id == null"
-                @click="reserve(book.id)"
-              >R</el-button>
-              <el-button v-show="book.status == 0" @click="returned">Return</el-button>
+            <td v-show="choices.authuser.status == 1">
+                <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
+                  <i class="fas fa-edit icon blue"></i>
+                </router-link>
+                <a v-if="isadmin">
+                  <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
+                </a>
+                <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
+                <el-button
+                  class="reserve-button"
+                  v-show="book.reservor_id == null"
+                  @click="reserve(book.id)"
+                >R</el-button>
+                <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(id)">Return</el-button>
             </td>
           </tr>
         </tbody>
@@ -130,7 +130,7 @@ export default {
     borrow() {
       this.$confirm(
         "Are you sure you want this specific book taking up your leisure time?",
-        "Warning",
+        "Confirmation",
         {
           confirmButtonText: "OK",
           cancelButtonText: "Cancel",
@@ -173,15 +173,34 @@ export default {
               "Success!",
               {
                 confirmButtonText: "OK",
-                callback: action => {
-                  
-                }
+                callback: action => {}
               }
             );
           });
       });
     },
-    returned() {}
+    returned(id) {
+      this.$confirm(
+        "Are you sure you have seen this specific book?",
+        "Confirmation",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .get("/api/books/" + id + "/returned", this.books)
+          .then(response => {
+            this.books = response.data;
+            this.$notify({
+              title: "Success",
+              message: "The book has been returned to the shelf.",
+              type: "success"
+            });
+          });
+      });
+    }
   },
   mounted() {
     this.getBooks();

@@ -12,5 +12,5 @@ interface BookUserRepositoryInterface
 
     public function borrow(Request $request);
 
-    public function bookin($bookId, Request $request);
+    public function bookIn($bookId, Request $request);
 }

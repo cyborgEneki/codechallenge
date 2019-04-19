@@ -47,7 +47,7 @@ class BookUserRepository implements BookUserRepositoryInterface
             return response()->json(['error'=> 'You have reached the maximum borrowing limit'], 401);
         }
     }
-    public function bookin($bookId, Request $request)
+    public function bookIn($bookId, Request $request)
     {
         $dt = Carbon::today();
         $dtString = $dt->toDateString();
@@ -57,7 +57,6 @@ class BookUserRepository implements BookUserRepositoryInterface
         $book = Book::where('id', $bookId)->first();
 
         if ($book->reservor_id !== null) {
-            $book->reservor_id;
             Mail::to($book->reservor()->pluck("email"))->send(new BookAvailable($book));
             Book::select('id')->where('id', $bookId)->update(['reservor_id' => null]);
         }
