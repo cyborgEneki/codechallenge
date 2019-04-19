@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\BookUser;
+use App\Http\Controllers\Controller;
+use App\Models\BookUser;
 
 class BookUserController extends Controller
 {
-    public function index () 
+    public function index()
     {
         return BookUser::all();
     }
