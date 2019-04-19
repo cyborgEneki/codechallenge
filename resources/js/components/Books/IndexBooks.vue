@@ -35,8 +35,8 @@
               <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
-              <el-button v-show="book.status == 1" @click="borrow">Borrow</el-button>
-              <el-button v-show="book.reservor_id == null" @click="reserve">Reserve</el-button>
+              <el-button v-show="book.status == 1" @click="borrow">B</el-button>
+              <el-button v-show="book.reservor_id == null" @click="reserve">R</el-button>
             </td>
           </tr>
         </tbody>
@@ -132,15 +132,21 @@ export default {
           type: "warning"
         }
       ).then(() => {
-        axios.post("/api/borrow", this.borrowDetails).then(response => {
-          this.$notify({
-            title: "Success",
-            message: "Success! Kindly go pick up your book from HR.",
-            type: "success"
+        axios
+          .post("/api/borrow", this.borrowDetails)
+          .then(response => {
+            this.$notify({
+              title: "Success",
+              message: "Success! Kindly go pick up your book from HR.",
+              type: "success"
+            });
+          })
+          .catch(() => {
+            console.log();
+            this.$alert("You have exceeded your borrowing limit", "Stop", {
+              confirmButtonText: "OK",
+            });
           });
-        });
-      }).catch(()=>{
-        
       });
     },
     reserve() {}

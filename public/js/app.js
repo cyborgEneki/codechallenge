@@ -4299,8 +4299,14 @@ __webpack_require__.r(__webpack_exports__);
             message: "Success! Kindly go pick up your book from HR.",
             type: "success"
           });
+        })["catch"](function () {
+          console.log();
+
+          _this4.$alert("You have exceeded your borrowing limit", "Stop", {
+            confirmButtonText: "OK"
+          });
         });
-      })["catch"](function () {});
+      });
     },
     reserve: function reserve() {}
   },
@@ -98598,7 +98604,7 @@ var render = function() {
                           ],
                           on: { click: _vm.borrow }
                         },
-                        [_vm._v("Borrow")]
+                        [_vm._v("B")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -98614,7 +98620,7 @@ var render = function() {
                           ],
                           on: { click: _vm.reserve }
                         },
-                        [_vm._v("Reserve")]
+                        [_vm._v("R")]
                       )
                     ],
                     1
