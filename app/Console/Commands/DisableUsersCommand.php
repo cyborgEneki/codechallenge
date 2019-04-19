@@ -51,6 +51,7 @@ class DisableUsersCommand extends Command
 
         foreach ($users as $user) {
             $name = User::find($user)->pluck("first_name")->first();
+            User::find($user)->first()->update(['status' => 0]);
             Mail::to(User::find($user)->pluck("email"))->send(new DisableUsersMailable($name));
         }
     }
