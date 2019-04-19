@@ -2,12 +2,15 @@
   <div>
     <h3 style="color:white;">Profile</h3>
 
-    <div style="color:white;" v-for="pro in orderedProfile" :key="pro.id">
-      <div v-if="choices.authuser == pro.user_id">
-        <p>{{ choices.books[pro.book_id].title }}</p>
-        <p>{{ pro.date_out }}</p>
-        <p>{{ pro.due_date }}</p>
-        <p>{{ pro.date_in }}</p>
+    <div v-for="pro in orderedProfile" :key="pro.id" >
+      <div v-if="choices.authuser == pro.user_id" class="detailsDiv">
+        Book Title: {{ choices.books[pro.book_id].title }}
+        <br>
+        Date Out: {{ pro.date_out }}
+        <br>
+        Due Date: {{ pro.due_date }}
+        <br>
+        Date In: {{ pro.date_in }}
       </div>
     </div>
 
@@ -16,6 +19,7 @@
 </template>
 
 <script>
+
 export default {
   computed: {
     orderedProfile() {
@@ -40,3 +44,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.detailsDiv {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #ffffff;
+  position: relative;
+}
+</style>
