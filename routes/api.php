@@ -32,4 +32,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('users', 'API\UserController')->middleware('admin');
     Route::apiResource('accesslevels', 'API\AccesslevelController')->middleware('admin');
     Route::get('choices', 'API\BookController@choices');
+    Route::post('/send', 'API\BookController@send');
+    Route::get('/test', 'API\BookController@test');
 });

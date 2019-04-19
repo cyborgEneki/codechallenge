@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User; 
-use Illuminate\Support\Facades\Auth; 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Requests\UserRequest;
@@ -72,7 +72,7 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
-    public function isAdmin() 
+    public function isAdmin()
     {
         $result = Auth::User()->accesslevel_id == 1;
         return response()->json($result, 200);

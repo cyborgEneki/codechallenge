@@ -24,8 +24,8 @@
 
       <el-form-item label="Status" for="fstatus">
         <el-radio-group id="fstatus" v-model.lazy="$v.book.status.$model">
-          <el-radio label="Available"></el-radio>
-          <el-radio label="Borrowed"></el-radio>
+          <el-radio label="1">Available</el-radio>
+          <el-radio label="0">Borrowed</el-radio>
         </el-radio-group>
         <p v-if="errors" class="error">
           <span v-if="!$v.book.status.$model">A status is required</span>
@@ -77,7 +77,6 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-
 export default {
   props: ["choices"],
   computed: {
@@ -96,7 +95,7 @@ export default {
       formTouched: false,
       book: {
         title: "",
-        status: "",
+        status: "1",
         reservor_id: "",
         category_id: ""
       },

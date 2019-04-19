@@ -28,8 +28,8 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
-        'max_number_of_books_allowed' => $faker->numberBetween($min = 1, $max = 3),
-        'status' => $faker->randomElement(['Active' ,'Suspended']),
+        'max_number_of_books_allowed' => 3,
+        'status' => $faker->boolean,
         'department_id' => $faker->numberBetween($min = 1, $max = 5),
         'accesslevel_id' => $faker->numberBetween($min = 1, $max = 2)
     ];
@@ -44,7 +44,7 @@ $factory->define(Author::class, function (Faker $faker) {
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
-        'status' => $faker->randomElement(['Borrowed' ,'Available']),
+        'status' => $faker->boolean,
         'reservor_id' => $faker->numberBetween($min = 1, $max = 10),
         'category_id' => $faker->numberBetween($min = 1, $max = 5),
     ];
