@@ -35,7 +35,7 @@
               <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
-              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
+              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow(book.id)">B</el-button>
               <el-button
                 class="reserve-button"
                 v-if="book.status == 0"
@@ -133,7 +133,7 @@ export default {
         this.isadmin = response.data;
       });
     },
-    borrow() {
+    borrow(id) {
       this.$confirm(
         "Are you sure you want this specific book taking up your leisure time?",
         "Confirmation",
@@ -143,6 +143,7 @@ export default {
           type: "warning"
         }
       ).then(() => {
+        this.borrowDetails.book_id = id;
         axios
           .post("/api/borrow", this.borrowDetails)
           .then(response => {

@@ -4300,7 +4300,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.isadmin = response.data;
       });
     },
-    borrow: function borrow() {
+    borrow: function borrow(id) {
       var _this4 = this;
 
       this.$confirm("Are you sure you want this specific book taking up your leisure time?", "Confirmation", {
@@ -4308,6 +4308,7 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: "Cancel",
         type: "warning"
       }).then(function () {
+        _this4.borrowDetails.book_id = id;
         axios.post("/api/borrow", _this4.borrowDetails).then(function (response) {
           _this4.$notify({
             title: "Success",
@@ -7603,7 +7604,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: 10px;\n}\n.el-menu-item.is-active {\n  background-color: #2c3a40 !important;\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\n.el-header {\n  background-color: #b3c0d1;\n  color: #333;\n  line-height: 60px;\n}\n.el-aside {\n  color: #333;\n}\n.sidebar-padding {\n  padding-left: inherit;\n}\n.el-menu-item.is-active {\n  background-color: #2c3a40 !important;\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -98780,7 +98781,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "borrow-button",
-                          on: { click: _vm.borrow }
+                          on: {
+                            click: function($event) {
+                              return _vm.borrow(book.id)
+                            }
+                          }
                         },
                         [_vm._v("B")]
                       ),
@@ -99552,7 +99557,7 @@ var render = function() {
                     { attrs: { to: { name: "profile" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "8" } }, [
-                        _c("i", { staticClass: "fas fa-book-open mustard" }),
+                        _c("i", { staticClass: "fas fa-id-badge yellow" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -99596,7 +99601,7 @@ var render = function() {
                     { attrs: { to: { name: "indexBooks" } } },
                     [
                       _c("el-menu-item", { attrs: { index: "3" } }, [
-                        _c("i", { staticClass: "fas fa-book-open mustard" }),
+                        _c("i", { staticClass: "fas fa-book-open hotorange" }),
                         _vm._v(" "),
                         _c(
                           "span",
@@ -99689,7 +99694,7 @@ var render = function() {
                         { attrs: { to: { name: "indexUsers" } } },
                         [
                           _c("el-menu-item", { attrs: { index: "6" } }, [
-                            _c("i", { staticClass: "fas fa-users hotorange" }),
+                            _c("i", { staticClass: "fas fa-users mustard" }),
                             _vm._v(" "),
                             _c(
                               "span",
@@ -99712,7 +99717,7 @@ var render = function() {
                         { attrs: { to: { name: "reports" } } },
                         [
                           _c("el-menu-item", { attrs: { index: "9" } }, [
-                            _c("i", { staticClass: "fas fa-file" }),
+                            _c("i", { staticClass: "fas fa-file darkblue" }),
                             _vm._v(" "),
                             _c(
                               "span",

@@ -21,11 +21,11 @@
 }
 
 .orange {
-  color: #f6993f;
+  color: #f6993f !important;
 }
 
 .yellow {
-  color: #ffed4a;
+  color: #ffed4a !important;
 }
 
 .green {
@@ -58,6 +58,10 @@
 
 .hotpink {
   color: #df8dc7 !important;
+}
+
+.darkblue {
+  color: #1c67fb !important;
 }
 
 .font-14 {

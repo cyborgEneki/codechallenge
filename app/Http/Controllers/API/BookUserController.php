@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BookUserRequest;
-use App\Models\Book;
 use App\Contracts\BookUserRepositoryInterface;
 use Illuminate\Http\Request;
 use \PDF;
@@ -26,7 +24,7 @@ class BookUserController extends Controller
         return response()->json($bookusers, 200);
     }
 
-    public function borrow(BookUserRequest $request)
+    public function borrow(Request $request)
     {
         $bookusers = $this->bookuserRepo->borrow($request);
         return $bookusers;
