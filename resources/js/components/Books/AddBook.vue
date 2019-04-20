@@ -2,28 +2,25 @@
   <div>
     <el-form v-if="isadmin" :model="book" ref="book" label-width="120px">
       <el-form-item label="Title" for="ftitle">
-        <el-input id="ftitle" v-model.lazy="$v.book.title.$model"></el-input>
+        <el-input id="ftitle" v-model="$v.book.title.$model"></el-input>
         <p v-if="errors" class="error">
           <span
             v-if="!$v.book.title.$model"
           >"The book without a title" makes for a good title...but still type in a title to continue</span>
         </p>
       </el-form-item>
-      <!-- 
-      <el-form-item label="Author" for="fauthor">
-        <div v-for="author in books.authors" :key="author.id">
-          <el-select id="fauthor" v-model.lazy="$v.author.name.$model" placeholder="Author(s)">
-            <el-option
-              v-for="author in orderedAuthors"
-              :value="author.id"
-              :key="author.id"
-            >{{ author.name }}</el-option>
-          </el-select>
-        </div>
-      </el-form-item>-->
+
+      <el-form-item label="Author" for="fa">
+        <el-input id="fa" v-model="$v.book.author.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.book.author.$model"
+          >Who wrote this book?</span>
+        </p>
+      </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model.lazy="$v.book.status.$model">
+        <el-radio-group id="fstatus" v-model="$v.book.status.$model">
           <el-radio label="1">Available</el-radio>
           <el-radio label="0">Borrowed</el-radio>
         </el-radio-group>
@@ -32,22 +29,8 @@
         </p>
       </el-form-item>
 
-      <!-- <el-form-item label="Reserved By" for="freservor">
-        <el-select
-          id="freservor"
-          v-model.lazy="$v.book.reservor_id.$model"
-          placeholder="Reserved By"
-        >
-          <el-option
-            v-for="user in orderedUsers"
-            :value="user.id"
-            :key="user.id"
-          >{{ user.full_name }}</el-option>
-        </el-select>
-      </el-form-item> -->
-
       <el-form-item label="Category" for="fcategory">
-        <el-select id="fcategory" v-model.lazy="$v.book.category_id.$model" placeholder="Category">
+        <el-select id="fcategory" v-model="$v.book.category_id.$model" placeholder="Category">
           <el-option
             v-for="category in orderedCategories"
             :value="category.id"
@@ -90,18 +73,20 @@ export default {
       formTouched: false,
       book: {
         title: "",
+        author: "",
         status: "1",
         reservor_id: "",
         category_id: ""
       },
-      isadmin: false,
+      isadmin: false
     };
   },
   validations: {
     book: {
       title: { required },
+      author: { required },
       status: { required },
-      category_id: { required }
+      category_id: { required },
     }
   },
   methods: {
@@ -110,15 +95,15 @@ export default {
       this.errors = this.$v.book.$anyError;
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
-        axios.post("/api/books/", this.book).then(response => {});
-        this.book = {};
-        this.$router.push("/books");
-        this.$notify({
-          title: "Success",
-          message: "The new book has been added.",
-          type: "success"
+        axios.post("/api/books/", this.book).then(response => {
+          this.$router.push("/books");
+          this.$notify({
+            title: "Success",
+            message: "The new book has been added.",
+            type: "success"
+          });
+          this.uiState = "form submitted";
         });
-        this.uiState = "form submitted";
       } else {
         return false;
       }
@@ -142,3 +127,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.same-line {
+  display: inline-block;
+}
+</style>

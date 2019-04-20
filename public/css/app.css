@@ -21,11 +21,11 @@
 }
 
 .orange {
-  color: #f6993f;
+  color: #f6993f !important;
 }
 
 .yellow {
-  color: #ffed4a;
+  color: #ffed4a !important;
 }
 
 .green {
@@ -58,6 +58,10 @@
 
 .hotpink {
   color: #df8dc7 !important;
+}
+
+.darkblue {
+  color: #1c67fb !important;
 }
 
 .font-14 {
@@ -7926,5 +7930,37 @@ div#app .nav-link {
 
 div#app .dropdown-toggle {
   white-space: nowrap;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.icon {
+  padding: 10px;
+}
+
+.actions-column {
+  width: "10%";
+  text-align: center;
+}
+
+.el-card__body {
+  background: #eacdcd;
+}
+
+.card-font {
+  font-size: 28px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f3eaea;
+}
+
+.add-icon {
+  float: right;
+  margin: 5px 5px 0px 0px;
+  font-size: 35px;
+  color: #5f0e0e;
 }
 

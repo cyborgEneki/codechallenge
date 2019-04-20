@@ -2,7 +2,7 @@
   <div>
     <el-form :model="editedBook" ref="book" label-width="120px">
       <el-form-item label="Book" for="ftitle">
-        <el-input id="ftitle" v-model.lazy="$v.editedBook.title.$model"></el-input>
+        <el-input id="ftitle" v-model="$v.editedBook.title.$model"></el-input>
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedBook.title.$model"
@@ -10,9 +10,19 @@
         </p>
         <p></p>
       </el-form-item>
+      
+      <el-form-item label="Author" for="fa">
+        <el-input id="fa" v-model="$v.editedBook.author.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedBook.author.$model"
+          >Who wrote this book?</span>
+        </p>
+        <p></p>
+      </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model.lazy="$v.editedBook.status.$model">
+        <el-radio-group id="fstatus" v-model="$v.editedBook.status.$model">
           <el-radio label="Available"></el-radio>
           <el-radio label="Borrowed"></el-radio>
         </el-radio-group>
@@ -24,7 +34,7 @@
       <el-form-item label="Category" for="fcategory">
         <el-select
           id="fcategory"
-          v-model.lazy="$v.editedBook.category_id.$model"
+          v-model="$v.editedBook.category_id.$model"
           placeholder="Category"
         >
           <el-option
@@ -43,7 +53,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="editBook('book', editedBook)">Edit</el-button>
+        <el-button type="primary" @click="editBook(editedBook.id)">Edit</el-button>
         <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
@@ -69,23 +79,24 @@ export default {
       errors: false,
       empty: true,
       formTouched: false,
-      editedBook: this.book
+      editedBook: this.book,
     };
   },
   validations: {
     editedBook: {
       title: { required },
+      author: { required },
       status: { required },
-      category_id: { required }
+      category_id: { required },
     }
   },
   methods: {
-    editBook(editedBook) {
+    editBook(id) {
       this.formTouched = !this.$v.editedBook.$anyDirty;
       this.errors = this.$v.editedBook.$anyError;
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
-        axios.put("/api/books/" + editedBook.id, editedBook).then(response => {
+        axios.put("/api/books/" + id, this.editedBook).then(response => {
           this.$router.push("/books");
           this.$notify({
             title: "Success",

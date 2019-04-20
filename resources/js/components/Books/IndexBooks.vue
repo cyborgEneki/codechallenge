@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="search-wrapper panel-heading col-sm-12">
+      <input class="form-control" type="text" v-model="searchQuery" placeholder="Search">
+    </div>
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Books</span>
@@ -11,37 +14,36 @@
         <thead>
           <tr>
             <th width="20%">Title</th>
-            <th width="20%">Author(s)</th>
+            <th width="20%">Author</th>
             <th width="20%">Status</th>
             <th width="20%">Category</th>
             <th width="20%" v-show="choices.authuserstatus == 1">Options</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="book in books" :key="book.id">
+          <tr v-for="book in filteredBooks" :key="book.id">
             <td>{{ book.title }}</td>
-            <td>
-              <p v-for="author in book.authors" :key="author.id">{{ author.name }}</p>
-            </td>
+            <td>{{ book.author }}</td>
             <td>
               <p v-if="book.status == 1">Available</p>
               <p v-if="book.status == 0">Borrowed</p>
             </td>
             <td>{{ choices.categories[book.category_id].name }}</td>
             <td v-show="choices.authuserstatus == 1">
-                <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
-                  <i class="fas fa-edit icon blue"></i>
-                </router-link>
-                <a v-if="isadmin">
-                  <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
-                </a>
-                <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
-                <el-button
-                  class="reserve-button"
-                  v-show="book.reservor_id == null"
-                  @click="reserve(book.id)"
-                >R</el-button>
-                <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
+              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book, id: book.id } }">
+                <i class="fas fa-edit icon blue"></i>
+              </router-link>
+              <a v-if="isadmin">
+                <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
+              </a>
+              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow(book.id)">B</el-button>
+              <el-button
+                class="reserve-button"
+                v-if="book.status == 0"
+                v-show="book.reservor_id == null"
+                @click="reserve(book.id)"
+              >R</el-button>
+              <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
             </td>
           </tr>
         </tbody>
@@ -58,9 +60,24 @@ import Pagination from "../pagination";
 export default {
   props: ["choices"],
   components: { Pagination },
+  computed: {
+    orderedAuthors() {
+      return _.orderBy(this.choices.authors, "name");
+    },
+    filteredBooks() {
+      if (this.searchQuery) {
+        return this.books.filter(item => {
+          return item.title.startsWith(this.searchQuery);
+        });
+      } else {
+        return _.orderBy(this.books, "created_at", "desc");
+      }
+    }
+  },
   data() {
     return {
       books: [],
+      searchQuery: "",
       meta_data: {
         last_page: null,
         current_page: 1,
@@ -127,7 +144,7 @@ export default {
         this.isadmin = response.data;
       });
     },
-    borrow() {
+    borrow(id) {
       this.$confirm(
         "Are you sure you want this specific book taking up your leisure time?",
         "Confirmation",
@@ -137,6 +154,7 @@ export default {
           type: "warning"
         }
       ).then(() => {
+        this.borrowDetails.book_id = id;
         axios
           .post("/api/borrow", this.borrowDetails)
           .then(response => {
@@ -147,7 +165,6 @@ export default {
             });
           })
           .catch(() => {
-            console.log();
             this.$alert("You have exceeded your borrowing limit", "Stop", {
               confirmButtonText: "OK"
             });

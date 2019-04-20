@@ -6,31 +6,26 @@ use App\Models\Book;
 use App\Contracts\BookRepositoryInterface;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Author;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\User;
-use App\Models\BookUser;
 use Illuminate\Http\Request;
 
 class BookRepository implements BookRepositoryInterface
 {
     public function allBooks()
     {
-        return Book::with(['authors', 'users'])->paginate(10);
+        return Book::with(['users'])->paginate(10);
     }
 
     public function createBook(BookRequest $request)
     {
-        $book = Book::create($request->all());
-        $authors = $request->get('authors');
-        $book->authors()->sync($authors);
-        return $book;
+        return Book::create($request->all());
     }
 
     public function showBook($id)
     {
-        return Book::where('id', '=', $id)->with(['authors', 'users'])->first();
+        return Book::where('id', '=', $id)->first();
     }
 
     public function updateBook(BookRequest $request, Book $book)
@@ -45,15 +40,11 @@ class BookRepository implements BookRepositoryInterface
 
     public function choices()
     {
-        $books = Book::with(['authors', 'users'])->get();
+        $books = Book::with(['users'])->get();
         $books = $books->keyBy('id');
         $books = ['books' => $books];
 
         $auth_user = ['authuser' => Auth::User()->id];
-
-        $authors = Author::with(['books'])->get();
-        $authors = $authors->keyBy('id');
-        $authors = ['authors' => $authors];
 
         $users = User::with(['books'])->get();
         $users = $users->keyBy('id');
@@ -69,7 +60,7 @@ class BookRepository implements BookRepositoryInterface
         $departments = $departments->keyBy('id');
         $departments = ['departments' => $departments];
 
-        return array_merge($books, $auth_user, $authors, $categories, $departments, $users, $authuserstatus);
+        return array_merge($books, $auth_user, $categories, $departments, $users, $authuserstatus);
     }
 
     public function reserveBook(Request $request, $bookId)

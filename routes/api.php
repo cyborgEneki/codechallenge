@@ -24,8 +24,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('users/isadmin', 'API\UserController@isAdmin');
     Route::apiResource('users', 'API\UserController')->middleware('admin');
 
-    Route::apiResource('authors', 'API\AuthorController')->middleware('admin');
-
     Route::apiResource('categories', 'API\CategoryController')->middleware('admin');
 
     Route::apiResource('departments', 'API\DepartmentController')->middleware('admin');

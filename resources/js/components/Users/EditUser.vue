@@ -82,7 +82,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="editUser('user', editedUser)">Edit</el-button>
+        <el-button type="primary" @click="editUser(editedUser.id)">Edit</el-button>
         <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
@@ -119,12 +119,12 @@ export default {
     }
   },
   methods: {
-    editUser(editedUser) {
+    editUser(id) {
       this.formTouched = !this.$v.editedUser.$anyDirty;
       this.errors = this.$v.editedUser.$anyError;
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
-        axios.put("/api/users/" + editedUser.id, editedUser).then(response => {
+        axios.put("/api/users/" + id, this.editedUser).then(response => {
           this.$router.push("/users");
           this.$notify({
             title: "Success",

@@ -15,10 +15,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="department in departments" :key="department.id">
+          <tr v-for="department in orderedDepartments" :key="department.id">
             <td width="90%">{{ department.name }}</td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editDepartment', params: { department } }">
+              <router-link :to="{ name: 'editDepartment', params: { department, id: department.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
@@ -39,6 +39,11 @@ import Pagination from "../pagination";
 
 export default {
   components: { Pagination },
+  computed: {
+    orderedDepartments() {
+      return _.orderBy(this.departments, "created_at", "desc");
+    }
+  },
   data() {
     return {
       departments: [],

@@ -13,21 +13,14 @@
         >
           <router-link :to="{ name: 'profile'}">
             <el-menu-item index="8">
-              <i class="fas fa-book-open mustard"></i>
+              <i class="fas fa-id-badge yellow"></i>
               <span slot="title" class="sidebar-padding">Profile</span>
-            </el-menu-item>
-          </router-link>
-
-          <router-link v-if="isadmin" :to="{ name: 'indexAuthors'}">
-            <el-menu-item index="2">
-              <i class="fas fa-pen-alt hotpink"></i>
-              <span slot="title" class="sidebar-padding">Authors</span>
             </el-menu-item>
           </router-link>
 
           <router-link :to="{ name: 'indexBooks'}">
             <el-menu-item index="3">
-              <i class="fas fa-book-open mustard"></i>
+              <i class="fas fa-book-open hotorange"></i>
               <span slot="title" class="sidebar-padding">Books</span>
             </el-menu-item>
           </router-link>
@@ -55,14 +48,14 @@
 
           <router-link v-if="isadmin" :to="{ name: 'indexUsers'}">
             <el-menu-item index="6">
-              <i class="fas fa-users hotorange"></i>
+              <i class="fas fa-users mustard"></i>
               <span slot="title" class="sidebar-padding">Users</span>
             </el-menu-item>
           </router-link>
 
           <router-link v-if="isadmin" :to="{ name: 'reports'}">
             <el-menu-item index="9">
-              <i class="fas fa-file"></i>
+              <i class="fas fa-file darkblue"></i>
               <span slot="title" class="sidebar-padding">Reports</span>
             </el-menu-item>
           </router-link>
@@ -116,7 +109,7 @@ export default {
   color: #333;
 }
 .sidebar-padding {
-  padding-left: 10px;
+  padding-left: inherit;
 }
 .el-menu-item.is-active {
   background-color: #2c3a40 !important;

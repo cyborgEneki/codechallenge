@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" :key="user.id">
+          <tr v-for="user in orderedUsers" :key="user.id">
             <td width=15%>{{ user.first_name }}</td>
             <td width=15%>{{ user.last_name }}</td>
             <td width=15%>{{ user.email }}</td>
@@ -31,7 +31,7 @@
             </td>
             <td width=15%>{{ choices.departments[user.department_id].name }}</td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editUser', params: { user } }">
+              <router-link :to="{ name: 'editUser', params: { user, id: user.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
@@ -51,6 +51,11 @@
 import Pagination from "../pagination";
 
 export default {
+  computed: {
+    orderedUsers() {
+      return _.orderBy(this.users, "created_at", "desc");
+    }
+  },
   props: ["choices"],
   watch: {
     choices (n, o) {

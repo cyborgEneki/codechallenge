@@ -3,7 +3,6 @@
 use App\Models\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use App\Models\Author;
 use App\Models\Book;
 use App\Models\Department;
 use App\Models\Category;
@@ -35,17 +34,12 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Author::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name
-    ];
-});
-
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
+        'author' => $faker->name,
         'status' => $faker->boolean,
-        'reservor_id' => $faker->numberBetween($min = 1, $max = 10),
+        'reservor_id' => $faker->optional()->numberBetween($min = 1, $max = 10),
         'category_id' => $faker->numberBetween($min = 1, $max = 5),
     ];
 });
@@ -61,10 +55,3 @@ $factory->define(Department::class, function (Faker $faker) {
         'name' => $faker->word
     ];
 });
-
-$factory->define(Accesslevel::class, function (Faker $faker) {
-    return [
-        'name' => $faker->word
-    ];
-});
-

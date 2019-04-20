@@ -7,12 +7,6 @@ use App\Contracts\BookRepositoryInterface;
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\BookAvailable;
-use Carbon\Carbon;
-use App\Models\BookUser;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {

@@ -15,10 +15,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.id">
+          <tr v-for="category in orderedCategories" :key="category.id">
             <td width="90%">{{ category.name }}</td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editCategory', params: { category } }">
+              <router-link :to="{ name: 'editCategory', params: { category, id: category.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
@@ -39,6 +39,11 @@ import Pagination from "../pagination";
 
 export default {
   components: { Pagination },
+  computed: {
+    orderedCategories() {
+      return _.orderBy(this.categories, "created_at", "desc")
+    }
+  },
   data() {
     return {
       categories: [],

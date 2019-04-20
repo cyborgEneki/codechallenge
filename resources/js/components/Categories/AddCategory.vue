@@ -40,14 +40,14 @@ export default {
     addCategory(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.post("/api/categories/", this.category).then(response => {});
-          this.$router.push("/categories");
-          this.$notify({
-            title: "Success",
-            message: "The new category has been added.",
-            type: "success"
+          axios.post("/api/categories/", this.category).then(response => {
+            this.$router.push("/categories");
+            this.$notify({
+              title: "Success",
+              message: "The new category has been added.",
+              type: "success"
+            });
           });
-          this.category = {};
         } else {
           return false;
         }

@@ -1,8 +1,5 @@
 import VueRouter from 'vue-router';
 
-import AddAuthor from './components/Authors/AddAuthor';
-import EditAuthor from './components/Authors/EditAuthor';
-import IndexAuthors from './components/Authors/IndexAuthors';
 import AddBook from './components/Books/AddBook';
 import EditBook from './components/Books/EditBook';
 import IndexBooks from './components/Books/IndexBooks';
@@ -35,28 +32,12 @@ const router = new VueRouter({
             component: Reports
         },
         {
-            path: '/add-author',
-            name: 'addAuthor',
-            component: AddAuthor
-        },
-        {
-            path: '/edit-author',
-            name: 'editAuthor',
-            component: EditAuthor,
-            props: true
-        },
-        {
-            path: '/authors',
-            name: 'indexAuthors',
-            component: IndexAuthors
-        },
-        {
             path: '/add-book',
             name: 'addBook',
             component: AddBook
         },
         {
-            path: '/edit-book',
+            path: '/edit-book/:id',
             name: 'editBook',
             component: EditBook,
             props: true
@@ -72,7 +53,7 @@ const router = new VueRouter({
             component: AddCategory
         },
         {
-            path: '/edit-category',
+            path: '/edit-category/:id',
             name: 'editCategory',
             component: EditCategory,
             props: true
@@ -88,7 +69,7 @@ const router = new VueRouter({
             component: AddDepartment
         },
         {
-            path: '/edit-department',
+            path: '/edit-department/:id',
             name: 'editDepartment',
             component: EditDepartment,
             props: true
@@ -115,7 +96,7 @@ const router = new VueRouter({
             component: AddUser
         },
         {
-            path: '/edit-user',
+            path: '/edit-user/:id',
             name: 'editUser',
             component: EditUser,
             props: true
