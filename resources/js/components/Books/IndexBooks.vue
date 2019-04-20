@@ -11,7 +11,7 @@
         <thead>
           <tr>
             <th width="20%">Title</th>
-            <th width="20%">Author(s)</th>
+            <th width="20%">Author</th>
             <th width="20%">Status</th>
             <th width="20%">Category</th>
             <th width="20%" v-show="choices.authuserstatus == 1">Options</th>
@@ -20,9 +20,7 @@
         <tbody>
           <tr v-for="book in orderedBooks" :key="book.id">
             <td>{{ book.title }}</td>
-            <td>
-              <p v-for="author in book.authors" :key="author.id">{{ author.name }}</p>
-            </td>
+            <td>{{ book.author }}</td>
             <td>
               <p v-if="book.status == 1">Available</p>
               <p v-if="book.status == 0">Borrowed</p>
@@ -61,7 +59,10 @@ export default {
   components: { Pagination },
   computed: {
     orderedBooks() {
-      return _.orderBy(this.books, "created_at", "desc")
+      return _.orderBy(this.books, "created_at", "desc");
+    },
+    orderedAuthors() {
+      return _.orderBy(this.choices.authors, "name");
     }
   },
   data() {
@@ -78,6 +79,12 @@ export default {
         date_out: "",
         book_id: "",
         user_id: ""
+      },
+      authors: [],
+      book: {
+        id: "",
+        author_id: "",
+        authors: []
       }
     };
   },

@@ -14,12 +14,6 @@ class BooksTableSeeder extends Seeder
     {
         $books = factory('App\Models\Book', 10)->create();
 
-        App\Models\Author::all()->each(function ($authors) use ($books) {
-            $authors->books()->attach(
-                $books->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        });
-
         foreach (range(1, 18) as $index) {
             $faker = Faker::create();
             DB::table('book_user')->insert([

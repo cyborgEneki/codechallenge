@@ -2,7 +2,7 @@
   <div>
     <el-form :model="editedBook" ref="book" label-width="120px">
       <el-form-item label="Book" for="ftitle">
-        <el-input id="ftitle" v-model.lazy="$v.editedBook.title.$model"></el-input>
+        <el-input id="ftitle" v-model="$v.editedBook.title.$model"></el-input>
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedBook.title.$model"
@@ -10,28 +10,19 @@
         </p>
         <p></p>
       </el-form-item>
-
-      <el-form-item label="Author" for="fauthor">
-        <el-select id="fauthor" v-model="$v.editedBook.author_id.$model" placeholder="Author(s)">
-          <el-option
-            v-for="author in orderedAuthors"
-            :value="author.id"
-            :key="author.id"
-            :label="author.name"
-          >{{ author.name }}</el-option>
-        </el-select>
-        <el-button
-          class="same-line"
-          type="success"
-          icon="el-icon-check"
-          circle
-          @click.prevent="addAuthor(editedBook.id, editedBook.author_id)"
-        >Save</el-button>
-        <a href="#" class="same-line" @click.prevent="dataItem=''">Cancel</a>
+      
+      <el-form-item label="Author" for="fa">
+        <el-input id="fa" v-model="$v.editedBook.author.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.editedBook.author.$model"
+          >Who wrote this book?</span>
+        </p>
+        <p></p>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model.lazy="$v.editedBook.status.$model">
+        <el-radio-group id="fstatus" v-model="$v.editedBook.status.$model">
           <el-radio label="Available"></el-radio>
           <el-radio label="Borrowed"></el-radio>
         </el-radio-group>
@@ -43,7 +34,7 @@
       <el-form-item label="Category" for="fcategory">
         <el-select
           id="fcategory"
-          v-model.lazy="$v.editedBook.category_id.$model"
+          v-model="$v.editedBook.category_id.$model"
           placeholder="Category"
         >
           <el-option
@@ -80,9 +71,6 @@ export default {
     },
     orderedCategories() {
       return _.orderBy(this.choices.categories, "name");
-    },
-    orderedAuthors() {
-      return _.orderBy(this.choices.authors, "name");
     }
   },
   data() {
@@ -92,28 +80,17 @@ export default {
       empty: true,
       formTouched: false,
       editedBook: this.book,
-      authors: []
     };
   },
   validations: {
     editedBook: {
       title: { required },
+      author: { required },
       status: { required },
       category_id: { required },
-      author_id: { required }
     }
   },
   methods: {
-    addAuthor(bookId, authorId) {
-      this.editedBook.id == bookId;
-      this.book.author_id == authorId;
-      console.log(bookId);
-      console.log(authorId);
-      axios.post("/api/books/"+bookId+"/authors/"+authorId, this.book).then(response => {
-        // this.book.authors.push(this.choices.authors[authorId]);
-        // this.book = "";
-      });
-    },
     editBook(id) {
       this.formTouched = !this.$v.editedBook.$anyDirty;
       this.errors = this.$v.editedBook.$anyError;

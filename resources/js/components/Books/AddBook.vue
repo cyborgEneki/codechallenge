@@ -10,6 +10,15 @@
         </p>
       </el-form-item>
 
+      <el-form-item label="Author" for="fa">
+        <el-input id="fa" v-model="$v.book.author.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.book.author.$model"
+          >Who wrote this book?</span>
+        </p>
+      </el-form-item>
+
       <el-form-item label="Status" for="fstatus">
         <el-radio-group id="fstatus" v-model="$v.book.status.$model">
           <el-radio label="1">Available</el-radio>
@@ -64,6 +73,7 @@ export default {
       formTouched: false,
       book: {
         title: "",
+        author: "",
         status: "1",
         reservor_id: "",
         category_id: ""
@@ -74,6 +84,7 @@ export default {
   validations: {
     book: {
       title: { required },
+      author: { required },
       status: { required },
       category_id: { required },
     }

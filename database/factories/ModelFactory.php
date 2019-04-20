@@ -35,15 +35,10 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Author::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name
-    ];
-});
-
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
+        'author' => $faker->name,
         'status' => $faker->boolean,
         'reservor_id' => $faker->optional()->numberBetween($min = 1, $max = 10),
         'category_id' => $faker->numberBetween($min = 1, $max = 5),
