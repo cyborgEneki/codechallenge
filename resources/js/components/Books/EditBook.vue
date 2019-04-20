@@ -11,6 +11,25 @@
         <p></p>
       </el-form-item>
 
+      <el-form-item label="Author" for="fauthor">
+        <el-select id="fauthor" v-model="$v.editedBook.author_id.$model" placeholder="Author(s)">
+          <el-option
+            v-for="author in orderedAuthors"
+            :value="author.id"
+            :key="author.id"
+            :label="author.name"
+          >{{ author.name }}</el-option>
+        </el-select>
+        <el-button
+          class="same-line"
+          type="success"
+          icon="el-icon-check"
+          circle
+          @click.prevent="addAuthor(editedBook.id, editedBook.author_id)"
+        >Save</el-button>
+        <a href="#" class="same-line" @click.prevent="dataItem=''">Cancel</a>
+      </el-form-item>
+
       <el-form-item label="Status" for="fstatus">
         <el-radio-group id="fstatus" v-model.lazy="$v.editedBook.status.$model">
           <el-radio label="Available"></el-radio>
@@ -61,6 +80,9 @@ export default {
     },
     orderedCategories() {
       return _.orderBy(this.choices.categories, "name");
+    },
+    orderedAuthors() {
+      return _.orderBy(this.choices.authors, "name");
     }
   },
   data() {
@@ -69,17 +91,29 @@ export default {
       errors: false,
       empty: true,
       formTouched: false,
-      editedBook: this.book
+      editedBook: this.book,
+      authors: []
     };
   },
   validations: {
     editedBook: {
       title: { required },
       status: { required },
-      category_id: { required }
+      category_id: { required },
+      author_id: { required }
     }
   },
   methods: {
+    addAuthor(bookId, authorId) {
+      this.editedBook.id == bookId;
+      this.book.author_id == authorId;
+      console.log(bookId);
+      console.log(authorId);
+      axios.post("/api/books/"+bookId+"/authors/"+authorId, this.book).then(response => {
+        // this.book.authors.push(this.choices.authors[authorId]);
+        // this.book = "";
+      });
+    },
     editBook(id) {
       this.formTouched = !this.$v.editedBook.$anyDirty;
       this.errors = this.$v.editedBook.$anyError;

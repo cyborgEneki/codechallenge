@@ -2,28 +2,16 @@
   <div>
     <el-form v-if="isadmin" :model="book" ref="book" label-width="120px">
       <el-form-item label="Title" for="ftitle">
-        <el-input id="ftitle" v-model.lazy="$v.book.title.$model"></el-input>
+        <el-input id="ftitle" v-model="$v.book.title.$model"></el-input>
         <p v-if="errors" class="error">
           <span
             v-if="!$v.book.title.$model"
           >"The book without a title" makes for a good title...but still type in a title to continue</span>
         </p>
       </el-form-item>
-      <!-- 
-      <el-form-item label="Author" for="fauthor">
-        <div v-for="author in books.authors" :key="author.id">
-          <el-select id="fauthor" v-model.lazy="$v.author.name.$model" placeholder="Author(s)">
-            <el-option
-              v-for="author in orderedAuthors"
-              :value="author.id"
-              :key="author.id"
-            >{{ author.name }}</el-option>
-          </el-select>
-        </div>
-      </el-form-item>-->
 
       <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model.lazy="$v.book.status.$model">
+        <el-radio-group id="fstatus" v-model="$v.book.status.$model">
           <el-radio label="1">Available</el-radio>
           <el-radio label="0">Borrowed</el-radio>
         </el-radio-group>
@@ -33,7 +21,7 @@
       </el-form-item>
 
       <el-form-item label="Category" for="fcategory">
-        <el-select id="fcategory" v-model.lazy="$v.book.category_id.$model" placeholder="Category">
+        <el-select id="fcategory" v-model="$v.book.category_id.$model" placeholder="Category">
           <el-option
             v-for="category in orderedCategories"
             :value="category.id"
@@ -87,7 +75,7 @@ export default {
     book: {
       title: { required },
       status: { required },
-      category_id: { required }
+      category_id: { required },
     }
   },
   methods: {
@@ -128,3 +116,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.same-line {
+  display: inline-block;
+}
+</style>
