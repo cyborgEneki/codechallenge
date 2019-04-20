@@ -4217,6 +4217,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -4306,8 +4307,6 @@ __webpack_require__.r(__webpack_exports__);
             type: "success"
           });
         })["catch"](function () {
-          console.log();
-
           _this4.$alert("You have exceeded your borrowing limit", "Stop", {
             confirmButtonText: "OK"
           });
@@ -4963,7 +4962,6 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("/api/profile").then(function (response) {
       _this.profile = response.data;
-      console.log(_this.profile);
     });
     axios.get("/api/choices").then(function (response) {
       _this.choices = response.data;
@@ -98754,26 +98752,28 @@ var render = function() {
                         [_vm._v("B")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "el-button",
-                        {
-                          directives: [
+                      book.status == 0
+                        ? _c(
+                            "el-button",
                             {
-                              name: "show",
-                              rawName: "v-show",
-                              value: book.reservor_id == null,
-                              expression: "book.reservor_id == null"
-                            }
-                          ],
-                          staticClass: "reserve-button",
-                          on: {
-                            click: function($event) {
-                              return _vm.reserve(book.id)
-                            }
-                          }
-                        },
-                        [_vm._v("R")]
-                      ),
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: book.reservor_id == null,
+                                  expression: "book.reservor_id == null"
+                                }
+                              ],
+                              staticClass: "reserve-button",
+                              on: {
+                                click: function($event) {
+                                  return _vm.reserve(book.id)
+                                }
+                              }
+                            },
+                            [_vm._v("R")]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm.isadmin
                         ? _c(

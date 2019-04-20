@@ -35,7 +35,6 @@ export default {
   mounted() {
     axios.get("/api/profile").then(response => {
       this.profile = response.data;
-      console.log(this.profile);
     });
     axios.get("/api/choices").then(response => {
       this.choices = response.data;

@@ -38,6 +38,7 @@
               <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
               <el-button
                 class="reserve-button"
+                v-if="book.status == 0"
                 v-show="book.reservor_id == null"
                 @click="reserve(book.id)"
               >R</el-button>
@@ -147,7 +148,6 @@ export default {
             });
           })
           .catch(() => {
-            console.log();
             this.$alert("You have exceeded your borrowing limit", "Stop", {
               confirmButtonText: "OK"
             });
