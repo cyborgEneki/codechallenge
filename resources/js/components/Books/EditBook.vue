@@ -43,7 +43,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="editBook('book', editedBook)">Edit</el-button>
+        <el-button type="primary" @click="editBook(editedBook.id)">Edit</el-button>
         <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
@@ -80,12 +80,12 @@ export default {
     }
   },
   methods: {
-    editBook(editedBook) {
+    editBook(id) {
       this.formTouched = !this.$v.editedBook.$anyDirty;
       this.errors = this.$v.editedBook.$anyError;
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
-        axios.put("/api/books/" + editedBook.id, editedBook).then(response => {
+        axios.put("/api/books/" + id, this.editedBook).then(response => {
           this.$router.push("/books");
           this.$notify({
             title: "Success",

@@ -29,19 +29,19 @@
             </td>
             <td>{{ choices.categories[book.category_id].name }}</td>
             <td v-show="choices.authuserstatus == 1">
-                <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
-                  <i class="fas fa-edit icon blue"></i>
-                </router-link>
-                <a v-if="isadmin">
-                  <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
-                </a>
-                <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
-                <el-button
-                  class="reserve-button"
-                  v-show="book.reservor_id == null"
-                  @click="reserve(book.id)"
-                >R</el-button>
-                <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
+              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
+                <i class="fas fa-edit icon blue"></i>
+              </router-link>
+              <a v-if="isadmin">
+                <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
+              </a>
+              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
+              <el-button
+                class="reserve-button"
+                v-show="book.reservor_id == null"
+                @click="reserve(book.id)"
+              >R</el-button>
+              <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
             </td>
           </tr>
         </tbody>

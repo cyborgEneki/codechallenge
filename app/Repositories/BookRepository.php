@@ -10,7 +10,6 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\User;
-use App\Models\BookUser;
 use Illuminate\Http\Request;
 
 class BookRepository implements BookRepositoryInterface
