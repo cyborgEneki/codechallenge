@@ -3617,15 +3617,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs[formName].validate(function (valid) {
         if (valid) {
-          axios.post("/api/authors/", _this.author).then(function (response) {});
-          _this.author = {};
+          axios.post("/api/authors/", _this.author).then(function (response) {
+            _this.$router.push("/authors");
 
-          _this.$router.push("/authors");
-
-          _this.$notify({
-            title: "Success",
-            message: "The new author has been added.",
-            type: "success"
+            _this.$notify({
+              title: "Success",
+              message: "The new author has been added.",
+              type: "success"
+            });
           });
         } else {
           return false;
@@ -3979,20 +3978,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addBook: function addBook() {
+      var _this = this;
+
       this.formTouched = !this.$v.book.$anyDirty;
       this.errors = this.$v.book.$anyError;
       this.uiState = "submit clicked";
 
       if (this.errors === false && this.formTouched === false) {
-        axios.post("/api/books/", this.book).then(function (response) {});
-        this.book = {};
-        this.$router.push("/books");
-        this.$notify({
-          title: "Success",
-          message: "The new book has been added.",
-          type: "success"
+        axios.post("/api/books/", this.book).then(function (response) {
+          _this.$router.push("/books");
+
+          _this.$notify({
+            title: "Success",
+            message: "The new book has been added.",
+            type: "success"
+          });
+
+          _this.uiState = "form submitted";
         });
-        this.uiState = "form submitted";
       } else {
         return false;
       }
@@ -4006,10 +4009,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getAdmin: function getAdmin() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get("/api/users/isadmin").then(function (response) {
-        _this.isadmin = response.data;
+        _this2.isadmin = response.data;
       });
     }
   },
@@ -4409,17 +4412,15 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs[formName].validate(function (valid) {
         if (valid) {
-          axios.post("/api/categories/", _this.category).then(function (response) {});
+          axios.post("/api/categories/", _this.category).then(function (response) {
+            _this.$router.push("/categories");
 
-          _this.$router.push("/categories");
-
-          _this.$notify({
-            title: "Success",
-            message: "The new category has been added.",
-            type: "success"
+            _this.$notify({
+              title: "Success",
+              message: "The new category has been added.",
+              type: "success"
+            });
           });
-
-          _this.category = {};
         } else {
           return false;
         }
@@ -4688,15 +4689,14 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs[formName].validate(function (valid) {
         if (valid) {
-          axios.post("/api/departments/", _this.department).then(function (response) {});
-          _this.department = {};
+          axios.post("/api/departments/", _this.department).then(function (response) {
+            _this.$router.push("/departments");
 
-          _this.$router.push("/departments");
-
-          _this.$notify({
-            title: "Success",
-            message: "The new department has been added.",
-            type: "success"
+            _this.$notify({
+              title: "Success",
+              message: "The new department has been added.",
+              type: "success"
+            });
           });
         } else {
           return false;
@@ -5287,20 +5287,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addUser: function addUser() {
+      var _this = this;
+
       this.formTouched = !this.$v.user.$anyDirty;
       this.errors = this.$v.user.$anyError;
       this.uiState = "submit clicked";
 
       if (this.errors === false && this.formTouched === false) {
-        axios.post("/api/users/", this.user).then(function (response) {});
-        this.user = {};
-        this.$router.push("/users");
-        this.$notify({
-          title: "Success",
-          message: "The new user has been added.",
-          type: "success"
+        axios.post("/api/users/", this.user).then(function (response) {
+          _this.$router.push("/users");
+
+          _this.$notify({
+            title: "Success",
+            message: "The new user has been added.",
+            type: "success"
+          });
+
+          _this.uiState = "form submitted";
         });
-        this.uiState = "form submitted";
       } else {
         return false;
       }

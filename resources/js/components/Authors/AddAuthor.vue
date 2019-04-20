@@ -34,13 +34,13 @@ export default {
     addAuthor(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.post("/api/authors/", this.author).then(response => {});
-          this.author = {};
-          this.$router.push("/authors");
-          this.$notify({
-            title: "Success",
-            message: "The new author has been added.",
-            type: "success"
+          axios.post("/api/authors/", this.author).then(response => {
+            this.$router.push("/authors");
+            this.$notify({
+              title: "Success",
+              message: "The new author has been added.",
+              type: "success"
+            });
           });
         } else {
           return false;

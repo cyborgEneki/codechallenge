@@ -40,13 +40,13 @@ export default {
     addDepartment(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.post("/api/departments/", this.department).then(response => {});
-          this.department = {};
-          this.$router.push("/departments");
-          this.$notify({
-            title: "Success",
-            message: "The new department has been added.",
-            type: "success"
+          axios.post("/api/departments/", this.department).then(response => {
+            this.$router.push("/departments");
+            this.$notify({
+              title: "Success",
+              message: "The new department has been added.",
+              type: "success"
+            });
           });
         } else {
           return false;

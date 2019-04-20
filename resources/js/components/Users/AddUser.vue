@@ -141,15 +141,15 @@ export default {
       this.errors = this.$v.user.$anyError;
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
-        axios.post("/api/users/", this.user).then(response => {});
-        this.user = {};
-        this.$router.push("/users");
-        this.$notify({
-          title: "Success",
-          message: "The new user has been added.",
-          type: "success"
+        axios.post("/api/users/", this.user).then(response => {
+          this.$router.push("/users");
+          this.$notify({
+            title: "Success",
+            message: "The new user has been added.",
+            type: "success"
+          });
+          this.uiState = "form submitted";
         });
-        this.uiState = "form submitted";
       } else {
         return false;
       }

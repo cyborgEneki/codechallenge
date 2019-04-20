@@ -44,7 +44,7 @@
             :key="user.id"
           >{{ user.full_name }}</el-option>
         </el-select>
-      </el-form-item> -->
+      </el-form-item>-->
 
       <el-form-item label="Category" for="fcategory">
         <el-select id="fcategory" v-model.lazy="$v.book.category_id.$model" placeholder="Category">
@@ -94,7 +94,7 @@ export default {
         reservor_id: "",
         category_id: ""
       },
-      isadmin: false,
+      isadmin: false
     };
   },
   validations: {
@@ -110,15 +110,15 @@ export default {
       this.errors = this.$v.book.$anyError;
       this.uiState = "submit clicked";
       if (this.errors === false && this.formTouched === false) {
-        axios.post("/api/books/", this.book).then(response => {});
-        this.book = {};
-        this.$router.push("/books");
-        this.$notify({
-          title: "Success",
-          message: "The new book has been added.",
-          type: "success"
+        axios.post("/api/books/", this.book).then(response => {
+          this.$router.push("/books");
+          this.$notify({
+            title: "Success",
+            message: "The new book has been added.",
+            type: "success"
+          });
+          this.uiState = "form submitted";
         });
-        this.uiState = "form submitted";
       } else {
         return false;
       }
