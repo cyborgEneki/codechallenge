@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="book in books" :key="book.id">
+          <tr v-for="book in orderedBooks" :key="book.id">
             <td>{{ book.title }}</td>
             <td>
               <p v-for="author in book.authors" :key="author.id">{{ author.name }}</p>
@@ -59,6 +59,11 @@ import Pagination from "../pagination";
 export default {
   props: ["choices"],
   components: { Pagination },
+  computed: {
+    orderedBooks() {
+      return _.orderBy(this.books, "created_at", "desc")
+    }
+  },
   data() {
     return {
       books: [],

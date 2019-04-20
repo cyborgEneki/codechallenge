@@ -62,11 +62,13 @@
           <el-radio label="1">Active</el-radio>
           <el-radio label="2">Suspended</el-radio>
         </el-radio-group>
-        <p v-if="errors" class="error">
-          <span
-            v-if="!$v.user.status.required"
-          >A user without a borrowing status is like a phone without WiFi!</span>
-        </p>
+      </el-form-item>
+
+      <el-form-item label="Access Level" for="fal">
+        <el-radio-group id="fal" v-model.lazy="$v.user.accesslevel_id.$model">
+          <el-radio label="1">Admin</el-radio>
+          <el-radio label="2">Normal</el-radio>
+        </el-radio-group>
       </el-form-item>
 
       <el-form-item label="Department" for="fdepartment">
@@ -118,8 +120,9 @@ export default {
         last_name: "",
         email: "",
         password: "",
-        max_number_of_books_allowed: "",
+        max_number_of_books_allowed: 3,
         status: "1",
+        accesslevel_id: "2",
         department_id: ""
       }
     };
@@ -132,6 +135,7 @@ export default {
       password: { required, minLength: minLength(8) },
       max_number_of_books_allowed: { required },
       status: { required },
+      accesslevel_id: { required },
       department_id: { required }
     }
   },

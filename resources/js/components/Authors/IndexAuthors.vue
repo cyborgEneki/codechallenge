@@ -45,7 +45,7 @@ export default {
   components: { Pagination },
   computed: {
     orderedAuthors() {
-      return _.orderBy(this.authors, "updated_at");
+      return _.orderBy(this.authors, "created_at", "desc");
     }
   },
   data() {

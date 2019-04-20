@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" :key="user.id">
+          <tr v-for="user in orderedUsers" :key="user.id">
             <td width=15%>{{ user.first_name }}</td>
             <td width=15%>{{ user.last_name }}</td>
             <td width=15%>{{ user.email }}</td>
@@ -51,6 +51,11 @@
 import Pagination from "../pagination";
 
 export default {
+  computed: {
+    orderedUsers() {
+      return _.orderBy(this.users, "created_at", "desc");
+    }
+  },
   props: ["choices"],
   watch: {
     choices (n, o) {

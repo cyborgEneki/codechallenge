@@ -3780,7 +3780,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     orderedAuthors: function orderedAuthors() {
-      return _.orderBy(this.authors, "updated_at");
+      return _.orderBy(this.authors, "created_at", "desc");
     }
   },
   data: function data() {
@@ -4227,6 +4227,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: {
+    orderedBooks: function orderedBooks() {
+      return _.orderBy(this.books, "created_at", "desc");
+    }
+  },
   data: function data() {
     return {
       books: [],
@@ -4568,6 +4573,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: {
+    orderedCategories: function orderedCategories() {
+      return _.orderBy(this.categories, "created_at", "desc");
+    }
+  },
   data: function data() {
     return {
       categories: [],
@@ -4844,6 +4854,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Pagination: _pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  computed: {
+    orderedDepartments: function orderedDepartments() {
+      return _.orderBy(this.departments, "created_at", "desc");
+    }
   },
   data: function data() {
     return {
@@ -5233,6 +5248,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -5252,8 +5269,9 @@ __webpack_require__.r(__webpack_exports__);
         last_name: "",
         email: "",
         password: "",
-        max_number_of_books_allowed: "",
+        max_number_of_books_allowed: 3,
         status: "1",
+        accesslevel_id: "2",
         department_id: ""
       }
     };
@@ -5278,6 +5296,9 @@ __webpack_require__.r(__webpack_exports__);
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       status: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      accesslevel_id: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
       department_id: {
@@ -5562,6 +5583,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    orderedUsers: function orderedUsers() {
+      return _.orderBy(this.users, "created_at", "desc");
+    }
+  },
   props: ["choices"],
   watch: {
     choices: function choices(n, o) {
@@ -98673,7 +98699,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.books, function(book) {
+              _vm._l(_vm.orderedBooks, function(book) {
                 return _c("tr", { key: book.id }, [
                   _c("td", [_vm._v(_vm._s(book.title))]),
                   _vm._v(" "),
@@ -99044,7 +99070,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.categories, function(category) {
+                  _vm._l(_vm.orderedCategories, function(category) {
                     return _c("tr", { key: category.id }, [
                       _c("td", { attrs: { width: "90%" } }, [
                         _vm._v(_vm._s(category.name))
@@ -99325,7 +99351,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.departments, function(department) {
+                  _vm._l(_vm.orderedDepartments, function(department) {
                     return _c("tr", { key: department.id }, [
                       _c("td", { attrs: { width: "90%" } }, [
                         _vm._v(_vm._s(department.name))
@@ -99952,19 +99978,34 @@ var render = function() {
                   ])
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.user.status.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a borrowing status is like a phone without WiFi!"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: "Access Level", for: "fal" } },
+            [
+              _c(
+                "el-radio-group",
+                {
+                  attrs: { id: "fal" },
+                  model: {
+                    value: _vm.$v.user.accesslevel_id.$model,
+                    callback: function($$v) {
+                      _vm.$set(_vm.$v.user.accesslevel_id, "$model", $$v)
+                    },
+                    expression: "$v.user.accesslevel_id.$model"
+                  }
+                },
+                [
+                  _c("el-radio", { attrs: { label: "1" } }, [_vm._v("Admin")]),
+                  _vm._v(" "),
+                  _c("el-radio", { attrs: { label: "2" } }, [_vm._v("Normal")])
+                ],
+                1
+              )
             ],
             1
           ),
@@ -100394,7 +100435,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.users, function(user) {
+                  _vm._l(_vm.orderedUsers, function(user) {
                     return _c("tr", { key: user.id }, [
                       _c("td", { attrs: { width: "15%" } }, [
                         _vm._v(_vm._s(user.first_name))
