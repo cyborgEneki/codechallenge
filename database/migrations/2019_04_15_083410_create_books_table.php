@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->boolean('status')->default(0);
             $table->unsignedInteger('reservor_id')->nullable();
             $table->foreign('reservor_id')->references('id')->on('users');
-            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->softDeletes();
