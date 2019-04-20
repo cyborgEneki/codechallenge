@@ -32,20 +32,6 @@
         </p>
       </el-form-item>
 
-      <!-- <el-form-item label="Reserved By" for="freservor">
-        <el-select
-          id="freservor"
-          v-model.lazy="$v.book.reservor_id.$model"
-          placeholder="Reserved By"
-        >
-          <el-option
-            v-for="user in orderedUsers"
-            :value="user.id"
-            :key="user.id"
-          >{{ user.full_name }}</el-option>
-        </el-select>
-      </el-form-item>-->
-
       <el-form-item label="Category" for="fcategory">
         <el-select id="fcategory" v-model.lazy="$v.book.category_id.$model" placeholder="Category">
           <el-option

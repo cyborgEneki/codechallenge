@@ -19,10 +19,12 @@ class BookAvailable extends Mailable
      */
 
     public $book;
+    public $reservorName;
 
-    public function __construct(Book $book)
+    public function __construct($book, $reservorName)
     {
         $this->book = $book;
+        $this->reservorName = $reservorName;
     }
 
     /**
