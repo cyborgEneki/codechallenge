@@ -13,7 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\WeeklyReportCommand',
+        'App\Console\Commands\BeforeDueDateCommand',
+        'App\Console\Commands\AfterDueDateCommand',
+        'App\Console\Commands\DisableUsersCommand',
     ];
 
     /**
@@ -24,8 +27,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('weekly:report')
+        ->weekly()->saturdays()->at('23:59');
+        $schedule->command('daily:prereminder')
+        ->daily()->at('07:00');
+        $schedule->command('daily:postreminder')
+        ->daily()->at('07:00');
+        $schedule->command('disable:user')
+        ->daily()->at('07:00');
     }
 
     /**

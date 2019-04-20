@@ -6,15 +6,16 @@ use App\Models\Book;
 use App\Contracts\BookRepositoryInterface;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Author;
 use App\Models\Category;
 use App\Models\Department;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class BookRepository implements BookRepositoryInterface
 {
     public function allBooks()
     {
-        return Book::paginate(10);
+        return Book::with(['users'])->paginate(10);
     }
 
     public function createBook(BookRequest $request)
@@ -24,7 +25,7 @@ class BookRepository implements BookRepositoryInterface
 
     public function showBook($id)
     {
-        return Book::findOrFail($id);
+        return Book::where('id', '=', $id)->first();
     }
 
     public function updateBook(BookRequest $request, Book $book)
@@ -39,24 +40,39 @@ class BookRepository implements BookRepositoryInterface
 
     public function choices()
     {
-        $books = Book::all();
+        $books = Book::with(['users'])->get();
         $books = $books->keyBy('id');
         $books = ['books' => $books];
 
         $auth_user = ['authuser' => Auth::User()->id];
 
-        $authors = Author::all();
-        $authors = $authors->keyBy('id');
-        $authors = ['authors' => $authors];        
+        $users = User::with(['books'])->get();
+        $users = $users->keyBy('id');
+        $users = ['users' => $users];
+
+        $authuserstatus = ['authuserstatus'=> Auth::User()->status];
         
         $categories = Category::all();
         $categories = $categories->keyBy('id');
-        $categories = ['categories' => $categories];        
+        $categories = ['categories' => $categories];
         
         $departments = Department::all();
         $departments = $departments->keyBy('id');
         $departments = ['departments' => $departments];
 
-        return array_merge($books, $auth_user, $authors, $categories, $departments);
+        return array_merge($books, $auth_user, $categories, $departments, $users, $authuserstatus);
+    }
+
+    public function reserveBook(Request $request, $bookId)
+    {
+        $reservor = $request["reservor_id"] = Auth::id();
+        $book = Book::find($bookId)->select('reservor_id')->where('reservor_id', null)->first();
+        
+        if ($book !== null) {
+            Book::find($bookId)->update(['reservor_id' => $reservor]);
+            return response()->json(['success'=>'Your reservation was successful'], 200);
+        } else {
+            return response()->json(['error'=>'This book has already been reserved'], 404);
+        }
     }
 }

@@ -1,8 +1,5 @@
 import VueRouter from 'vue-router';
 
-import AddAuthor from './components/Authors/AddAuthor';
-import EditAuthor from './components/Authors/EditAuthor';
-import IndexAuthors from './components/Authors/IndexAuthors';
 import AddBook from './components/Books/AddBook';
 import EditBook from './components/Books/EditBook';
 import IndexBooks from './components/Books/IndexBooks';
@@ -12,29 +9,27 @@ import IndexCategories from './components/Categories/IndexCategories';
 import AddDepartment from './components/Departments/AddDepartment';
 import EditDepartment from './components/Departments/EditDepartment';
 import IndexDepartments from './components/Departments/IndexDepartments';
+import EditAccesslevel from './components/Accesslevels/EditAccesslevel';
+import IndexAccesslevels from './components/Accesslevels/IndexAccesslevels';
 import AddUser from './components/Users/AddUser';
-import DetailUser from './components/Users/DetailUser';
 import EditUser from './components/Users/EditUser';
 import IndexUsers from './components/Users/IndexUsers';
+import Profile from './components/Profile';
+import Reports from './components/Reports';
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/add-author',
-            name: 'addAuthor',
-            component: AddAuthor
-        },
-        {
-            path: '/edit-author',
-            name: 'editAuthor',
-            component: EditAuthor,
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
             props: true
         },
         {
-            path: '/authors',
-            name: 'indexAuthors',
-            component: IndexAuthors
+            path: '/weeklyreport',
+            name: 'reports',
+            component: Reports
         },
         {
             path: '/add-book',
@@ -42,7 +37,7 @@ const router = new VueRouter({
             component: AddBook
         },
         {
-            path: '/edit-book',
+            path: '/edit-book/:id',
             name: 'editBook',
             component: EditBook,
             props: true
@@ -58,7 +53,7 @@ const router = new VueRouter({
             component: AddCategory
         },
         {
-            path: '/edit-category',
+            path: '/edit-category/:id',
             name: 'editCategory',
             component: EditCategory,
             props: true
@@ -74,7 +69,7 @@ const router = new VueRouter({
             component: AddDepartment
         },
         {
-            path: '/edit-department',
+            path: '/edit-department/:id',
             name: 'editDepartment',
             component: EditDepartment,
             props: true
@@ -85,17 +80,23 @@ const router = new VueRouter({
             component: IndexDepartments
         },
         {
+            path: '/edit-accesslevel',
+            name: 'editAccesslevel',
+            component: EditAccesslevel,
+            props: true
+        },
+        {
+            path: '/accesslevels',
+            name: 'indexAccesslevels',
+            component: IndexAccesslevels
+        },
+        {
             path: '/add-user',
             name: 'addUser',
             component: AddUser
         },
         {
-            path: '/detail-user',
-            name: 'detailUser',
-            component: DetailUser
-        },
-        {
-            path: '/edit-user',
+            path: '/edit-user/:id',
             name: 'editUser',
             component: EditUser,
             props: true

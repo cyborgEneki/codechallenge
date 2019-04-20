@@ -11,13 +11,8 @@ class Book extends Model
 
     protected $fillable =
     [
-        'title', 'status', 'reservor_id', 'category_id'
+        'title', 'status', 'reservor_id', 'category_id', 'author'
     ];
-
-    public function authors()
-    {
-        return $this->belongsToMany('App\Models\Author');
-    }
 
     public function category()
     {

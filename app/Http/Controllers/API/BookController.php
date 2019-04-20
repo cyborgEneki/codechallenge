@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Contracts\BookRepositoryInterface;
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -36,7 +37,7 @@ class BookController extends Controller
 
     public function update(BookRequest $request, Book $book)
     {
-        $book = $this->bookRepo->updateBook($request, $book);
+        $this->bookRepo->updateBook($request, $book);
         return response()->json($book, 200);
     }
 
@@ -50,5 +51,11 @@ class BookController extends Controller
     {
         $choices = $this->bookRepo->choices();
         return response()->json($choices, 200);
+    }
+
+    public function reserve(Request $request, $bookId)
+    {
+        $reserve = $this->bookRepo->reserveBook($request, $bookId);
+        return response()->json($reserve, 200);
     }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card v-if="isadmin" class="box-card">
       <div slot="header">
         <span class="card-font">Departments</span>
         <router-link :to="{ name: 'addDepartment' }">
@@ -15,11 +15,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="department in departments" :key="department.id">
+          <tr v-for="department in orderedDepartments" :key="department.id">
             <td width="90%">{{ department.name }}</td>
-            <td>
-              <i class="far fa-eye icon green"></i>
-              <router-link :to="{ name: 'editDepartment', params: { department } }">
+            <td class="actions-column">
+              <router-link :to="{ name: 'editDepartment', params: { department, id: department.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
@@ -40,6 +39,11 @@ import Pagination from "../pagination";
 
 export default {
   components: { Pagination },
+  computed: {
+    orderedDepartments() {
+      return _.orderBy(this.departments, "created_at", "desc");
+    }
+  },
   data() {
     return {
       departments: [],
@@ -47,7 +51,8 @@ export default {
         last_page: null,
         current_page: 1,
         prev_page_url: null
-      }
+      },
+      isadmin: false
     };
   },
   methods: {
@@ -67,7 +72,7 @@ export default {
     },
     deleteDepartment(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the department. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -96,10 +101,16 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
   },
   created() {
     this.getDepartments();
+    this.getAdmin();
   }
 };
 </script>

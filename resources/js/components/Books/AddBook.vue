@@ -1,29 +1,36 @@
 <template>
   <div>
-    <el-form :model="book" :rules="rules" ref="book" label-width="120px" class="demo-ruleForm">
-      <el-form-item label="Book Title" prop="title">
-        <el-input v-model="book.title"></el-input>
+    <el-form v-if="isadmin" :model="book" ref="book" label-width="120px">
+      <el-form-item label="Title" for="ftitle">
+        <el-input id="ftitle" v-model="$v.book.title.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.book.title.$model"
+          >"The book without a title" makes for a good title...but still type in a title to continue</span>
+        </p>
       </el-form-item>
 
-      <el-form-item label="Status" prop="status">
-        <el-radio-group v-model="book.status">
-          <el-radio label="Available"></el-radio>
-          <el-radio label="Borrowed"></el-radio>
+      <el-form-item label="Author" for="fa">
+        <el-input id="fa" v-model="$v.book.author.$model"></el-input>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.book.author.$model"
+          >Who wrote this book?</span>
+        </p>
+      </el-form-item>
+
+      <el-form-item label="Status" for="fstatus">
+        <el-radio-group id="fstatus" v-model="$v.book.status.$model">
+          <el-radio label="1">Available</el-radio>
+          <el-radio label="0">Borrowed</el-radio>
         </el-radio-group>
+        <p v-if="errors" class="error">
+          <span v-if="!$v.book.status.$model">A status is required</span>
+        </p>
       </el-form-item>
 
-      <el-form-item label="Reserved By">
-        <el-select v-model="book.reservor_id" placeholder="Reserved By">
-          <el-option
-            v-for="user in orderedUsers"
-            :value="user.id"
-            :key="user.id"
-          >{{ user.full_name }}</el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="Category" prop="category">
-        <el-select v-model="book.category_id" placeholder="Category">
+      <el-form-item label="Category" for="fcategory">
+        <el-select id="fcategory" v-model="$v.book.category_id.$model" placeholder="Category">
           <el-option
             v-for="category in orderedCategories"
             :value="category.id"
@@ -31,17 +38,23 @@
             :label="category.name"
           >{{ category.name }}</el-option>
         </el-select>
+        <p v-if="errors" class="error">
+          <span
+            v-if="!$v.book.category_id.$model"
+          >This cannot be blank. Users will never find what they like</span>
+        </p>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="addBook('book')">Create</el-button>
-        <el-button @click="resetForm('book')">Reset</el-button>
+        <el-button type="primary" @click.prevent="addBook()">Create</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
 export default {
   props: ["choices"],
   computed: {
@@ -54,56 +67,69 @@ export default {
   },
   data() {
     return {
+      uiState: "submit not clicked",
+      errors: false,
+      empty: true,
+      formTouched: false,
       book: {
         title: "",
-        status: "",
+        author: "",
+        status: "1",
         reservor_id: "",
         category_id: ""
       },
-      rules: {
-        title: [
-          {
-            required: true,
-            message: "Please input the book's title",
-            trigger: "blur"
-          }
-        ],
-        status: [
-          {
-            required: true,
-            message: "Please select the book's status",
-            trigger: "change"
-          }
-        ],
-        // category: [
-        //   {
-        //     required: true,
-        //     message: "Please select the book's category",
-        //     trigger: "change"
-        //   }
-        // ]
-      }
+      isadmin: false
     };
   },
+  validations: {
+    book: {
+      title: { required },
+      author: { required },
+      status: { required },
+      category_id: { required },
+    }
+  },
   methods: {
-    addBook(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          axios.post("/api/books/", this.book).then(response => {});
+    addBook() {
+      this.formTouched = !this.$v.book.$anyDirty;
+      this.errors = this.$v.book.$anyError;
+      this.uiState = "submit clicked";
+      if (this.errors === false && this.formTouched === false) {
+        axios.post("/api/books/", this.book).then(response => {
           this.$router.push("/books");
           this.$notify({
             title: "Success",
             message: "The new book has been added.",
             type: "success"
           });
-        } else {
-          return false;
-        }
+          this.uiState = "form submitted";
+        });
+      } else {
+        return false;
+      }
+    },
+    cancel() {
+      this.$router.push("/books");
+      this.$notify({
+        title: "Info",
+        message: "Changes, if any, have been discarded",
+        type: "info"
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
     }
+  },
+  created() {
+    this.getAdmin();
   }
 };
 </script>
+
+<style>
+.same-line {
+  display: inline-block;
+}
+</style>

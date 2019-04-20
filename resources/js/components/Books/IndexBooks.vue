@@ -1,36 +1,49 @@
 <template>
   <div>
+    <div class="search-wrapper panel-heading col-sm-12">
+      <input class="form-control" type="text" v-model="searchQuery" placeholder="Search">
+    </div>
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Books</span>
-        <router-link :to="{ name: 'addBook' }">
+        <router-link v-if="isadmin" :to="{ name: 'addBook' }">
           <i class="fas fa-plus-circle add-icon"></i>
         </router-link>
       </div>
       <table class="font-14">
         <thead>
           <tr>
-            <th width="22.5%">Title</th>
-            <th width="22.5%">Status</th>
-            <th width="22.5%">Reserved By</th>
-            <th width="22.5%">Category</th>
-            <th class="actions-column">Options</th>
+            <th width="20%">Title</th>
+            <th width="20%">Author</th>
+            <th width="20%">Status</th>
+            <th width="20%">Category</th>
+            <th width="20%" v-show="choices.authuserstatus == 1">Options</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="book in books" :key="book.id">
+          <tr v-for="book in filteredBooks" :key="book.id">
             <td>{{ book.title }}</td>
-            <td>{{ book.status }}</td>
-            <td>{{ book.reservor_id }}</td>
-            <td>{{ choices.categories[book.category_id].name }}</td>
+            <td>{{ book.author }}</td>
             <td>
-              <i class="far fa-eye icon green"></i>
-              <router-link :to="{ name: 'editBook', params: { book } }">
+              <p v-if="book.status == 1">Available</p>
+              <p v-if="book.status == 0">Borrowed</p>
+            </td>
+            <td>{{ choices.categories[book.category_id].name }}</td>
+            <td v-show="choices.authuserstatus == 1">
+              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book, id: book.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
-              <a>
+              <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
+              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow(book.id)">B</el-button>
+              <el-button
+                class="reserve-button"
+                v-if="book.status == 0"
+                v-show="book.reservor_id == null"
+                @click="reserve(book.id)"
+              >R</el-button>
+              <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
             </td>
           </tr>
         </tbody>
@@ -47,13 +60,35 @@ import Pagination from "../pagination";
 export default {
   props: ["choices"],
   components: { Pagination },
+  computed: {
+    orderedAuthors() {
+      return _.orderBy(this.choices.authors, "name");
+    },
+    filteredBooks() {
+      if (this.searchQuery) {
+        return this.books.filter(item => {
+          return item.title.startsWith(this.searchQuery);
+        });
+      } else {
+        return _.orderBy(this.books, "created_at", "desc");
+      }
+    }
+  },
   data() {
     return {
       books: [],
+      searchQuery: "",
       meta_data: {
         last_page: null,
         current_page: 1,
         prev_page_url: null
+      },
+      isadmin: false,
+      borrowDetails: {
+        due_date: "",
+        date_out: "",
+        book_id: "",
+        user_id: ""
       }
     };
   },
@@ -74,7 +109,7 @@ export default {
     },
     deleteBook(id) {
       this.$confirm(
-        "This will permanently delete the file. Continue?",
+        "This will permanently delete the book. Continue?",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -103,13 +138,101 @@ export default {
             message: "Delete cancelled"
           });
         });
+    },
+    getAdmin() {
+      axios.get("/api/users/isadmin").then(response => {
+        this.isadmin = response.data;
+      });
+    },
+    borrow(id) {
+      this.$confirm(
+        "Are you sure you want this specific book taking up your leisure time?",
+        "Confirmation",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        this.borrowDetails.book_id = id;
+        axios
+          .post("/api/borrow", this.borrowDetails)
+          .then(response => {
+            this.$notify({
+              title: "Success",
+              message: "Success! Kindly go pick up your book from HR.",
+              type: "success"
+            });
+          })
+          .catch(() => {
+            this.$alert("You have exceeded your borrowing limit", "Stop", {
+              confirmButtonText: "OK"
+            });
+          });
+      });
+    },
+    reserve(id) {
+      this.$confirm(
+        "Are you sure you want this specific book taking up your time?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .get("/api/books/" + id + "/reserve", this.books)
+          .then(response => {
+            this.books = response.data;
+            this.$alert(
+              "You will get an email notification as soon as this book is available. Please note that it will be unchecked in the system as soon as the email is sent, therefore, kindly borrow it as soon as you receive the email.",
+              "Success!",
+              {
+                confirmButtonText: "OK",
+                callback: action => {}
+              }
+            );
+          });
+      });
+    },
+    returned(id) {
+      this.$confirm(
+        "Are you sure you have seen this specific book?",
+        "Confirmation",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .get("/api/books/" + id + "/returned", this.books)
+          .then(response => {
+            this.books = response.data;
+            this.$notify({
+              title: "Success",
+              message: "The book has been returned to the shelf.",
+              type: "success"
+            });
+          });
+      });
     }
   },
   mounted() {
     this.getBooks();
+    this.getAdmin();
   }
 };
 </script>
 
 <style>
+.borrow-button {
+  background-color: lightgreen;
+  border-radius: 100%;
+}
+.reserve-button {
+  background-color: yellow;
+  border-radius: 100%;
+}
 </style>

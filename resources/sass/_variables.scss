@@ -23,6 +23,7 @@ $powderblue: #0ea4cc;
 $customgreen: #00a65a;
 $hotorange: #d84a3a;
 $hotpink: #df8dc7;
+$darkblue: #1c67fb;
 $font-14: 14px;
 
 .blue {
@@ -32,7 +33,7 @@ $font-14: 14px;
     color: $indigo;
 }
 .purple{
-    color: $purple;
+    color: $purple !important;
 }
 .pink {
     color: $pink;
@@ -41,10 +42,10 @@ $font-14: 14px;
     color: $red;
 }
 .orange {
-    color: $orange;
+    color: $orange !important;
 }
 .yellow {
-    color: $yellow;
+    color: $yellow !important;
 }
 .green {
     color: $green;
@@ -69,6 +70,9 @@ $font-14: 14px;
 }
 .hotpink {
     color: $hotpink !important;
+}
+.darkblue {
+    color: $darkblue !important;
 }
 .font-14 {
     font-size: $font-14;

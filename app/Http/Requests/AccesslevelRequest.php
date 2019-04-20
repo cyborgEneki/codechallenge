@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthorRequest extends FormRequest
+class AccesslevelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +31,7 @@ class AuthorRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'An author without a name is like a phone without a screen!',
+            'name.required' => 'An access level goes well with a name',
         ];
     }
 }

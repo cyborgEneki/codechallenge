@@ -26,6 +26,7 @@ class User extends Authenticatable
         'password',
         'max_number_of_books_allowed',
         'status',
+        'accesslevel_id',
         'department_id'
     ];
 
@@ -50,6 +51,11 @@ class User extends Authenticatable
     public function department()
     {
         return $this->belongsTo('App\Models\Department');
+    }
+
+    public function accesslevel()
+    {
+        return $this->belongsTo('App\Models\Accesslevel');
     }
 
     public function books()

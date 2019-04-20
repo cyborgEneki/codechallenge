@@ -25,6 +25,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required',            
+            'author' => 'required',            
             'status' => 'required',            
             'category_id' => 'required',            
         ];
@@ -35,6 +36,7 @@ class BookRequest extends FormRequest
         return [
             'title.required' => 'A "book without a title" makes for a good title...but still, type in a title to continue',
             'status.required' => 'A status is required',
+            'author.required' => 'Who wrote this book?',
             'category_id.required' => 'Cannot be blank. Users will never find what they like'
         ];
     }

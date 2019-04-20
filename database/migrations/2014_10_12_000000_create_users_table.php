@@ -21,9 +21,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedInteger('max_number_of_books_allowed');
-            $table->enum('status', ['Active', 'Suspended']);
-            $table->unsignedInteger('department_id');
+            $table->boolean('status');
+            $table->unsignedInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
+            $table->unsignedInteger('accesslevel_id')->nullable();
+            $table->foreign('accesslevel_id')->references('id')->on('accesslevels');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

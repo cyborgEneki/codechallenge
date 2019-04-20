@@ -19,11 +19,27 @@ use Illuminate\Http\Request;
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function () {
+
     Route::post('details', 'API\UserController@details');
-    Route::apiResource('authors', 'API\AuthorController');
-    Route::apiResource('books', 'API\BookController');
-    Route::apiResource('categories', 'API\CategoryController');
-    Route::apiResource('departments', 'API\DepartmentController');
-    Route::apiResource('users', 'API\UserController');
+    Route::get('users/isadmin', 'API\UserController@isAdmin');
+    Route::apiResource('users', 'API\UserController')->middleware('admin');
+
+    Route::apiResource('categories', 'API\CategoryController')->middleware('admin');
+
+    Route::apiResource('departments', 'API\DepartmentController')->middleware('admin');
+
+    Route::delete('books/{book}', 'API\BookController@destroy')->middleware('admin');
+    Route::put('books/{book}', 'API\BookController@update')->middleware('admin');
+    Route::get('books/{book}', 'API\BookController@show');
+    Route::get('books', 'API\BookController@index');
     Route::get('choices', 'API\BookController@choices');
+    Route::get('books/{bookId}/reserve', 'API\BookController@reserve');
+    Route::post('books', 'API\BookController@store')->middleware('admin');
+
+    Route::apiResource('accesslevels', 'API\AccesslevelController')->middleware('admin');
+
+    Route::get('profile', 'API\BookUserController@index');
+    Route::post('borrow', 'API\BookUserController@borrow');
+    Route::get('books/{bookId}/returned', 'API\BookUserController@bookIn')->middleware('admin');
+    Route::post('weeklyreport/exportpdf', 'API\BookUserController@weeklyReport');
 });

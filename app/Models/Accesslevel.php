@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Author extends Model
+class Accesslevel extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = 
+    protected $fillable =
     [
         'name'
     ];
 
-    public function books()
+    public function users()
     {
-        return $this->belongsToMany('App\Models\Book');
+        return $this->hasMany('App\Models\User');
     }
 }
