@@ -1,8 +1,5 @@
 import VueRouter from 'vue-router';
 
-import AddAuthor from './components/Authors/AddAuthor';
-import EditAuthor from './components/Authors/EditAuthor';
-import IndexAuthors from './components/Authors/IndexAuthors';
 import AddBook from './components/Books/AddBook';
 import EditBook from './components/Books/EditBook';
 import IndexBooks from './components/Books/IndexBooks';
@@ -33,22 +30,6 @@ const router = new VueRouter({
             path: '/weeklyreport',
             name: 'reports',
             component: Reports
-        },
-        {
-            path: '/add-author',
-            name: 'addAuthor',
-            component: AddAuthor
-        },
-        {
-            path: '/edit-author/:id',
-            name: 'editAuthor',
-            component: EditAuthor,
-            props: true
-        },
-        {
-            path: '/authors',
-            name: 'indexAuthors',
-            component: IndexAuthors
         },
         {
             path: '/add-book',

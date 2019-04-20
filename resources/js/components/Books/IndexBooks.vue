@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="search-wrapper panel-heading col-sm-12">
+      <input class="form-control" type="text" v-model="searchQuery" placeholder="Search">
+    </div>
     <el-card class="box-card">
       <div slot="header">
         <span class="card-font">Books</span>
@@ -18,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="book in orderedBooks" :key="book.id">
+          <tr v-for="book in filteredBooks" :key="book.id">
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>
@@ -58,16 +61,23 @@ export default {
   props: ["choices"],
   components: { Pagination },
   computed: {
-    orderedBooks() {
-      return _.orderBy(this.books, "created_at", "desc");
-    },
     orderedAuthors() {
       return _.orderBy(this.choices.authors, "name");
+    },
+    filteredBooks() {
+      if (this.searchQuery) {
+        return this.books.filter(item => {
+          return item.title.startsWith(this.searchQuery);
+        });
+      } else {
+        return _.orderBy(this.books, "created_at", "desc");
+      }
     }
   },
   data() {
     return {
       books: [],
+      searchQuery: "",
       meta_data: {
         last_page: null,
         current_page: 1,
@@ -79,12 +89,6 @@ export default {
         date_out: "",
         book_id: "",
         user_id: ""
-      },
-      authors: [],
-      book: {
-        id: "",
-        author_id: "",
-        authors: []
       }
     };
   },

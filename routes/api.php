@@ -24,8 +24,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('users/isadmin', 'API\UserController@isAdmin');
     Route::apiResource('users', 'API\UserController')->middleware('admin');
 
-    Route::apiResource('authors', 'API\AuthorController')->middleware('admin');
-
     Route::apiResource('categories', 'API\CategoryController')->middleware('admin');
 
     Route::apiResource('departments', 'API\DepartmentController')->middleware('admin');
@@ -37,7 +35,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('choices', 'API\BookController@choices');
     Route::get('books/{bookId}/reserve', 'API\BookController@reserve');
     Route::post('books', 'API\BookController@store')->middleware('admin');
-    Route::post('books/{bookId}/authors/{authorId}', 'API\BookController@attachAuthors')->middleware('admin');
 
     Route::apiResource('accesslevels', 'API\AccesslevelController')->middleware('admin');
 

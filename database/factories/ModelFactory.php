@@ -3,7 +3,6 @@
 use App\Models\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
-use App\Models\Author;
 use App\Models\Book;
 use App\Models\Department;
 use App\Models\Category;

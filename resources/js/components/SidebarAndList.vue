@@ -18,13 +18,6 @@
             </el-menu-item>
           </router-link>
 
-          <router-link v-if="isadmin" :to="{ name: 'indexAuthors'}">
-            <el-menu-item index="2">
-              <i class="fas fa-pen-alt hotpink"></i>
-              <span slot="title" class="sidebar-padding">Authors</span>
-            </el-menu-item>
-          </router-link>
-
           <router-link :to="{ name: 'indexBooks'}">
             <el-menu-item index="3">
               <i class="fas fa-book-open hotorange"></i>
