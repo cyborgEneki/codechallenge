@@ -4,12 +4,13 @@ namespace App\Contracts;
 
 use App\Http\Requests\BookUserRequest;
 use App\Models\Book;
+use Illuminate\Http\Request;
 
 interface BookUserRepositoryInterface
 {
-    public function borrow(BookUserRequest $request);
-
-    public function return(Book $book);
-
     public function index();
+
+    public function borrow(Request $request);
+
+    public function bookIn($bookId, Request $request);
 }

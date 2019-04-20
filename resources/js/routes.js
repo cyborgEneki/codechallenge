@@ -17,7 +17,8 @@ import IndexAccesslevels from './components/Accesslevels/IndexAccesslevels';
 import AddUser from './components/Users/AddUser';
 import EditUser from './components/Users/EditUser';
 import IndexUsers from './components/Users/IndexUsers';
-import Profile from './components/Profile.vue';
+import Profile from './components/Profile';
+import Reports from './components/Reports';
 
 const router = new VueRouter({
     mode: 'history',
@@ -27,6 +28,11 @@ const router = new VueRouter({
             name: 'profile',
             component: Profile,
             props: true
+        },
+        {
+            path: '/weeklyreport',
+            name: 'reports',
+            component: Reports
         },
         {
             path: '/add-author',

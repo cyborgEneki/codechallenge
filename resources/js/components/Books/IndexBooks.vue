@@ -10,12 +10,11 @@
       <table class="font-14">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Author(s)</th>
-            <th>Status</th>
-            <th>Reserved By</th>
-            <th>Category</th>
-            <th class="actions-column">Options</th>
+            <th width="20%">Title</th>
+            <th width="20%">Author(s)</th>
+            <th width="20%">Status</th>
+            <th width="20%">Category</th>
+            <th width="20%" v-show="choices.authuserstatus == 1">Options</th>
           </tr>
         </thead>
         <tbody>
@@ -28,15 +27,21 @@
               <p v-if="book.status == 1">Available</p>
               <p v-if="book.status == 0">Borrowed</p>
             </td>
-            <td>{{ choices.users[book.reservor_id].full_name }}</td>
             <td>{{ choices.categories[book.category_id].name }}</td>
-            <td class="actions-column">
-              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
-                <i class="fas fa-edit icon blue"></i>
-              </router-link>
-              <a v-if="isadmin">
-                <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
-              </a>
+            <td v-show="choices.authuserstatus == 1">
+                <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
+                  <i class="fas fa-edit icon blue"></i>
+                </router-link>
+                <a v-if="isadmin">
+                  <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
+                </a>
+                <el-button class="borrow-button" v-show="book.status == 1" @click="borrow">B</el-button>
+                <el-button
+                  class="reserve-button"
+                  v-show="book.reservor_id == null"
+                  @click="reserve(book.id)"
+                >R</el-button>
+                <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
             </td>
           </tr>
         </tbody>
@@ -61,7 +66,13 @@ export default {
         current_page: 1,
         prev_page_url: null
       },
-      isadmin: false
+      isadmin: false,
+      borrowDetails: {
+        due_date: "",
+        date_out: "",
+        book_id: "",
+        user_id: ""
+      }
     };
   },
   methods: {
@@ -115,6 +126,80 @@ export default {
       axios.get("/api/users/isadmin").then(response => {
         this.isadmin = response.data;
       });
+    },
+    borrow() {
+      this.$confirm(
+        "Are you sure you want this specific book taking up your leisure time?",
+        "Confirmation",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .post("/api/borrow", this.borrowDetails)
+          .then(response => {
+            this.$notify({
+              title: "Success",
+              message: "Success! Kindly go pick up your book from HR.",
+              type: "success"
+            });
+          })
+          .catch(() => {
+            console.log();
+            this.$alert("You have exceeded your borrowing limit", "Stop", {
+              confirmButtonText: "OK"
+            });
+          });
+      });
+    },
+    reserve(id) {
+      this.$confirm(
+        "Are you sure you want this specific book taking up your time?",
+        "Warning",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .get("/api/books/" + id + "/reserve", this.books)
+          .then(response => {
+            this.books = response.data;
+            this.$alert(
+              "You will get an email notification as soon as this book is available. Please note that it will be unchecked in the system as soon as the email is sent, therefore, kindly borrow it as soon as you receive the email.",
+              "Success!",
+              {
+                confirmButtonText: "OK",
+                callback: action => {}
+              }
+            );
+          });
+      });
+    },
+    returned(id) {
+      this.$confirm(
+        "Are you sure you have seen this specific book?",
+        "Confirmation",
+        {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel",
+          type: "warning"
+        }
+      ).then(() => {
+        axios
+          .get("/api/books/" + id + "/returned", this.books)
+          .then(response => {
+            this.books = response.data;
+            this.$notify({
+              title: "Success",
+              message: "The book has been returned to the shelf.",
+              type: "success"
+            });
+          });
+      });
     }
   },
   mounted() {
@@ -125,4 +210,12 @@ export default {
 </script>
 
 <style>
+.borrow-button {
+  background-color: lightgreen;
+  border-radius: 100%;
+}
+.reserve-button {
+  background-color: yellow;
+  border-radius: 100%;
+}
 </style>

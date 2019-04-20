@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Models\Book;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookAvailable;
+use Illuminate\Http\Request;
 
 class BookUserRepository implements BookUserRepositoryInterface
 {
@@ -18,7 +19,7 @@ class BookUserRepository implements BookUserRepositoryInterface
         return BookUser::all();
     }
 
-    public function borrow(BookUserRequest $request)
+    public function borrow(Request $request)
     {
         $holding = BookUser::where('user_id', Auth::id())->where('date_in', null)->get()->count();
 
@@ -46,11 +47,44 @@ class BookUserRepository implements BookUserRepositoryInterface
             return response()->json(['error'=> 'You have reached the maximum borrowing limit'], 401);
         }
     }
-    public function return(Book $book)
+    public function bookIn($bookId, Request $request)
     {
-        if ($book->reservor_id !== null) {
-            Mail::to($book->reservor()->get()->pluck("email"))->send(new BookAvailable($book));
-            Book::select('id')->where('id', $book->id)->update(['reservor_id' => null]);
+        $dt = Carbon::today();
+        $dtString = $dt->toDateString();
+
+        $bookreservor = Book::select('reservor_id')->where('id', $bookId)->first();
+        $book = Book::where('id', $bookId);
+
+        BookUser::select('book_id')->where("book_id", $bookId)->update(['date_in' => $dtString]);
+        Book::select('id')->where("id", $bookId)->update(['status' => 1]);
+
+        if ($bookreservor !== null) {
+            Mail::to($book->reservor()->pluck("email"))->send(new BookAvailable($book));
+            Book::select('id')->where('id', $bookId)->update(['reservor_id' => null]);
         }
+        return response()->json('success', 200);
+    }
+
+    public function weeklyReport()
+    {
+        $dt = Carbon::today();
+        $dtString = Carbon::today()->toDateString();
+
+        $to = $dt->subDays(7);
+        $toString = $to->toDateString();
+
+        $borrowedNumber = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
+        $returnedNumber = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
+
+        $dt = Carbon::today();
+        
+        $dt->subDays(3);
+        $upperDate = $dt->toDateString();
+
+        $suspendedNumber = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
+        
+        $summary = [$borrowedNumber, $returnedNumber, $suspendedNumber];
+        
+        return $summary;
     }
 }
