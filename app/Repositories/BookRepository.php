@@ -83,4 +83,11 @@ class BookRepository implements BookRepositoryInterface
             return response()->json(['error'=>'This book has already been reserved'], 404);
         }
     }
+
+    public function attachAuthors($bookId, $authorId)
+    {
+        $book = Book::findOrFail($bookId);
+        $book->authors()->attach($authorId);
+        return $book;
+    }
 }

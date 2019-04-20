@@ -58,4 +58,10 @@ class BookController extends Controller
         $reserve = $this->bookRepo->reserveBook($request, $bookId);
         return response()->json($reserve, 200);
     }
+
+    public function attachAuthors($bookId, $authorId)
+    {
+        $attachAuthors = $this->bookRepo->attachAuthors($bookId, $authorId);
+        return response()->json($attachAuthors, 200);
+    }
 }
