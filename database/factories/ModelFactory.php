@@ -45,7 +45,7 @@ $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
         'status' => $faker->boolean,
-        'reservor_id' => $faker->numberBetween($min = 1, $max = 10),
+        'reservor_id' => $faker->optional()->numberBetween($min = 1, $max = 10),
         'category_id' => $faker->numberBetween($min = 1, $max = 5),
     ];
 });
@@ -61,10 +61,3 @@ $factory->define(Department::class, function (Faker $faker) {
         'name' => $faker->word
     ];
 });
-
-$factory->define(Accesslevel::class, function (Faker $faker) {
-    return [
-        'name' => $faker->word
-    ];
-});
-
