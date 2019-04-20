@@ -31,7 +31,7 @@
             </td>
             <td width=15%>{{ choices.departments[user.department_id].name }}</td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editUser', params: { user } }">
+              <router-link :to="{ name: 'editUser', params: { user, id: user.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>

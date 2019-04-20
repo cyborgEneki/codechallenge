@@ -65,6 +65,6 @@ export default {
         type: "info"
       });
     }
-  }
+  },
 };
 </script>

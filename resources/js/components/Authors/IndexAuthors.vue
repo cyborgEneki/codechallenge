@@ -22,7 +22,7 @@
               <p v-for="book in author.books" :key="book.id">{{ book.title }}</p>
             </td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editAuthor', params: { author } }">
+              <router-link :to="{ name: 'editAuthor', params: { author, id: author.id  } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>

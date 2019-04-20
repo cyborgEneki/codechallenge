@@ -98238,7 +98238,7 @@ var render = function() {
                               attrs: {
                                 to: {
                                   name: "editAuthor",
-                                  params: { author: author }
+                                  params: { author: author, id: author.id }
                                 }
                               }
                             },
@@ -98745,7 +98745,10 @@ var render = function() {
                             "router-link",
                             {
                               attrs: {
-                                to: { name: "editBook", params: { book: book } }
+                                to: {
+                                  name: "editBook",
+                                  params: { book: book, id: book.id }
+                                }
                               }
                             },
                             [_c("i", { staticClass: "fas fa-edit icon blue" })]
@@ -99086,7 +99089,10 @@ var render = function() {
                               attrs: {
                                 to: {
                                   name: "editCategory",
-                                  params: { category: category }
+                                  params: {
+                                    category: category,
+                                    id: category.id
+                                  }
                                 }
                               }
                             },
@@ -99367,7 +99373,10 @@ var render = function() {
                               attrs: {
                                 to: {
                                   name: "editDepartment",
-                                  params: { department: department }
+                                  params: {
+                                    department: department,
+                                    id: department.id
+                                  }
                                 }
                               }
                             },
@@ -100481,7 +100490,10 @@ var render = function() {
                             "router-link",
                             {
                               attrs: {
-                                to: { name: "editUser", params: { user: user } }
+                                to: {
+                                  name: "editUser",
+                                  params: { user: user, id: user.id }
+                                }
                               }
                             },
                             [_c("i", { staticClass: "fas fa-edit icon blue" })]
@@ -120197,7 +120209,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'addAuthor',
     component: _components_Authors_AddAuthor__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
-    path: '/edit-author',
+    path: '/edit-author/:id',
     name: 'editAuthor',
     component: _components_Authors_EditAuthor__WEBPACK_IMPORTED_MODULE_2__["default"],
     props: true
@@ -120210,7 +120222,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'addBook',
     component: _components_Books_AddBook__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/edit-book',
+    path: '/edit-book/:id',
     name: 'editBook',
     component: _components_Books_EditBook__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: true
@@ -120223,7 +120235,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'addCategory',
     component: _components_Categories_AddCategory__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
-    path: '/edit-category',
+    path: '/edit-category/:id',
     name: 'editCategory',
     component: _components_Categories_EditCategory__WEBPACK_IMPORTED_MODULE_8__["default"],
     props: true
@@ -120236,7 +120248,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'addDepartment',
     component: _components_Departments_AddDepartment__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
-    path: '/edit-department',
+    path: '/edit-department/:id',
     name: 'editDepartment',
     component: _components_Departments_EditDepartment__WEBPACK_IMPORTED_MODULE_11__["default"],
     props: true
@@ -120258,7 +120270,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'addUser',
     component: _components_Users_AddUser__WEBPACK_IMPORTED_MODULE_15__["default"]
   }, {
-    path: '/edit-user',
+    path: '/edit-user/:id',
     name: 'editUser',
     component: _components_Users_EditUser__WEBPACK_IMPORTED_MODULE_16__["default"],
     props: true

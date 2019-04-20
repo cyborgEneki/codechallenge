@@ -29,7 +29,7 @@
             </td>
             <td>{{ choices.categories[book.category_id].name }}</td>
             <td v-show="choices.authuserstatus == 1">
-              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book } }">
+              <router-link v-if="isadmin" :to="{ name: 'editBook', params: { book, id: book.id } }">
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a v-if="isadmin">
