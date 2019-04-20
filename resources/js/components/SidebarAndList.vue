@@ -60,6 +60,12 @@
             </el-menu-item>
           </router-link>
 
+          <router-link v-if="isadmin" :to="{ name: 'reports'}">
+            <el-menu-item index="9">
+              <i class="fas fa-file"></i>
+              <span slot="title" class="sidebar-padding">Reports</span>
+            </el-menu-item>
+          </router-link>
         </el-menu>
       </el-aside>
       <el-container>

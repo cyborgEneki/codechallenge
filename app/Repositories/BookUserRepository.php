@@ -64,4 +64,27 @@ class BookUserRepository implements BookUserRepositoryInterface
         }
         return response()->json('success', 200);
     }
+
+    public function weeklyReport()
+    {
+        $dt = Carbon::today();
+        $dtString = Carbon::today()->toDateString();
+
+        $to = $dt->subDays(7);
+        $toString = $to->toDateString();
+
+        $borrowedNumber = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
+        $returnedNumber = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
+
+        $dt = Carbon::today();
+        
+        $dt->subDays(3);
+        $upperDate = $dt->toDateString();
+
+        $suspendedNumber = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
+        
+        $summary = [$borrowedNumber, $returnedNumber, $suspendedNumber];
+        
+        return $summary;
+    }
 }
