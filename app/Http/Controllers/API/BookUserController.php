@@ -38,27 +38,23 @@ class BookUserController extends Controller
 
     public function weeklyReport()
     {
-        // $dt = Carbon::today();
-        // $dtString = Carbon::today()->toDateString();
+        $dt = Carbon::today();
+        $dtString = Carbon::today()->toDateString();
 
-        // $to = $dt->subDays(7);
-        // $toString = $to->toDateString();
+        $to = $dt->subDays(7);
+        $toString = $to->toDateString();
 
-        // $booksborrowed = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
-        // $booksreturned = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
+        $booksborrowed = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
+        $booksreturned = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
         
-        // $dt->subDays(3);
-        // $upperDate = $dt->toDateString();
+        $dt->subDays(3);
+        $upperDate = $dt->toDateString();
 
-        // $suspendedusers = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
+        $suspendedusers = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
 
-        // $data = ['booksborrowed' => $booksborrowed, 'booksreturned' => $booksreturned, 'suspendedusers' => $suspendedusers];
-        // $pdf = PDF::loadView('emails.weeklyreport', $data);
+        $data = ['booksborrowed' => $booksborrowed, 'booksreturned' => $booksreturned, 'suspendedusers' => $suspendedusers];
+        $pdf = PDF::loadView('weeklyreport', $data);
   
-        // return $pdf->download('weeklyreport.pdf');
-
-        $pdf = PDF::loadView('weeklyreport');
- 
-    return $pdf->download('weeklyreport.pdf');
+        return $pdf->download('weeklyreport.pdf');
     }
 }

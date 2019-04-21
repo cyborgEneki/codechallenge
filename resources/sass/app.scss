@@ -105,3 +105,29 @@ tbody tr:nth-child(even) {
   font-size: 35px;
   color: #5f0e0e;
 }
+
+.login {
+  width: 20%;
+  z-index: 15;
+  margin-top: 10%;
+  margin-left: 40%;
+  background-color: #ffc4c4;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.login-welcome {
+  text-align: center;
+  font-weight: 600;
+}
+
+.login-button {
+  border-radius: 10%;
+}
+
+.login-fields {
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+}
