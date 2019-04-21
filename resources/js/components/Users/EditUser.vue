@@ -6,7 +6,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedUser.first_name.required"
-          >A user without a first name is like a pet without a name!</span>
+          >A first name is required</span>
         </p>
       </el-form-item>
 
@@ -15,7 +15,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedUser.last_name.required"
-          >A user without a last name is like a plant without two names!</span>
+          >A last name is required</span>
         </p>
       </el-form-item>
 
@@ -29,7 +29,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedUser.email.required"
-          >A user without an address is like a person without a phone!</span>
+          >An email address is required</span>
           <span
             v-if="!$v.editedUser.email.email"
           >A valid email follows the following format: xxx@xxx.com</span>
@@ -42,11 +42,6 @@
           v-model.lazy="$v.editedUser.max_number_of_books_allowed.$model"
           type="number"
         ></el-input>
-        <p v-if="errors" class="error">
-          <span
-            v-if="!$v.editedUser.max_number_of_books_allowed.required"
-          >A user without a maximum limit is like a mat without a speed governor!</span>
-        </p>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
@@ -54,11 +49,6 @@
           <el-radio label="Active"></el-radio>
           <el-radio label="Suspended"></el-radio>
         </el-radio-group>
-        <p v-if="errors" class="error">
-          <span
-            v-if="!$v.editedUser.status.required"
-          >A user without a borrowing status is like a phone without WiFi!</span>
-        </p>
       </el-form-item>
 
       <el-form-item label="Department" for="fdepartment">
@@ -77,7 +67,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedUser.department_id.required"
-          >A user without a department is like a game without thrones!</span>
+          >A department is required</span>
         </p>
       </el-form-item>
 

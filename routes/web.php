@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('weeklyreport', 'API\BookUserController@weeklyReport');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{any}', 'HomeController@index')->where('any', '.*');

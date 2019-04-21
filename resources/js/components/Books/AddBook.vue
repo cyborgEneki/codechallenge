@@ -6,7 +6,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.book.title.$model"
-          >"The book without a title" makes for a good title...but still type in a title to continue</span>
+          >A title is required</span>
         </p>
       </el-form-item>
 
@@ -15,7 +15,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.book.author.$model"
-          >Who wrote this book?</span>
+          >An author is required</span>
         </p>
       </el-form-item>
 
@@ -24,9 +24,6 @@
           <el-radio label="1">Available</el-radio>
           <el-radio label="0">Borrowed</el-radio>
         </el-radio-group>
-        <p v-if="errors" class="error">
-          <span v-if="!$v.book.status.$model">A status is required</span>
-        </p>
       </el-form-item>
 
       <el-form-item label="Category" for="fcategory">
@@ -41,7 +38,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.book.category_id.$model"
-          >This cannot be blank. Users will never find what they like</span>
+          >A category is required</span>
         </p>
       </el-form-item>
 

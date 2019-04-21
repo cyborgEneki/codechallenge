@@ -27,7 +27,7 @@ const router = new VueRouter({
             props: true
         },
         {
-            path: '/weeklyreport',
+            path: '/weeklyreport/download',
             name: 'reports',
             component: Reports
         },

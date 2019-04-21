@@ -6,7 +6,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.user.first_name.required"
-          >A user without a first name is like a pet without a name!</span>
+          >A first name is required</span>
         </p>
       </el-form-item>
 
@@ -15,7 +15,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.user.last_name.required"
-          >A user without a last name is like a plant without two names!</span>
+          >A last name is required</span>
         </p>
       </el-form-item>
 
@@ -29,7 +29,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.user.email.required"
-          >A user without an address is like a person without a phone!</span>
+          >An email address is required</span>
           <span v-if="!$v.user.email.email">A valid email follows the following format: xxx@xxx.com</span>
         </p>
       </el-form-item>
@@ -39,7 +39,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.user.password.required"
-          >A user without a password is like a person without a name!</span>
+          >A password is required</span>
           <span v-if="!$v.user.password.minLength">A strong password has at least 8 characters</span>
         </p>
       </el-form-item>
@@ -50,11 +50,6 @@
           v-model.lazy="$v.user.max_number_of_books_allowed.$model"
           type="number"
         ></el-input>
-        <p v-if="errors" class="error">
-          <span
-            v-if="!$v.user.max_number_of_books_allowed.required"
-          >A user without a maximum limit is like a mat without a speed governor!</span>
-        </p>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
@@ -87,7 +82,7 @@
         <p v-if="errors" class="error">
           <span
             v-if="!$v.user.department_id.required"
-          >A user without a department is like a game without thrones!</span>
+          >A department is required</span>
         </p>
       </el-form-item>
 

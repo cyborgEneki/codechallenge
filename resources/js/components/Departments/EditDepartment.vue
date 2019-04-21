@@ -29,7 +29,7 @@ export default {
         name: [
           {
             required: true,
-            message: "Please type in the department name",
+            message: "A department name is required",
             trigger: "blur"
           }
         ]
