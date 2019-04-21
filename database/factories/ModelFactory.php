@@ -66,8 +66,8 @@ $factory->define(Book::class, function (Faker $faker) {
 $factory->define(BookUser::class, function (Faker $faker) {
     return [
             'date_out' => $faker->dateTimeBetween($startDate = '-1 month', $endDate = 'now', $timezone = null),
-            'date_in' => $faker->dateTimeThisMonth($max = 'now', $timezone = null),
-            'due_date' => $faker->optional()->dateTimeBetween($startDate = '-1 month', $endDate = '+1 month', $timezone = null),
+            'date_in' => $faker->optional()->dateTimeThisMonth($max = 'now', $timezone = null),
+            'due_date' => $faker->dateTimeBetween($startDate = '-1 month', $endDate = '+1 month', $timezone = null),
             'book_id' => $faker->numberBetween($min = 1, $max = 10),
             'user_id' => $faker->numberBetween($min = 1, $max = 10),
     ];
