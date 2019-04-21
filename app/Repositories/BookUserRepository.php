@@ -58,13 +58,21 @@ class BookUserRepository implements BookUserRepositoryInterface
         $book = Book::where('id', $bookId)->first();
 
         BookUser::select('book_id')->where("book_id", $bookId)->update(['date_in' => $dtString]);
-        Book::select('id')->where("id", $bookId)->update(['status' => 1]);
+        // Book::select('id')->where("id", $bookId)->update(['status' => 1]);
 
         if ($reservorId !== null) {
-           $reservor = User::where('id', $reservorId->reservor_id)->get();
-           $reservorName = User::where('id', $reservorId->reservor_id)->pluck('first_name')->first();
+            //Retrieve reservor's records
+            $reservor = User::where('id', $reservorId->reservor_id)->get();
+            $reservorName = User::where('id', $reservorId->reservor_id)->pluck('first_name')->first();
+
+            //Mail reservor
             Mail::to($reservor->pluck("email"))->send(new BookAvailable($book, $reservorName));
+
+            //Clear the book's reservation's details
             Book::select('id')->where('id', $bookId)->update(['reservor_id' => null]);
+
+            //Register book to reservor
+            BookUser::select('book_id')->where("book_id", $bookId)->update(['user_id' => $reservorId->reservor_id]);
         }
         return response()->json('success', 200);
     }
