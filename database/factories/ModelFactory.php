@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Department;
 use App\Models\Category;
 use App\Models\Accesslevel;
+use App\Models\BookUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,17 @@ use App\Models\Accesslevel;
 | model instances for testing / seeding your application's database.
 |
 */
+$factory->define(Department::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+$factory->define(Accesslevel::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
 
 $factory->define(User::class, function (Faker $faker) {
     return [
@@ -34,6 +46,13 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(Category::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+
 $factory->define(Book::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
@@ -44,14 +63,12 @@ $factory->define(Book::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Category::class, function (Faker $faker) {
+$factory->define(BookUser::class, function (Faker $faker) {
     return [
-        'name' => $faker->word
-    ];
-});
-
-$factory->define(Department::class, function (Faker $faker) {
-    return [
-        'name' => $faker->word
+            'date_out' => $faker->dateTimeBetween($startDate = '-1 month', $endDate = 'now', $timezone = null),
+            'date_in' => $faker->dateTimeThisMonth($max = 'now', $timezone = null),
+            'due_date' => $faker->optional()->dateTimeBetween($startDate = '-1 month', $endDate = '+1 month', $timezone = null),
+            'book_id' => $faker->numberBetween($min = 1, $max = 10),
+            'user_id' => $faker->numberBetween($min = 1, $max = 10),
     ];
 });

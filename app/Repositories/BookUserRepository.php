@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\BookAvailable;
 use Illuminate\Http\Request;
 use App\Models\User;
+use \PDF;
 
 class BookUserRepository implements BookUserRepositoryInterface
 {
@@ -72,22 +73,24 @@ class BookUserRepository implements BookUserRepositoryInterface
     {
         $dt = Carbon::today();
         $dtString = Carbon::today()->toDateString();
+        $properDt = $dt->format('d-m-Y');
 
         $to = $dt->subDays(7);
         $toString = $to->toDateString();
+        $properTo = $to->format('d-m-Y');
 
-        $borrowedNumber = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
-        $returnedNumber = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
-
-        $dt = Carbon::today();
+        $booksBorrowed = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
+        $booksReturned = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
         
         $dt->subDays(3);
         $upperDate = $dt->toDateString();
 
-        $suspendedNumber = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
+        $suspendedUsers = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
+
+        $data = ['booksBorrowed' => $booksBorrowed, 'booksReturned' => $booksReturned, 'suspendedUsers' => $suspendedUsers, 'properDt' => $properDt, 'properTo'=> $properTo];
         
-        $summary = [$borrowedNumber, $returnedNumber, $suspendedNumber];
-        
-        return $summary;
+        $pdf = PDF::loadView('weeklyreport', $data);
+  
+        return $pdf->download($properTo."_to_".$properDt."_weeklyreport.pdf");
     }
 }
