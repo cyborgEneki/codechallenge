@@ -32,7 +32,7 @@ export default {
       choices: []
     };
   },
-  mounted() {
+  created() {
     axios.get("/api/profile").then(response => {
       this.profile = response.data;
     });

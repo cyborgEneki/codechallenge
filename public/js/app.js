@@ -4087,7 +4087,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getBooks();
     this.getAdmin();
   }
@@ -4700,7 +4700,7 @@ __webpack_require__.r(__webpack_exports__);
       choices: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
     axios.get("/api/profile").then(function (response) {
@@ -4855,7 +4855,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getChoices();
     this.getAdmin();
   }
@@ -5370,7 +5370,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getUsers();
     this.getAdmin();
   }

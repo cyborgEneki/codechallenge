@@ -220,7 +220,7 @@ export default {
       });
     }
   },
-  mounted() {
+  created() {
     this.getBooks();
     this.getAdmin();
   }
