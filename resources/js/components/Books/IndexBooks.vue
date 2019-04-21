@@ -163,9 +163,9 @@ export default {
           .then(response => {
             this.$notify({
               title: "Success",
-              message: "Success! Kindly go pick up your book from HR.",
+              message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
               type: "success",
-              duration: 10000
+              duration: 30000
             });
           })
           .catch(() => {
@@ -216,9 +216,9 @@ export default {
             this.books = response.data;
             this.$notify({
               title: "Success",
-              message: "The book has been returned to the shelf.",
+              message: "The book has been returned to the shelf. Refresh the page to see the borrow option",
               type: "success",
-              duration: 10000
+              duration: 30000
             });
           });
       });

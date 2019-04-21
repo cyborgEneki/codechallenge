@@ -4037,9 +4037,9 @@ __webpack_require__.r(__webpack_exports__);
         axios.post("/api/borrow", _this5.borrowDetails).then(function (response) {
           _this5.$notify({
             title: "Success",
-            message: "Success! Kindly go pick up your book from HR.",
+            message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
             type: "success",
-            duration: 10000
+            duration: 30000
           });
         })["catch"](function () {
           _this5.$alert("You have exceeded your borrowing limit", "Stop", {
@@ -4079,9 +4079,9 @@ __webpack_require__.r(__webpack_exports__);
 
           _this7.$notify({
             title: "Success",
-            message: "The book has been returned to the shelf.",
+            message: "The book has been returned to the shelf. Refresh the page to see the borrow option",
             type: "success",
-            duration: 10000
+            duration: 30000
           });
         });
       });
