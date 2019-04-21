@@ -3437,7 +3437,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$notify({
               title: "Success",
               message: "The access level name has been edited.",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
 
             _this.editedAccesslevel = {};
@@ -3452,7 +3453,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -3694,7 +3696,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             title: "Success",
             message: "The new book has been added.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
 
           _this.uiState = "form submitted";
@@ -3708,7 +3711,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     },
     getAdmin: function getAdmin() {
@@ -3789,13 +3793,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["book", "choices"],
@@ -3824,9 +3821,6 @@ __webpack_require__.r(__webpack_exports__);
       author: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       },
-      status: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
-      },
       category_id: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
       }
@@ -3847,7 +3841,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             title: "Success",
             message: "The book details have been edited.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
 
           _this.editedBook = {};
@@ -3861,7 +3856,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -4009,13 +4005,15 @@ __webpack_require__.r(__webpack_exports__);
           _this3.$notify({
             title: "Success",
             message: "The book has been deleted",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
         });
       })["catch"](function () {
         _this3.$notify.info({
           title: "Info",
-          message: "Delete cancelled"
+          message: "Delete cancelled",
+          duration: 10000
         });
       });
     },
@@ -4029,7 +4027,7 @@ __webpack_require__.r(__webpack_exports__);
     borrow: function borrow(id) {
       var _this5 = this;
 
-      this.$confirm("Are you sure you want this specific book taking up your leisure time?", "Confirmation", {
+      this.$confirm("Are you sure that this is the book you want to borrow?", "Confirmation", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4039,8 +4037,9 @@ __webpack_require__.r(__webpack_exports__);
         axios.post("/api/borrow", _this5.borrowDetails).then(function (response) {
           _this5.$notify({
             title: "Success",
-            message: "Success! Kindly go pick up your book from HR.",
-            type: "success"
+            message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
+            type: "success",
+            duration: 30000
           });
         })["catch"](function () {
           _this5.$alert("You have exceeded your borrowing limit", "Stop", {
@@ -4052,7 +4051,7 @@ __webpack_require__.r(__webpack_exports__);
     reserve: function reserve(id) {
       var _this6 = this;
 
-      this.$confirm("Are you sure you want this specific book taking up your time?", "Warning", {
+      this.$confirm("Are you sure that this is the book you want to reserve?", "Warning", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4080,8 +4079,9 @@ __webpack_require__.r(__webpack_exports__);
 
           _this7.$notify({
             title: "Success",
-            message: "The book has been returned to the shelf.",
-            type: "success"
+            message: "The book has been returned to the shelf. Refresh the page to see the borrow option",
+            type: "success",
+            duration: 30000
           });
         });
       });
@@ -4151,7 +4151,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$notify({
               title: "Success",
               message: "The new category has been added.",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
           });
         } else {
@@ -4164,7 +4165,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -4227,7 +4229,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$notify({
               title: "Success",
               message: "The category name has been edited.",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
 
             _this.editedCategory = {};
@@ -4242,7 +4245,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -4351,13 +4355,15 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$notify({
             title: "Success",
             message: "The category has been deleted",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
         });
       })["catch"](function () {
         _this2.$notify.info({
           title: "Info",
-          message: "Delete cancelled"
+          message: "Delete cancelled",
+          duration: 10000
         });
       });
     },
@@ -4433,7 +4439,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$notify({
               title: "Success",
               message: "The new department has been added.",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
           });
         } else {
@@ -4446,7 +4453,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -4509,7 +4517,8 @@ __webpack_require__.r(__webpack_exports__);
             _this.$notify({
               title: "Success",
               message: "The department name has been edited.",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
 
             _this.editedDepartment = {};
@@ -4524,7 +4533,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -4633,13 +4643,15 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$notify({
             title: "Success",
             message: "The department has been deleted",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
         });
       })["catch"](function () {
         _this2.$notify.info({
           title: "Info",
-          message: "Delete cancelled"
+          message: "Delete cancelled",
+          duration: 10000
         });
       });
     },
@@ -5041,7 +5053,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             title: "Success",
             message: "The new user has been added.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
 
           _this.uiState = "form submitted";
@@ -5055,7 +5068,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -5210,7 +5224,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.$notify({
             title: "Success",
             message: "The user details have been edited.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
 
           _this.editedUser = {};
@@ -5224,7 +5239,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }
@@ -5352,13 +5368,15 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$notify({
             title: "Success",
             message: "The user has been deleted",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
         });
       })["catch"](function () {
         _this2.$notify.info({
           title: "Info",
-          message: "Delete cancelled"
+          message: "Delete cancelled",
+          duration: 10000
         });
       });
     },
@@ -97979,33 +97997,6 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-form-item",
-            { attrs: { label: "Status", for: "fstatus" } },
-            [
-              _c(
-                "el-radio-group",
-                {
-                  attrs: { id: "fstatus" },
-                  model: {
-                    value: _vm.$v.editedBook.status.$model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.$v.editedBook.status, "$model", $$v)
-                    },
-                    expression: "$v.editedBook.status.$model"
-                  }
-                },
-                [
-                  _c("el-radio", { attrs: { label: "Available" } }),
-                  _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Borrowed" } })
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
             { attrs: { label: "Category", for: "fcategory" } },
             [
               _c(
@@ -99665,9 +99656,9 @@ var render = function() {
                   }
                 },
                 [
-                  _c("el-radio", { attrs: { label: "Active" } }),
+                  _c("el-radio", { attrs: { label: "1" } }, [_vm._v("Admin")]),
                   _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Suspended" } })
+                  _c("el-radio", { attrs: { label: "2" } }, [_vm._v("Normal")])
                 ],
                 1
               )

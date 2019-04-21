@@ -47,7 +47,8 @@ export default {
               this.$notify({
                 title: "Success",
                 message: "The category name has been edited.",
-                type: "success"
+                type: "success",
+                duration: 10000
               });
               this.editedCategory = {};
             });
@@ -61,7 +62,8 @@ export default {
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }

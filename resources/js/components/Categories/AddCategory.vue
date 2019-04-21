@@ -45,7 +45,8 @@ export default {
             this.$notify({
               title: "Success",
               message: "The new category has been added.",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
           });
         } else {
@@ -59,7 +60,8 @@ export default {
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }

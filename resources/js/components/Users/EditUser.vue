@@ -2,7 +2,7 @@
   <div>
     <el-form :model="editedUser" ref="user" label-width="120px">
       <el-form-item label="First Name" for="ffirstname">
-        <el-input id="ffirstname" v-model.lazy="$v.editedUser.first_name.$model"></el-input>
+        <el-input id="ffirstname" v-model="$v.editedUser.first_name.$model"></el-input>
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedUser.first_name.required"
@@ -11,7 +11,7 @@
       </el-form-item>
 
       <el-form-item label="Last Name" for="flastname">
-        <el-input id="flastname" v-model.lazy="$v.editedUser.last_name.$model"></el-input>
+        <el-input id="flastname" v-model="$v.editedUser.last_name.$model"></el-input>
         <p v-if="errors" class="error">
           <span
             v-if="!$v.editedUser.last_name.required"
@@ -22,7 +22,7 @@
       <el-form-item label="Email" for="femail">
         <el-input
           id="femail"
-          v-model.lazy="$v.editedUser.email.$model"
+          v-model="$v.editedUser.email.$model"
           placeholder="xxxxx@xxxxx.xxx"
           type="email"
         ></el-input>
@@ -39,22 +39,22 @@
       <el-form-item label="Max Books" for="fmaxbooks">
         <el-input
           id="fmaxbooks"
-          v-model.lazy="$v.editedUser.max_number_of_books_allowed.$model"
+          v-model="$v.editedUser.max_number_of_books_allowed.$model"
           type="number"
         ></el-input>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model.lazy="$v.editedUser.status.$model">
-          <el-radio label="Active"></el-radio>
-          <el-radio label="Suspended"></el-radio>
+        <el-radio-group id="fstatus" v-model="$v.editedUser.status.$model">
+          <el-radio label="1">Admin</el-radio>
+          <el-radio label="2">Normal</el-radio>
         </el-radio-group>
       </el-form-item>
 
       <el-form-item label="Department" for="fdepartment">
         <el-select
           id="fdepartment"
-          v-model.lazy="$v.editedUser.department_id.$model"
+          v-model="$v.editedUser.department_id.$model"
           placeholder="Department"
         >
           <el-option
@@ -119,7 +119,8 @@ export default {
           this.$notify({
             title: "Success",
             message: "The user details have been edited.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
           this.editedUser = {};
         });
@@ -132,7 +133,8 @@ export default {
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }

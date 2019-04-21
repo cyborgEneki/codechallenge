@@ -47,20 +47,20 @@
       <el-form-item label="Max Books" for="fmaxbooks">
         <el-input
           id="fmaxbooks"
-          v-model.lazy="$v.user.max_number_of_books_allowed.$model"
+          v-model="$v.user.max_number_of_books_allowed.$model"
           type="number"
         ></el-input>
       </el-form-item>
 
       <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model.lazy="$v.user.status.$model">
+        <el-radio-group id="fstatus" v-model="$v.user.status.$model">
           <el-radio label="1">Active</el-radio>
           <el-radio label="2">Suspended</el-radio>
         </el-radio-group>
       </el-form-item>
 
       <el-form-item label="Access Level" for="fal">
-        <el-radio-group id="fal" v-model.lazy="$v.user.accesslevel_id.$model">
+        <el-radio-group id="fal" v-model="$v.user.accesslevel_id.$model">
           <el-radio label="1">Admin</el-radio>
           <el-radio label="2">Normal</el-radio>
         </el-radio-group>
@@ -69,7 +69,7 @@
       <el-form-item label="Department" for="fdepartment">
         <el-select
           id="fdepartment"
-          v-model.lazy="$v.user.department_id.$model"
+          v-model="$v.user.department_id.$model"
           placeholder="Department"
         >
           <el-option
@@ -145,7 +145,8 @@ export default {
           this.$notify({
             title: "Success",
             message: "The new user has been added.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
           this.uiState = "form submitted";
         });
@@ -158,7 +159,8 @@ export default {
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }

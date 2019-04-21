@@ -128,14 +128,16 @@ export default {
             this.$notify({
               title: "Success",
               message: "The book has been deleted",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
           });
         })
         .catch(() => {
           this.$notify.info({
             title: "Info",
-            message: "Delete cancelled"
+            message: "Delete cancelled",
+            duration: 10000
           });
         });
     },
@@ -146,7 +148,7 @@ export default {
     },
     borrow(id) {
       this.$confirm(
-        "Are you sure you want this specific book taking up your leisure time?",
+        "Are you sure that this is the book you want to borrow?",
         "Confirmation",
         {
           confirmButtonText: "OK",
@@ -161,8 +163,9 @@ export default {
           .then(response => {
             this.$notify({
               title: "Success",
-              message: "Success! Kindly go pick up your book from HR.",
-              type: "success"
+              message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
+              type: "success",
+              duration: 30000
             });
           })
           .catch(() => {
@@ -174,7 +177,7 @@ export default {
     },
     reserve(id) {
       this.$confirm(
-        "Are you sure you want this specific book taking up your time?",
+        "Are you sure that this is the book you want to reserve?",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -213,8 +216,9 @@ export default {
             this.books = response.data;
             this.$notify({
               title: "Success",
-              message: "The book has been returned to the shelf.",
-              type: "success"
+              message: "The book has been returned to the shelf. Refresh the page to see the borrow option",
+              type: "success",
+              duration: 30000
             });
           });
       });
