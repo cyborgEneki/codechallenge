@@ -34,6 +34,6 @@ class WeeklyReportMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('weeklyreport');
+        return $this->view('systemweeklyreport');
     }
 }
