@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['register' => false]);
 
-Route::get('weeklyreport', 'API\BookUserController@weeklyReport');
+Route::get('weeklyreport', 'API\BookUserController@weeklyReport')->middleware('admin');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{any}', 'HomeController@index')->where('any', '.*');
