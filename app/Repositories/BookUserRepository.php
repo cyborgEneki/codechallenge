@@ -87,7 +87,9 @@ class BookUserRepository implements BookUserRepositoryInterface
             
             //Clear the book's reservation's details
             Book::where('id', $bookId)->update(['reservor_id' => null]);
+            return response()->json('success', 201);
         }
+        Book::where('id', $bookId)->update(['status' => 1]);
         return response()->json('success', 200);
     }
 
