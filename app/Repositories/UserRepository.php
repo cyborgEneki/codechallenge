@@ -7,6 +7,8 @@ use App\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\EditUserRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmailMailable;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -17,7 +19,11 @@ class UserRepository implements UserRepositoryInterface
 
     public function createUser(UserRequest $request)
     {
-        return User::create($request->all());
+        $request["max_number_of_books_allowed"] = 3;
+        $user = User::create($request->all());
+        // echo $user->email;
+        // echo $user;
+        Mail::to($user->email)->send(new VerifyEmailMailable($user));
     }
 
     public function showUser($id)
