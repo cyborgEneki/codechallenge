@@ -169,7 +169,7 @@ export default {
             });
           })
           .catch(() => {
-            this.$alert("You have exceeded your borrowing limit", "Stop", {
+            this.$alert("You have exceeded your borrowing limit. Kindly return at least one book to borrow this one", "Stop", {
               confirmButtonText: "OK"
             });
           });

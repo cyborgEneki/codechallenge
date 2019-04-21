@@ -14,15 +14,15 @@ class BooksTableSeeder extends Seeder
     {
         $books = factory('App\Models\Book', 10)->create();
 
-        foreach (range(1, 18) as $index) {
-            $faker = Faker::create();
-            DB::table('book_user')->insert([
-                'date_out' => $faker->dateTimeBetween($startDate = '-1 month', $endDate = 'now', $timezone = null),
-                'date_in' => $faker->dateTimeThisMonth($max = 'now', $timezone = null),
-                'due_date' => $faker->optional()->dateTimeBetween($startDate = '-1 month', $endDate = '+1 month', $timezone = null),
-                'book_id' => $faker->numberBetween($min = 1, $max = 10),
-                'user_id' => $faker->numberBetween($min = 1, $max = 10),
-            ]);
-        }
+        // foreach (range(1, 18) as $index) {
+        //     $faker = Faker::create();
+        //     DB::table('book_user')->insert([
+        //         'date_out' => $faker->dateTimeBetween($startDate = '-1 month', $endDate = 'now', $timezone = null),
+        //         'date_in' => $faker->dateTimeThisMonth($max = 'now', $timezone = null),
+        //         'due_date' => $faker->optional()->dateTimeBetween($startDate = '-1 month', $endDate = '+1 month', $timezone = null),
+        //         'book_id' => $faker->numberBetween($min = 1, $max = 10),
+        //         'user_id' => $faker->numberBetween($min = 1, $max = 10),
+        //     ]);
+        // }
     }
 }

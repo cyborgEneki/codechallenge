@@ -21,8 +21,6 @@ class UserRepository implements UserRepositoryInterface
     {
         $request["max_number_of_books_allowed"] = 3;
         $user = User::create($request->all());
-        // echo $user->email;
-        // echo $user;
         Mail::to($user->email)->send(new VerifyEmailMailable($user));
     }
 
