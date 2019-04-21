@@ -36,13 +36,13 @@
               <a v-if="isadmin">
                 <i class="fas fa-trash-alt icon red" @click="deleteBook(book.id)"></i>
               </a>
-              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow(book.id)">B</el-button>
+              <el-button class="borrow-button" v-show="book.status == 1" @click="borrow(book.id)">Borrow</el-button>
               <el-button
                 class="reserve-button"
                 v-if="book.status == 0"
                 v-show="book.reservor_id == null"
                 @click="reserve(book.id)"
-              >R</el-button>
+              >Reserve</el-button>
               <el-button v-if="isadmin" v-show="book.status == 0" @click="returned(book.id)">Return</el-button>
             </td>
           </tr>
@@ -155,6 +155,7 @@ export default {
         }
       ).then(() => {
         this.borrowDetails.book_id = id;
+        console.log(id);
         axios
           .post("/api/borrow", this.borrowDetails)
           .then(response => {
@@ -229,10 +230,8 @@ export default {
 <style>
 .borrow-button {
   background-color: lightgreen;
-  border-radius: 100%;
 }
 .reserve-button {
   background-color: yellow;
-  border-radius: 100%;
 }
 </style>

@@ -8,12 +8,14 @@
 export default {
   data() {
     return {
-      report: {}
+      report: []
     };
   },
   methods: {
     download() {
-      axios.get("/api/weeklyreport/exportpdf", this.report).then(response => {});
+      axios.get("/weeklyreport").then(response => {
+        this.report = response.data;
+      });
     }
   }
 };

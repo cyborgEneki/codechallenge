@@ -3636,9 +3636,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -3740,9 +3737,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
 //
 //
 //
@@ -4041,6 +4035,7 @@ __webpack_require__.r(__webpack_exports__);
         type: "warning"
       }).then(function () {
         _this5.borrowDetails.book_id = id;
+        console.log(id);
         axios.post("/api/borrow", _this5.borrowDetails).then(function (response) {
           _this5.$notify({
             title: "Success",
@@ -4138,7 +4133,7 @@ __webpack_require__.r(__webpack_exports__);
       rules: {
         name: [{
           required: true,
-          message: "Please type in the category name",
+          message: "A category name is required",
           trigger: "blur"
         }]
       }
@@ -4214,7 +4209,7 @@ __webpack_require__.r(__webpack_exports__);
       rules: {
         name: [{
           required: true,
-          message: "Please type in the category name",
+          message: "A category name is required",
           trigger: "blur"
         }]
       }
@@ -4420,7 +4415,7 @@ __webpack_require__.r(__webpack_exports__);
       rules: {
         name: [{
           required: true,
-          message: "Please type in the department name",
+          message: "A department name is required",
           trigger: "blur"
         }]
       }
@@ -4496,7 +4491,7 @@ __webpack_require__.r(__webpack_exports__);
       rules: {
         name: [{
           required: true,
-          message: "Please type in the department name",
+          message: "A department name is required",
           trigger: "blur"
         }]
       }
@@ -4738,12 +4733,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      report: {}
+      report: []
     };
   },
   methods: {
     download: function download() {
-      axios.get("/api/weeklyreport/exportpdf", this.report).then(function (response) {});
+      var _this = this;
+
+      axios.get("/weeklyreport").then(function (response) {
+        _this.report = response.data;
+      });
     }
   }
 });
@@ -4971,11 +4970,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["choices"],
@@ -5080,16 +5074,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7291,7 +7275,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.borrow-button {\n  background-color: lightgreen;\n  border-radius: 100%;\n}\n.reserve-button {\n  background-color: yellow;\n  border-radius: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.borrow-button {\n  background-color: lightgreen;\n}\n.reserve-button {\n  background-color: yellow;\n}\n", ""]);
 
 // exports
 
@@ -97769,11 +97753,7 @@ var render = function() {
                   _vm.errors
                     ? _c("p", { staticClass: "error" }, [
                         !_vm.$v.book.title.$model
-                          ? _c("span", [
-                              _vm._v(
-                                '"The book without a title" makes for a good title...but still type in a title to continue'
-                              )
-                            ])
+                          ? _c("span", [_vm._v("A title is required")])
                           : _vm._e()
                       ])
                     : _vm._e()
@@ -97799,7 +97779,7 @@ var render = function() {
                   _vm.errors
                     ? _c("p", { staticClass: "error" }, [
                         !_vm.$v.book.author.$model
-                          ? _c("span", [_vm._v("Who wrote this book?")])
+                          ? _c("span", [_vm._v("An author is required")])
                           : _vm._e()
                       ])
                     : _vm._e()
@@ -97833,15 +97813,7 @@ var render = function() {
                       ])
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _vm.errors
-                    ? _c("p", { staticClass: "error" }, [
-                        !_vm.$v.book.status.$model
-                          ? _c("span", [_vm._v("A status is required")])
-                          : _vm._e()
-                      ])
-                    : _vm._e()
+                  )
                 ],
                 1
               ),
@@ -97878,11 +97850,7 @@ var render = function() {
                   _vm.errors
                     ? _c("p", { staticClass: "error" }, [
                         !_vm.$v.book.category_id.$model
-                          ? _c("span", [
-                              _vm._v(
-                                "This cannot be blank. Users will never find what they like"
-                              )
-                            ])
+                          ? _c("span", [_vm._v("A category is required")])
                           : _vm._e()
                       ])
                     : _vm._e()
@@ -97971,11 +97939,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedBook.title.$model
-                      ? _c("span", [
-                          _vm._v(
-                            '"The book without a title" makes for a good title...but still type in a title to continue'
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A title is required")])
                       : _vm._e()
                   ])
                 : _vm._e(),
@@ -98003,7 +97967,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedBook.author.$model
-                      ? _c("span", [_vm._v("Who wrote this book?")])
+                      ? _c("span", [_vm._v("An author is required")])
                       : _vm._e()
                   ])
                 : _vm._e(),
@@ -98035,15 +97999,7 @@ var render = function() {
                   _c("el-radio", { attrs: { label: "Borrowed" } })
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.editedBook.status.$model
-                      ? _c("span", [_vm._v("A status is required")])
-                      : _vm._e()
-                  ])
-                : _vm._e()
+              )
             ],
             1
           ),
@@ -98080,11 +98036,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedBook.category_id.$model
-                      ? _c("span", [
-                          _vm._v(
-                            "This cannot be blank. Users will never find what they like"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A category is required")])
                       : _vm._e()
                   ])
                 : _vm._e(),
@@ -98299,7 +98251,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("B")]
+                        [_vm._v("Borrow")]
                       ),
                       _vm._v(" "),
                       book.status == 0
@@ -98321,7 +98273,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("R")]
+                            [_vm._v("Reserve")]
                           )
                         : _vm._e(),
                       _vm._v(" "),
@@ -99303,11 +99255,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.first_name.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a first name is like a pet without a name!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A first name is required")])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -99333,11 +99281,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.last_name.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a last name is like a plant without two names!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A last name is required")])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -99367,11 +99311,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.email.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without an address is like a person without a phone!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("An email address is required")])
                       : _vm._e(),
                     _vm._v(" "),
                     !_vm.$v.user.email.email
@@ -99405,11 +99345,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.password.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a password is like a person without a name!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A password is required")])
                       : _vm._e(),
                     _vm._v(" "),
                     !_vm.$v.user.password.minLength
@@ -99440,19 +99376,7 @@ var render = function() {
                   },
                   expression: "$v.user.max_number_of_books_allowed.$model"
                 }
-              }),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.user.max_number_of_books_allowed.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a maximum limit is like a mat without a speed governor!"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
+              })
             ],
             1
           ),
@@ -99545,11 +99469,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.user.department_id.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a department is like a game without thrones!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A department is required")])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -99634,11 +99554,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedUser.first_name.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a first name is like a pet without a name!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A first name is required")])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -99664,11 +99580,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedUser.last_name.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a last name is like a plant without two names!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A last name is required")])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -99698,11 +99610,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedUser.email.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without an address is like a person without a phone!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("An email address is required")])
                       : _vm._e(),
                     _vm._v(" "),
                     !_vm.$v.editedUser.email.email
@@ -99735,19 +99643,7 @@ var render = function() {
                   },
                   expression: "$v.editedUser.max_number_of_books_allowed.$model"
                 }
-              }),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.editedUser.max_number_of_books_allowed.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a maximum limit is like a mat without a speed governor!"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
+              })
             ],
             1
           ),
@@ -99774,19 +99670,7 @@ var render = function() {
                   _c("el-radio", { attrs: { label: "Suspended" } })
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _vm.errors
-                ? _c("p", { staticClass: "error" }, [
-                    !_vm.$v.editedUser.status.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a borrowing status is like a phone without WiFi!"
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                : _vm._e()
+              )
             ],
             1
           ),
@@ -99823,11 +99707,7 @@ var render = function() {
               _vm.errors
                 ? _c("p", { staticClass: "error" }, [
                     !_vm.$v.editedUser.department_id.required
-                      ? _c("span", [
-                          _vm._v(
-                            "A user without a department is like a game without thrones!"
-                          )
-                        ])
+                      ? _c("span", [_vm._v("A department is required")])
                       : _vm._e()
                   ])
                 : _vm._e()
@@ -119498,7 +119378,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     component: _components_Profile__WEBPACK_IMPORTED_MODULE_15__["default"],
     props: true
   }, {
-    path: '/weeklyreport',
+    path: '/weeklyreport/download',
     name: 'reports',
     component: _components_Reports__WEBPACK_IMPORTED_MODULE_16__["default"]
   }, {
