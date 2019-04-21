@@ -14,7 +14,7 @@ class UserRepository implements UserRepositoryInterface
 {
     public function allUsers()
     {
-        return User::with(['books'])->paginate(10);
+        return User::with(['books'])->paginate(15);
     }
 
     public function createUser(UserRequest $request)
