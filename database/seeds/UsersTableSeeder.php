@@ -24,8 +24,8 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'first_name' => 'Test',
-            'last_name' => 'Nasser',
-            'email' => 'nasser@email.com',
+            'last_name' => 'Voldermort',
+            'email' => 'voldermort@email.com',
             'password' => Hash::make('123456'),
             'max_number_of_books_allowed' => 3,
             'status' => 1,
