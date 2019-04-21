@@ -7977,6 +7977,7 @@ tbody tr:nth-child(even) {
 .login-welcome {
   font-size: 14px;
   text-align: center;
+  font-weight: 600;
 }
 
 .login-button {
@@ -7986,5 +7987,6 @@ tbody tr:nth-child(even) {
 .login-fields {
   border-radius: 50%;
   text-align: center;
+  font-size: 14px;
 }
 
