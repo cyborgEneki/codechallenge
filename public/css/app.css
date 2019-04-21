@@ -7964,3 +7964,27 @@ tbody tr:nth-child(even) {
   color: #5f0e0e;
 }
 
+.login {
+  width: 20%;
+  z-index: 15;
+  margin-top: 10%;
+  margin-left: 40%;
+  background-color: #ffc4c4;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.login-welcome {
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-button {
+  border-radius: 10%;
+}
+
+.login-fields {
+  border-radius: 50%;
+  text-align: center;
+}
+
