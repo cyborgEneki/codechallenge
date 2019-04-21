@@ -21,13 +21,6 @@
         <p></p>
       </el-form-item>
 
-      <el-form-item label="Status" for="fstatus">
-        <el-radio-group id="fstatus" v-model="$v.editedBook.status.$model">
-          <el-radio label="Available"></el-radio>
-          <el-radio label="Borrowed"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-
       <el-form-item label="Category" for="fcategory">
         <el-select
           id="fcategory"
@@ -83,7 +76,6 @@ export default {
     editedBook: {
       title: { required },
       author: { required },
-      status: { required },
       category_id: { required },
     }
   },
@@ -98,7 +90,8 @@ export default {
           this.$notify({
             title: "Success",
             message: "The book details have been edited.",
-            type: "success"
+            type: "success",
+            duration: 10000
           });
           this.editedBook = {};
         });
@@ -111,7 +104,8 @@ export default {
       this.$notify({
         title: "Info",
         message: "Changes, if any, have been discarded",
-        type: "info"
+        type: "info",
+        duration: 10000
       });
     }
   }

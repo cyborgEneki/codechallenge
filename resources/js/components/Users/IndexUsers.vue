@@ -110,14 +110,16 @@ export default {
             this.$notify({
               title: "Success",
               message: "The user has been deleted",
-              type: "success"
+              type: "success",
+              duration: 10000
             });
           });
         })
         .catch(() => {
           this.$notify.info({
             title: "Info",
-            message: "Delete cancelled"
+            message: "Delete cancelled",
+            duration: 10000
           });
         });
     },
