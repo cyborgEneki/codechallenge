@@ -73,9 +73,11 @@ class BookUserRepository implements BookUserRepositoryInterface
     {
         $dt = Carbon::today();
         $dtString = Carbon::today()->toDateString();
+        $properDt = $dt->format('d-m-Y');
 
         $to = $dt->subDays(7);
         $toString = $to->toDateString();
+        $properTo = $to->format('d-m-Y');
 
         $booksBorrowed = BookUser::select('date_out')->whereBetween('date_out', [$toString, $dtString])->get()->count();
         $booksReturned = BookUser::select('date_in')->whereBetween('date_in', [$toString, $dtString])->get()->count();
@@ -85,10 +87,10 @@ class BookUserRepository implements BookUserRepositoryInterface
 
         $suspendedUsers = BookUser::where('date_in', null)->where('due_date', '<', $upperDate)->count();
 
-        $data = ['booksBorrowed' => $booksBorrowed, 'booksReturned' => $booksReturned, 'suspendedUsers' => $suspendedUsers];
+        $data = ['booksBorrowed' => $booksBorrowed, 'booksReturned' => $booksReturned, 'suspendedUsers' => $suspendedUsers, 'properDt' => $properDt, 'properTo'=> $properTo];
         
         $pdf = PDF::loadView('weeklyreport', $data);
   
-        return $pdf->download('weeklyreport.pdf');
+        return $pdf->download($properTo."_to_".$properDt."_weeklyreport.pdf");
     }
 }

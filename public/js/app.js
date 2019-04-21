@@ -4745,6 +4745,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -99013,7 +99014,7 @@ var render = function() {
   return _c("div", [
     _c("p", { staticClass: "report-text" }, [
       _vm._v(
-        "Click on the button below to get a report of the number of users who were suspended, books that were borrowed, and books that have been returned in the last 7 days."
+        "Click on the button below to get a summary of the number of users who were suspended, books that were borrowed, and books that have been returned in the last 7 days."
       )
     ]),
     _vm._v(" "),
