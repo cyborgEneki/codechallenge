@@ -22,6 +22,7 @@
             padding-right: 80px;
             text-align: justify;
         }
+
         .email-body {
             padding-left: 100px;
             padding-right: 100px;
@@ -44,9 +45,9 @@
                 <li>The maximum number of books you are allowed to borrow is 3</li>
                 <li>The maximum duration that you are allowed to hold a book is 2 weeks</li>
                 <li>If a book you desire is borrowed, you may reserve it on the system. This will allow the system to send you
-                    an email as soon as it is returned. However, kindly note that it will be made available to other users
-                    as soon as this email is sent. You are advised to borrow it in the system as soon you receive the email
-                    and collect it from HR within 3 days.</li>
+                    an email as soon as it is returned. Kindly note that you will be marked as the borrower and your 2
+                    weeks will start as soon as the email is sent.
+                </li>
             </ul>
         </div>
         <div>

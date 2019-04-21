@@ -30,8 +30,8 @@
     <div class="email-body">
         <h2>Hi {{ $reservorName }}!</h2>
         <br>
-        <p>Your patience has been rewarded! {{ $book->title }} has just been returned. You may now borrow it.</p>
-        <p>Remember that you may only borrow a maximum of 3 books at a time for 2 weeks.</p>
+        <p>Your patience has been rewarded! {{ $book->title }} has just been returned. You are now the registered borrower.</p>
+        <p>Remember that you may only borrow a maximum of 3 books at a time for 2 weeks. Your two weeks start today. Kindly pick up the book from HR.</p>
         <br>
         <div>
             <p>Kind regards,</p>

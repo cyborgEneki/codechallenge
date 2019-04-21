@@ -4037,7 +4037,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post("/api/borrow", _this5.borrowDetails).then(function (response) {
           _this5.$notify({
             title: "Success",
-            message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
+            message: "Success! Your 2 weeks start today. Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
             type: "success",
             duration: 30000
           });
@@ -4059,7 +4059,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.get("/api/books/" + id + "/reserve", _this6.books).then(function (response) {
           _this6.books = response.data;
 
-          _this6.$alert("You will get an email notification as soon as this book is available. Please note that it will be unchecked in the system as soon as the email is sent, therefore, kindly borrow it as soon as you receive the email.", "Success!", {
+          _this6.$alert("You will get an email notification as soon as this book is available. Please note that your 2 week borrowing period will commence the day that the email is sent.", "Success!", {
             confirmButtonText: "OK",
             callback: function callback(action) {}
           });
@@ -4680,7 +4680,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
