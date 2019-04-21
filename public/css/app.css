@@ -7989,19 +7989,3 @@ tbody tr:nth-child(even) {
   font-size: 14px;
 }
 
-.mail-top-bar {
-  background-color: #F5F8FA;
-  height: 10%;
-  font-size: larger;
-  font-family: sans-serif;
-  padding-top: 30px;
-  text-align: center;
-  padding-bottom: 30px;
-}
-
-.mail-body {
-  font-family: sans-serif;
-  padding: 30px;
-  font-size: 14px;
-}
-
