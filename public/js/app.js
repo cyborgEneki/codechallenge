@@ -4042,7 +4042,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 30000
           });
         })["catch"](function () {
-          _this5.$alert("You have exceeded your borrowing limit", "Stop", {
+          _this5.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one", "Stop", {
             confirmButtonText: "OK"
           });
         });
@@ -4745,6 +4745,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4773,6 +4774,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -99007,7 +99014,7 @@ var render = function() {
   return _c("div", [
     _c("p", { staticClass: "report-text" }, [
       _vm._v(
-        "Click on the button below to get a report of the number of users who were suspended, books that were borrowed, and books that have been returned in the last 7 days."
+        "Click on the button below to get a summary of the number of users who were suspended, books that were borrowed, and books that have been returned in the last 7 days."
       )
     ]),
     _vm._v(" "),
@@ -99049,204 +99056,259 @@ var render = function() {
     "div",
     [
       _c(
-        "el-container",
+        "el-row",
         [
-          _c(
-            "el-aside",
-            { attrs: { width: "200px" } },
-            [
-              _c(
-                "el-menu",
-                {
-                  staticClass: "el-menu-vertical-demo",
-                  attrs: {
-                    "default-active": "1",
-                    "background-color": "#000000",
-                    "text-color": "#fff",
-                    "active-text-color": "#ffd04b"
-                  },
-                  on: { open: _vm.handleOpen, close: _vm.handleClose }
-                },
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "profile" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "8" } }, [
-                        _c("i", { staticClass: "fas fa-id-badge yellow" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Profile")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "indexBooks" } } },
-                    [
-                      _c("el-menu-item", { attrs: { index: "3" } }, [
-                        _c("i", { staticClass: "fas fa-book-open hotorange" }),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "sidebar-padding",
-                            attrs: { slot: "title" },
-                            slot: "title"
-                          },
-                          [_vm._v("Books")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm.isadmin
-                    ? _c(
-                        "router-link",
-                        { attrs: { to: { name: "indexCategories" } } },
-                        [
-                          _c("el-menu-item", { attrs: { index: "4" } }, [
-                            _c("i", { staticClass: "fas fa-boxes powderblue" }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "sidebar-padding",
-                                attrs: { slot: "title" },
-                                slot: "title"
-                              },
-                              [_vm._v("Categories")]
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isadmin
-                    ? _c(
-                        "router-link",
-                        { attrs: { to: { name: "indexDepartments" } } },
-                        [
-                          _c("el-menu-item", { attrs: { index: "5" } }, [
-                            _c("i", {
-                              staticClass: "fas fa-building customgreen"
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "sidebar-padding",
-                                attrs: { slot: "title" },
-                                slot: "title"
-                              },
-                              [_vm._v("Departments")]
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isadmin
-                    ? _c(
-                        "router-link",
-                        { attrs: { to: { name: "indexAccesslevels" } } },
-                        [
-                          _c("el-menu-item", { attrs: { index: "7" } }, [
-                            _c("i", { staticClass: "fas fa-ban purple" }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "sidebar-padding",
-                                attrs: { slot: "title" },
-                                slot: "title"
-                              },
-                              [_vm._v("Access Levels")]
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isadmin
-                    ? _c(
-                        "router-link",
-                        { attrs: { to: { name: "indexUsers" } } },
-                        [
-                          _c("el-menu-item", { attrs: { index: "6" } }, [
-                            _c("i", { staticClass: "fas fa-users mustard" }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "sidebar-padding",
-                                attrs: { slot: "title" },
-                                slot: "title"
-                              },
-                              [_vm._v("Users")]
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isadmin
-                    ? _c(
-                        "router-link",
-                        { attrs: { to: { name: "reports" } } },
-                        [
-                          _c("el-menu-item", { attrs: { index: "9" } }, [
-                            _c("i", { staticClass: "fas fa-file darkblue" }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "sidebar-padding",
-                                attrs: { slot: "title" },
-                                slot: "title"
-                              },
-                              [_vm._v("Reports")]
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c(
             "el-container",
             [
               _c(
-                "el-main",
+                "el-col",
+                { attrs: { xs: 1, sm: 6, md: 4, lg: 3, xl: 1 } },
                 [
-                  _c("router-view", {
-                    attrs: { choices: _vm.choices },
-                    on: {
-                      "update:choices": function($event) {
-                        _vm.choices = $event
-                      }
-                    }
-                  })
+                  _c(
+                    "el-aside",
+                    { attrs: { width: "200px" } },
+                    [
+                      _c(
+                        "el-menu",
+                        {
+                          staticClass: "el-menu-vertical-demo",
+                          attrs: {
+                            "default-active": "1",
+                            "background-color": "#000000",
+                            "text-color": "#fff",
+                            "active-text-color": "#ffd04b"
+                          },
+                          on: { open: _vm.handleOpen, close: _vm.handleClose }
+                        },
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "profile" } } },
+                            [
+                              _c("el-menu-item", { attrs: { index: "8" } }, [
+                                _c("i", {
+                                  staticClass: "fas fa-id-badge yellow"
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "sidebar-padding",
+                                    attrs: { slot: "title" },
+                                    slot: "title"
+                                  },
+                                  [_vm._v("Profile")]
+                                )
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "indexBooks" } } },
+                            [
+                              _c("el-menu-item", { attrs: { index: "3" } }, [
+                                _c("i", {
+                                  staticClass: "fas fa-book-open hotorange"
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "sidebar-padding",
+                                    attrs: { slot: "title" },
+                                    slot: "title"
+                                  },
+                                  [_vm._v("Books")]
+                                )
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm.isadmin
+                            ? _c(
+                                "router-link",
+                                { attrs: { to: { name: "indexCategories" } } },
+                                [
+                                  _c(
+                                    "el-menu-item",
+                                    { attrs: { index: "4" } },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-boxes powderblue"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "sidebar-padding",
+                                          attrs: { slot: "title" },
+                                          slot: "title"
+                                        },
+                                        [_vm._v("Categories")]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.isadmin
+                            ? _c(
+                                "router-link",
+                                { attrs: { to: { name: "indexDepartments" } } },
+                                [
+                                  _c(
+                                    "el-menu-item",
+                                    { attrs: { index: "5" } },
+                                    [
+                                      _c("i", {
+                                        staticClass:
+                                          "fas fa-building customgreen"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "sidebar-padding",
+                                          attrs: { slot: "title" },
+                                          slot: "title"
+                                        },
+                                        [_vm._v("Departments")]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.isadmin
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: { to: { name: "indexAccesslevels" } }
+                                },
+                                [
+                                  _c(
+                                    "el-menu-item",
+                                    { attrs: { index: "7" } },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-ban purple"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "sidebar-padding",
+                                          attrs: { slot: "title" },
+                                          slot: "title"
+                                        },
+                                        [_vm._v("Access Levels")]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.isadmin
+                            ? _c(
+                                "router-link",
+                                { attrs: { to: { name: "indexUsers" } } },
+                                [
+                                  _c(
+                                    "el-menu-item",
+                                    { attrs: { index: "6" } },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-users mustard"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "sidebar-padding",
+                                          attrs: { slot: "title" },
+                                          slot: "title"
+                                        },
+                                        [_vm._v("Users")]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.isadmin
+                            ? _c(
+                                "router-link",
+                                { attrs: { to: { name: "reports" } } },
+                                [
+                                  _c(
+                                    "el-menu-item",
+                                    { attrs: { index: "9" } },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-file darkblue"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "sidebar-padding",
+                                          attrs: { slot: "title" },
+                                          slot: "title"
+                                        },
+                                        [_vm._v("Reports")]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { xs: 23, sm: 18, md: 20, lg: 21, xl: 23 } },
+                [
+                  _c(
+                    "el-container",
+                    [
+                      _c(
+                        "el-main",
+                        [
+                          _c("router-view", {
+                            attrs: { choices: _vm.choices },
+                            on: {
+                              "update:choices": function($event) {
+                                _vm.choices = $event
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               )

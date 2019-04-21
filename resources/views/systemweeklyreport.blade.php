@@ -28,17 +28,16 @@
 <body class="mail-body">
     <h1 class="mail-top-bar">Cybrary</h1>
     <div class="email-body">
-        <h2>Hi {{ $name }}</h2>
-        <p>Kindly note that you have a book that is just about due. In case you have forgotten, kindly log into the system to
-            confirm which one it is.</p>
-        <br>
-        <p>Remember that you may only borrow a maximum of 3 books at a time for 2 weeks.</p>
-        <p>Failure to adhere to the borrowing timelines will lead to suspension from the library services for 3 months.</p>
-        <br>
-        <div>
-            <p>Kind regards,</p>
-            <p>{{ config('app.name') }} Bot</p>
-        </div>
+        <h2>Hi Admin!</h1>
+            <div>
+                Total number of suspended users for this week is: {{ $suspendedUsers }}
+            </div>
+            <div>
+                Total number of borrowed books for this week is: {{ $booksBorrowed }}
+            </div>
+            <div>
+                Total number of returned books for this week is: {{ $booksReturned }}
+            </div>
     </div>
 </body>
 

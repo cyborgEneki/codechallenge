@@ -16,15 +16,15 @@ class WeeklyReportMailable extends Mailable
      *
      * @return void
      */
-    public $booksborrowed;
-    public $booksreturned;
-    public $suspendedusers;
+    public $booksBorrowed;
+    public $booksReturned;
+    public $suspendedUsers;
 
-    public function __construct($booksborrowed, $booksreturned, $suspendedusers)
+    public function __construct($booksBorrowed, $booksReturned, $suspendedUsers)
     {
-        $this->booksborrowed = $booksborrowed;
-        $this->booksreturned = $booksreturned;
-        $this->suspendedusers = $suspendedusers;
+        $this->booksBorrowed = $booksBorrowed;
+        $this->booksReturned = $booksReturned;
+        $this->suspendedUsers = $suspendedUsers;
     }
 
     /**
@@ -34,6 +34,6 @@ class WeeklyReportMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.weeklyreport');
+        return $this->view('systemweeklyreport');
     }
 }
