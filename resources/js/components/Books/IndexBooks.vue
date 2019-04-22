@@ -167,10 +167,10 @@ export default {
               type: "success",
               duration: 30000
             });
-            
+
           })
           .catch(() => {
-            this.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one", "Stop", {
+            this.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one. If not so, you have attempted to borrow this book twice", "Stop", {
               confirmButtonText: "OK"
             });
           });
