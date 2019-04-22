@@ -72,7 +72,7 @@ export default {
     },
     deleteCategory(id) {
       this.$confirm(
-        "This will permanently delete the category. Continue?",
+        "Are there books listed under this category? If yes, remove them or change their category to delete this category.",
         "Warning",
         {
           confirmButtonText: "OK",

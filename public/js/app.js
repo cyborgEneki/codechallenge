@@ -4340,7 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteCategory: function deleteCategory(id) {
       var _this2 = this;
 
-      this.$confirm("This will permanently delete the category. Continue?", "Warning", {
+      this.$confirm("Are there books listed under this category? If yes, remove them or change their category to delete this category.", "Warning", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4628,7 +4628,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteDepartment: function deleteDepartment(id) {
       var _this2 = this;
 
-      this.$confirm("This will permanently delete the department. Continue?", "Warning", {
+      this.$confirm("Are there users listed under this department? If yes, remove them or change their department to delete this department.", "Warning", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4647,7 +4647,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 10000
           });
         })["catch"](function () {
-          _this2.$alert("There are books attached to this category. Remove them or change their category to delete this category", "Stop", {
+          _this2.$alert("There are users attached to this department. Remove them or change their department to delete this department", "Stop", {
             confirmButtonText: "OK"
           });
         });

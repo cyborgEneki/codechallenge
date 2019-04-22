@@ -74,7 +74,7 @@ export default {
     },
     deleteDepartment(id) {
       this.$confirm(
-        "This will permanently delete the department. Continue?",
+        "Are there users listed under this department? If yes, remove them or change their department to delete this department.",
         "Warning",
         {
           confirmButtonText: "OK",
@@ -100,7 +100,7 @@ export default {
           })
           .catch(() => {
             this.$alert(
-              "There are books attached to this category. Remove them or change their category to delete this category",
+              "There are users attached to this department. Remove them or change their department to delete this department",
               "Stop",
               {
                 confirmButtonText: "OK"
