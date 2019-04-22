@@ -4037,12 +4037,12 @@ __webpack_require__.r(__webpack_exports__);
         axios.post("/api/borrow", _this5.borrowDetails).then(function (response) {
           _this5.$notify({
             title: "Success",
-            message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
+            message: "Success! Your 2 weeks start today. Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
             type: "success",
             duration: 30000
           });
         })["catch"](function () {
-          _this5.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one", "Stop", {
+          _this5.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one. If not so, you have attempted to borrow this book twice", "Stop", {
             confirmButtonText: "OK"
           });
         });
@@ -4059,7 +4059,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.get("/api/books/" + id + "/reserve", _this6.books).then(function (response) {
           _this6.books = response.data;
 
-          _this6.$alert("You will get an email notification as soon as this book is available. Please note that it will be unchecked in the system as soon as the email is sent, therefore, kindly borrow it as soon as you receive the email.", "Success!", {
+          _this6.$alert("You will get an email notification as soon as this book is available. Please note that your 2 week borrowing period will commence the day that the email is sent.", "Success!", {
             confirmButtonText: "OK",
             callback: function callback(action) {}
           });
@@ -4340,7 +4340,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteCategory: function deleteCategory(id) {
       var _this2 = this;
 
-      this.$confirm("This will permanently delete the category. Continue?", "Warning", {
+      this.$confirm("Are there books listed under this category? If yes, remove them or change their category to delete this category.", "Warning", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4358,12 +4358,10 @@ __webpack_require__.r(__webpack_exports__);
             type: "success",
             duration: 10000
           });
-        });
-      })["catch"](function () {
-        _this2.$notify.info({
-          title: "Info",
-          message: "Delete cancelled",
-          duration: 10000
+        })["catch"](function () {
+          _this2.$alert("There are books attached to this category. Remove them or change their category to delete this category", "Stop", {
+            confirmButtonText: "OK"
+          });
         });
       });
     },
@@ -4588,6 +4586,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4628,7 +4628,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteDepartment: function deleteDepartment(id) {
       var _this2 = this;
 
-      this.$confirm("This will permanently delete the department. Continue?", "Warning", {
+      this.$confirm("Are there users listed under this department? If yes, remove them or change their department to delete this department.", "Warning", {
         confirmButtonText: "OK",
         cancelButtonText: "Cancel",
         type: "warning"
@@ -4646,12 +4646,10 @@ __webpack_require__.r(__webpack_exports__);
             type: "success",
             duration: 10000
           });
-        });
-      })["catch"](function () {
-        _this2.$notify.info({
-          title: "Info",
-          message: "Delete cancelled",
-          duration: 10000
+        })["catch"](function () {
+          _this2.$alert("There are users attached to this department. Remove them or change their department to delete this department", "Stop", {
+            confirmButtonText: "OK"
+          });
         });
       });
     },
@@ -4680,7 +4678,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //

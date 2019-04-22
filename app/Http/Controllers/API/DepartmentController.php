@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Contracts\DepartmentRepositoryInterface;
 use App\Models\Department;
 use App\Http\Requests\DepartmentRequest;
+use App\Models\User;
 
 class DepartmentController extends Controller
 {
@@ -43,6 +44,6 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department = $this->departmentRepo->deleteDepartment($department);
-        return response()->json($department, 200);
+        return $department;
     }
 }

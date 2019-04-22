@@ -14,7 +14,6 @@
       </div>
     </div>
 
-    <!-- <button style="background-color: red;" @click="reveal">Some</button> -->
   </div>
 </template>
 

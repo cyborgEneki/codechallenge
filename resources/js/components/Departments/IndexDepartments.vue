@@ -18,7 +18,9 @@
           <tr v-for="department in orderedDepartments" :key="department.id">
             <td width="90%">{{ department.name }}</td>
             <td class="actions-column">
-              <router-link :to="{ name: 'editDepartment', params: { department, id: department.id } }">
+              <router-link
+                :to="{ name: 'editDepartment', params: { department, id: department.id } }"
+              >
                 <i class="fas fa-edit icon blue"></i>
               </router-link>
               <a>
@@ -72,16 +74,17 @@ export default {
     },
     deleteDepartment(id) {
       this.$confirm(
-        "This will permanently delete the department. Continue?",
+        "Are there users listed under this department? If yes, remove them or change their department to delete this department.",
         "Warning",
         {
           confirmButtonText: "OK",
           cancelButtonText: "Cancel",
           type: "warning"
         }
-      )
-        .then(() => {
-          axios.delete("/api/departments/" + id).then(() => {
+      ).then(() => {
+        axios
+          .delete("/api/departments/" + id)
+          .then(() => {
             let index = this.departments
               .map(item => {
                 return item.id;
@@ -94,15 +97,17 @@ export default {
               type: "success",
               duration: 10000
             });
+          })
+          .catch(() => {
+            this.$alert(
+              "There are users attached to this department. Remove them or change their department to delete this department",
+              "Stop",
+              {
+                confirmButtonText: "OK"
+              }
+            );
           });
-        })
-        .catch(() => {
-          this.$notify.info({
-            title: "Info",
-            message: "Delete cancelled",
-            duration: 10000
-          });
-        });
+      });
     },
     getAdmin() {
       axios.get("/api/users/isadmin").then(response => {

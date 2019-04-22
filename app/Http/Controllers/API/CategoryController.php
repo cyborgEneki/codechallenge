@@ -7,6 +7,7 @@ use App\Contracts\CategoryRepositoryInterface;
 use App\Models\Category;
 use Validator;
 use App\Http\Requests\CategoryRequest;
+use App\Models\Book;
 
 class CategoryController extends Controller
 {
@@ -51,6 +52,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category = $this->categoryRepo->deleteCategory($category);
-        return response()->json($category, 200);
+        return $category;
     }
 }

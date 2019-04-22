@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Department;
 use App\Contracts\DepartmentRepositoryInterface;
 use App\Http\Requests\DepartmentRequest;
+use App\Models\User;
 
 class DepartmentRepository implements DepartmentRepositoryInterface
 {
@@ -30,6 +31,11 @@ class DepartmentRepository implements DepartmentRepositoryInterface
 
     public function deleteDepartment(Department $department)
     {
-        return $department->delete($department);
+        $users_in_the_department = User::where('department_id', $department->id)->get();
+
+        if ($users_in_the_department == null) {
+            return $department->delete($department);
+        }
+        return response()->json(['error' => 'Stop! Users are attached to this department'], 404);        
     }
 }

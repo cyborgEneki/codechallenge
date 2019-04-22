@@ -163,13 +163,14 @@ export default {
           .then(response => {
             this.$notify({
               title: "Success",
-              message: "Success! Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
+              message: "Success! Your 2 weeks start today. Kindly go pick up your book from HR. Refresh the page and visit your profile to see the due date.",
               type: "success",
               duration: 30000
             });
+
           })
           .catch(() => {
-            this.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one", "Stop", {
+            this.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one. If not so, you have attempted to borrow this book twice", "Stop", {
               confirmButtonText: "OK"
             });
           });
@@ -190,7 +191,7 @@ export default {
           .then(response => {
             this.books = response.data;
             this.$alert(
-              "You will get an email notification as soon as this book is available. Please note that it will be unchecked in the system as soon as the email is sent, therefore, kindly borrow it as soon as you receive the email.",
+              "You will get an email notification as soon as this book is available. Please note that your 2 week borrowing period will commence the day that the email is sent.",
               "Success!",
               {
                 confirmButtonText: "OK",
