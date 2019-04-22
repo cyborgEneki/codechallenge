@@ -41,7 +41,7 @@ export default {
   components: { Pagination },
   computed: {
     orderedCategories() {
-      return _.orderBy(this.categories, "created_at", "desc")
+      return _.orderBy(this.categories, "created_at", "desc");
     }
   },
   data() {
@@ -79,9 +79,10 @@ export default {
           cancelButtonText: "Cancel",
           type: "warning"
         }
-      )
-        .then(() => {
-          axios.delete("/api/categories/" + id).then(() => {
+      ).then(() => {
+        axios
+          .delete("/api/categories/" + id)
+          .then(() => {
             let index = this.categories
               .map(item => {
                 return item.id;
@@ -94,13 +95,17 @@ export default {
               type: "success",
               duration: 10000
             });
+          })
+          .catch(() => {
+            this.$alert(
+              "There are books attached to this category. Remove them or change their category to delete this category",
+              "Stop",
+              {
+                confirmButtonText: "OK"
+              }
+            );
           });
-        })
-        .catch(() => {
-          this.$alert("There are books attached to this category. Remove them or change their category to delete this category", "Stop", {
-              confirmButtonText: "OK"
-            });
-        });
+      });
     },
     getAdmin() {
       axios.get("/api/users/isadmin").then(response => {

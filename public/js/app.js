@@ -4358,12 +4358,10 @@ __webpack_require__.r(__webpack_exports__);
             type: "success",
             duration: 10000
           });
-        });
-      })["catch"](function () {
-        _this2.$notify.info({
-          title: "Info",
-          message: "Delete cancelled",
-          duration: 10000
+        })["catch"](function () {
+          _this2.$alert("There are books attached to this category. Remove them or change their category to delete this category", "Stop", {
+            confirmButtonText: "OK"
+          });
         });
       });
     },
@@ -119597,8 +119595,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/challenge/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/challenge/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/jeneki/sites/challenge/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/jeneki/sites/challenge/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
