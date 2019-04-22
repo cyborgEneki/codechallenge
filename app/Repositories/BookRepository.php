@@ -74,5 +74,5 @@ class BookRepository implements BookRepositoryInterface
         } else {
             return response()->json(['error'=>'This book has already been reserved'], 404);
         }
-    }
+    } 
 }

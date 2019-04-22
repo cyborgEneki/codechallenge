@@ -97,11 +97,9 @@ export default {
           });
         })
         .catch(() => {
-          this.$notify.info({
-            title: "Info",
-            message: "Delete cancelled",
-            duration: 10000
-          });
+          this.$alert("There are books attached to this category. Remove them or change their category to delete this category", "Stop", {
+              confirmButtonText: "OK"
+            });
         });
     },
     getAdmin() {
