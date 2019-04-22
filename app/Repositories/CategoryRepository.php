@@ -33,10 +33,10 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $books_with_the_category = Book::where('category_id', $category->id)->get();
 
-        if ($books_with_the_category !== null) {
-            return response()->json(['error' => 'Stop! Books are attached to this category'], 404);
-        } else {
+        if ($books_with_the_category == null) {
             return $category->delete($category);
+        } else {
+            return response()->json(['error' => 'Stop! Books are attached to this category'], 404);
         }
     }
 }

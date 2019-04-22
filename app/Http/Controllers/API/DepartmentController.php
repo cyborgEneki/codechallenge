@@ -43,14 +43,7 @@ class DepartmentController extends Controller
 
     public function destroy(Department $department)
     {
-        // $department = $this->departmentRepo->deleteDepartment($department);
-        // return response()->json($department, 200);
-
-        $users_in_the_department = User::where('department_id', $department->id)->get();
-
-        if ($users_in_the_department == null) {
-            return response()->json($department, 200);
-        }
-        return response()->json(['error' => 'Stop! Users are attached to this department'], 404);
+        $department = $this->departmentRepo->deleteDepartment($department);
+        return $department;
     }
 }

@@ -51,15 +51,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        // $category = $this->categoryRepo->deleteCategory($category);
-        // return response()->json($category, 200);
-
-        $books_with_the_category = Book::where('category_id', $category->id)->get();
-
-        if ($books_with_the_category !== null) {
-            return response()->json(['error' => 'Stop! Books are attached to this category'], 404);
-        } else {
-            return response()->json($category, 200);
-        }
+        $category = $this->categoryRepo->deleteCategory($category);
+        return $category;
     }
 }
