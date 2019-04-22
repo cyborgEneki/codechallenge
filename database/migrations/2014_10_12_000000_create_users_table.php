@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedInteger('max_number_of_books_allowed');
             $table->boolean('status');
-            $table->unsignedInteger('department_id')->nullable();
+            $table->unsignedInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->unsignedInteger('accesslevel_id')->nullable();
+            $table->unsignedInteger('accesslevel_id');
             $table->foreign('accesslevel_id')->references('id')->on('accesslevels');
             $table->rememberToken();
             $table->timestamps();
