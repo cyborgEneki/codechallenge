@@ -4042,7 +4042,7 @@ __webpack_require__.r(__webpack_exports__);
             duration: 30000
           });
         })["catch"](function () {
-          _this5.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one", "Stop", {
+          _this5.$alert("You have reached your borrowing limit. Kindly return at least one book to borrow this one. If not so, you have attempted to borrow this book twice", "Stop", {
             confirmButtonText: "OK"
           });
         });
@@ -119597,8 +119597,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jeneki/sites/challenge/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/jeneki/sites/challenge/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/challenge/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/challenge/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
