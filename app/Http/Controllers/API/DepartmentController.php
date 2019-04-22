@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Contracts\DepartmentRepositoryInterface;
 use App\Models\Department;
 use App\Http\Requests\DepartmentRequest;
+use App\Models\User;
 
 class DepartmentController extends Controller
 {

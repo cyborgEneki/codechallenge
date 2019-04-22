@@ -4586,6 +4586,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4644,12 +4646,10 @@ __webpack_require__.r(__webpack_exports__);
             type: "success",
             duration: 10000
           });
-        });
-      })["catch"](function () {
-        _this2.$notify.info({
-          title: "Info",
-          message: "Delete cancelled",
-          duration: 10000
+        })["catch"](function () {
+          _this2.$alert("There are books attached to this category. Remove them or change their category to delete this category", "Stop", {
+            confirmButtonText: "OK"
+          });
         });
       });
     },
