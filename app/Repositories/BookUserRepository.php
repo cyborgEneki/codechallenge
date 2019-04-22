@@ -36,9 +36,9 @@ class BookUserRepository implements BookUserRepositoryInterface
             $request["due_date"] = $dueDateString;
             $request["date_out"] = $dtString;
 
-            $borrowed = BookUser::select('book_id')->where('book_id', $request['book_id'])->where('due_date', null)->get()->count();
+            $borrowed = BookUser::select('book_id')->where('book_id', $request['book_id'])->where('date_in', null)->get()->count();
 
-            if ($borrowed !== null) {
+            if ($borrowed == null) {
                 $bookuser = BookUser::create($request->all());
                 Book::select('book_id')->where('id', $request['book_id'])->update(['status' => 0]);
                 return response()->json($bookuser, 201);
