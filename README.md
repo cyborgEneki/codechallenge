@@ -1,4 +1,4 @@
-# cybrary-code-challenge
+# Cybrary Library App
 CT final project
 
 This is a library app I created as my final project's submission following my 
